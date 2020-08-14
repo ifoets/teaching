@@ -1,0 +1,27 @@
+/**
+ * 
+ */
+package com.design.analysis.ds.hashing.key2.node;
+
+import com.design.analysis.ds.hashing.node.HTNode;
+
+/**
+ * @author @Gurug
+ *
+ *//** Hash key2 type ..tree to link list**/
+/**
+ * it is used in two key hashing kye1 in table[] index, key2 in tree HK2TTNode
+ * and value store in tree HTNode also
+ **/
+public class HK2TTNode<K2, V> {
+
+	public K2 k;
+	public HK2TTNode<K2, V> lt, rt, pt;
+	public HTNode<V> up;
+
+	public HK2TTNode(K2 k) {
+		this.k = k;
+		this.lt = this.rt = this.pt = null;
+		this.up = null;
+	}
+}
