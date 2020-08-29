@@ -117,8 +117,7 @@ public class IArrangeReArrangeTest {
 	@Test
 	public void moveZerosToEndTest() {
 		int a[] = { 0, 1, 9, 8, 4, 0, 0, 2, 7, 0, 6, 0, 9 };
-		int b[] = { 1, 9, 8, 4, 2, 7, 6, 9, 0, 0, 0,
-				0, 0 };
+		int b[] = { 1, 9, 8, 4, 2, 7, 6, 9, 0, 0, 0, 0, 0 };
 		iar.moveZerosToEnd(a);
 		for (int i = 0; i < a.length; i++)
 			Assert.assertTrue(a[i] == b[i]);
@@ -192,7 +191,9 @@ public class IArrangeReArrangeTest {
 	@Test
 	public void formBiggestNoTest() {
 		int a[] = { 54, 546, 548, 60 };
-		Assert.assertTrue(iar.formBiggestNo(a) == "6054854654");
+		int b[] = { 9, 3, 34, 31 };
+		Assert.assertTrue(iar.formBiggestNo(a).equals("6054854654"));
+		Assert.assertTrue(iar.formBiggestNo(b).equals("934331"));
 	}
 
 	/** 16. Rearrange an array such that ‘arr[j]’ becomes ‘i’ if ‘arr[i]’ is ‘j’ **/

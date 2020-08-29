@@ -115,6 +115,10 @@ import com.design.analysis.ds.linklist.utils.Lap;
 
  */
 public interface ISLinkList<K> {
+
+	/** delete a givin node without head pointer **/
+	public void deleteNode(SLNode<K> delNode);
+
 	/** 3. Linked List Insertion **/
 	/* insert collection of element */
 	public Lap<SLNode<K>, SLNode<K>> insertArrLast(Lap<SLNode<K>, SLNode<K>> lap, K k[]);
@@ -140,6 +144,8 @@ public interface ISLinkList<K> {
 
 	/* delete the last occurrence of node */
 	public SLNode<K> deleteLastK(SLNode<K> head, K k);
+
+	public SLNode<K> deleteLastKX(SLNode<K> head, K k);
 
 	/** 5. Linked List Deletion (Deleting a key at given position) **/
 	public SLNode<K> deletePos(SLNode<K> head, int pos);
@@ -205,7 +211,7 @@ public interface ISLinkList<K> {
 
 	/** 21. Remove duplicates from a sorted linked list **/
 	public SLNode<K> removeDupicateSortedList(SLNode<K> k);
-	
+
 	public SLNode<K> removeDupicateSortedListX(SLNode<K> k);
 
 	/** 22. Remove duplicates from an unsorted linked list **/
