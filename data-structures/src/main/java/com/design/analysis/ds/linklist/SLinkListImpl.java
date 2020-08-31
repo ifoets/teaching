@@ -23,6 +23,18 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 	public SLNode<Integer> head = null;
 	public SLNode<Integer> tail = null;
 
+	/** delete a givin node without head pointer **/
+	public void deleteNode(SLNode<Integer> node) {
+
+		SLNode<Integer> delNode = node;
+		Integer delVal = delNode.k;
+		delNode.k = delNode.next.k;
+		delNode.next.k = delVal;
+		SLNode<Integer> q = delNode.next;
+		delNode.next = q.next;
+		q = null;
+	}
+
 	/** 3. Linked List Insertion **/
 	@Override
 	public Lap<SLNode<Integer>, SLNode<Integer>> insertArrLast(Lap<SLNode<Integer>, SLNode<Integer>> lap, Integer a[]) {
@@ -228,6 +240,26 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 		else
 			System.out.println(k + ": is not found");
 		return head;
+	}
+
+	/* delete the last occurrence of node */
+	@Override
+	public SLNode<Integer> deleteLastKX(SLNode<Integer> head, Integer k) {
+
+		/* find the position of last occurence */
+		int pos = 0;
+		int counter = 0;
+		SLNode<Integer> q = head;
+		while (q != null) {
+			if (q.k == k)
+				pos = counter + 1;
+			counter++;
+			q = q.next;
+		}
+		if (pos == 1)
+			return deleteFirstK(head, k);
+		else
+			return deletePos(head, pos);
 	}
 
 	/**
@@ -633,7 +665,7 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 				q.next = slNode;
 				q = slNode;
 				if (i == set.size() - 1)
-					q.next = null;// for last node since it may point to somen one
+					q.next = null;// for last node since it may point to some one
 			}
 			i++;
 		}
