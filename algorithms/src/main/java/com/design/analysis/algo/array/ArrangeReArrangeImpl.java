@@ -1,7 +1,11 @@
 
 package com.design.analysis.algo.array;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 
 import com.design.analysis.algo.utils.AlgoUtils;
@@ -47,7 +51,7 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 			;
 	}
 
-	/* for every type of -ve no and no should be in list */
+	/* for every type of -ve/+ve and no should be in list */
 	public void fixedAtIndexY(int a[]) {
 		for (int i = 0; i < a.length; i++) {
 			if (a[i] > 0 && a[i] != i) {
@@ -321,15 +325,58 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	/** 15. Arrange given numbers to form the biggest number **/
 
 	public String formBiggestNo(int a[]) {
-		String rs = "";
-		int n = a.length;
-		String st[] = new String[a.length];
-		for (int i = 0; i < n; i++)
-			st[i] = String.valueOf(a[i]);
-		Arrays.sort(st);
-		for (int i = n - 1; i >= 0; i--)
-			rs += st[i];
-		return rs;
+		class BigestInt {
+			String num;
+
+			public BigestInt(String num) {
+				super();
+				this.num = num;
+			}
+
+			@Override
+			public String toString() {
+				return num;
+			}
+
+		}
+
+		List<BigestInt> numList = new ArrayList<BigestInt>();
+		// comparison algorithm tell before and other each others for decreasing order
+		for (int i : a) {
+			numList.add(new BigestInt(String.valueOf(i)));
+		}
+
+		Collections.sort(numList, new Comparator<BigestInt>() {
+			@Override
+			public int compare(BigestInt o1, BigestInt o2) {
+				String st1 = o1.num;
+				String st2 = o2.num;
+				int n1 = st1.length();
+				int n2 = st2.length();
+
+				int i = 0;
+				int j = 0;
+
+				if (st1.equals(st2))
+					return 0;
+				while (i != n1 && j != n2) {
+					if (st1.charAt(i) == st2.charAt(j)) {
+						if (i != n1 - 1)
+							i++;
+						if (j != n2 - 1)
+							j++;
+					} else {
+						return st2.charAt(j) - st1.charAt(i);
+					}
+				}
+				return 0;
+			}
+		});
+
+		StringBuilder sbr = new StringBuilder();
+		for (BigestInt num : numList)
+			sbr.append(num.num);
+		return sbr.toString();
 	}
 
 	/**

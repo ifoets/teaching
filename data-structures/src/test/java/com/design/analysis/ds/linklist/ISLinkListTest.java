@@ -22,6 +22,16 @@ public class ISLinkListTest {
 		isl = new SLinkListImpl();
 	}
 
+	/** delete a givin node without head pointer **/
+	@Test
+	public void deleteNode() {
+		Integer a[] = { 8, 7, 9, 2, 3, 4, 0, 1, 5, 6 };
+		SLNode<Integer> head = isl.insertArrSorted(null, a);
+		SLNode<Integer> q = head.next.next.next.next.next;
+		isl.deleteNode(q);
+		isl.printList(head);
+	}
+
 	/** 3. Linked List Insertion **/
 	@Test
 	public void insertArrTest() {
@@ -145,6 +155,22 @@ public class ISLinkListTest {
 		head = isl.deleteLastK(head, 2);
 		head = isl.deleteLastK(head, 1);
 		head = isl.deleteLastK(head, 10);
+		Assert.assertTrue(head.k == 4);
+	}
+
+	/* delete the last occurrence of node */
+	@Test
+	public void deleteLastKXTest() {
+		SLNode<Integer> head = null;
+		Integer a[] = { 2, 4, 0, 1, 0, 2, 3, 1 };
+
+		Lap<SLNode<Integer>, SLNode<Integer>> lap = isl.insertArrLast(null, a);
+		head = lap.getHead();
+		head = isl.deleteLastKX(head, 2);
+		Assert.assertTrue(head.next.next.next.next.next.k == 3);
+		head = isl.deleteLastKX(head, 2);
+		head = isl.deleteLastKX(head, 1);
+		head = isl.deleteLastKX(head, 10);
 		Assert.assertTrue(head.k == 4);
 	}
 
@@ -462,7 +488,7 @@ public class ISLinkListTest {
 		for (; head != null; head = head.next)
 			Assert.assertTrue(head.k == b[i++]);
 	}
-	
+
 	@Test
 	public void removeDupicateSortedListXTest() {
 
@@ -597,7 +623,6 @@ public class ISLinkListTest {
 			Assert.assertTrue(i == k2.k);
 	}
 
-	
 	@Test
 	public void alternativeSplitXTest() {
 		Integer a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
