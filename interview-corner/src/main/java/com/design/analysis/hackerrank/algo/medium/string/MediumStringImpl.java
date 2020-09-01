@@ -35,6 +35,8 @@ public class MediumStringImpl implements IMediumString {
 	
 	/** Highest Value Palindrome **/
 	public String highestValuePalindrome(String s, int n, int k) {
-		
+	
+		char[] chArr = s.toCharArray();
+		return null;
 	}
 }
