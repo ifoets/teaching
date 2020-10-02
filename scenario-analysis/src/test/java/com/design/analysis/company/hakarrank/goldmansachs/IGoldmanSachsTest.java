@@ -137,7 +137,22 @@ public class IGoldmanSachsTest {
 		int n[] = { 4, 5 };
 
 		Assert.assertTrue(igs.findAverage(t, n) == 5);
-
 	}
 
+	/** Minimum Initial Energy Required To Cross Street **/
+	@Test
+	public void minEnergyRequiredTest() {
+
+		int a[] = { 4, -10, 4, 4, 4 };
+		Assert.assertTrue(igs.minEnergyRequired(a) == 7);
+		int b[] = { 4, 3, -2 };
+		Assert.assertTrue(igs.minEnergyRequired(b) == 0);
+		int c[] = { 2, -4, 0, 2, -6, 3, -1 };
+		Assert.assertTrue(igs.minEnergyRequired(c) == 7);
+	}
+
+	@Test
+	public void noOfMaxMinInArrTest() {
+
+	}
 }
