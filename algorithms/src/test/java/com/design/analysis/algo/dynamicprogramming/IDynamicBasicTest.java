@@ -105,10 +105,12 @@ public class IDynamicBasicTest {
 	@Test
 	public void bellNumberTest() {
 
-		idb.bellNumber(3);
-		/*int bn[] = { 1, 1, 2, 5, 15, 52 };
-		for (int i = 0; i < bn.length; i++)
-			Assert.assertTrue(idb.bellNumber(i) == bn[i]);*/
+		// idb.bellNumber(3);
+		/*
+		 * int bn[] = { 1, 1, 2, 5, 15, 52 }; for (int i = 0; i < bn.length; i++)
+		 * Assert.assertTrue(idb.bellNumber(i) == bn[i]);
+		 */
+		Assert.assertTrue(idb.bellNumber(6) == 52);
 	}
 
 	/** 5. Binomial Coefficient **/
@@ -125,10 +127,21 @@ public class IDynamicBasicTest {
 		Assert.assertTrue(idb.binomialCoeffDp(5, 2) == 10);
 	}
 
+	@Test
+	public void binomialCoeffDpXTest() {
+		Assert.assertTrue(idb.binomialCoeffDpX(4, 2) == 6);
+		Assert.assertTrue(idb.binomialCoeffDpX(5, 2) == 10);
+	}
+
 	/** 6.Permutation Coefficient **/
 	@Test
 	public void permutationCoefficientTest() {
 		Assert.assertTrue(idb.permutationCoefficient(10, 2) == 90);
+	}
+
+	@Test
+	public void permutationCoefficientXTest() {
+		Assert.assertTrue(idb.permutationCoefficientX(10, 2) == 90);
 	}
 
 	/** 7. Tiling Problem **/ // bord 2*n and tiles 2*1
@@ -138,19 +151,31 @@ public class IDynamicBasicTest {
 		Assert.assertTrue(idb.tillingProblem(5) == 8);
 	}
 
+	/* Tiling Problem 1*m to n*m borad **/
+	@Test
+	public void tillingProblemXTest() {
+		Assert.assertTrue(idb.tillingProblemX(4, 2) == 5);
+		Assert.assertTrue(idb.tillingProblemX(5, 2) == 8);
+	}
+
 	/** 8. Gold Mine Problem **/
 	@Test
 	public void goldMineProblemTest() {
 
-		int mat1[][] = { { 1, 3, 1, 5 }, { 2, 2, 4, 1 }, { 5, 0, 2, 3 }, { 0, 6, 1, 2 } };
-		idb.goldMineProblem(mat1);
-		Assert.assertTrue(idb.goldMineProblem(mat1) == 16);
+		int mat[][] = { { 1, 3, 3 }, { 2, 1, 4 }, { 0, 6, 4 } };
 
-		int mat2[][] = { { 1, 3, 1, 5 }, { 2, 2, 4, 1 }, { 5, 0, 2, 3 }, { 0, 6, 1, 2 } };
-		Assert.assertTrue(idb.goldMineProblem(mat2) == 16);
-
-		int mat3[][] = { { 10, 33, 13, 15 }, { 22, 21, 04, 1 }, { 5, 0, 2, 3 }, { 0, 6, 14, 2 } };
-		Assert.assertTrue(idb.goldMineProblem(mat3) == 83);
+		idb.goldMineProblem(mat);
+		/*
+		 * int mat1[][] = { { 1, 3, 1, 5 }, { 2, 2, 4, 1 }, { 5, 0, 2, 3 }, { 0, 6, 1, 2
+		 * } }; idb.goldMineProblem(mat1); Assert.assertTrue(idb.goldMineProblem(mat1)
+		 * == 16);
+		 * 
+		 * int mat2[][] = { { 1, 3, 1, 5 }, { 2, 2, 4, 1 }, { 5, 0, 2, 3 }, { 0, 6, 1, 2
+		 * } }; Assert.assertTrue(idb.goldMineProblem(mat2) == 16);
+		 * 
+		 * int mat3[][] = { { 10, 33, 13, 15 }, { 22, 21, 04, 1 }, { 5, 0, 2, 3 }, { 0,
+		 * 6, 14, 2 } }; Assert.assertTrue(idb.goldMineProblem(mat3) == 83);
+		 */
 	}
 
 	/** 9. Min Cost Path **/
@@ -255,7 +280,7 @@ public class IDynamicBasicTest {
 	public void paintingFenceTest() {
 		Assert.assertTrue(idb.paintingFence(3, 2) == 6);
 	}
-	
+
 	@Test
 	public void paintingFenceXTest() {
 		Assert.assertTrue(idb.paintingFenceX(3, 2) == 6);
@@ -611,4 +636,5 @@ public class IDynamicBasicTest {
 		Assert.assertTrue(idb.noOfWayCoinChangeDynamic(a, a.length, 4) == 4);
 		Assert.assertTrue(idb.noOfWayCoinChangeDynamic(b, b.length, 10) == 5);
 	}
+
 }

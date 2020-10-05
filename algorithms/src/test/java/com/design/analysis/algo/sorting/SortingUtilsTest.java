@@ -22,6 +22,23 @@ public class SortingUtilsTest {
 		List<Integer> rs = SortingUtils.mergeSortedList(l1, l2);
 		System.out.println(Arrays.toString(rs.toArray()));
 	}
-	
-	
+
+	@Test
+	public void arrangeNeZeroPosTest() {
+		int c[] = { 0, 4, -5, 0, 1, 2, -1, 2, 0, 0, 0, -8, 10 };
+		SortingUtils.arrangeNeZeroPos(c);
+		System.out.println(Arrays.toString(c));
+	}
+
+	@Test
+	public void sortTwoArrayTogetherTest() {
+
+		int a[] = { 1, 9, 2, 11, 3 };
+		int b[] = { 5, 4, 6, 8, 7, 10 };
+		//SortingUtils.sortTwoArrayTogether(a, b);
+		SortingUtils.maxHeapSort1(a, b);
+		
+		System.out.println(Arrays.toString(a));
+		System.out.println(Arrays.toString(b));
+	}
 }
