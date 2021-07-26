@@ -12,8 +12,8 @@ import org.junit.Test;
 import com.design.analysis.company.preparation.model.LNode;
 import com.design.analysis.company.preparation.utils.SListUtils;
 
-import interview.preparation.self.asked.IWissenIninfotech;
-import interview.preparation.self.asked.WissenIninfotechImpl;
+import interview.preparation.self.asked.company.IWissenIninfotech;
+import interview.preparation.self.asked.company.WissenIninfotechImpl;
 
 public class IWissenIninfotechTest {
 

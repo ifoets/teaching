@@ -1,4 +1,4 @@
-package interview.preparation.self.asked;
+package interview.preparation.self.asked.company;
 
 import java.util.ArrayList;
 import java.util.Arrays;

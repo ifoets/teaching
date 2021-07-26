@@ -3,8 +3,8 @@ package interview.preparation.self.asked.company;
 import org.junit.Before;
 import org.junit.Test;
 
-import interview.preparation.self.asked.IZeinAndArt;
-import interview.preparation.self.asked.ZeinAndArtImpl;
+import interview.preparation.self.asked.company.IZeinAndArt;
+import interview.preparation.self.asked.company.ZeinAndArtImpl;
 
 class B {
 	int a = 10;
