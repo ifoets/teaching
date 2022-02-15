@@ -283,7 +283,7 @@ public class ISortingAlgoTest {
 		int a[] = { 1, 0, 2, 9, 3, 8, 7, 4, 5, 6 };
 		for (int i = a.length / 2 - 1; i >= 0; i--) // build head so max is at 0
 			isa.maxHeapify(a, a.length, i);
-		// System.out.println("Max Heap:"+Arrays.toString(a));
+		 //System.out.println("Max Heap:"+Arrays.toString(a));
 		Assert.assertTrue(a[0] == 9);
 		Assert.assertTrue(a[3] == 5);
 		Assert.assertTrue(a[8] == 0);
@@ -309,7 +309,7 @@ public class ISortingAlgoTest {
 		Assert.assertTrue(a[0] == 0);
 		Assert.assertTrue(a[5] == 5);
 		Assert.assertTrue(a[9] == 9);
-		// System.out.println("Max Heap sort" + Arrays.toString(a));
+		System.out.println("Max Heap sort" + Arrays.toString(a));
 	}
 
 	@Test

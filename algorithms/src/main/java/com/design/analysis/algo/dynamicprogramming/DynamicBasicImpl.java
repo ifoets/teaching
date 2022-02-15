@@ -173,6 +173,25 @@ public class DynamicBasicImpl implements IDynamicBasic {
 		return b[k];
 	}
 
+	public int binomialCoeffDpX(int n, int k) {
+		if (k > n)
+			return 0;
+
+		int a[][] = new int[n + 1][k + 1];
+		a[0][0] = 1;
+		for (int i = 1; i <= n; i++) {
+			for (int j = 0; j <= k; j++) {
+				if (i == j || j == 0)
+					a[i][j] = 1;
+				else if (i == j - 1)
+					a[i][j] = i;
+				else
+					a[i][j] = a[i - 1][j - 1] + a[i - 1][j];
+			}
+		}
+		return a[n][k];
+	}
+
 	/** 6.Permutation Coefficient **/
 	public int permutationCoefficient(int n, int k) {
 		int P[][] = new int[n + 2][k + 2];
@@ -198,6 +217,28 @@ public class DynamicBasicImpl implements IDynamicBasic {
 		return P[n][k];
 	}
 
+	/** 6.Permutation Coefficient **/
+	public int permutationCoefficientX(int n, int k) {
+
+		if (k > n)
+			return 0;
+		int p[][] = new int[n + 1][k + 1];
+
+		for (int i = 0; i <= n; i++) {
+			for (int j = 0; j <= Math.min(i, k); j++) {
+				// Base Cases
+				if (j == 0)
+					p[i][j] = 1;
+
+				// Calculate value using previosly
+				// stored values
+				else
+					p[i][j] = p[i - 1][j] + (j * p[i - 1][j - 1]);
+			}
+		}
+		return p[n][k];
+	}
+
 	/** 7. Tiling Problem **/ // bord 2*n and tiles 2*1
 	@Override
 	public int tillingProblem(int n) {
@@ -211,6 +252,28 @@ public class DynamicBasicImpl implements IDynamicBasic {
 				tp[i] = tp[i - 1] + tp[i - 2];
 		}
 		return tp[n];
+	}
+
+	/* Tiling Problem 1*m to n*m borad **/
+	public int tillingProblemX(int n, int m) {
+		int count[] = new int[n + 1];
+		count[0] = 0;
+
+		// Fill the table upto value n
+		int i;
+		for (i = 1; i <= n; i++) {
+			// recurrence relation
+			if (i > m)
+				count[i] = count[i - 1] + count[i - m];
+			// base cases
+			else if (i < m || i == 1)
+				count[i] = 1;
+
+			// i = = m
+			else
+				count[i] = 2;
+		}
+		return count[n];
 	}
 
 	/** 8. Gold Mine Problem **/

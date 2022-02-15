@@ -43,5 +43,29 @@ public interface IGoldmanSachs {
 	 * shortest subarray whose sum is at least the integer,
 	 **/
 
-	//public int minLength(int a[], int target);
+	// public int minLength(int a[], int target);
+
+	/** Minimum Initial Energy Required To Cross Street **/
+	/*
+	 * Given an array containing positive and negative numbers. The array represents
+	 * checkpoints from one end to other end of street. Positive and negative values
+	 * represent amount of energy at that checkpoint. Positive numbers increase the
+	 * energy and negative numbers decrease. Find the minimum initial energy
+	 * required to cross the street such that Energy level never becomes 0 or less
+	 * than 0.
+	 */
+
+	public int minEnergyRequired(int a[]);
+
+	/** Find number of Positional Elements **/
+	/*
+	 * Given a matrix of integers, task is to find out number of positional
+	 * elements. A positional element is one which is either minimum or maximum in a
+	 * row or in a column.
+	 */
+
+	public int numberOfPositionalElemnts(int a[][]);
+
+	/** Find number of Positional Elements in single d array **/
+	public int noOfMaxMinInArr(int a[]);
 }
