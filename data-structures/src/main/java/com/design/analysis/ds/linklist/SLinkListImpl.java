@@ -1669,6 +1669,39 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 		}
 	}
 
+	/** 49. Clone a linked list with next and random pointer | Set 1 **/
+	@SuppressWarnings("unchecked")
+	public SLNode<Integer> cloneList(SLNode<Integer> h) {
+		int i = 0;
+		SLNode<Integer> p = h;
+		int l = lengthIterative(h);
+		SLNode<Integer> a[] = new SLNode[l];
+		while (p != null) {
+			a[i++] = p;
+			p = p.next;
+		}
+		return a[0];
+
+	}
+
+	// @See IDLinkList
+	/** 50. Clone a linked list with next and random pointer | Set 2 **/
+
+	/** 51. Insertion Sort for Singly Linked List **/
+	public SLNode<Integer> insertionSort(SLNode<Integer> h) {
+		SLNode<Integer> p, q;
+		for (p = h; p != null; p = p.next) {
+			for (q = p.next; q != null; q = q.next) {
+				if (p.k > q.k) {
+					int temp = p.k;
+					p.k = q.k;
+					q.k = temp;
+				}
+			}
+		}
+		return h;
+	}
+
 	/*****************************************************************************************************************************************************************/
 	/** 86. Check whether the length of given linked list is Even or Odd **/
 	public boolean evenOrOdd(SLNode<Integer> head) {
