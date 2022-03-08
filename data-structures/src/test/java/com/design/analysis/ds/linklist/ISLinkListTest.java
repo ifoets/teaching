@@ -51,6 +51,7 @@ public class ISLinkListTest {
 	}
 
 	/* insert single element */
+	@Test
 	public void insertElementLastTest() {
 		Integer a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 		Lap<SLNode<Integer>, SLNode<Integer>> lap = isl.insertArrLast(null, a);
@@ -1049,6 +1050,29 @@ public class ISLinkListTest {
 		System.out.println("\nAfter middle deletion");
 		head = isl.removeMiddlePointOfLineSegment(head);
 		isl.displayPointList(head);
+	}
+
+	/** 49. Clone a linked list with next and random pointer | Set 1 **/
+	@Test
+	public void cloneListTest() {
+		Integer a[] = { 8, 9, 1, 2, 6, 7, 3, 5 };
+		Lap<SLNode<Integer>, SLNode<Integer>> lap1 = isl.insertArrLast(null, a);
+		SLNode<Integer> h1 = lap1.getHead();
+		h1 = isl.cloneList(h1);
+		isl.printList(h1);
+	}
+
+	// @See IDLinkList
+	/** 50. Clone a linked list with next and random pointer | Set 2 **/
+
+	/** 51. Insertion Sort for Singly Linked List **/
+	@Test
+	public void insertionSortTest() {
+		Integer a[] = { 8, 9, 1, 2, 6, 7, 3, 5 };
+		Lap<SLNode<Integer>, SLNode<Integer>> lap1 = isl.insertArrLast(null, a);
+		SLNode<Integer> h1 = lap1.getHead();
+		h1=isl.insertionSort(h1);
+		isl.printList(h1);
 	}
 
 	/***********************************************************************************************************************************************************************/
