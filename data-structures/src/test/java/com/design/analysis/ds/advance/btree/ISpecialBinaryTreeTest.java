@@ -1,6 +1,5 @@
 package com.design.analysis.ds.advance.btree;
 
-import com.design.analysis.ds.advance.btree.SpecialBinaryTreeImpl;
 import com.design.analysis.ds.node.BTNode;
 
 public class ISpecialBinaryTreeTest {

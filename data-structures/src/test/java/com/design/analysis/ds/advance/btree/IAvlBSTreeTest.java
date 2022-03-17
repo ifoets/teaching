@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.ds.advance.btree.AvlBSTreeImpl;
-import com.design.analysis.ds.advance.btree.IAvlBSTree;
 import com.design.analysis.ds.node.BTNode;
 
 public class IAvlBSTreeTest {

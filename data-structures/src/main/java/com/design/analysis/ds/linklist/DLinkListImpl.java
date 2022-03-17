@@ -2,6 +2,7 @@ package com.design.analysis.ds.linklist;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -870,4 +871,45 @@ public class DLinkListImpl implements IDLinkList<Integer> {
 		return newHead;
 	}
 
+	/**
+	 * Below question get collcted from ISLinkLIst
+	 ******************************************************/
+	/** 50. Clone a linked list with next and random pointer | Set 2 **/
+	//incomplete testing
+	public DLNode<Integer> arbitrarylist(DLNode<Integer> h) {
+		DLNode<Integer> p = h;
+		while (p.next != null) {
+			p.prev = p.next;
+			p = p.next;
+		}
+		p.prev = h;
+		return h;
+	}
+
+	// clone and arrange the back pointer//incomplete testing
+	public DLNode<Integer> cloneList(DLNode<Integer> h) {
+		DLNode<Integer> p = h;
+		DLNode<Integer> q, r;
+		LinkedHashSet<DLNode<Integer>> set = new LinkedHashSet<>();
+		while (p != null) {
+			if (set.contains(p))
+				break;
+			set.add(p);
+			p = p.next;
+		}
+		@SuppressWarnings("unchecked")
+		DLNode<Integer> arr[] = new DLNode[set.size()];
+		arr = set.toArray(arr);
+		p = q = arr[0];
+		r = null;
+
+		for (int i = 0; i < arr.length; i++) {
+			q.prev = r;
+			q = q.next;
+			r = q;
+		}
+		q.next = null;
+		return p;
+
+	}
 }

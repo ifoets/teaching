@@ -6,8 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.design.analysis.ds.common.Hash;
-import com.design.analysis.ds.hashing.HashAdjListImpl;
-import com.design.analysis.ds.hashing.IHashAdjList;
 
 public class IHashAdjListTest {
 
