@@ -73,6 +73,9 @@ public interface IArrangeReArrange {
 	 * if i is odd and j < i
 	 **/
 	public void evenPosIncrOddPosDecr(int arr[], int n);
+	
+	/**it realize it require wave form sorting start from low*/
+	public void evenPosIncrOddPosDecrX(int arr[], int n);
 
 	public void evenPosIncrOddPosIncr(int arr[], int n);
 	

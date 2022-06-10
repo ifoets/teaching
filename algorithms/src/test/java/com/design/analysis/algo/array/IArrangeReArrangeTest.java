@@ -71,6 +71,17 @@ public class IArrangeReArrangeTest {
 			Assert.assertTrue(a[i] == b[i]);
 	}
 
+	/** it realize it require wave form sorting start from low */
+	@Test
+	public void evenPosIncrOddPosDecrXTest() {
+		int a[] = { 1, 2, 7, 8, 3, 4, 5, 6 };
+		iar.evenPosIncrOddPosDecrX(a, a.length);
+		System.out.println(Arrays.toString(a));
+		int b[] = { 1, 5, 6, 7, 2, 3, 4, 8, 9 };
+		iar.evenPosIncrOddPosDecrX(b, b.length);
+		System.out.println(Arrays.toString(b));
+	}
+
 	@Test
 	public void evenPosIncrOddPosIncrTest() {
 		int a[] = { 1, 2, 3, 4, 5, 6, 7 };

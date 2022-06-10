@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
+@SuppressWarnings("deprecation")
 public class RAndDImpl implements IRAndD {
 
 	/* Filter html and non html String */
@@ -25,8 +26,8 @@ public class RAndDImpl implements IRAndD {
 	private static Matcher matcher;
 
 	public static void main(String[] args) {
-           String str="<abc,key:val>";
-           System.out.println(validate(str));
+		String str = "<abc,key:val>";
+		System.out.println(validate(str));
 	}
 
 	public static boolean validate(final String tag) {

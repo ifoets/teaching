@@ -6,9 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.algo.searchingandsorting.ISearchSort;
-import com.design.analysis.algo.searchingandsorting.SearchSortImpl;
-
 public class ISearchSortTest {
 	
 	ISearchSort iss = null;
