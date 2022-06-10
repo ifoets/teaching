@@ -3,8 +3,6 @@ package com.design.analysis.algo.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.design.analysis.algo.utils.AlgoUtils;
-
 public class AlgoUtilsTest {
 
 	@Test

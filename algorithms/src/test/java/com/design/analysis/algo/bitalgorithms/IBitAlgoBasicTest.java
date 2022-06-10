@@ -58,9 +58,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.algo.bitalgorithms.BitAlgoBasicImpl;
-import com.design.analysis.algo.bitalgorithms.IBitAlgoBasic;
-
 public class IBitAlgoBasicTest {
 
 	public IBitAlgoBasic iba = null;

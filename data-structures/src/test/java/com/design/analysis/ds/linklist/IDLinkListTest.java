@@ -341,4 +341,13 @@ public class IDLinkListTest {
 		head = idll.sortAKSortedDLL(head, 2);
 		idll.print(head);
 	}
+
+	/**
+	 * Below question get collcted from ISLinkLIst
+	 ******************************************************/
+	/** 50. Clone a linked list with next and random pointer | Set 2 **/
+	@Test
+	public void arbitrarylistTest() {
+
+	}
 }

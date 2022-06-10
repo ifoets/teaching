@@ -4,9 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.ds.hashing.DAHashingImpl;
-import com.design.analysis.ds.hashing.DAIHashing;
-
 public class DAIHashingTest {
 
 	DAIHashing daih = null;

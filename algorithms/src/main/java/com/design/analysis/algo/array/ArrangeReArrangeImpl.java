@@ -116,6 +116,24 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 		}
 	}
 
+	/** it realize it require wave form sorting start from low */
+	public void evenPosIncrOddPosDecrX(int arr[], int n) {
+		int b[] = Arrays.copyOfRange(arr, 0, n);
+		Arrays.sort(b);
+		if (n % 2 == 0) {
+			for (int i = 0; i < n / 2; i++) {
+				arr[2*i] = b[i];
+				arr[n - (2 * i +1 )] = b[n - (i + 1)];
+			}
+		} else {
+			for (int i = 0; i < n / 2 + 1; i ++) {
+				arr[2*i] = b[i];
+				arr[n - (2 * i +2 )] = b[n - (i + 1)];
+			}
+		}
+		//System.out.println(Arrays.toString(arr));
+	}
+
 	/*
 	 * elements at odd positions are greater than all elements before it and
 	 * elements at even positions are less than all elements before it.
@@ -220,8 +238,9 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	}
 
 	/** 8. Minimum swaps bring all elements less than or equal to k together **/
-	//IDEA arrange like seperate +ve/-ve together just a[i]-k>0 at the place of a[i]>0
-	//to push 0 at the end of array
+	// IDEA arrange like seperate +ve/-ve together just a[i]-k>0 at the place of
+	// a[i]>0
+	// to push 0 at the end of array
 	public int minSwapLessThanKElemTogether(int a[], int k) {
 		int n = a.length;
 		int count = 0;

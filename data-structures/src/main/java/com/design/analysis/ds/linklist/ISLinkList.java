@@ -336,7 +336,25 @@ public interface ISLinkList<K> {
 	public void displayPointList(PointNode p);
 
 	/** 49. Clone a linked list with next and random pointer | Set 1 **/
+	public SLNode<K> cloneList(SLNode<K> h);
+
+	// @See IDLinkList
 	/** 50. Clone a linked list with next and random pointer | Set 2 **/
+
+	/** 51. Insertion Sort for Singly Linked List **/
+	public SLNode<K> insertionSort(SLNode<K> h);
+	
+	// @See IDLinkList
+	/**
+	 * 52. Point to next higher value node in a linked list with an arbitrary
+	 * pointer
+	 **/
+	/** 53. Rearrange a given linked list in-place. **/
+	/**
+	 * 54. Sort a linked list that is sorted alternating ascending and descending
+	 * orders.
+	 **/
+	/** 55. Select a Random Node from a Singly Linked List **/
 
 	/***********************************************************************************************************************************************************************/
 	/* 70. Merge K sorted linked lists | Set 1 */

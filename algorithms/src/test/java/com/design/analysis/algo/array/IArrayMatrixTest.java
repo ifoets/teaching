@@ -6,9 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.algo.array.ArrayMatrixImpl;
-import com.design.analysis.algo.array.IArrayMatrix;
-
 /*
  * Matrix :
 1.	Turn an image by 90 degree

@@ -138,4 +138,12 @@ public interface IDLinkList<K> {
 	public DLNode<K> sortAKSortedDLL(DLNode<K> k, int x);
 	/** 19. Convert a given Binary Tree to Doubly Linked List | Set **/
 	// @See 4.
+
+	/**
+	 * Below question get collcted from ISLinkLIst
+	 ******************************************************/
+	/** 50. Clone a linked list with next and random pointer | Set 2 **/
+	public DLNode<K> arbitrarylist(DLNode<K> h);
+	
+	public DLNode<K> cloneList(DLNode<K> h);
 }

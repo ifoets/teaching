@@ -4,9 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.ds.hashing.key2.building.Hash2KyeAAAImpl;
-import com.design.analysis.ds.hashing.key2.building.IHash2KyeAAA;
-
 public class IHash2KyeAAATest {
 
 	public IHash2KyeAAA<Integer, Integer, Integer> ishk2 = null;

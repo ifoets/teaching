@@ -7,9 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.algo.string.IMisc;
-import com.design.analysis.algo.string.MiscImpl;
-
 public class IMiscTest {
 
 	IMisc im = null;
