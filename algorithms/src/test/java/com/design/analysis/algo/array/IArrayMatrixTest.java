@@ -240,8 +240,31 @@ public class IArrayMatrixTest {
 	}
 
 	/** 8. Sort the given matrix **/
-	/** 9. Find the row with maximum number of 1s **/
+	@Test
+	public void strictSotMatrixTest() {
+		int mat[][] = { { 5, 4, 7 }, { 1, 3, 8 }, { 2, 9, 6 } };
+		iam.strictSotMatrix(mat);
+		for (int i = 0; i < mat.length; i++) {
+			System.out.println(Arrays.toString(mat[i]));
+		}
+	}
+
+	/** 9. Find the row with maximum number of 1s where each row is sorted **/
+	// @Idea
+	@Test
+	public void rowMaxNumbOf1s() {
+		int mat[][] = { { 0, 0, 0, 1 }, { 0, 1, 1, 1 }, { 1, 1, 1, 1 }, { 0, 0, 0, 0 } };
+		Assert.assertTrue(iam.rowMaxNumbOf1s(mat) == 2);
+	}
+
 	/** 10. Find median in row wise sorted matrix **/
+	@Test
+	public void binaryMedianTest() {
+		int r = 3, c = 3;
+		int m[][] = { { 1, 3, 5 }, { 2, 6, 9 }, { 3, 6, 9 } };
+		Assert.assertTrue(iam.binaryMedian(m,r,c) == 5);
+	}
+
 	/** 11. Matrix Multiplication | Recursive **/
 	/** 12. Program to multiply two matrices **/
 	/** 13. Program for scalar multiplication of a matrix **/

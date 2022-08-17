@@ -204,4 +204,30 @@ public class IArraysGreedyAlgoTest {
 		int k = 5;
 		Assert.assertTrue(iaga.minOprToMakeGcdOfArrMultiOfK(a, k) == 2);
 	}
+
+	/** 15. Minimum sum of absolute difference of pairs of two arrays **/
+	/* @See 13. */
+	/* 16. Minimum sum of two numbers formed from digits of an array */
+	@Test
+	public void minSumOfTwoNummByArray() {
+		int arr[] = { 6, 8, 4, 5, 2, 3 };
+		Assert.assertTrue(iaga.minSumOfTwoNummByArray(arr) == 604);
+	}
+
+	/* min product */
+	// @idea sort and multiple by first no with rest of no building
+	@Test
+	public void minProdOfTwoNummByArrayTest() {
+		int arr[] = { 4, 5, 2, 3 };
+		Assert.assertTrue(iaga.minProdOfTwoNummByArray(arr) == 690);
+	}
+	/* 17. Minimum increment/decrement to make array non-Increasing */
+	/* 18. Making elements of two arrays same with minimum increment/decrement */
+	/* 19. Minimize sum of product of two arrays with permutation allowed */
+	/* 20. Sorting array with reverse around middle */
+	/* 21. Sum of Areas of Rectangles possible for an array */
+	/* 22. Array element moved by k using single moves */
+	/* 23. Find if k bookings possible with given arrival and departure times */
+	/* 24. Lexicographically smallest array after at-most K consecutive swaps */
+	/* 25. Largest lexicographic array with at-most K consecutive swaps */
 }

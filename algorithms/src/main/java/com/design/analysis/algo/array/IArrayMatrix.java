@@ -205,8 +205,14 @@ public interface IArrayMatrix {
 	public boolean isAllColumnsCiucularRotated(int a[][]);
 
 	/** 8. Sort the given matrix **/
-	/** 9. Find the row with maximum number of 1s **/
+	public void strictSotMatrix(int a[][]);
+
+	/** 9. Find the row with maximum number of 1s where each row is sorted**/
+	public int rowMaxNumbOf1s(int a[][]);
+
 	/** 10. Find median in row wise sorted matrix **/
+	public int binaryMedian(int a[][], int r, int c);
+	
 	/** 11. Matrix Multiplication | Recursive **/
 	/** 12. Program to multiply two matrices **/
 	/** 13. Program for scalar multiplication of a matrix **/
@@ -214,9 +220,13 @@ public interface IArrayMatrix {
 	 * 14. Program to print Lower triangular and Upper triangular matrix of an array
 	 **/
 	/** 15. Find distinct elements common to all rows of a matrix **/
-	/** 16. Print a given matrix in spiral form clockwise**/
+	/** 16. Print a given matrix in spiral form clockwise **/
+	/** 17. Find maximum element of each row in a matrix **/
+	/** 18. Find unique elements in a matrix **/
+	/** 19. Shift matrix elements row-wise by k **/
+	/** 20. Different Operations on Matrices **/
 	public void spiralPrintMatrix(int a[][]);
-	
+
 	public void spiralPrintMatrixAnticlockwise(int a[][]);
 	// ***********************************************************************************************************************************************************//
 

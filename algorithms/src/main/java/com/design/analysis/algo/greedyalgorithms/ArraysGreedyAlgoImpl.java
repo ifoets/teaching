@@ -69,7 +69,7 @@ public class ArraysGreedyAlgoImpl implements IArraysGreedyAlgo {
 		if (neMul > 0)
 			result = (neMul / a[i - 1]) * posMul;
 		return result;
-	
+
 	}
 
 	/** 2. Maximum product subset of an array **/
@@ -479,4 +479,47 @@ public class ArraysGreedyAlgoImpl implements IArraysGreedyAlgo {
 		}
 		return result;
 	}
+
+	/** 15. Minimum sum of absolute difference of pairs of two arrays **/
+	/* @See 13. */
+	/* 16. Minimum sum of two numbers formed from digits of an array */
+	// @Idea sort and make two num by pickup one by one and a+b
+	@Override
+	public int minSumOfTwoNummByArray(int arr[]) {
+		int a = 0;
+		int b = 0;
+		Arrays.sort(arr);
+		for (int i = 0; i < arr.length; i++) {
+			if (i % 2 == 0)
+				a = a * 10 + arr[i];
+			else
+				b = b * 10 + arr[i];
+		}
+		return a + b;
+	}
+
+	/* min product */
+	// @idea sort and multiple by first no with rest of no building
+	@Override
+	public int minProdOfTwoNummByArray(int arr[]) {
+		int a = 0;
+		int b = 0;
+		Arrays.sort(arr);
+		for (int i = 0; i < arr.length; i++) {
+			if (i == 0)
+				a += arr[i];
+			else
+				b = b * 10 + arr[i];
+		}
+		return a * b;
+	}
+	/* 17. Minimum increment/decrement to make array non-Increasing */
+	/* 18. Making elements of two arrays same with minimum increment/decrement */
+	/* 19. Minimize sum of product of two arrays with permutation allowed */
+	/* 20. Sorting array with reverse around middle */
+	/* 21. Sum of Areas of Rectangles possible for an array */
+	/* 22. Array element moved by k using single moves */
+	/* 23. Find if k bookings possible with given arrival and departure times */
+	/* 24. Lexicographically smallest array after at-most K consecutive swaps */
+	/* 25. Largest lexicographic array with at-most K consecutive swaps */
 }
