@@ -28,18 +28,22 @@ public interface ILambdaExpression {
 	public void eventListener();
 }
 
+@FunctionalInterface
 interface Drawable {
 	public void draw();
 }
 
+@FunctionalInterface
 interface Sayable {
 	public String say();
 }
 
+@FunctionalInterface
 interface SayableRetrn {
 	public String say(String name);
 }
 
+@FunctionalInterface
 interface Addable {
 	int add(int a, int b);
 }

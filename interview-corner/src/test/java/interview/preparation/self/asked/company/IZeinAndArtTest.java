@@ -3,14 +3,7 @@ package interview.preparation.self.asked.company;
 import org.junit.Before;
 import org.junit.Test;
 
-import interview.preparation.self.asked.company.IZeinAndArt;
-import interview.preparation.self.asked.company.ZeinAndArtImpl;
-
-class B {
-	int a = 10;
-}
-
-public class IZeinAndArtTest extends B {
+public class IZeinAndArtTest {
 
 	private IZeinAndArt iza = null;
 

@@ -1,12 +1,16 @@
 package interview.preparation.java8;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import interview.preparation.java8.model.Book;
+import interview.preparation.self.asked.model.A;
 
 public class StremApiImpl implements IStremApi {
 
@@ -56,8 +60,35 @@ public class StremApiImpl implements IStremApi {
 	public List<Integer> toSquireFilterDistinct(List<Integer> list) {
 		return list.stream().map(i -> i * i).filter(x -> x.intValue() > 10).distinct().collect(Collectors.toList());
 	}
-	/* adding list/arr of elements
-	 * Integer sum = integers.stream() .reduce(0, (a, b) -> a + b);
+	/*
+	 * adding list/arr of elements Integer sum = integers.stream() .reduce(0, (a, b)
+	 * -> a + b);
 	 */
+
+	@Override
+	public int countInstTypeInStream(List<Object> list, A a) {
+		return (int) list.stream().filter(e -> e instanceof A).count();
+	}
+
+	// https://www.techiedelight.com/join-two-lists-java/
+	@Override
+	public List<Integer> addListsOnIndexes(List<Integer> l1, List<Integer> l2) {
+		int N1 = l1.size();
+		int N2 = l2.size();
+
+		return IntStream.range(0, N1 > N2 ? N1 : N2).mapToObj(i -> (i < N1 ? l1.get(i) : 0) + (i < N2 ? l2.get(i) : 0))
+				.collect(Collectors.toList());
+	}
 	
+	// stream
+		public int secnodMaxSingleIterationStream(int[] a) {
+
+			return Arrays.stream(a).boxed().sorted(Comparator.reverseOrder()).limit(2).skip(1).findFirst().get();
+		}
+
+		// stream nth max
+		public int nthMaxSingleIterationStream(int a[], int nth) {
+			return Arrays.stream(a).boxed().sorted(Comparator.reverseOrder()).limit(nth).skip(nth - 1).findFirst().get();
+
+		}
 }

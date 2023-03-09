@@ -1,9 +1,12 @@
 package interview.preparation.java8;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 import interview.preparation.java8.model.Book;
+import interview.preparation.self.asked.model.A;
 
 public interface IStremApi {
 
@@ -29,4 +32,15 @@ public interface IStremApi {
 	public List<Integer> toSquireFilterDistinct(List<Integer> list);
 
 	/* use reduce() function used to transform each element of the stream */
+
+	// Practice java 8*/
+	public int countInstTypeInStream(List<Object> objects, A a);
+
+	public List<Integer> addListsOnIndexes(List<Integer> l1, List<Integer> l2);
+
+	// stream
+	public int secnodMaxSingleIterationStream(int[] a);
+
+	// stream nth max
+	public int nthMaxSingleIterationStream(int a[], int nth);
 }

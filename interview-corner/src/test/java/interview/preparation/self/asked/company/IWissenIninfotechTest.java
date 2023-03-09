@@ -1,6 +1,8 @@
 package interview.preparation.self.asked.company;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
@@ -11,9 +13,6 @@ import org.junit.Test;
 
 import com.design.analysis.company.preparation.model.LNode;
 import com.design.analysis.company.preparation.utils.SListUtils;
-
-import interview.preparation.self.asked.company.IWissenIninfotech;
-import interview.preparation.self.asked.company.WissenIninfotechImpl;
 
 public class IWissenIninfotechTest {
 
@@ -67,6 +66,18 @@ public class IWissenIninfotechTest {
 
 	}
 
+	@Test
+	public void getBiggestNumberXTest() {
+
+		int a[] = { 3, 30, 9 };
+		Assert.assertTrue(iw.getBiggestNumberX(a).equals("9330"));
+		int b[] = { 952, 9, 90 };
+		Assert.assertTrue(iw.getBiggestNumberX(b).equals("995290"));
+		int c[] = { 952, 94, 953 };
+		Assert.assertTrue(iw.getBiggestNumber(c).equals("95395294"));
+
+	}
+
 	/** 3. sum array with performance heaving n thread */
 	@Test
 	public void getSumTest() throws InterruptedException, ExecutionException {
@@ -75,6 +86,15 @@ public class IWissenIninfotechTest {
 		for (int i = 0; i < 1000; a[i] = i + 1, i++)
 			;
 		Assert.assertTrue(iw.getSum(a, 10) == 500500);
+	}
+
+	@Test
+	public void getSumAXTest() throws InterruptedException, ExecutionException {
+
+		Integer[] a = new Integer[1000];
+		for (int i = 0; i < 1000; a[i] = i + 1, i++)
+			;
+		Assert.assertTrue(iw.getSumAX(a, 10) == 500500);
 	}
 
 	/** sum array with performance heaving n thread using ForkandJJoin */
@@ -152,4 +172,87 @@ public class IWissenIninfotechTest {
 		map.put("New York", "c");
 		return map;
 	}
+
+	// 2022 interview
+	// chunk array of all possible size
+	@Test
+	public void chunkArrayTest() {
+		int a[] = { 1, 2, 3, 4, 5 };
+		iw.chunkArray(a);
+	}
+
+	@Test
+	public void splitArrayTest() {
+		int a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+		List<int[]> ll = iw.splitArray(a, 3);
+		for (int[] ar : ll) {
+			System.out.println(Arrays.toString(ar));
+		}
+	}
+
+	@Test
+	public void commonCharactersTest() {
+		String a = "abcbcd";
+		String b = "cdefefc";
+		Assert.assertTrue(iw.commonCharacters(a, b).equals("ccd"));
+	}
+
+	@Test
+	public void getMapOrderByValuesThenByKeyTest() {
+		Map<String, String> map = new LinkedHashMap<>();
+		map.put("Delhi", "a");
+		map.put("New York", "c");
+		map.put("Mumbai", "a");
+		map.put("Tokyo", "b");
+
+		System.out.println(iw.getMapOrderByValuesThenByKey(map));
+	}
+
+	@Test
+	public void createTwoTreadTest() throws InterruptedException {
+		iw.createTwoTread();
+	}
+
+	// 2023 interview question
+	@Test
+	public void splitArrayOfNSizeTest() {
+
+		int a[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+		for (int i = 2; i < 6; i++) {
+			List<int[]> ls = iw.splitArrayOfNSize(a, i);
+			for (int[] b : ls) {
+				System.out.println(Arrays.toString(b));
+			}
+			System.out.println();
+		}
+	}
+
+	@Test
+	public void snakeToCamelTest() {
+		String str1 = "geeks_for_geeks";
+		String str2 = "GeeksForGeeks";
+		Assert.assertTrue(iw.snakeToCamel(str1).equals(str2));
+	}
+
+	@Test
+	public void camelTOSnakeTest() {
+		String str1 = "geeks_for_geeks";
+		String str2 = "geeksForGeeks";
+		Assert.assertTrue(iw.camelToSnake(str2).equals(str1));
+	}
+
+	@Test
+	public void countCostVowlAndSpecilCharTest() {
+		String str = "#<06bIt007*&^ is Abhimanyu Kumar Suman";
+		System.out.println(iw.segerateChars(str));
+	}
+
+	// check a string is permutation of palindrome
+	@Test
+	public void isPermutationOfPalindromeTest() {
+
+		Assert.assertTrue(iw.isPermutationOfPalindrome("asciics"));
+		Assert.assertFalse(iw.isPermutationOfPalindrome("asciic"));
+	}
+
 }

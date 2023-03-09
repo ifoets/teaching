@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
-@SuppressWarnings("deprecation")
+//@SuppressWarnings("deprecation")
 public class RAndDImpl implements IRAndD {
 
 	/* Filter html and non html String */

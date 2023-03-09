@@ -7,6 +7,10 @@ import org.junit.Test;
 
 public class ArrayUtilTest {
 
+	public static void main(String[] args) {
+		System.out.printf("%.3fGiB", Runtime.getRuntime().totalMemory() / (1024.0 * 1024.0 * 1024.0));
+		//
+	}
 	@Test
 	public void swapIn2ArrTest() {
 		int a[] = { 1, 3 };
