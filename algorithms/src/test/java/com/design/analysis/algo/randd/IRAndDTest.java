@@ -1,6 +1,6 @@
 package com.design.analysis.algo.randd;
 
-import org.json.JSONObject;
+//import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,7 +34,7 @@ public class IRAndDTest {
 		for (int i = 0; i < html.length; i++) {
 			System.out.println(html[i] + "     " + rnd.isStringContainHtml(html[i]));
 		}
-
+/*
 		JSONObject js1 = new JSONObject();
 		JSONObject js2 = new JSONObject();
 		JSONObject js3 = new JSONObject();
@@ -58,7 +58,7 @@ public class IRAndDTest {
 		System.out.println(str2 + "    " + rnd.isStringContainHtml(str2));
 		System.out.println(str3 + "    " + rnd.isStringContainHtml(str3));
 		System.out.println(str4 + "    " + rnd.isStringContainHtml(str4));
-
+*/
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class IRAndDTest {
 		for (int i = 0; i < html.length; i++) {
 			System.out.println(html[i] + "     " + rnd.isStringContainHtmlJsoup(html[i]));
 		}
-
+/*
 		JSONObject js1 = new JSONObject();
 		JSONObject js2 = new JSONObject();
 		JSONObject js3 = new JSONObject();
@@ -106,6 +106,7 @@ public class IRAndDTest {
 		System.out.println(str2 + "    " + rnd.isStringContainHtmlJsoup(str2));
 		System.out.println(str3 + "    " + rnd.isStringContainHtmlJsoup(str3));
 		System.out.println(str4 + "    " + rnd.isStringContainHtmlJsoup(str4));
+		*/
 	}
 
 }
