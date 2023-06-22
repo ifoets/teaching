@@ -1,5 +1,7 @@
 package com.design.analysis.algo.array;
 
+import java.util.List;
+
 /*
  * 
  * @author GuruG
@@ -61,9 +63,9 @@ public interface IArrangeReArrange {
 	public void fixedAtIndex(int a[]);
 
 	public void fixedAtIndexX(int a[]);
-	
-	/*for every type of -ve no and no should be in list*/
-	 public void fixedAtIndexY(int a[]);
+
+	/* for every type of -ve no and no should be in list */
+	public void fixedAtIndexY(int a[]);
 
 	/** 2. Write a program to reverse an array or string **/
 	public void reverseArr(int a[]);
@@ -74,9 +76,15 @@ public interface IArrangeReArrange {
 	 **/
 	public void evenPosIncrOddPosDecr(int arr[], int n);
 
+	/** it realize it require wave form sorting start from low */
+	public void evenPosIncrOddPosDecrX(int arr[], int n);
+
 	public void evenPosIncrOddPosIncr(int arr[], int n);
-	
-	//IDEA sort element with +2 take even and odd pos seperately
+
+	/* Just wave form */
+	public void reArrageWaveForm(int a[]);
+
+	// IDEA sort element with +2 take even and odd pos seperately
 
 	/** 4. Rearrange positive and negative numbers in TC O(n) time and SC O(1) **/
 	public void reArragePosAndNeg(int a[]);
@@ -148,6 +156,56 @@ public interface IArrangeReArrange {
 
 	/** 25. Segregate even and odd numbers **/
 	// @See 14 there +ve/-ve here odd/even
+
+	/* 26. Segregate 0s and 1s in an array */
+	public void segregate0sAnd1s(int a[]);
+
+	/* 27. Longest Bitonic Subsequence */
+	public int bitonicSubsequence(int a[]);
+
+	/* 28. Find a sorted subsequence of size 3 in linear time */
+	public List<Integer> find3Numbers(int a[]);
+
+	/*
+	 * 29. Largest subarray with equal number of 0s and 1s 30. Maximum Product
+	 * Sub-array
+	 */
+	public int findMaxLength(int[] a);
+
+	/*29.1 find the max sub array with equal no of 0s and 1s */
+	public List<Integer> findMaxSubArray(int[] a);
+
+	/*30.	Maximum Product Sub-array*/
+	
+	/* 31. Replace every element with the greatest element on right side */
+	/* 32. Maximum circular subarray sum */
+	/* 33. Construction of Longest Increasing Subsequence (N log N) */
+	/* 34. Sort elements by frequency | Set 2 */
+	/* 35. Maximize sum of consecutive differences in a circular array */
+	/* 36. Sort an array according to the order defined by another array */
+	/*
+	 * 37. Find Index of 0 to be replaced with 1 to get longest continuous sequence
+	 * of 1s in a binary array
+	 */
+	/* 38. Three way partitioning of an array around a given range */
+	/*
+	 * 39. Generate all possible sorted arrays from alternate elements of two given
+	 * sorted arrays
+	 */
+	/*
+	 * 40. Minimum number of swaps required for arranging pairs adjacent to each
+	 * other
+	 */
+	/* 41. Convert array into Zig-Zag fashion */
+	/* 42. Form minimum number from given sequence */
+	/* 43. Replace two consecutive equal values with one greater */
+	/* 44. Rearrange a binary string as alternate x and y occurrences */
+	/* 45. Distinct adjacent elements in an array */
+	/*
+	 * 46. Shuffle 2n integers as a1-b1-a2-b2-a3-b3-..bn without using extra space
+	 */
+	/* 47. Merge k sorted arrays */
+
 	/***********************************************************************************************************************************************************************/
 
 	/** 3. Sort an array in wave form **/

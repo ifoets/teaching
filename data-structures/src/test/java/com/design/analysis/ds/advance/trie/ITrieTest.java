@@ -8,8 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.ds.advance.trie.ITrie;
-import com.design.analysis.ds.advance.trie.ITrieImpl;
 import com.design.analysis.ds.advance.trie.node.CamelCaseTrieNode;
 import com.design.analysis.ds.advance.trie.node.PhoneTrieNode;
 import com.design.analysis.ds.advance.trie.node.SuffixTrieNode;

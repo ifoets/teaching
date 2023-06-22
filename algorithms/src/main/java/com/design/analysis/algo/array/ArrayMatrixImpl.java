@@ -1,5 +1,7 @@
 package com.design.analysis.algo.array;
 
+import java.util.Arrays;
+
 /*
 Matrix :
 1.	Turn an image by 90 degree
@@ -295,8 +297,88 @@ public class ArrayMatrixImpl implements IArrayMatrix {
 	}
 
 	/** 8. Sort the given matrix **/
-	/** 9. Find the row with maximum number of 1s **/
+	// @Idea collect all element in single array sort it and fill the matrix row by
+	// row
+	@Override
+	public void strictSotMatrix(int a[][]) {
+
+		int n = a.length;
+		int m = a[0].length;
+		int k = 0;
+		int x[] = new int[m * n];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				x[k++] = a[i][j];
+			}
+		}
+		Arrays.sort(x);
+		k = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				a[i][j] = x[k++];
+			}
+		}
+	}
+
+	/** 9. Find the row with maximum number of 1s where each row is sorted **/
+	// @Idea1 traverse and count in each row T O(m*n)
+	// @Idea2 vertical travel and find first 1, return row j, average TO(n/2)
+	// @Idea2
+	@Override
+	public int rowMaxNumbOf1s(int a[][]) {
+		int m = a.length;
+		int n = a[0].length;
+		for (int j = 0, i = 0; i < m; j++) {
+			if (a[j][i] == 1)
+				return j;
+			if (j == n - 1) {
+				j = -1;
+				i++;
+			}
+		}
+		return -1;
+	}
+
 	/** 10. Find median in row wise sorted matrix **/
+	public int binaryMedian(int a[][], int r, int c) {
+
+		int max = Integer.MIN_VALUE;
+		int min = Integer.MAX_VALUE;
+
+		for (int i = 0; i < r; i++) {
+			if (a[i][0] < min)
+				min = a[i][0];
+			if (a[c - 1][i] > max)
+				max = a[c - 1][i];
+		}
+
+		int desired = (r * c + 1) / 2;
+		while (min < max) {
+			int mid = min + (max - min) / 2;
+			int place = 0;
+			int get = 0;
+			for (int i = 0; i < r; ++i) {
+
+				get = Arrays.binarySearch(a[i], mid);
+				if (get < 0)
+					get = Math.abs(get) - 1;
+
+				else { // for duplicate last reach to last duplicate
+					while (get < a[i].length && a[i][get] == mid)
+						get += 1;
+				}
+
+				place = place + get;
+			}
+
+			if (place < desired)
+				min = mid + 1;
+			else
+				max = mid;
+		}
+		return min;
+	}
+
 	/** 11. Matrix Multiplication | Recursive **/
 	/** 12. Program to multiply two matrices **/
 	/** 13. Program for scalar multiplication of a matrix **/

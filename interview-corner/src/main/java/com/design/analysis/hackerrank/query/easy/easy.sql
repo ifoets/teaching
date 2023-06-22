@@ -54,3 +54,19 @@ select if(a+b>c and b+c>a and a+c>b,
 from TRIANGLES;
 
 /*day 3*/
+select count(*) from city where population > 100000;
+
+select sum(population) from city where district='California';
+
+select avg(population) from city where district='California';
+
+select round(avg(population)) from city;
+
+select sum(population) from city where countrycode='JPN';
+
+select max(population)-min(population) from city;
+
+/*day 4*/
+select ceil(avg(salary)-avg(replace(salary,'0',''))) from employees;
+
+SELECT (months*salary) as earnings, COUNT(*) FROM Employee GROUP BY earnings ORDER BY earnings DESC LIMIT 1;

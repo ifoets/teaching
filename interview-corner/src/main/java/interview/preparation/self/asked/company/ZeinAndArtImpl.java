@@ -1,4 +1,4 @@
-package interview.preparation.self.asked;
+package interview.preparation.self.asked.company;
 
 import java.io.File;
 import java.util.Map;

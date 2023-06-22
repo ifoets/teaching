@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import com.design.analysis.algo.utils.AlgoUtils;
@@ -39,6 +41,7 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	}
 
 	/* another apporach with O(n) both SC and TC */
+	@Override
 	public void fixedAtIndexX(int a[]) {
 		int n = a.length;
 		int b[] = new int[n];
@@ -52,6 +55,7 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	}
 
 	/* for every type of -ve/+ve and no should be in list */
+	@Override
 	public void fixedAtIndexY(int a[]) {
 		for (int i = 0; i < a.length; i++) {
 			if (a[i] > 0 && a[i] != i) {
@@ -116,6 +120,44 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 		}
 	}
 
+	/** it realize it require wave form sorting start from low */
+	@Override
+	public void evenPosIncrOddPosDecrX(int arr[], int n) {
+		int b[] = Arrays.copyOfRange(arr, 0, n);
+		Arrays.sort(b);
+		if (n % 2 == 0) {
+			for (int i = 0; i < n / 2; i++) {
+				arr[2 * i] = b[i];
+				arr[n - (2 * i + 1)] = b[n - (i + 1)];
+			}
+		} else {
+			for (int i = 0; i < n / 2 + 1; i++) {
+				if (i != n / 2) {
+					arr[2 * i] = b[i];
+					arr[n - (2 * i + 2)] = b[n - (i + 1)];
+				} else {
+					arr[n - 1] = b[i];
+				}
+			}
+		}
+
+		// System.out.println(Arrays.toString(arr));
+	}
+
+	/* Just wave form */
+	// @Idea except 1 element swap on interval of 2
+	@Override
+	public void reArrageWaveForm(int a[]) {
+		Arrays.sort(a);
+		int n = a.length;
+		int m = n % 2 == 0 ? n : n - 1;
+		for (int i = 0; i < m; i += 2) {
+			int temp = a[i];
+			a[i] = a[i + 1];
+			a[i + 1] = temp;
+		}
+	}
+
 	/*
 	 * elements at odd positions are greater than all elements before it and
 	 * elements at even positions are less than all elements before it.
@@ -150,6 +192,8 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	}
 
 	/** 4. Rearrange positive and negative numbers in TC O(n) time and SC O(1) **/
+	// @Idea check left +ve & right -ve together exchange, just move on with left
+	// -ve, right +ve just
 	@Override
 	public void reArragePosAndNeg(int a[]) {
 
@@ -171,10 +215,11 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	}
 
 	/** 5. Rearrange array in alternating positive & negative items by T(n) S(1) **/
+	// @Idea partition left -ve and right +ve and swap neg=0 to pos+1 +ve with
+	// pos++and neg+=2
 	@Override
 	public void alternativePosNevElem(int a[]) {
 		int n = a.length;
-		int temp;
 		// make partition of -ve and +ve element
 		int i = -1;
 		for (int j = 0; j < n; j++) {
@@ -187,9 +232,7 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 		int neg = 0;
 
 		while (pos < n && neg < pos && a[neg] < 0) {
-			temp = a[neg];
-			a[neg] = a[pos];
-			a[pos] = temp;
+			AlgoUtils.swap(a, neg, pos);
 			pos++;
 			neg += 2;
 		}
@@ -220,14 +263,16 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	}
 
 	/** 8. Minimum swaps bring all elements less than or equal to k together **/
-	//IDEA arrange like seperate +ve/-ve together just a[i]-k>0 at the place of a[i]>0
-	//to push 0 at the end of array
+	// IDEA arrange like seperate +ve/-ve together just a[i]-k>0 at the place of
+	// a[i]>0
+	// to push 0 at the end of array
+	// @Idea count <=k elements
 	public int minSwapLessThanKElemTogether(int a[], int k) {
 		int n = a.length;
 		int count = 0;
 
 		for (int i = 0; i < n; i++)
-			if (a[i] < k)
+			if (a[i] <= k)
 				AlgoUtils.swap(a, count++, i);
 		return count;
 	}
@@ -280,6 +325,12 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	}
 
 	/** 12. Double the first element(if a[i]==a[i+1]) and move zero to end **/
+	/*
+	 * Convert the array in such a way that if both current and next element is
+	 * valid and both have same value then double current value and replace the next
+	 * number with 0. After the modification, rearrange the array such that all 0’s
+	 * shifted to the end.
+	 */
 	@Override
 	public void doubleFirstAndPushZeroEnd(int a[]) {
 		int n = a.length;
@@ -495,8 +546,164 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 			arr[j] = temp;
 		}
 	}
+
 	/** 25. Segregate even and odd numbers **/
 	// @See 14 there +ve/-ve here odd/even
+
+	/* 26. Segregate 0s and 1s in an array */
+	@Override
+	public void segregate0sAnd1s(int a[]) {
+
+		int i = 0;
+		int j = a.length - 1;
+		while (i < j) {
+			if (a[i] == 0)
+				i++;
+			if (a[j] == 1)
+				j--;
+			if (a[i] == 1 && a[j] == 0) {
+				ArrayUtil.swapArr(a, i, j);
+				i++;
+				j--;
+			}
+
+		}
+	}
+
+	/* 27. Longest Bitonic Subsequence */
+	@SuppressWarnings("unused")
+	// @Idea find LIS(longest increasing subsequence) form both side then the max
+	// of(lis1+lis2-1) since one element is common in both
+	// @TODO Need to clear once again
+	@Override
+	public int bitonicSubsequence(int arr[]) {
+		int n = arr.length;
+		int i, j;
+
+		/*
+		 * Allocate memory for LIS[] and initialize LIS values as 1 for all indexes
+		 */
+		int[] lis = new int[n];
+		for (i = 0; i < n; i++)
+			lis[i] = 1;
+
+		/* Compute LIS values from left to right */
+		for (i = 1; i < n; i++)
+			for (j = 0; j < i; j++)
+				if (arr[i] > arr[j] && lis[i] < lis[j] + 1)
+					lis[i] = lis[j] + 1;
+
+		/*
+		 * Allocate memory for lds and initialize LDS values for all indexes
+		 */
+		int[] lds = new int[n];
+		for (i = 0; i < n; i++)
+			lds[i] = 1;
+
+		/* Compute LDS values from right to left */
+		for (i = n - 2; i >= 0; i--)
+			for (j = n - 1; j > i; j--)
+				if (arr[i] > arr[j] && lds[i] < lds[j] + 1)
+					lds[i] = lds[j] + 1;
+
+		/* Return the maximum value of lis[i] + lds[i] - 1 */
+		int max = lis[0] + lds[0] - 1;
+		for (i = 1; i < n; i++)
+			if (lis[i] + lds[i] - 1 > max)
+				max = lis[i] + lds[i] - 1;
+
+		return max;
+	}
+
+	/* 28. Find a sorted subsequence of size 3 in linear time */
+	// @Idea find min<max and then max<a[i]
+	@Override
+	public List<Integer> find3Numbers(int a[]) {
+		int n = a.length;
+		List<Integer> result = new ArrayList<>();
+		int min = a[0];
+		int store_min = min;
+		int max = Integer.MAX_VALUE;
+
+		for (int i = 1; i < n; i++) {
+			if (a[i] == min)
+				continue;
+			else if (a[i] < min) {
+				min = a[i];
+				continue;
+			} else if (a[i] < max) {
+				max = a[i];
+				store_min = min;
+			} else if (a[i] > max) {
+				result.add(store_min);
+				result.add(max);
+				result.add(a[i]);
+				break;
+			}
+
+		}
+		return result;
+	}
+
+	/*
+	 * 29. Largest subarray with equal number of 0s and 1s 30. Maximum Product
+	 * Sub-array
+	 */
+	@Override
+	public int findMaxLength(int[] a) {
+
+		Map<Integer, Integer> map = new HashMap<>();
+		int count = 0;
+		int maxlen = 0;
+
+		for (int i = 0, n = a.length; i < n; i++) {
+			count += a[i] == 1 ? 1 : -1;
+
+			if (count == 0) {
+				maxlen = Math.max(maxlen, i + 1);
+			}
+
+			if (map.containsKey(count)) {
+				maxlen = Math.max(maxlen, i - map.get(count));
+			} else
+				map.put(count, i);
+		}
+		return maxlen;
+	}
+
+	/* 29.1 find the max sub array with equal no of 0s and 1s */
+	public List<Integer> findMaxSubArray(int[] a) {
+		Map<Integer, Integer> map = new HashMap<>();
+		int count = 0;
+		int iniPos = 0;
+		int finPos = 0;
+		int check = 0;
+		List<Integer> list = new ArrayList<>();
+		for (int i = 0, n = a.length; i < n; i++) {
+			count += a[i] == 1 ? 1 : -1;
+
+			if (count == 0) {
+				iniPos = 0;
+				finPos = i;
+			}
+
+			if (map.containsKey(count)) {
+				check = 0;
+				for (int j = -count; j <= i; j++) {
+					check += a[i] == 1 ? 1 : -1;
+				}
+				if (check == 0) {
+					iniPos = -count;
+					finPos = i;
+				}
+			} else
+				map.put(count, i);
+		}
+		for (int i = iniPos; i <= finPos; list.add(a[i]), i++)
+			;
+		System.out.println("Initial Pos: " + iniPos + "\n Final Pos: " + finPos);
+		return list;
+	}
 
 	/***********************************************************************************************************************************************************************/
 

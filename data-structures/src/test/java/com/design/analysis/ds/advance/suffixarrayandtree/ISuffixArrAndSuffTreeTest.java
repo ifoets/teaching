@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.ds.advance.suffixarrayandtree.ISuffixArrAndSuffTree;
-import com.design.analysis.ds.advance.suffixarrayandtree.SuffixArrAndSuffTreeImpl;
 import com.design.analysis.ds.advance.suffixarrayandtree.model.Suffix;
 
 public class ISuffixArrAndSuffTreeTest {

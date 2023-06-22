@@ -4,9 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.ds.hashing.HashingImpl;
-import com.design.analysis.ds.hashing.IHashing;
-
 public class IHashingTest {
 
 	public IHashing ihs = null;

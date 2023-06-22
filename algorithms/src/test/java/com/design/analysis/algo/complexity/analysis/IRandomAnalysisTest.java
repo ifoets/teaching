@@ -4,9 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.algo.complexity.analysis.IRandomAnalysis;
-import com.design.analysis.algo.complexity.analysis.RandomAnalysisImpl;
-
 public class IRandomAnalysisTest {
 
 	public IRandomAnalysis ira = null;

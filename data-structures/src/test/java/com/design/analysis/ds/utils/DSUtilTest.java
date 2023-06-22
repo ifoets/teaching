@@ -3,8 +3,6 @@ package com.design.analysis.ds.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.design.analysis.ds.utils.DSUtil;
-
 public class DSUtilTest {
 
 	@Test

@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.ds.heap.MeanHeapImpl;
-
 public class IMeanHeapTest {
 
 	public MeanHeapImpl imh = null;

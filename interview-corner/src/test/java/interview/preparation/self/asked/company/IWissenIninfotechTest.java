@@ -1,4 +1,4 @@
-package interview.preparation.self.asked;
+package interview.preparation.self.asked.company;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -11,6 +11,9 @@ import org.junit.Test;
 
 import com.design.analysis.company.preparation.model.LNode;
 import com.design.analysis.company.preparation.utils.SListUtils;
+
+import interview.preparation.self.asked.company.IWissenIninfotech;
+import interview.preparation.self.asked.company.WissenIninfotechImpl;
 
 public class IWissenIninfotechTest {
 

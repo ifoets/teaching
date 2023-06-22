@@ -160,12 +160,19 @@ public interface IDynamicBasic {
 
 	/* using dp */
 	public int binomialCoeffDp(int n, int k);
+	
+	public int binomialCoeffDpX(int n, int k);
 
 	/** 6.Permutation Coefficient **/
 	public int permutationCoefficient(int n, int k);
+	
+	public int permutationCoefficientX(int n, int k);
 
 	/** 7. Tiling Problem **/ // bord 2*n and tiles 2*1
 	public int tillingProblem(int n);
+	
+	/*Tiling Problem 1*m to n*m borad**/
+	public int tillingProblemX(int n, int m);
 
 	/** 8. Gold Mine Problem **/
 	public int goldMineProblem(int g[][]);

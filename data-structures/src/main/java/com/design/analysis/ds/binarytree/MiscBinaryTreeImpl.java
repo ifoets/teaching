@@ -19,7 +19,7 @@ public class MiscBinaryTreeImpl implements IMiscBinaryTree<Integer> {
 		if (node != null) {
 			BTNode<Integer> lt = node.lt;
 			BTNode<Integer> rt = node.rt;
-			node = null;
+			node = node.lt=node.rt=null;
 			deleteTree(lt);
 			deleteTree(rt);
 		}

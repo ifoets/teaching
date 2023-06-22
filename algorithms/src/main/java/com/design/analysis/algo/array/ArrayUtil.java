@@ -68,7 +68,5 @@ public class ArrayUtil {
 		temp = x.r;
 		x.r = y.r;
 		y.r = temp;
-
 	}
-
 }

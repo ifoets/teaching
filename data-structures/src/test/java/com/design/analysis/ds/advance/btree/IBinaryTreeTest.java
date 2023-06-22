@@ -7,8 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.ds.advance.btree.BinaryTreeImpl;
-import com.design.analysis.ds.advance.btree.IBinaryTree;
 import com.design.analysis.ds.node.BTNode;
 
 public class IBinaryTreeTest {

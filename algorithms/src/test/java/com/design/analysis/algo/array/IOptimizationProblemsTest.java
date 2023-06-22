@@ -6,9 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.algo.array.IOptimizationProblems;
-import com.design.analysis.algo.array.OptimizationProblemsImpl;
-
 /*
  * Optimization Problems :
 	1.	Largest Sum Contiguous Subarray

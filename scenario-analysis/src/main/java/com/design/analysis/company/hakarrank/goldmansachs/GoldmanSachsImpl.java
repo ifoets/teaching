@@ -213,55 +213,23 @@ public class GoldmanSachsImpl implements IGoldmanSachs {
 	/** find average in two sorted array */
 	public double findAverage(int a[], int b[]) {
 
-		/*if (a == null && b == null || a.length == 0 && b.length == 0)
-			return -1;
-		else {// TODO
-			int i = 0;  Current index of input array ar1[] 
-		    int j = 0;  Current index of input array ar2[] 
-		    int count;  
-		    int m1 = -1, m2 = -1;  
-		  
-		    // Since there are (n+m) elements,  
-		    // There are following two cases 
-		    // if n+m is odd then the middle  
-		    //index is median i.e. (m+n)/2 
-		    if((m + n) % 2 == 1) { 
-		        for (count = 0; count <= (n + m)/2; count++) { 
-		            if(i != n && j != m){ 
-		            m1 = (ar1[i] > ar2[j]) ? ar2[j++] : ar1[i++]; 
-		            } 
-		            else if(i < n){ 
-		            m1 = ar1[i++]; 
-		            } 
-		            // for case when j<m, 
-		            else{ 
-		            m1 = ar1[j++]; 
-		            } 
-		        } 
-		        return m1; 
-		    } 
-		      
-		    // median will be average of elements  
-		    // at index ((m+n)/2 - 1) and (m+n)/2 
-		    // in the array obtained after merging ar1 and ar2 
-		    else { 
-		        for (count = 0; count <= (n + m)/2; count++) { 
-		            m2 = m1; 
-		            if(i != n && j != m){ 
-		            m1 = (ar1[i] > ar2[j]) ? ar2[j++] : ar1[i++]; 
-		            } 
-		            else if(i < n){ 
-		            m1 = ar1[i++]; 
-		            } 
-		            // for case when j<m, 
-		            else{ 
-		            m1 = ar1[j++]; 
-		            } 
-		        } 
-		        return (m1 + m2)/2; 
-		    } 
-		}
-*/
+		/*
+		 * if (a == null && b == null || a.length == 0 && b.length == 0) return -1; else
+		 * {// TODO int i = 0; Current index of input array ar1[] int j = 0; Current
+		 * index of input array ar2[] int count; int m1 = -1, m2 = -1;
+		 * 
+		 * // Since there are (n+m) elements, // There are following two cases // if n+m
+		 * is odd then the middle //index is median i.e. (m+n)/2 if((m + n) % 2 == 1) {
+		 * for (count = 0; count <= (n + m)/2; count++) { if(i != n && j != m){ m1 =
+		 * (ar1[i] > ar2[j]) ? ar2[j++] : ar1[i++]; } else if(i < n){ m1 = ar1[i++]; }
+		 * // for case when j<m, else{ m1 = ar1[j++]; } } return m1; }
+		 * 
+		 * // median will be average of elements // at index ((m+n)/2 - 1) and (m+n)/2
+		 * // in the array obtained after merging ar1 and ar2 else { for (count = 0;
+		 * count <= (n + m)/2; count++) { m2 = m1; if(i != n && j != m){ m1 = (ar1[i] >
+		 * ar2[j]) ? ar2[j++] : ar1[i++]; } else if(i < n){ m1 = ar1[i++]; } // for case
+		 * when j<m, else{ m1 = ar1[j++]; } } return (m1 + m2)/2; } }
+		 */
 		return -1;
 	}
 
@@ -292,5 +260,58 @@ public class GoldmanSachsImpl implements IGoldmanSachs {
 		 * i++) { for (int j = i; j <N; j++) { System.out.println(); for (int k = i; k
 		 * <= j; k++) { System.out.print(a[k] + " "); } } } return xor;
 		 */
+	}
+
+	/** Minimum Initial Energy Required To Cross Street **/
+	@Override
+	public int minEnergyRequired(int a[]) {
+		int maxX = 0;
+		int sum = 0;
+		for (int i = 0; i < a.length; i++) {
+			sum += a[i];
+			if (sum < 0) {
+				if (maxX < -sum)
+					maxX = -sum + 1; // should not be zero at any point
+			}
+		}
+		return maxX;
+	}
+
+	/** Find number of Positional Elements **/
+	@Override
+	public int numberOfPositionalElemnts(int a[][]) {
+
+		int posNo = 0;
+		for (int i = 0; i < a.length; i++) {
+			posNo += noOfMaxMinInArr(a[i]);
+		}
+		return posNo;
+	}
+
+	@SuppressWarnings("unused")
+	@Override
+	public int noOfMaxMinInArr(int a[]) {
+		int posNo = 0;
+		int n = a.length;
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < n; i++) {
+			if (max < a[i])
+				max = a[i];
+		}
+		int b[] = new int[max + 1];
+		for (int i = 0; i < n; b[a[i]] = a[i], i++)
+			;
+
+		for (int i = 0; i < b.length; i++) {
+			if (b[i] != 0)
+				posNo += b[i];
+			break;
+		}
+		for (int i = b.length - 1; i >= 0; i--) {
+			if (b[i] != 0)
+				posNo += b[i];
+			break;
+		}
+		return posNo;
 	}
 }

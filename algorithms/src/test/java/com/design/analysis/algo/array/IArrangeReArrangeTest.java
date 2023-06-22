@@ -1,6 +1,7 @@
 package com.design.analysis.algo.array;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -71,6 +72,32 @@ public class IArrangeReArrangeTest {
 			Assert.assertTrue(a[i] == b[i]);
 	}
 
+	/** it realize it require wave form sorting start from low */
+	@Test
+	public void evenPosIncrOddPosDecrXTest() {
+		int a[] = { 1, 2, 7, 8, 3, 4, 5, 6 };
+		iar.evenPosIncrOddPosDecrX(a, a.length);
+		System.out.println(Arrays.toString(a));
+		int b[] = { 1, 5, 6, 7, 2, 3, 4, 8, 9 };
+		iar.evenPosIncrOddPosDecrX(b, b.length);
+		System.out.println(Arrays.toString(b));
+	}
+
+	@Test
+	public void reArrageWaveFormTest() {
+		int a[] = { 1, 2, 7, 8, 3, 4, 5, 6 };
+		iar.reArrageWaveForm(a);
+		System.out.println(Arrays.toString(a));
+		int b[] = { 1, 5, 6, 7, 2, 3, 4, 8, 9 };
+		iar.reArrageWaveForm(b);
+		System.out.println(Arrays.toString(b));
+	}
+
+	/*
+	 * elements at odd positions are greater than all elements before it and
+	 * elements at even positions are less than all elements before it.
+	 * 
+	 */
 	@Test
 	public void evenPosIncrOddPosIncrTest() {
 		int a[] = { 1, 2, 3, 4, 5, 6, 7 };
@@ -101,6 +128,9 @@ public class IArrangeReArrangeTest {
 		iar.alternativePosNevElem(a);
 		for (int i = 0; i < a.length; i++)
 			Assert.assertTrue(a[i] == b[i]);
+		int c[] = { 1, 2, 3, 4, 5, -1, -2, -3, 6, 7, 8, 9 };
+		iar.alternativePosNevElem(c);
+		System.out.println(Arrays.toString(c));
 	}
 
 	/** 6. Move all zeroes to end of array **/
@@ -128,10 +158,10 @@ public class IArrangeReArrangeTest {
 	public void minSwapLessThanKElemTogetherTest() {
 		int a[] = { 2, 1, 5, 6, 3 };
 		int k = 3;
-		Assert.assertTrue(iar.minSwapLessThanKElemTogether(a, k) == 2);
+		Assert.assertTrue(iar.minSwapLessThanKElemTogether(a, k) == 3);
 		int b[] = { 2, 7, 9, 5, 8, 7, 4 };
 		int k1 = 5;
-		Assert.assertTrue(iar.minSwapLessThanKElemTogether(b, k1) == 2);
+		Assert.assertTrue(iar.minSwapLessThanKElemTogether(b, k1) == 3);
 	}
 
 	/** 9. Rearrange positive and negative numbers using inbuilt sort function **/
@@ -143,6 +173,7 @@ public class IArrangeReArrangeTest {
 		int b[] = { 1, 5, 2, 3, 2 };
 
 		iar.evenPosGreaterThanOddPos(a);
+		System.out.println(Arrays.toString(a));
 		for (int i = 0; i < a.length; i++)
 			Assert.assertTrue(a[i] == b[i]);
 	}
@@ -261,8 +292,60 @@ public class IArrangeReArrangeTest {
 		iar.shuffleArr(a, a.length);
 		System.out.println(Arrays.toString(a));
 	}
+
 	/** 25. Segregate even and odd numbers **/
 	// @See 14 there +ve/-ve here odd/even
+
+	/* 26. Segregate 0s and 1s in an array */
+	@Test
+	public void segregate0sAnd1sTest() {
+		int a[] = { 1, 0, 1, 0, 1, 1, 0, 0, 1, 0 };
+		int b[] = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 };
+		iar.segregate0sAnd1s(a);
+		for (int i = 0; i < a.length; i++)
+			Assert.assertTrue(a[i] == b[i]);
+	}
+
+	/* 27. Longest Bitonic Subsequence */
+	@Test
+	public void bitonicSubsequenceTest() {
+		int a[] = { 0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15 };
+		Assert.assertTrue(iar.bitonicSubsequence(a) == 7);
+	}
+
+	/* 28. Find a sorted subsequence of size 3 in linear time */
+	// @Idea find min<max and then max<a[i]
+	@Test
+	public void find3NumbersTest() {
+		int a[] = { 1, 2, -1, 7, 5 };
+		List<Integer> rs = List.of(1, 2, 7);
+		List<Integer> r = iar.find3Numbers(a);
+		for (int i = 0; i < 3; i++)
+			Assert.assertTrue(rs.get(i) == r.get(i));
+	}
+
+	/*
+	 * 29. Largest subarray with equal number of 0s and 1s 30. Maximum Product
+	 * Sub-array
+	 */
+	@Test
+	public void findMaxLengthTest() {
+		int a[] = { 0, 0, 0, 1, 0, 1, 0, 0, 0 };
+		int b[] = { 0, 1, 0, 0, 1, 1, 0, 0, 0 };
+		Assert.assertTrue(iar.findMaxLength(a) == 4);
+		Assert.assertTrue(iar.findMaxLength(b) == 6);
+	}
+
+	/* 29.1 find the max sub array with equal no of 0s and 1s */
+	@Test
+	public void findMaxSubArrayTest() {
+		int a[] = { 0, 0, 0, 1, 0, 1, 0, 0, 0 };
+		int b[] = { 0, 1, 0, 0, 1, 1, 0, 0, 0 };
+		int c[] = { 0, 1, 1, 0, 1, 0 };
+		System.out.println(iar.findMaxSubArray(a));
+		System.out.println(iar.findMaxSubArray(b));
+		System.out.println(iar.findMaxSubArray(c));
+	}
 
 	/**********************************************************************************************/
 
