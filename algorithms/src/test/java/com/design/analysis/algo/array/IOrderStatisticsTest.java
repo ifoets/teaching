@@ -17,16 +17,16 @@ public class IOrderStatisticsTest {
 		ios = new OrderStatisticsImpl();
 	}
 
-	/** 1. K’th Smallest/Largest Element in Unsorted Array | Set 1 **/
+	/** 1. Kï¿½th Smallest/Largest Element in Unsorted Array | Set 1 **/
 	/**
-	 * 2. K’th Smallest/Largest Element in Unsorted Array | Set 2 (Expected Linear
+	 * 2. Kï¿½th Smallest/Largest Element in Unsorted Array | Set 2 (Expected Linear
 	 * Time)
 	 **/
 	/**
-	 * 3. K’th Smallest/Largest Element in Unsorted Array | Set 3 (Worst Case Linear
+	 * 3. Kï¿½th Smallest/Largest Element in Unsorted Array | Set 3 (Worst Case Linear
 	 * Time)
 	 **/
-	/** 4. K’th Smallest/Largest Element using STL **/
+	/** 4. Kï¿½th Smallest/Largest Element using STL **/
 
 	/*
 	 * 1 to 4 is used for unique positive element only* writing method O(n) both
@@ -48,7 +48,7 @@ public class IOrderStatisticsTest {
 	@Test
 	public void kthHeigstOrSmallestXTest() {
 		int a[] = { 0, -1, 2, -2, 9, -8, 8, 0, 5, 6, 1, 7 };
-		int b[] = { -8, -2, -1, 0, 1, 2, 5, 6, 7, 8, 9 };
+		int b[] = { -8, -2, -1, 0, 0, 1, 2, 5, 6, 7, 8, 9 };
 		for (int i = 0; i < b.length; i++)
 			Assert.assertTrue(ios.kthHeigstOrSmallestX(a, i + 1, true) == b[i]);
 

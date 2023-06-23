@@ -23,6 +23,6 @@ public class IDynamicHardTest {
 	public void palindromePartitionTest() {
 		String str = "adbcb";///"ababbbabbababa";// "abcbd";
 		List<String> list = idh.palindromePartition(str);
-		System.out.println(list.get(0));
+		//System.out.println(list.get(0));
 	}
 }

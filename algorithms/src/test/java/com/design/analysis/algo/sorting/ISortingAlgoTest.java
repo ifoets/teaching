@@ -29,7 +29,7 @@ Sorting Algorithms :
 22.	Binary Insertion Sort
 23.	BogoSort or Permutation Sort
 24.	Gnome Sort
-25.	Sleep Sort – The King of Laziness / Sorting while Sleeping
+25.	Sleep Sort ï¿½ The King of Laziness / Sorting while Sleeping
 26.	Structure Sorting (By Multiple Rules) in C++
 27.	Stooge Sort
 28.	Tag Sort (To get both sorted and original)
@@ -102,7 +102,7 @@ public class ISortingAlgoTest {
 	public void bubbleSortRecursiveTest() {
 
 		int a[] = { 1, 0, 2, 9, 3, 8, 7, 4, 5, 6 };
-		isa.bubbleSortRecursive(a, a.length - 1);
+		isa.bubbleSortRecursive(a, a.length);
 
 		Assert.assertTrue(a[0] == 0);
 		Assert.assertTrue(a[5] == 5);
@@ -496,7 +496,7 @@ public class ISortingAlgoTest {
 	}
 
 	// TODO not give proper result
-	/** 26. Sleep Sort – The King of Laziness / Sorting while Sleeping **/
+	/** 26. Sleep Sort ï¿½ The King of Laziness / Sorting while Sleeping **/
 	@Test
 	public void sleepSortTest() {
 

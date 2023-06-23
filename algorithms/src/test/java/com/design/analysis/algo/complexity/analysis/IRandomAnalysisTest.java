@@ -17,7 +17,7 @@ public class IRandomAnalysisTest {
 	@Test
 	public void findMaxTest() {
 		int a[] = { 1, 9, 2, 8, 3, 7, 4, 6, 5 };
-		Assert.assertTrue(ira.findMax(a, 0, a.length - 1) == 10);
+		Assert.assertTrue(ira.findMax(a, 0, a.length - 1) == 9);
 	}
 
 	@Test

@@ -32,6 +32,7 @@ public class IMiscTest {
 	@Test
 	public void duplicateCountXTest() {
 		Map<Character, Integer> map1 = im.duplicateCountX("test string");
+		System.out.println(map1);
 		Assert.assertTrue(map1.get('t') == 3);
 		Assert.assertTrue(map1.get('s') == 2);
 	}
