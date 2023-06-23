@@ -8,7 +8,6 @@ import org.junit.Test;
 import com.design.analysis.algo.utils.AlgoUtils;
 
 public class ArrayRotationImpl implements IArrayRotation {
-
 	/** 1. Program for array rotation **/
 	/* by using temporary array, TC-O(n)- SC- O(n) */
 	@Override
@@ -103,7 +102,7 @@ public class ArrayRotationImpl implements IArrayRotation {
 		return findPivot(arr, mid + 1, high);
 	}
 
-	/* search elememnt in sorted and rotated array O(log(n)) */
+	/* search element in sorted and rotated array O(log(n)) */
 	public int searchInSortedRotatedArr(int a[], int key) {
 		int n = a.length;
 		int pivot = findPivot(a, 0, n - 1);
@@ -252,7 +251,7 @@ public class ArrayRotationImpl implements IArrayRotation {
 	}
 
 	/** 14. Queries on Left and Right Circular shift on array **/
-	// this use left and right rotaton and find the sum form l index to r
+	// this use left and right rotation and find the sum form l index to r
 
 	/** 15. Print left rotation of array in O(n) time and O(1) space **/
 	@Override

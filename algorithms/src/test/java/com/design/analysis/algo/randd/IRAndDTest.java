@@ -107,6 +107,7 @@ public class IRAndDTest {
 		System.out.println(str3 + "    " + rnd.isStringContainHtmlJsoup(str3));
 		System.out.println(str4 + "    " + rnd.isStringContainHtmlJsoup(str4));
 		*/
+
 	}
 
 }

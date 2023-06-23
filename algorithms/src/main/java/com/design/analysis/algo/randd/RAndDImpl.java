@@ -18,7 +18,7 @@ public class RAndDImpl implements IRAndD {
 
 		// Whitelist
 		//return Jsoup.isValid(str, Whitelist.none());
-   return true;
+    return true;
 	}
 
 	private static final String HTML_TAG_FORMAT_PATTERN = "<(\"[^\"]*\"|'[^']*'|[^'\">])*>";

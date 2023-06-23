@@ -13,7 +13,7 @@ import org.junit.Assert;
 4.	Quick Sort
 5.	Calculate pow(x, n)
 6.	Closest Pair of Points
-7.	Strassen’s Matrix Multiplication
+7.	Strassenï¿½s Matrix Multiplication
 8.	Karatsuba algorithm for fast multiplication
 9.	Count Inversions
 10.	Multiply two polynomials
@@ -231,7 +231,7 @@ public class IStandardAlgoTest {
 			Assert.assertTrue(prod[i] == c[i]);
 	}
 
-	/** 12. Strassen’s Matrix Multiplication **/
+	/** 12. Strassenï¿½s Matrix Multiplication **/
 	@Test
 	public void matrixMultiplicationTest() {
 
