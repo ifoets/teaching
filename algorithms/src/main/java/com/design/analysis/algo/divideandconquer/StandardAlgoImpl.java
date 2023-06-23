@@ -318,7 +318,7 @@ public class StandardAlgoImpl implements IStandardAlgo {
 		return c;
 	}
 
-	/** 12. Strassen’s Matrix Multiplication **/
+	/** 12. Strassenï¿½s Matrix Multiplication **/
 	public int[][] matrixMultiplication(int a[][], int b[][]) {
 
 		// not multiplicable
@@ -498,7 +498,6 @@ public class StandardAlgoImpl implements IStandardAlgo {
 
 	@Override
 	public int countInversion(int[] arr, int[] temp, int l, int r) {
-		// TODO Auto-generated method stub
-		return 0;
+		return countIn3version(arr, temp,l,r);
 	}
 }

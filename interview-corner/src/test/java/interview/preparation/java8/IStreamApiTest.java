@@ -16,7 +16,7 @@ import interview.preparation.self.asked.model.B;
 import interview.preparation.self.asked.model.C;
 import interview.preparation.self.asked.model.D;
 
-public class IStremApiTest {
+public class IStreamApiTest {
 
 	IStremApi isa = null;
 

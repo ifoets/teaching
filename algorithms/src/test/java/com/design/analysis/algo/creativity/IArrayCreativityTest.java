@@ -21,8 +21,8 @@ public class IArrayCreativityTest {
 	public void DiffOfKtheMaxMinTest() {
 
 		int a[] = { 9, 1, 8, 2, 7, 3, 6, 4, 5 };
-		assertTrue(irc.DiffOfKtheMaxMin(a, 4) == 8);
-		assertTrue(irc.DiffOfKtheMaxMin(a, 3) == 8);
+		assertTrue(irc.DiffOfKtheMaxMin(a, 4) == 2);
+		assertTrue(irc.DiffOfKtheMaxMin(a, 3) == 4);
 		assertTrue(irc.DiffOfKtheMaxMin(a, 1) == 8);
 	}
 
