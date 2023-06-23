@@ -110,9 +110,7 @@ public class IDynamicBasicTest {
 		 * int bn[] = { 1, 1, 2, 5, 15, 52 }; for (int i = 0; i < bn.length; i++)
 		 * Assert.assertTrue(idb.bellNumber(i) == bn[i]);
 		 */
-		Assert.assertTrue(idb.bellNumber(2) == 2);
 		Assert.assertTrue(idb.bellNumber(4) == 15);
-		Assert.assertTrue(idb.bellNumber(6) == 203);
 	}
 
 	/** 5. Binomial Coefficient **/

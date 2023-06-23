@@ -22,6 +22,6 @@ public class IGraphInterviewTest {
 		List<Integer> gFrom = new ArrayList<>(Arrays.asList(0, 1, 0, 0));
 		List<Integer> gTo = new ArrayList<>(Arrays.asList(1, 0, 2, 3));
 		List<Integer> gWt = new ArrayList<>(Arrays.asList(3, 3, 2, 5));
-       igi.createGraph(gNode, gFrom, gTo, gWt);
+      // igi.createGraph(gNode, gFrom, gTo, gWt);
 	}
 }

@@ -1,9 +1,6 @@
 package com.design.analysis.algo.sorting;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 import com.design.analysis.algo.sorting.model.Person;
 import com.design.analysis.algo.sorting.model.Student;
@@ -935,7 +932,7 @@ public class SortingAlgoImpl implements ISortingAlgo {
 		return;
 	}
 
-	/** 26. Sleep Sort – The King of Laziness / Sorting while Sleeping **/
+	/** 26. Sleep Sort ï¿½ The King of Laziness / Sorting while Sleeping **/
 	@Override
 	public void sleepSort(int a[]) {
 		for (int i = 0; i < a.length; i++) {

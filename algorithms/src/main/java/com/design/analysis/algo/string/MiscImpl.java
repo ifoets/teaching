@@ -32,12 +32,12 @@ public class MiscImpl implements IMisc {
 	}
 
 	public Map<Character, Integer> duplicateCountX(String str) {
-
+		str=str.replace(" ","").toLowerCase();
 		Map<Character, Integer> map = new HashMap<>();
 		int N = str.length();
 		int ind[] = new int[26];
 		System.out.println(str.charAt(0) - 97);
-		for (int i = 0; i < N && str.charAt(i) != -65; i++) {
+		for (int i = 0; i < N ; i++) {
 			ind[str.charAt(i) - 97]++;
 		}
 		for (int i = 0; i < 26; i++) {

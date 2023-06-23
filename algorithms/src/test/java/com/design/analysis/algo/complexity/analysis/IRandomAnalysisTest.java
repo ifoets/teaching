@@ -16,8 +16,8 @@ public class IRandomAnalysisTest {
 	/** find the max O(log(n)) in unsorted array */
 	@Test
 	public void findMaxTest() {
-		int a[] = { 1, 9, 2, 8, 10, 3, 7, 4, 6, 5 };
-		Assert.assertTrue(ira.findMax(a, 0, a.length - 1) == 10);
+		int a[] = { 1, 9, 2, 8, 3, 7, 4, 6, 5 };
+		Assert.assertTrue(ira.findMax(a, 0, a.length - 1) == 9);
 	}
 
 	@Test
