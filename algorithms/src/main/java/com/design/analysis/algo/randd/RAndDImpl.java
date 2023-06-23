@@ -3,8 +3,8 @@ package com.design.analysis.algo.randd;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
+//import org.jsoup.Jsoup;
+//import org.jsoup.safety.Whitelist;
 
 //@SuppressWarnings("deprecation")
 public class RAndDImpl implements IRAndD {
@@ -17,8 +17,8 @@ public class RAndDImpl implements IRAndD {
 	public boolean isStringContainHtmlJsoup(final String str) {
 
 		// Whitelist
-		return Jsoup.isValid(str, Whitelist.none());
-
+		//return Jsoup.isValid(str, Whitelist.none());
+   return true;
 	}
 
 	private static final String HTML_TAG_FORMAT_PATTERN = "<(\"[^\"]*\"|'[^']*'|[^'\">])*>";
