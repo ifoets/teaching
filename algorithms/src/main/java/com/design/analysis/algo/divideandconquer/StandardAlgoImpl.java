@@ -498,6 +498,6 @@ public class StandardAlgoImpl implements IStandardAlgo {
 
 	@Override
 	public int countInversion(int[] arr, int[] temp, int l, int r) {
-		return countIn3version(arr,temp,l,r);
+		return countIn3version(arr, temp,l,r);
 	}
 }
