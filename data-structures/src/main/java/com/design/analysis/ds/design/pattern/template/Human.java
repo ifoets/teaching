@@ -1,6 +1,7 @@
 package com.design.analysis.ds.design.pattern.template;
 
-import com.design.analysis.ds.design.pattern.creation.IImmutableObjPoolTest;
+import com.design.analysis.ds.design.pattern.creation.IImmutableObjPool;
+import com.design.analysis.ds.design.pattern.creation.ImmutableObjPoolImpl;
 
 public final class Human {
 
@@ -12,9 +13,9 @@ public final class Human {
 		this.age = age;
 	}
 
-	public boolean create(String name, int age) {
-		return IImmutableObjPoolTest.iip.addObjInPool(new Human(name, age));
-	}
+	/*public boolean create(String name, int age) {
+		return new ImmutableObjPoolImpl(10).addObjInPool(new Human(name, age));
+	}*/
 
 	public String getName() {
 		return name;

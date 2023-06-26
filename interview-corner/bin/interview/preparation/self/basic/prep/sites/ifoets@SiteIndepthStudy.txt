@@ -1,9 +1,0 @@
-
-Reference book always prefere for study in depth/clear confusion/learn initialy
-===========================================
-https://docs.jboss.org
-ex:- for  hibernate
-https://docs.jboss.org/hibernate/orm/5.0/manual/en-US/html/
-
-ex:- for spring
-http://docs.spring.io/spring/docs/current/spring-framework-reference/html/

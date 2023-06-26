@@ -3,7 +3,6 @@ package com.design.analysis.algo.array;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
 
 import com.design.analysis.algo.utils.AlgoUtils;
 
@@ -47,8 +46,6 @@ public class ArrayRotationImpl implements IArrayRotation {
 		AlgoUtils.rvereseArray(arr, k, n - 1);
 		AlgoUtils.rvereseArray(arr, 0, n - 1);
 	}
-
-	@Test
 	public void arrRoatByBlockSwap(int arr[], int n, int d) {
 		int i, j;
 		if (d == 0 || d == n)
@@ -83,7 +80,7 @@ public class ArrayRotationImpl implements IArrayRotation {
 	}
 
 	/** 5. Search an element in a sorted and rotated array **/
-	@Test
+
 	public int findPivot(int arr[], int low, int high) {
 		// base cases
 		if (high < low)

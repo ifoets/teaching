@@ -1,6 +1,5 @@
 package com.design.analysis.concurrent.thread;
 
-import org.junit.Test;
 
 import com.design.analysis.concurrent.thread.runing.BlockingQueue;
 import com.design.analysis.concurrent.thread.runing.CompAndSwapByAtomic;
@@ -134,7 +133,7 @@ public class JavaConcurrencyImpl implements IJavaConcurrency {
 	}
 
 	/* Object Member Variables are not thread safe on same instance */
-	@Test
+
 	public void objectMembarVariableNotThreadSafe() {
 		NotThreadSafe sharedInstance = new NotThreadSafe();
 
