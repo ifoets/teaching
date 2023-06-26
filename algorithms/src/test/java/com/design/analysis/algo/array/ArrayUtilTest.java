@@ -13,7 +13,7 @@ public class ArrayUtilTest {
 	}
 	@Test
 	public void swapIn2ArrTest() {
-		int a[] = { 1, 3 };
+		int[] a = { 1, 3 };
 		int b[] = { 2, 4 };
 
 		ArrayUtil.swapIn2Arr(a, 1, b, 0);
@@ -76,17 +76,24 @@ public class ArrayUtilTest {
 			}
 		}
 		/// spirial print matrx clockwise
-		for (int i = 0; i < N / 2; i++) {
-			for (int j = i; j < N - 1 - i; System.out.print(a[i][j] + " "), j++)
-				;
-			for (int j = i; j < N - 1 - i; System.out.print(a[j][N - 1 - i] + " "), j++)
-				;
-			for (int j = i; j < N - 1 - i; System.out.print(a[N - 1 - i][N - 1 - j] + " "), j++)
-				;
-			for (int j = i; j < N - 1 - i; System.out.print(a[N - 1 - j][i] + " "), j++)
-				;
-			System.out.println();
-		}
+		for (int j = 0; j < N - 1 - 0; System.out.print(a[0][j] + " "), j++)
+			;
+		for (int j = 0; j < N - 1 - 0; System.out.print(a[j][N - 1 - 0] + " "), j++)
+			;
+		for (int j = 0; j < N - 1 - 0; System.out.print(a[N - 1 - 0][N - 1 - j] + " "), j++)
+			;
+		for (int j = 0; j < N - 1 - 0; System.out.print(a[N - 1 - j][0] + " "), j++)
+			;
+		System.out.println();
+		for (int j = 1; j < N - 1 - 1; System.out.print(a[1][j] + " "), j++)
+			;
+		for (int j = 1; j < N - 1 - 1; System.out.print(a[j][N - 1 - 1] + " "), j++)
+			;
+		for (int j = 1; j < N - 1 - 1; System.out.print(a[N - 1 - 1][N - 1 - j] + " "), j++)
+			;
+		for (int j = 1; j < N - 1 - 1; System.out.print(a[N - 1 - j][1] + " "), j++)
+			;
+		System.out.println();
 
 		/// spirial print matrx anticlockwise
 
