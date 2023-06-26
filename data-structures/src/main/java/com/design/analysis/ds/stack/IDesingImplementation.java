@@ -1,5 +1,7 @@
 package com.design.analysis.ds.stack;
 
+import com.design.analysis.ds.node.SLNode;
+
 /*
 Design and Implementation :
 1.	Implement Queue using Stacks
@@ -14,16 +16,9 @@ Design and Implementation :
 10.	How to implement stack using priority queue or heap?
 11.	Create a customized data structure which evaluates functions in O(1)
 */
-import org.junit.Before;
-
-public class IDesingImplementationTest {
-
-	public IDesingImplementation idi = null;
-
-	@Before
-	public void init() {
-		idi = new DesingImplementationImpl();
-	}
+public interface IDesingImplementation {
 
 	/** 1. Implement Queue using Stacks **/
+	public SLNode queueUsingStack(SLNode node, String queueOpr);
+
 }

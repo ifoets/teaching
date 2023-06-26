@@ -4,9 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.design.analysis.stack.IDaStack;
 import com.design.analysis.ds.node.SLNode;
-import com.design.analysis.stack.DaStack;
 
 public class IDaStackTest {
 
