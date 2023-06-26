@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Test;
-
 import com.design.analysis.algo.dynamicprogramming.model.Pair;
 import com.design.analysis.algo.utils.AlgoUtils;
 
@@ -278,7 +276,6 @@ public class DynamicBasicImpl implements IDynamicBasic {
 
 	/** 8. Gold Mine Problem **/
 	// solution belong to greedy apprach with dynamic programming(GD & DP)
-	@Test
 	public int goldMineProblem(int g[][]) {
 
 		int m = g.length; // no of rows
@@ -627,7 +624,7 @@ public class DynamicBasicImpl implements IDynamicBasic {
 		return t[n][k];
 	}
 
-	/** 21. Newman–Shanks–Williams prime **/
+	/** 21. Newmanï¿½Shanksï¿½Williams prime **/
 	@Override
 	public int newmanShanksWilliamsPrime(int n) {
 

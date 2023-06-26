@@ -78,7 +78,7 @@ public class GcdAndLcmImpl implements IGcdAndLcm {
 		return gcd(a, mod);
 	}
 
-	/** 7. Stein’s Algorithm for finding GCD **/
+	/** 7. Stein&rsquo;s Algorithm for finding GCD **/
 	/* it is just finding the gcd by different apporach */
 	/** 8. GCD, LCM and Distributive Property **/
 	@Override
