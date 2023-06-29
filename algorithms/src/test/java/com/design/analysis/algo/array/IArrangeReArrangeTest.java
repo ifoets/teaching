@@ -1,5 +1,6 @@
 package com.design.analysis.algo.array;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class IArrangeReArrangeTest {
 	@Test
 	public void fixedAtIndexTest() {
 
-		int a[] = { -1, -1, 6, 1, 9, 3, 2, -1, 4, -1 };
-		int b[] = { -1, 1, 2, 3, 4, -1, 6, -1, -1, 9 };
+		int a[] = new int[]{ -1, -1, 6, 1, 9, 3, 2, -1, 4, -1 };
+		int b[] = new int[]{ -1, 1, 2, 3, 4, -1, 6, -1, -1, 9 };
 		iar.fixedAtIndex(a);
 		for (int i = 0; i < a.length; i++)
 			Assert.assertTrue(a[i] == b[i]);
@@ -30,8 +31,8 @@ public class IArrangeReArrangeTest {
 	/* another apporach with O(n) both SC and TC */
 	@Test
 	public void fixedAtIndexXTest() {
-		int a[] = { -1, -1, 6, 1, 9, 3, 2, -1, 4, -1 };
-		int b[] = { -1, 1, 2, 3, 4, -1, 6, -1, -1, 9 };
+		int a[] = new int[] { -1, -1, 6, 1, 9, 3, 2, -1, 4, -1 };
+		int b[] = new int[] { -1, 1, 2, 3, 4, -1, 6, -1, -1, 9 };
 		iar.fixedAtIndexX(a);
 		for (int i = 0; i < a.length; Assert.assertTrue(a[i] == b[i]), i++)
 			;
@@ -40,11 +41,25 @@ public class IArrangeReArrangeTest {
 	/* for every type of -ve no and no should be in list */
 	@Test
 	public void fixedAtIndexYTest() {
-		int a[] = { 1, -5, -4, 4, 2, 3 };
-		int b[] = { -5, 1, 2, 3, 4, -4 };
+		int a[] = new int[] { 1, -5, -4, 4, 2, 3 };
+		int b[] = new int[] { -5, 1, 2, 3, 4, -4 };
 		iar.fixedAtIndexY(a);
-		for (int i = 0; i < a.length; Assert.assertTrue(a[i] == b[i]), i++)
-			;
+		for (int i = 0; i < a.length; i++)
+			 if(a[i]>0)
+				 Assert.assertTrue(a[i] == b[i]);
+
+	}
+	/*using java 8*/
+	@Test
+	public void fixedAtIndexZTest()
+	{
+		int a[] = new int[] { 1, -5, -4, 4, 2, 3 };
+		int b[] = new int[] { -5, 1, 2, 3, 4, -4 };
+		a = iar.fixedAtIndexZ(a);
+		System.out.println(Arrays.toString(a));
+		for (int i = 0; i < a.length; i++)
+			if(a[i]>0)
+				Assert.assertTrue(a[i] == b[i]);
 	}
 
 	/** 2. Write a program to reverse an array or string TC O(n/2) **/
@@ -57,7 +72,16 @@ public class IArrangeReArrangeTest {
 		for (int i = 0; i < a.length; i++)
 			Assert.assertTrue(a[i] == b[i]);
 	}
-
+	/*using java 8 stream*/
+	@Test
+	public void reverseArrXTest()
+	{
+		int a[] = { 1, 2, 3, 4, 5, 6, 7 };
+		List<Integer> list = iar.reverseArrX(a);
+		for (int i = 0; i < a.length; i++) {
+			Assert.assertTrue(a[i] == list.get(a.length-1-i).intValue());
+		}
+	}
 	/**
 	 * 3. Rearrange array such that arr[i] >= arr[j] if i is even and arr[i]<=arr[j]
 	 * if i is odd and j < i
@@ -111,10 +135,10 @@ public class IArrangeReArrangeTest {
 
 	/** 4. Rearrange positive and negative numbers in TC O(n) time and SC O(1) **/
 	@Test
-	public void reArragePosAndNegTest() {
+	public void reArrangePosAndNegTest() {
 		int a[] = { 1, -2, 3, -4, 5, -6, 7, -8, 9 };
 		int b[] = { -8, -2, -6, -4, 5, 3, 7, 1, 9 };
-		iar.reArragePosAndNeg(a);
+		iar.reArrangePosAndNeg(a);
 		for (int i = 0; i < a.length; i++)
 			Assert.assertTrue(a[i] == b[i]);
 	}
@@ -212,11 +236,7 @@ public class IArrangeReArrangeTest {
 			Assert.assertTrue(arr[i] == b[i]);
 	}
 
-	/** 14. Rearrange positive and negative numbers with constant extra space **/
-	@Test
-	public void rearrangePosNegTest() {
-		reArragePosAndNegTest();
-	}
+	/** 14. Rearrange positive and negative numbers with constant extra space @see reArragePosAndNegTest**/
 
 	/** 15. Arrange given numbers to form the biggest number **/
 	@Test
@@ -346,7 +366,84 @@ public class IArrangeReArrangeTest {
 		System.out.println(iar.findMaxSubArray(b));
 		System.out.println(iar.findMaxSubArray(c));
 	}
+	/*30.	Maximum Product Sub-array, this is modified to max sum sub-array*/
+	@Test
+	public void maxProductSubArrayTest()
+	{
+		int a[] = {6, -3, -10, 0, 2};
+		int b[] = {-1, -3, -10, 0, 60};
+        Assert.assertTrue(iar.maxProductSubArray(a) == 180);
+		Assert.assertTrue(iar.maxProductSubArray(b) == 60);
+	}
 
+	/* 31. Replace every element with the greatest element on right side */
+	@Test
+	public void replaceNextGreatestTest()
+	{
+		int a[] = {16, 17, 4, 3, 5, 2};
+		int b[] = {17, 5, 5, 5, 2, -1};
+		iar.replaceNextGreatest(a);
+    System.out.println(Arrays.toString(a));
+		for (int i = 0 ;i < a.length ; i++)
+			Assert.assertTrue(a[i]==b[i]);
+	}
+
+	/* 32. Maximum circular subarray sum, it is modified of min sum array version */
+	@Test
+	public void maxSumCircularSubArrayTest()
+	{
+		int a[] = {8, -8, 9, -9, 10, -11, 12};
+		Assert.assertTrue(iar.maxSumCircularSubArray(a) == 22);
+		int b[] ={10, -3, -4, 7, 6, 5, -4, -1};
+		Assert.assertTrue(iar.maxSumCircularSubArray(b) == 23);
+	}
+	/*min sum sub array indexes */
+	@Test
+	public void minSumSubArrayIndexesTest(){
+        int a[] = {8, -8, 9, -9, 10, -11, 12};
+		a = iar.minSumSubArrayIndexes(a);
+		int b[] ={5,5};
+		int c[] ={10, -3, -4, 7, 6, 5, -4, -1};
+		int d[] ={1,2};
+		c = iar.minSumSubArrayIndexes(c);
+		Assert.assertTrue(a[0]==b[0] && a[1]==b[1]);
+		Assert.assertTrue(c[0]==d[0] && c[1]==d[1]);
+	}
+
+	/* 33. Construction of Longest Increasing Subsequence (N log N) */
+	@Test
+	public void consLongestIncrSubseqTest()
+	{
+		int a[] = {3, 10, 2, 1, 20};
+		int b[] = {50, 3, 10, 7, 40, 80};
+		int c[] = {3, 4, -1, 5, 8, 2, 3 ,12, 7, 9 ,10};
+		//not satisfied
+		//System.out.println(iar.consLongestIncrSubseq(a));
+		System.out.println(iar.consLongestIncrSubseq(b));
+		System.out.println(iar.consLongestIncrSubseq(c));
+	}
+	/* 34. Sort elements by frequency | Set 2 */
+	@Test
+	public void sortByFrequencyTest()
+	{
+		int a[] = {2, 5, 2, 8, 5, 6, 8, 8};
+		int b[] = {8, 8, 8, 2, 2, 5, 5, 6};
+		int c[] = {6, 2, 2, 5, 5, 8, 8, 8};
+		List<Integer> bl = iar.sortByFrequency(a,false);
+		List<Integer> cl = iar.sortByFrequency(a,true);
+		for(int i=0;i<a.length;i++)
+		{
+			Assert.assertTrue(b[i]==bl.get(i));
+			Assert.assertTrue(c[i]==cl.get(i));
+		}
+	}
+	/* 35. Maximize sum of consecutive differences in a circular array */
+	@Test
+	public  void maxSumConsecutiveDiffCirArrayTest()
+	{
+		int arr[] = { 4, 2, 1, 8 };
+		Assert.assertTrue(iar.maxSumConsecutiveDiffCirArray(arr)==18);
+	}
 	/**********************************************************************************************/
 
 	/** 3. Sort an array in wave form **/

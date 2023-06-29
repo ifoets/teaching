@@ -391,4 +391,38 @@ public class AlgoUtils {
 			j++;
 		}
 	}
+
+	public static int binarySearchJustGreaterOrLess(int arr[], int l, int r, int x, boolean bigOrSmall)
+	{
+		while (l <= r) {
+			int m = l + (r - l) / 2;
+			// Check if x is present at mid
+			if ( (m ==0 || arr[m-1] < x) && x < arr[m] )
+				return bigOrSmall ? m : m-1;
+			else if((m == r || arr[m] > x) && x > arr[m -1])
+				return bigOrSmall ? m : m-1;
+			// If x greater, ignore left half
+			if (arr[m] < x)
+				l = m + 1;
+				// If x is smaller, ignore right half
+			else
+				r = m - 1;
+		}
+
+		// If we reach here, then element was
+		// not present
+		return -1;
+	}
+	public static int CeilIndex(int A[], int l, int r, int key)
+	{
+		while (r - l > 1) {
+			int m = l + (r - l) / 2;
+			if (A[m] >= key)
+				r = m;
+			else
+				l = m;
+		}
+
+		return r;
+	}
 }

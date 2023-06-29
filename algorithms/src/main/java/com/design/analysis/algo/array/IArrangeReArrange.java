@@ -18,12 +18,12 @@ Array Rearrangement
 	8.	Minimum swaps required to bring all elements less than or equal to k together
 	9.	Rearrange positive and negative numbers using inbuilt sort function
 	10.	Rearrange array such that even positioned are greater than odd
-	11.	Rearrange an array in order – smallest, largest, 2nd smallest, 2nd largest, ..
+	11.	Rearrange an array in order ï¿½ smallest, largest, 2nd smallest, 2nd largest, ..
 	12.	Double the first element and move zero to end
 	13.	Reorder an array according to given indexes
 	14.	Rearrange positive and negative numbers with constant extra space
 	15.	Arrange given numbers to form the biggest number
-	16.	Rearrange an array such that ‘arr[j]’ becomes ‘i’ if ‘arr[i]’ is ‘j’
+	16.	Rearrange an array such that ï¿½arr[j]ï¿½ becomes ï¿½iï¿½ if ï¿½arr[i]ï¿½ is ï¿½jï¿½
 	17.	Rearrange an array in maximum minimum form | Set 1
 	18.	Rearrange an array in maximum minimum form | Set 2 (O(1) extra space)
 	19.	Move all negative numbers to beginning and positive to end with constant extra space
@@ -67,9 +67,14 @@ public interface IArrangeReArrange {
 	/* for every type of -ve no and no should be in list */
 	public void fixedAtIndexY(int a[]);
 
+	/*using java 8*/
+	public int[] fixedAtIndexZ(int a[]);
+
 	/** 2. Write a program to reverse an array or string **/
 	public void reverseArr(int a[]);
 
+	/*using java 8 stream*/
+	public List<Integer> reverseArrX(int a[]);
 	/**
 	 * 3. Rearrange array such that arr[i] >= arr[j] if i is even and arr[i]<=arr[j]
 	 * if i is odd and j < i
@@ -87,7 +92,7 @@ public interface IArrangeReArrange {
 	// IDEA sort element with +2 take even and odd pos seperately
 
 	/** 4. Rearrange positive and negative numbers in TC O(n) time and SC O(1) **/
-	public void reArragePosAndNeg(int a[]);
+	public void reArrangePosAndNeg(int a[]);
 
 	/** 5. Rearrange array in alternating positive & negative items by T(n) S(1) **/
 	public void alternativePosNevElem(int a[]);
@@ -107,7 +112,7 @@ public interface IArrangeReArrange {
 	public void evenPosGreaterThanOddPos(int a[]);
 
 	/**
-	 * 11. Rearrange an array in order – smallest, largest, 2nd smallest, 2nd
+	 * 11. Rearrange an array in order ï¿½ smallest, largest, 2nd smallest, 2nd
 	 * largest, ..
 	 **/
 	public void reArrangeSpecilly(int a[]);
@@ -118,13 +123,11 @@ public interface IArrangeReArrange {
 	/** 13. Reorder an array according to given indexes **/
 	public void reorderAccToGivenIndex(int a[], int ind[]);
 
-	/** 14. Rearrange positive and negative numbers with constant extra space **/
-	public void rearrangePosNeg(int a[]);
-
+	/** 14. Rearrange positive and negative numbers with constant extra space reArragePosAndNeg **/
 	/** 15. Arrange given numbers to form the biggest number **/
 	public String formBiggestNo(int n[]);
 
-	/** 16. Rearrange an array such that ‘arr[j]’ becomes ‘i’ if ‘arr[i]’ is ‘j’ **/
+	/** 16. Rearrange an array such that ï¿½arr[j]ï¿½ becomes ï¿½iï¿½ if ï¿½arr[i]ï¿½ is ï¿½jï¿½ **/
 	public void arrangeInSpecial(int a[]);
 
 	/** 17. Rearrange an array in maximum minimum form | Set 1 */
@@ -175,13 +178,27 @@ public interface IArrangeReArrange {
 	/*29.1 find the max sub array with equal no of 0s and 1s */
 	public List<Integer> findMaxSubArray(int[] a);
 
-	/*30.	Maximum Product Sub-array*/
+	/*30.	Maximum Product Sub-array, this is modified to max sum sub-array*/
+	public int maxProductSubArray(int a[]);
 	
 	/* 31. Replace every element with the greatest element on right side */
-	/* 32. Maximum circular subarray sum */
+	public void replaceNextGreatest(int a[]);
+
+	/* 32. Maximum circular subarray sum ,it is modified of min sum array version*/
+	public int maxSumCircularSubArray(int a[]);
+
+	/*min sum sub array indexes */
+	public int[] minSumSubArrayIndexes(int a[]);
+
 	/* 33. Construction of Longest Increasing Subsequence (N log N) */
+	public List<Integer> consLongestIncrSubseq(int a[]);
+
 	/* 34. Sort elements by frequency | Set 2 */
-	/* 35. Maximize sum of consecutive differences in a circular array */
+	public List<Integer> sortByFrequency(int a[], boolean incOrDec);
+
+	/* 35. Maximize sum of consecutive differences in a circular array, re arrangement allowed */
+	public  int maxSumConsecutiveDiffCirArray(int a[]);
+
 	/* 36. Sort an array according to the order defined by another array */
 	/*
 	 * 37. Find Index of 0 to be replaced with 1 to get longest continuous sequence
