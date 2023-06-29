@@ -1,9 +1,6 @@
 package com.design.analysis.algo.dynamicprogramming;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import com.design.analysis.algo.dynamicprogramming.model.Pair;
 import com.design.analysis.algo.utils.AlgoUtils;
@@ -1507,7 +1504,134 @@ public class DynamicBasicImpl implements IDynamicBasic {
 				memo[j] = A[i][j] + (int) Math.min(memo[j], memo[j + 1]);
 		return memo[0];
 	}
+	/**51.	Maximum sum of a path in a Right Number Triangle**/
+	public int maxSumPathRightNumTringleRec(int tr[][], int i,int j){
 
+		if(i==tr.length)
+			return 0;
+		int max= tr[i][j] + Math.max(maxSumPathRightNumTringleRec(tr, i+1,j), maxSumPathRightNumTringleRec(tr,i+1,j+1));
+		return max;
+	}
+
+	public int maxSumPathRightNumTringle(int tr[][], int i,int j,int dp[][]){
+
+		if(i==tr.length)
+			return 0;
+		if(dp[i][j]!=-1)
+			return dp[i][j];
+		return dp[i][j]=tr[i][j]+Math.max(maxSumPathRightNumTringle(tr,i+1,j,dp), maxSumPathRightNumTringle(tr,i+1,j+1, dp));
+	}
+
+	/*52.	Size of The Subarray With Maximum Sum, max sum continuous array*/
+	public int maxLexSubArrayOfMaxSum(int a[])
+	{
+          int maxSoFar=Integer.MIN_VALUE, maxEndingHere = 0, start=0, end=0, s=0;
+		  for(int i=0;i<a.length;i++)
+		  {
+			  maxEndingHere+=a[i];
+			  if(maxSoFar < maxEndingHere)
+			  {
+				  maxSoFar = maxEndingHere;
+				  start=s;
+				  end = i;
+			  }
+			  if(maxEndingHere < 0)
+			  {
+				  maxEndingHere =0;
+				  s = i+1;
+			  }
+		  }
+		  return end-start+1;
+	}
+	/*53.	Maximum sum of pairs with specific difference*/
+	public int maxSumPairsOnKDiff(int a[], int k)
+	{
+		a = Arrays.stream(a).sorted().toArray();
+		int sum=0;
+		for(int i =a.length-1;i>0;i-=2)
+		{
+			if(a[i]-a[i-1] < k)
+				sum+=a[i]+a[i-1];
+			else i++;
+		}
+		return sum;
+	}
+	/*54.	Maximum size square sub-matrix with all 1s*/
+	@Override
+	public int[][] maxSquareSubMatrix(int a[][]) {
+		int i, j;
+		int maxS, maxI, maxJ;
+		int rArr[][] = null;
+
+		int R = a.length;
+		int C = a[0].length;
+
+		int s[][] = new int[R][C];
+
+		// copy first row and rist col of a to s
+		for (i = 0; i < R; i++)
+			s[i][0] = a[i][0];
+		for (j = 0; j < C; j++)
+			s[0][j] = a[0][j];
+
+		/* Construct other entries of S[][] */
+		for (i = 1; i < R; i++) {
+			for (j = 1; j < C; j++) {
+				if (a[i][j] == 1)
+					s[i][j] = Math.min(s[i][j - 1], Math.min(s[i - 1][j], s[i - 1][j - 1])) + 1;
+				else
+					s[i][j] = 0;
+			}
+		}
+		/*
+		 * Find the maximum entry, and indexes of maximum entry in S[][]
+		 */
+		maxS = s[0][0];
+		maxI = 0;
+		maxJ = 0;
+		for (i = 0; i < R; i++) {
+			for (j = 0; j < C; j++) {
+				if (maxS < s[i][j]) {
+					maxS = s[i][j];
+					maxI = i;
+					maxJ = j;
+				}
+			}
+		}
+		// copy result
+		rArr = new int[maxS][maxS];
+
+		int k, l;
+		for (i = maxI, k = 0; i > maxI - maxS; i--, k++) {
+			for (j = maxJ, l = 0; j > maxJ - maxS; j--, l++) {
+				rArr[k][l] = a[i][j];
+			}
+		}
+		return rArr;
+	}
+
+	/*55.	Maximum number of segments of lengths a, b and c*/
+	public int maxNoOfSegment(int n , int a, int b, int c){
+		//enough space
+		int dp[] = new int[n+10];
+		Arrays.fill(dp,-1);
+
+		dp[0] = 0;
+
+		for(int i = 0; i < n; i++)
+		{
+			if(dp[i]!=-1)
+			{
+				if(i+a <= n)
+					dp[i+a]= Math.max(dp[i]+1, dp[i+a]);
+				if(i+b <= n)
+					dp[i+b]= Math.max(dp[i]+1, dp[i+b]);
+				if(i+c <= n)
+					dp[i+c]= Math.max(dp[i]+1, dp[i+c]);
+			}
+		}
+		return dp[n];
+	}
 	/*********************************************************************************************************************************************************************/
 
 	/** 4. Longest Repeated Subsequence **/
@@ -1576,61 +1700,6 @@ public class DynamicBasicImpl implements IDynamicBasic {
 			max_so_far = Math.max(max_so_far, curr_max);
 		}
 		return max_so_far;
-	}
-
-	/** 7. Maximum size square sub-matrix with all 1s **/
-	@Override
-	public int[][] maxSquareSubMatrix(int a[][]) {
-		int i, j;
-		int maxS, maxI, maxJ;
-		int rArr[][] = null;
-
-		int R = a.length;
-		int C = a[0].length;
-
-		int s[][] = new int[R][C];
-
-		// copy first row and rist col of a to s
-		for (i = 0; i < R; i++)
-			s[i][0] = a[i][0];
-		for (j = 0; j < C; j++)
-			s[0][j] = a[0][j];
-
-		/* Construct other entries of S[][] */
-		for (i = 1; i < R; i++) {
-			for (j = 1; j < C; j++) {
-				if (a[i][j] == 1)
-					s[i][j] = Math.min(s[i][j - 1], Math.min(s[i - 1][j], s[i - 1][j - 1])) + 1;
-				else
-					s[i][j] = 0;
-			}
-		}
-
-		/*
-		 * Find the maximum entry, and indexes of maximum entry in S[][]
-		 */
-		maxS = s[0][0];
-		maxI = 0;
-		maxJ = 0;
-		for (i = 0; i < R; i++) {
-			for (j = 0; j < C; j++) {
-				if (maxS < s[i][j]) {
-					maxS = s[i][j];
-					maxI = i;
-					maxJ = j;
-				}
-			}
-		}
-		// copy result
-		rArr = new int[maxS][maxS];
-
-		int k, l;
-		for (i = maxI, k = 0; i > maxI - maxS; i--, k++) {
-			for (j = maxJ, l = 0; j > maxJ - maxS; j--, l++) {
-				rArr[k][l] = a[i][j];
-			}
-		}
-		return rArr;
 	}
 
 	/** max suqure sub matrix whouse corner is x **/

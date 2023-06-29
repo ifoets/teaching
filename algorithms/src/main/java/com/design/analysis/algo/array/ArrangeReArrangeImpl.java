@@ -1,14 +1,11 @@
 
 package com.design.analysis.algo.array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.net.Inet4Address;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import com.design.analysis.algo.utils.AlgoUtils;
 
@@ -67,6 +64,18 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 		}
 	}
 
+	/*using java 8*/
+	public int[] fixedAtIndexZ(int a[])
+	{
+		int b[] = new int[a.length];
+		Arrays.stream(a).map( e->
+		{
+			if(e>0)
+				b[e]=e;
+			return e;
+		}).toArray();
+		return b;
+	}
 	/** 2. Write a program to reverse an array or string **/
 	@Override
 	public void reverseArr(int a[]) {
@@ -82,7 +91,13 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 			j--;
 		}
 	}
-
+	/*using java 8 stream*/
+	@Override
+	public List<Integer> reverseArrX(int a[]){
+		List<Integer> list = Arrays.stream(a).boxed().collect(Collectors.toList());
+		Collections.reverse(list);
+		return list.stream().toList().stream().toList();
+	}
 	/**
 	 * 3. Rearrange array such that arr[i] >= arr[j] if i is even and arr[i]<=arr[j]
 	 * if i is odd and j < i
@@ -195,7 +210,7 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	// @Idea check left +ve & right -ve together exchange, just move on with left
 	// -ve, right +ve just
 	@Override
-	public void reArragePosAndNeg(int a[]) {
+	public void reArrangePosAndNeg(int a[]) {
 
 		int i = 0;
 		int j = a.length - 1;
@@ -300,7 +315,7 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	}
 
 	/**
-	 * 11. Rearrange an array in order – smallest, largest, 2nd smallest, 2nd
+	 * 11. Rearrange an array in order ï¿½ smallest, largest, 2nd smallest, 2nd
 	 * largest, ..
 	 **/
 	@Override
@@ -328,7 +343,7 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	/*
 	 * Convert the array in such a way that if both current and next element is
 	 * valid and both have same value then double current value and replace the next
-	 * number with 0. After the modification, rearrange the array such that all 0’s
+	 * number with 0. After the modification, rearrange the array such that all 0ï¿½s
 	 * shifted to the end.
 	 */
 	@Override
@@ -366,11 +381,6 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 			;
 		for (int i = 0; i < n; a[i] = temp[i], i++)
 			;
-	}
-
-	@Override
-	public void rearrangePosNeg(int[] a) {
-		reArragePosAndNeg(a);
 	}
 
 	/** 15. Arrange given numbers to form the biggest number **/
@@ -431,7 +441,7 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	}
 
 	/**
-	 * 16. Rearrange an array such that ‘arr[j]’ becomes ‘i’ if ‘arr[i]’ is ‘j’
+	 * 16. Rearrange an array such that ï¿½arr[j]ï¿½ becomes ï¿½iï¿½ if ï¿½arr[i]ï¿½ is ï¿½jï¿½
 	 **/
 	public void arrangeInSpecial(int a[]) {
 		// n perfect no
@@ -705,6 +715,142 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 		return list;
 	}
 
+	/*30.	Maximum Product Sub-array, this is modified to max sum sub-array*/
+	@Override
+	public int maxProductSubArray(int a[])
+	{
+		int maxPSoFar = Integer.MIN_VALUE,start=0,end=0,s=0;
+		int currentPro = 1;
+
+		for(int i=0;i < a.length ;i++)
+		{
+			currentPro *= a[i];
+
+			if(maxPSoFar < currentPro)
+			{
+				maxPSoFar = currentPro;
+				end = i;
+				start = s;
+			}
+			if(currentPro == 0)
+			{
+				currentPro = 1;
+				s = i + 1;
+			}
+		}
+		System.out.println("Start :"+start +"\nEnd :"+end);
+		return maxPSoFar;
+	}
+
+	/* 31. Replace every element with the greatest element on right side */
+	@Override
+	public void replaceNextGreatest(int a[])
+	{
+          int N=a.length, maxFromRight = a[N-1];
+		  a[N-1] = -1; //no right to this
+
+		for(int i = N-2 ;i >=0; i--)
+		{
+			int temp = a[i];
+			a[i] = maxFromRight;
+			if(maxFromRight < temp )
+			{
+				maxFromRight = temp;
+			}
+		}
+	}
+
+	/* 32. Maximum circular subarray sum, it is modified of min sum array version */
+	@Override
+	public int maxSumCircularSubArray(int a[])
+	{
+      int b[] = minSumSubArrayIndexes(a);
+	  int sum = 0;
+	  for(int i=0 ; i< a.length ;i++)
+	  {
+		  sum+= (i>=b[0] && i <= b[1]) ? 0 :a[i];
+	  }
+	  return sum;
+	}
+	/*min sum sub array indexes */
+	@Override
+	public int[] minSumSubArrayIndexes(int a[]){
+		int rs[] = new int[2];
+		int minSumSoFar = Integer.MAX_VALUE,start=0,end=0,s=0;
+		int currentSum = 0;
+
+		for(int i=0;i < a.length ;i++)
+		{
+			currentSum += a[i];
+
+			if(minSumSoFar > currentSum)
+			{
+				minSumSoFar = currentSum;
+				end = i;
+				start = s;
+			}
+			if(currentSum > 0)
+			{
+				currentSum = 0;
+				s = i + 1;
+			}
+		}
+		rs[0] = start;
+		rs[1] = end;
+		System.out.println("Start :"+start +"\nEnd :"+end);
+		return rs;
+
+	}
+
+	/* 33. Construction of Longest Increasing Subsequence (N log N) */
+	@Override
+	public List<Integer> consLongestIncrSubseq(int a[]){
+		   int N=a.length,k=1;
+           int b[] = new int[N];
+			b[0]= a[0];
+		for(int i = 1 ;i < N; i++)
+		   {
+			   if(b[k-1] < a[i])
+				   b[k++]=a[i];
+			   else {
+				   b[AlgoUtils.binarySearchJustGreaterOrLess(b,0,k,a[i],true)]=a[i];
+			   }
+		   }
+		return Arrays.stream(b).filter(e -> e!=0).boxed().toList();
+	}
+	/* 34. Sort elements by frequency | Set 2 */
+	@Override
+	public List<Integer> sortByFrequency(int a[], boolean incOrDec){
+		int N = a.length;
+		Map<Integer, Integer> map = new HashMap<>();
+		List<Integer> list = new ArrayList<>();
+
+		for(int i =0 ;i<N ;i++)
+		{
+			if(map.containsKey(a[i]))
+				map.put(a[i], map.get(a[i])+1);
+			else map.put(a[i],1);
+		}
+
+		map.entrySet().stream().sorted(incOrDec ? Map.Entry.<Integer, Integer>comparingByValue().thenComparing(Map.Entry.<Integer, Integer>comparingByKey())
+						: Collections.reverseOrder(Map.Entry.<Integer, Integer>comparingByValue()))
+				.forEach( entry -> {
+					for( int i=0 ;i<entry.getValue() ; list.add(entry.getKey()),i++);
+				});
+		return list;
+	}
+	/* 35. Maximize sum of consecutive differences in a circular array, re arrangement allowed */
+	@Override
+	public int maxSumConsecutiveDiffCirArray(int a[]){
+       Arrays.sort(a);//or sort in wave form and go for consecutive diff
+	   int sum=0, N=a.length;
+	   for(int i=0;i<N/2;i++)
+	   {
+		   sum-=(2*a[i]);
+		   sum+=(2*a[N-1-i]);
+	   }
+	   return sum;
+	}
 	/***********************************************************************************************************************************************************************/
 
 	/** 3. Sort an array in wave form **/
