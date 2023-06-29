@@ -30,7 +30,7 @@ Basic Problems :
 	18.	Cutting a Rod
 	19.	Tiling with Dominoes
 	20.	Painting Fence Algorithm
-	21.	Newman–Shanks–Williams prime
+	21.	Newmanï¿½Shanksï¿½Williams prime
 	22.	Assembly line scheduling
 	23.	Golomb sequence
 	24.	Moser-de Bruijn Sequence
@@ -54,8 +54,6 @@ Basic Problems :
 	42.	Longest subsequence such that difference between adjacents is one
 	43.	Maximum length subsequence with difference between adjacent elements as either 0 or 1
 	44.	Maximum sum increasing subsequence from a prefix and a given element after prefix is must
-	
-	
 	45.	Maximum Length Chain of Pairs
 	46.	Print Maximum Length Chain of Pairs
 	47.	Path with maximum average value
@@ -67,6 +65,8 @@ Basic Problems :
 	53.	Maximum sum of pairs with specific difference
 	54.	Maximum size square sub-matrix with all 1s
 	55.	Maximum number of segments of lengths a, b and c
+	*
+	*
 	56.	Recursively break a number in 3 parts to get maximum sum
 	57.	Maximum value with the choice of either dividing or considering as it is
 	58.	Maximum weight path ending at any element of last row in a matrix
@@ -80,7 +80,7 @@ Basic Problems :
 	66.	Minimum number of jumps to reach end
 	67.	Minimum cost to fill given weight in a bag
 	68.	Minimum sum of multiplications of n numbers
-	69.	Minimum removals from array to make max – min <= K
+	69.	Minimum removals from array to make max ï¿½ min <= K
 	70.	Minimum steps to minimize n as per given condition
 	71.	Minimum number of edits ( operations ) require to convert string 1 to string 2
 	72.	Minimum time to write characters using insert, delete and copy operation
@@ -88,7 +88,7 @@ Basic Problems :
 	74.	Longest Common Substring (Space optimized DP solution)
 	75.	Sum of all substrings of a string representing a number | Set 1
 	76.	Find number of endless points
-	77.	Find n-th element from Stern’s Diatomic Series
+	77.	Find n-th element from Sternï¿½s Diatomic Series
 	78.	Find maximum possible stolen value from houses
 	79.	Find number of solutions of a linear equation of n variables
 	80.	Count number of ways to reach a given score in a game
@@ -103,7 +103,7 @@ Basic Problems :
 	89.	Count ways to divide circle using N non-intersecting chords
 	90.	Count the number of ways to tile the floor of size n x m using 1 x m size tiles
 	91.	Count all possible paths from top left to bottom right of a mXn matrix
-	92.	Count number of ways to fill a “n x 4” grid using “1 x 4” tiles
+	92.	Count number of ways to fill a ï¿½n x 4ï¿½ grid using ï¿½1 x 4ï¿½ tiles
 	93.	Largest Sum Contiguous Subarray
 	94.	Smallest sum contiguous subarray
 	95.	Size of array after repeated deletion of LIS
@@ -224,7 +224,7 @@ public interface IDynamicBasic {
 
 	public int paintingFenceX(int n, int k);
 
-	/** 21. Newman–Shanks–Williams prime **/
+	/** 21. Newmanï¿½Shanksï¿½Williams prime **/
 	public int newmanShanksWilliamsPrime(int n);
 
 	public int newmanShanksWilliamsPrimeDp(int n);
@@ -346,6 +346,21 @@ public interface IDynamicBasic {
 	/** 50. Minimum Sum Path in a Triangle **/
 	public int minSumPath(int A[][]);
 
+	/**51.	Maximum sum of a path in a Right Number Triangle**/
+	public int maxSumPathRightNumTringleRec(int tr[][], int i,int j);
+	public int maxSumPathRightNumTringle(int tr[][], int i,int j,int dp[][]);
+
+	/*52.	Size of The Subarray With Maximum Sum, max sum continuous array*/
+	public int maxLexSubArrayOfMaxSum(int a[]);
+
+	/*53.	Maximum sum of pairs with specific difference*/
+	public int maxSumPairsOnKDiff(int a[], int k);
+
+	/*54.	Maximum size square sub-matrix with all 1s*/
+	public int[][] maxSquareSubMatrix(int a[][]);
+
+	/*55.	Maximum number of segments of lengths a, b and c*/
+	public int maxNoOfSegment(int n , int a, int b, int c);
 	/*********************************************************************************************************************************************************************/
 
 	/** 5. Largest Sum Contiguous Subarray **/
@@ -354,9 +369,6 @@ public interface IDynamicBasic {
 
 	/* by dynamic programming */
 	public int LargestSumContiguousSubarrayDynamic(int a[]);
-
-	/** 7. Maximum size square sub-matrix with all 1s **/
-	public int[][] maxSquareSubMatrix(int a[][]);
 
 	/** max suqure sub matrix whouse corner is x **/
 	// TODO

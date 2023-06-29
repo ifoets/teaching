@@ -3,6 +3,7 @@ package com.design.analysis.algo.dynamicprogramming;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -574,6 +575,66 @@ public class IDynamicBasicTest {
 
 	}
 
+	/**51.	Maximum sum of a path in a Right Number Triangle**/
+	@Test
+	public void maxSumPathRightNumTringleRecTest()
+	{
+		int A[][] = { { 2 }, { 3, 9 }, { 1, 6, 7 } };
+		Assert.assertTrue(idb.maxSumPathRightNumTringleRec(A,0,0) == 18);
+	}
+	@Test
+	public void maxSumPathRightNumTringleTest(){
+		int A[][] = { { 2 }, { 3, 9 }, { 1, 6, 7 } };
+		int dp[][]= new int[A.length][A.length];
+		for(int i=0;i<dp.length;Arrays.fill(dp[i],-1),i++);
+		Assert.assertTrue(idb.maxSumPathRightNumTringle(A,0,0,dp) == 18);
+	}
+
+	/*52.	Size of The Subarray With Maximum Sum, max sum continuous array*/
+	@Test
+	public void maxLexSubArrayOfMaxSumTest()
+	{
+       int  a[] = {1, -2, 1, 1, -2, 1};
+	   int b[] = { -2, -3, 4, -1, -2, 1, 5, -3 };
+
+	   Assert.assertTrue(idb.maxLexSubArrayOfMaxSum(a) == 2);
+	   Assert.assertTrue(idb.maxLexSubArrayOfMaxSum(b) == 5);
+	}
+
+	/*53.	Maximum sum of pairs with specific difference*/
+	@Test
+	public void maxSumPairsOnKDiffTest()
+	{
+		int a[] = {3, 5, 10, 15, 17, 12, 9}, k1 = 4;
+		Assert.assertTrue(idb.maxSumPairsOnKDiff(a, k1) == 62);
+		int b[] = {5, 15, 10, 300}, k2 = 12;
+		Assert.assertTrue(idb.maxSumPairsOnKDiff(b, k2) == 25);
+
+	}
+
+	/*54.	Maximum size square sub-matrix with all 1s*/
+	@Test
+	public void maxSquareSubMatrixTest()
+	{
+		int a[][] = { { 0, 1, 1, 0, 1 }, { 1, 1, 0, 1, 0 }, { 0, 1, 1, 1, 0 }, { 1, 1, 1, 1, 0 }, { 1, 1, 1, 1, 1 },
+				{ 0, 0, 0, 0, 0 } };
+		a = idb.maxSquareSubMatrix(a);
+		Assert.assertTrue(a.length == 3);
+		Assert.assertTrue(a[0].length == 3);
+		Assert.assertTrue(a[2][2] == 1);
+		Assert.assertTrue(a[0][0] == 1);
+		Assert.assertTrue(a[1][1] == 1);
+	}
+
+	/*55.	Maximum number of segments of lengths a, b and c*/
+	@Test
+	public void maxNoOfSegmentTest()
+	{
+		int n = 7, a = 5, b = 2, c = 5;
+		Assert.assertTrue(idb.maxNoOfSegment(n,a,b,c)==2);
+		int  N = 17, a1 = 2, b1 = 1, c1 = 3;
+		Assert.assertTrue(idb.maxNoOfSegment(N,a1,b1,c1)==17);
+	}
 	/*********************************************************************************************************************************************************************/
 
 	/** 5. Largest Sum Contiguous Subarray **/
@@ -589,19 +650,6 @@ public class IDynamicBasicTest {
 	public void LargestSumContiguousSubarrayDynamicTest() {
 		int a[] = { -2, -3, 4, -1, -2, 1, 5, -3 };
 		Assert.assertTrue(idb.LargestSumContiguousSubarrayDynamic(a) == 7);
-	}
-
-	/** 7. Maximum size square sub-matrix with all 1s **/
-	@Test
-	public void maxSquareSubMatrixTest() {
-		int a[][] = { { 0, 1, 1, 0, 1 }, { 1, 1, 0, 1, 0 }, { 0, 1, 1, 1, 0 }, { 1, 1, 1, 1, 0 }, { 1, 1, 1, 1, 1 },
-				{ 0, 0, 0, 0, 0 } };
-		a = idb.maxSquareSubMatrix(a);
-		Assert.assertTrue(a.length == 3);
-		Assert.assertTrue(a[0].length == 3);
-		Assert.assertTrue(a[2][2] == 1);
-		Assert.assertTrue(a[0][0] == 1);
-		Assert.assertTrue(a[1][1] == 1);
 	}
 
 	/* by dynamic programming */

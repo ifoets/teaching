@@ -1,5 +1,6 @@
 package com.design.analysis.algo.utils;
 
+import com.hackerrank.easy.basic.sorting.IBasicEasySorting;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,5 +55,20 @@ public class AlgoUtilsTest {
 		Assert.assertTrue(AlgoUtils.isOperand('*') == false);
 		Assert.assertTrue(AlgoUtils.isOperand('A') == true);
 		Assert.assertTrue(AlgoUtils.isOperand('1') == false);
+	}
+	@Test
+	public void binarySearchJustGreaterTest()
+	{
+        int a[] = {3,4};
+		Assert.assertTrue(AlgoUtils.binarySearchJustGreaterOrLess(a,0,a.length-1,-1, true)==0);
+		Assert.assertTrue(AlgoUtils.binarySearchJustGreaterOrLess(a,0,a.length-1,-1, false)==-1);
+		int b[]= {-1,4,5,8};
+
+		Assert.assertTrue(AlgoUtils.binarySearchJustGreaterOrLess(b,0,b.length-1,2, true)==1);
+		Assert.assertTrue(AlgoUtils.binarySearchJustGreaterOrLess(b,0,b.length-1,2, false)==0);
+		int c[]= {-1,2,3,7,12};
+
+		Assert.assertTrue(AlgoUtils.binarySearchJustGreaterOrLess(c,0,c.length-1,9, true)==4);
+		Assert.assertTrue(AlgoUtils.binarySearchJustGreaterOrLess(c,0,c.length-1,9, false)==3);
 	}
 }
