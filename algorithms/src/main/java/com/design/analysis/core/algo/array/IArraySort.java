@@ -1,5 +1,8 @@
 package com.design.analysis.core.algo.array;
 
+import java.util.List;
+import java.util.Map;
+
 /*
  * 
  * @author GuruG
@@ -111,18 +114,33 @@ public interface IArraySort {
 
 	/** 13. Minimum number of swaps required to sort an array **/
 	public int minSwapForSort(int a[]);
-	
-	public int minSwapForSortX(int a[]);
+
 	/* 14. Union and Intersection of two sorted arrays */
+	public List<Integer> unionOfArrays(int[] a, int[] b);
+
+	public List<Integer> intersectionOfArrays(int a[], int b[]);
+
 	/* 15. Find Union and Intersection of two unsorted arrays */
+	public List<Integer> unionOfUnSortedArrays(int[] a, int[] b);
+
+	public List<Integer> intersectionOfUnSortedArrays(int a[], int b[]);
+
 	/* 16. Sort an array of 0s, 1s and 2s */
+	public List<Integer> sort0s1s2s3s(int a[]);
 	/*
 	 * 17. Find the Minimum length Unsorted Subarray, sorting which makes the
 	 * complete array sorted
 	 */
-	/* 18. Median in a stream of integers (running integers) */
+	public int minLenUnSortedSubArray(int a[]);
+
+	/* 18. Median in a stream of integers (running integers),Median of Stream of Running Integers using STL */
+	public double[] medianInStream(int a[]);
+
 	/* 19. Count the number of possible triangles */
+	public List<List<Integer>> possibleTriangles(int a[]);
+
 	/* 20. Find number of pairs (x, y) in an array such that x^y > y^x */
+    public int pairOfXY(int x[], int y[]);
 	/* 21. Count all distinct pairs with difference equal to k */
 	/* 22. Print All Distinct Elements of a given integer array */
 	/* 23. Construct an array from its pair-sum array */
