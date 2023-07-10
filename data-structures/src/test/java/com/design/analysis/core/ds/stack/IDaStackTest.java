@@ -45,7 +45,7 @@ public class IDaStackTest {
 		ist.nullifyStack();
 		int a[] = { 1, 2, 3, 4, 5, 6, 7 };
 		SLNode head = ist.stack(a);
-		Assert.assertTrue(ist.pick().dt == 7);
+		Assert.assertTrue(ist.peek().dt == 7);
 		Assert.assertTrue(head.dt == 1);
 		// ist.print(head);
 	}

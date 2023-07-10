@@ -1,6 +1,8 @@
 package com.design.analysis.core.ds.stack;
 
-import com.design.analysis.core.ds.node.SLNode;
+import com.design.analysis.core.ds.stackqueue.node.QToSNode;
+import com.design.analysis.core.ds.stackqueue.node.SToQNode;
+import com.design.analysis.core.ds.stack.node.TwoStackNode;
 
 /*
 Design and Implementation :
@@ -16,9 +18,18 @@ Design and Implementation :
 10.	How to implement stack using priority queue or heap?
 11.	Create a customized data structure which evaluates functions in O(1)
 */
-public interface IDesingImplementation {
+public interface IDesignImpl {
 
 	/** 1. Implement Queue using Stacks **/
-	public SLNode queueUsingStack(SLNode node, String queueOpr);
+	public void enQueue(SToQNode queue, int x);
 
+    public int dQueue(SToQNode queue) throws RuntimeException;
+
+    /*2.Design and Implement Special Stack Data Structure | Added Space Optimized Version @see DaStack.java*/
+
+    /*3.Implement two stacks in an array*/
+    public TwoStackNode twoStackImpl(int n);
+
+    /*4. Implement Stack using Queues*/
+    public QToSNode<Integer> stackUsingQueue(int n);
 }
