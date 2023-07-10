@@ -1,14 +1,11 @@
 package com.design.analysis.core.algo.array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import com.design.analysis.core.algo.sorting.ISortingAlgo;
 import com.design.analysis.core.algo.sorting.SortingAlgoImpl;
 import com.design.analysis.core.algo.utils.AlgoUtils;
+import com.design.analysis.core.algo.utils.ArraysUtil;
 
 public class ArraySortImpl implements IArraySort {
 
@@ -323,7 +320,6 @@ public class ArraySortImpl implements IArraySort {
 		for (; i < n; i++) {
 			if (a[i] != b[i])
 				break;
-
 		}
 		i = 0;
 		while (i < n) {
@@ -336,6 +332,218 @@ public class ArraySortImpl implements IArraySort {
 	/** 13. Minimum number of swaps required to sort an array **/
 	@Override
 	public int minSwapForSort(int a[]) {
-		return 0;
+		int N=a.length, count=0;
+		int temp[] = new int[N];
+		temp = Arrays.copyOf(a,N);
+		Arrays.sort(temp);
+		for (int i=0;i<a.length;i++)
+		{
+			if(temp[i]!=a[i])
+			{
+				AlgoUtils.swap(a,i, ArraysUtil.getIndex(a,temp[i]));
+				count++;
+			}
+		}
+		return count;
 	}
+
+	/* 14. Union and Intersection of two sorted arrays */
+	@Override
+	public List<Integer> unionOfArrays(int[] a, int[] b){
+		List<Integer> list = new ArrayList<>();
+		int i=0, j=0, M=a.length, N=b.length;
+		while (i<M && j<N)
+		{
+			if(a[i]<b[j])
+				list.add(a[i++]);
+			else if(b[j]<a[i])
+				list.add(b[j++]);
+			else {
+				list.add(a[i++]);
+				j++;
+			}
+		}
+		while (i<M)
+			list.add(a[i++]);
+		while (j<N)
+			list.add(b[j++]);
+		return list;
+	}
+
+	@Override
+	public List<Integer>intersectionOfArrays(int a[], int b[]){
+		List<Integer> list = new ArrayList<>();
+		int i=0, j=0, M=a.length, N=b.length;
+		while (i<M && j<N)
+		{
+			if(a[i]<b[j])
+				i++;
+			else if(b[j]<a[i])
+				j++;
+			else {
+				list.add(a[i++]);
+				j++;
+			}
+		}
+		return list;
+	}
+
+	/* 15. Find Union and Intersection of two unsorted arrays */
+	@Override
+	public List<Integer> unionOfUnSortedArrays(int[] a, int[] b){
+		int M=a.length, N=b.length, X = ArraysUtil.getMax(a), Y = ArraysUtil.getMax(b);
+		int c[]= new int[X > Y ? X+1 : Y+1];
+		List<Integer> unList = new ArrayList<>();
+		for(int i =0 ;i< (M>N ? M : N) ;i++)
+		{
+			if(i<M)
+				c[a[i]]++;
+			if(i<N)
+				c[b[i]]++;
+		}
+		for(int i=0;i< c.length;i++)
+		{
+			if(c[i]!=0)
+				unList.add(i);
+		}
+		return unList;
+	}
+
+	@Override
+	public List<Integer> intersectionOfUnSortedArrays(int a[], int b[]){
+		int M=a.length, N=b.length, X = ArraysUtil.getMax(a), Y = ArraysUtil.getMax(b);
+		int c[]= new int[X > Y ? X+1 : Y+1];
+		List<Integer> intList = new ArrayList<>();
+		for(int i =0 ;i< (M>N ? M : N) ;i++)
+		{
+			if(i<M)
+				c[a[i]]++;
+			if(i<N)
+				c[b[i]]++;
+		}
+		for(int i=0;i< c.length;i++)
+		{
+			if(c[i]>1)
+				intList.add(i);
+		}
+		return intList;
+	}
+
+	/* 16. Sort an array of 0s, 1s and 2s */
+	@Override
+	public List<Integer> sort0s1s2s3s(int a[]){
+		List<Integer> list = new ArrayList<>();
+		int x[] = new int[4];
+		for (int i=0;i<a.length;x[a[i]]++,i++);
+		for(int i=0;i<x.length;i++)
+		{
+			int j=0;
+			while (j++<x[i])
+				list.add(i);
+		}
+		return list;
+	}
+	/*
+	 * 17. Find the Minimum length Unsorted Subarray, sorting which makes the
+	 * complete array sorted
+	 */
+	@Override
+	public int minLenUnSortedSubArray(int a[]){
+		int N = a.length, x=0, y=0;
+        int temp[] = new int[N];
+		temp = Arrays.copyOf(a, N);
+		Arrays.sort(temp);
+		for(int i=0;i<N;i++)
+		{
+			if(a[i]!=temp[i])
+			{
+				x=i;
+				break;
+			}
+		}
+		for(int i=N-1;i>=0;i--)
+		{
+			if(a[i]!=temp[i])
+			{
+				y=i;
+				break;
+			}
+		}
+		return y-x+1;
+	}
+	/* 18. Median in a stream of integers (running integers),Median of Stream of Running Integers using STL */
+	@Override
+	public double[] medianInStream(int a[])
+	{
+        int N = a.length;
+		float sum=0f;
+          double[] f = new double[N];
+		  for ( int i=0;i<N; i++)
+		  {
+			  sum+=a[i];
+			  f[i] = sum/(i+1);
+		  }
+		  return f;
+	}
+	/* 19. Count the number of possible triangles */
+	@Override
+	public List<List<Integer>> possibleTriangles(int a[]){
+        List<List<Integer>> ll = new ArrayList<>();
+        int N = a.length;
+        Arrays.sort(a);
+        int count = 0;
+        for (int i = 0; i < N; i++)
+            for (int j = i + 1; j < N; j++)
+                for (int k = j + 1; k < N; k++)
+                    if (a[i] + a[j] > a[k]) {
+                        ll.add(List.of(a[i],a[j],a[k]));
+                    }
+        return ll;
+	}
+
+    /* 20. Find number of pairs (x, y) in an array such that x^y > y^x */
+    public int pairOfXY(int x[], int y[])
+    {
+        if(x.length==0 || y.length==0)
+            return 0;
+        if(x.length==1)
+        {
+            int count=0;
+            for(int y1:y)
+            {
+                if(x[0] > y1) {
+                    System.out.println(x[0]+ ", "+y1);
+                    count++;
+                }
+            }
+            return count;
+        }
+        if(y.length==1)
+        {
+            int count=0;
+            for(int x1:x)
+            {
+                if(x1 > y[0]) {
+                    System.out.println(x1+ ", "+y[0]);
+                    count++;
+                }
+            }
+            return count;
+        }
+        int count=0;
+        int[] X_left
+            = Arrays.copyOfRange(x, 0, x.length / 2);
+        int[] X_right
+            = Arrays.copyOfRange(x, x.length / 2, x.length);
+        int[] Y_left
+            = Arrays.copyOfRange(y, 0, y.length / 2);
+        int[] Y_right
+            = Arrays.copyOfRange(y, y.length / 2, y.length);
+        count+=pairOfXY(X_left, Y_left);
+        count+=pairOfXY(X_left, Y_right);
+        count+=pairOfXY(X_right, Y_left);
+        count+=pairOfXY(X_right, Y_right);
+        return count;
+    }
+
 }

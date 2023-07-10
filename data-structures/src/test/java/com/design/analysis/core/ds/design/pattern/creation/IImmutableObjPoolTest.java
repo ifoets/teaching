@@ -1,7 +1,9 @@
 package com.design.analysis.core.ds.design.pattern.creation;
 
-import com.design.analysis.core.ds.design.pattern.node.TPoolNode;
-import com.design.analysis.core.ds.design.pattern.template.Human;
+import com.design.analysis.design.pattern.creational.IImmutableObjPool;
+import com.design.analysis.design.pattern.creational.ImmutableObjPoolImpl;
+import com.design.analysis.design.pattern.node.TPoolNode;
+import com.design.analysis.design.pattern.template.Human;
 import org.junit.Assert;
 import org.junit.Test;
 
