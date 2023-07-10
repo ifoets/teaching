@@ -18,7 +18,7 @@ public class DaStack implements IDaStack {
 				head = tail = x;
 			else {
 				tail.next = x;
-				tail = x;
+                tail = x;
 			}
 		}
 		return head;
@@ -29,9 +29,16 @@ public class DaStack implements IDaStack {
 		SLNode q = null;
 		if (tail == null)
 			return null;
+        if(head==tail)
+        {
+            q=head;
+            head=tail=null;
+            return q;
+        }
 		if (head.next == tail) {
-			q = head;
-			head = tail = null;
+			q = tail;
+			tail = head;
+            tail.next=null;
 			return q;
 		}
 		SLNode node = head;
@@ -44,7 +51,7 @@ public class DaStack implements IDaStack {
 	}
 
 	/* retrieve element from stack */
-	public SLNode pick() {
+	public SLNode peek() {
 		return tail;
 	}
 

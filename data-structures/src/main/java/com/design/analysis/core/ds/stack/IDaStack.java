@@ -12,7 +12,7 @@ public interface IDaStack {
 	public SLNode pop();
 
 	/* retrieve element from stack */
-	public SLNode pick();
+	public SLNode peek();
 
 	/* add element in stack */
 	public SLNode push(int x);
