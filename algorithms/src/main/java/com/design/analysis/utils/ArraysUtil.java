@@ -1,4 +1,4 @@
-package com.design.analysis.core.algo.utils;
+package com.design.analysis.utils;
 
 import javax.swing.*;
 import java.util.Arrays;

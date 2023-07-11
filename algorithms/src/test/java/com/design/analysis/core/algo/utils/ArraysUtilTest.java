@@ -1,5 +1,6 @@
 package com.design.analysis.core.algo.utils;
 
+import com.design.analysis.utils.ArraysUtil;
 import org.junit.Assert;
 import org.junit.Test;
 

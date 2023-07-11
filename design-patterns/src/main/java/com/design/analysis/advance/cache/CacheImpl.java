@@ -13,8 +13,8 @@ public class CacheImpl<K, V> {
         return (K) iCache.get(k);
     }
 
-    public boolean put(K k, V v){
-          iCache.put(k, v);
+    public V put(K k, V v){
+          return  (V)iCache.put(k, v);
     }
 
     public boolean evict(K k){
