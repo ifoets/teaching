@@ -1,5 +1,7 @@
 package com.design.analysis.quick.prep.array;
 
+import com.design.analysis.core.algo.utils.AlgoUtils;
+
 import java.util.*;
 
 public class ArrayImpl implements  IArray{
@@ -536,5 +538,50 @@ public class ArrayImpl implements  IArray{
     @Override
     public int stockSellMaxPofit(int a[]) {
         return -1;
+    }
+    /*Question 41 :
+     * Two sorted array a1 and a2 a2 have some element and exttra space of size a1
+     * sort without extra space and complexity n arr1 m [3,4,9,10,20] arr2 n with m
+     * space [ ,1,2, ,8,11, ,13, , ]
+     */
+    @Override
+    public void specialSort(int a[], int b[]){
+
+        // shift all zero of b to left as keep sorted order
+        int N = b.length - 1;
+        int k = N;
+        int i = N;
+        while (i > 0) {
+            while (b[k] != 0)
+                k--;
+            while (i > 0 && b[i] == 0)
+                i--;
+            if (k > 0 && i > 0) {
+                b[k] = b[i];
+                b[i] = 0;
+            }
+        }
+        // k is the last zero in b
+        i = 0;
+        int j = k + 1;
+        int t = 0;
+        while (i < a.length && j < N + 1 && t < N + 1) {
+            if (a[i] > b[j]) {
+                b[t] = b[j];
+                b[j] = 0;
+                t++;
+                j++;
+            } else {
+                b[t] = a[i];
+                t++;
+                i++;
+            }
+        }
+        if (j >= N) {
+            while (i < a.length)
+                b[t++] = a[i++];
+        }
+        System.out.println(Arrays.toString(b));
+
     }
 }

@@ -1,8 +1,6 @@
 package interview.preparation.self.asked.company;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class AltimetrikImpl implements IAltimetrik {
 
@@ -39,5 +37,21 @@ public class AltimetrikImpl implements IAltimetrik {
 			}
 		}
 		return -1;
+	}
+	@Override
+	public boolean checkDuplicateCountVal(int a[])
+	{
+		int N=a.length;
+	    Map<Integer, Integer> map = new HashMap<>();
+		for(int i=0 ;i<N ;i++)
+		{
+			if(map.containsKey(a[i]))
+				map.put(a[i],map.get(a[i])+1);
+			else map.put(a[i],1);
+		}
+		Set<Integer> set = new HashSet<>();
+		for(Map.Entry entry:map.entrySet())
+			set.add((Integer) entry.getValue());
+		return set.size()==map.size();
 	}
 }

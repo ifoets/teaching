@@ -5,7 +5,7 @@ public class OperativeMediaImpl implements IOperativeMedia {
 	/** find the repetative element **/
 	public int indexOfRepetativeElem(int a[], int l, int r) {
 
-		if (l < r) {
+		if (l <= r) {
 			int m = (l + r) / 2;
 
 			if (a[0] == a[m])

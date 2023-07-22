@@ -7,4 +7,6 @@ import interview.preparation.self.asked.model.BoardingPass;
 public interface IEmpower {
 
 	public String findInitailAndFinalDesitination(List<BoardingPass> passes);
+
+	public String getRouts(List<BoardingPass> passes);
 }

@@ -25,4 +25,11 @@ public class ArraysUtil {
         }
         return max;
     }
+
+    public static int [] getIndexedVal(int a[])
+    {
+        int b[] = new int[getMax(a)+1];
+        for (int i=0 ; i<a.length; b[a[i++]]++);
+            return b;
+    }
 }

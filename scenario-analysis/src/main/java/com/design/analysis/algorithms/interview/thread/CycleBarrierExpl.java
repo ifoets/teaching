@@ -20,7 +20,10 @@ class Party extends Thread {
 			System.out.println(Thread.currentThread().getName() + " waiting at barrier 1");
 			this.barrier.await();
 			System.out.println(Thread.currentThread().getName()+" after barrier 1");
+            Thread.sleep(duration);
+            this.barrier.await();
 			//System.out.println(Thread.currentThread().getName() + " has started running again");
+            Thread.sleep(duration);
 			System.out.println(Thread.currentThread().getName() + " waiting at barrier 2");
 			this.barrier.await();
 

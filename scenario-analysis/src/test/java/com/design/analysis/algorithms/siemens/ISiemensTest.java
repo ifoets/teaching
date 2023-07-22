@@ -1,6 +1,8 @@
 package com.design.analysis.algorithms.siemens;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.junit.Assert;
 import org.junit.Before;

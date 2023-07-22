@@ -36,8 +36,12 @@ Question 38 : Find the Contiguous Subarray with Sum to a Given Value in an array
 
 Question 39 : Longest Common Prefix in an array of Strings in java.
 Question 40 : Find all subsets of set (power set) in java.
+Question 41 :/*
+	 * Two sorted array a1 and a2 a2 have some element and exttra space of size a1
+	 * sort without extra space and complexity n arr1 m [3,4,9,10,20] arr2 n with m
+	 * space [ ,1,2, ,8,11, ,13, , ]
+	 */
 
- */
 public interface IArray {
 
     /* Array */
@@ -147,4 +151,11 @@ public interface IArray {
 
     /*Question 34 : Stock Buy Sell to Maximize Profit.*/
     public int stockSellMaxPofit(int a[]);
+
+    /*Question 41 :
+     * Two sorted array a1 and a2 a2 have some element and exttra space of size a1
+     * sort without extra space and complexity n arr1 m [3,4,9,10,20] arr2 n with m
+     * space [ ,1,2, ,8,11, ,13, , ]
+     */
+    public void specialSort(int a[], int b[]);
 }

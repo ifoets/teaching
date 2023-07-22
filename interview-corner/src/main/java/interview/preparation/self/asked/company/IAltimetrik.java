@@ -5,4 +5,6 @@ import java.util.List;
 public interface IAltimetrik {
 
 	public int minimumCandiesPerHour(List<Integer> candyPiles, int numHours);
+
+	public boolean checkDuplicateCountVal(int a[]);
 }
