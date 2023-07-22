@@ -2,7 +2,7 @@ package com.design.analysis.core.algo.sorting.model;
 
 public class Element implements Comparable<Element> {
 
-	public int ele;// eleent
+	public int ele;// element
 	public int count;
 
 	public Element(int ele, int count) {

@@ -51,7 +51,29 @@ public class IWissenIninfotechTest {
 		Assert.assertTrue(iw.getMapOrderByValuesY(map).equals(mapresult));
 
 	}
+	@Test
+	public void getMapOrderByValuesThenByKeyTest() {
+		Map<String, String> map = new LinkedHashMap<>();
+		map.put("Delhi", "a");
+		map.put("New York", "c");
+		map.put("Mumbai", "a");
+		map.put("Tokyo", "b");
+		map.put("Bangalore", "a");
 
+		System.out.println(iw.getMapOrderByValuesThenByKey(map));
+	}
+	@Test
+	public void getMapOrderByKeyTest()
+	{
+		Map<String, String> map = new LinkedHashMap<>();
+		map.put("A", "a");
+		map.put("E", "a");
+		map.put("B", "a");
+		map.put("C", "a");
+		map.put("D", "a");
+
+		System.out.println(iw.getMapOrderByKey(map));
+	}
 	/** 1. Create biggest number from array element using string addition */
 
 	@Test
@@ -195,17 +217,6 @@ public class IWissenIninfotechTest {
 		String a = "abcbcd";
 		String b = "cdefefc";
 		Assert.assertTrue(iw.commonCharacters(a, b).equals("ccd"));
-	}
-
-	@Test
-	public void getMapOrderByValuesThenByKeyTest() {
-		Map<String, String> map = new LinkedHashMap<>();
-		map.put("Delhi", "a");
-		map.put("New York", "c");
-		map.put("Mumbai", "a");
-		map.put("Tokyo", "b");
-
-		System.out.println(iw.getMapOrderByValuesThenByKey(map));
 	}
 
 	@Test

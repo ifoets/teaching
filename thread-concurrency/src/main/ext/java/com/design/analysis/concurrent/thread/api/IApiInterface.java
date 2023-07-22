@@ -3,6 +3,6 @@ package com.design.analysis.concurrent.thread.api;
 public interface IApiInterface {
 
 	//TODO
-	/* producer consumer commmunication */
+	/* producer mer commmunication */
 	public void producerConsumerIntr() throws InterruptedException;
 }

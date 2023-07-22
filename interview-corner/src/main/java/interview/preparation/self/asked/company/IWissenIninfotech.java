@@ -20,6 +20,10 @@ public interface IWissenIninfotech {
 
 	public Map<String, String> getMapOrderByValuesY(Map<String, String> map);
 
+	public Map<String, String> getMapOrderByValuesThenByKey(Map<String, String> map);
+
+	public Map<String, String> getMapOrderByKey(Map<String, String> map);
+
 	/** 2. Create biggest number form array element using string addition */
 
 	public String getBiggestNumber(int a[]);
@@ -55,8 +59,6 @@ public interface IWissenIninfotech {
 	public List<int[]> splitArray(int ar[], int splitSize);
 
 	public String commonCharacters(String a, String b);
-
-	public Map<String, String> getMapOrderByValuesThenByKey(Map<String, String> map);
 
 	public void createTwoTread() throws InterruptedException;
 

@@ -1,4 +1,4 @@
-package com.design.analysis.core.algo.utils;
+package com.design.analysis.utils;
 
 import javax.swing.*;
 import java.util.Arrays;
@@ -24,5 +24,12 @@ public class ArraysUtil {
                 max=a[i];
         }
         return max;
+    }
+
+    public static int [] getIndexedVal(int a[])
+    {
+        int b[] = new int[getMax(a)+1];
+        for (int i=0 ; i<a.length; b[a[i++]]++);
+            return b;
     }
 }

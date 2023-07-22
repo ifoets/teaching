@@ -36,27 +36,8 @@ public class WissenIninfotechImpl implements IWissenIninfotech {
 
 	public Map<String, String> getMapOrderByValues(Map<String, String> map) {
 
-		Map<String, List<String>> treeMap = new TreeMap<>();
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			if (treeMap.containsKey(entry.getValue())) {
-				List<String> list = treeMap.get(entry.getValue());
-				list.add(entry.getKey());
-				treeMap.put(entry.getValue(), list);
-			} else {
-				List<String> list = new ArrayList<>();
-				list.add(entry.getKey());
-				treeMap.put(entry.getValue(), list);
-			}
-		}
-		Map<String, String> linkedHashMap = new LinkedHashMap<>();
-		for (Map.Entry<String, List<String>> entry : treeMap.entrySet()) {
-			List<String> list = entry.getValue();
-			Collections.sort(list);
-			for (int i = 0; i < list.size(); i++)
-				linkedHashMap.put(list.get(i), entry.getKey());
-
-		}
-		return linkedHashMap;
+		return map.entrySet().stream().sorted(Map.Entry.comparingByValue())
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
 	public Map<String, String> getMapOrderByValuesX(Map<String, String> map) {
@@ -77,10 +58,25 @@ public class WissenIninfotechImpl implements IWissenIninfotech {
 	}
 
 	/* sort by only values only */
+	@Override
 	public Map<String, String> getMapOrderByValuesY(Map<String, String> map) {
 
 		return map.entrySet().stream().sorted(Map.Entry.comparingByValue())
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+	}
+	@Override
+	public Map<String, String> getMapOrderByValuesThenByKey(Map<String, String> map) {
+		return
+				map.entrySet().stream()
+						.sorted(Map.Entry.<String, String>comparingByValue()
+								.thenComparing(Map.Entry.comparingByKey()))
+						.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+	}
+
+	public Map<String, String> getMapOrderByKey(Map<String, String> map){
+		return
+				map.entrySet().stream().sorted(Map.Entry.comparingByKey())
+						.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue, (e1,e2)->e1, LinkedHashMap::new));
 	}
 
 	/** 1. Create biggest number from array element using string addition */
@@ -185,7 +181,7 @@ public class WissenIninfotechImpl implements IWissenIninfotech {
 	 */
 	public int getSum(Integer a[], int n) throws InterruptedException, ExecutionException {
 		ExecutorService executorService = Executors.newFixedThreadPool(n);
-		Set<Callable<List<Integer>>> callables = new HashSet<Callable<List<Integer>>>();
+		Set<Callable<List<Integer>>> callables = new HashSet<>();
 		int slot = a.length / n;
 		for (int i = 0; i < a.length; i += slot) {
 			List<Integer> list = Arrays.asList(Arrays.copyOfRange(a, i, i + slot < a.length ? i + slot : a.length));
@@ -519,16 +515,6 @@ public class WissenIninfotechImpl implements IWissenIninfotech {
 		}
 		return sb.toString();
 	}
-
-	public Map<String, String> getMapOrderByValuesThenByKey(Map<String, String> map) {
-		return
-
-		map.entrySet().stream()
-				.sorted(Map.Entry.<String, String>comparingByValue()
-						.thenComparing(Map.Entry.<String, String>comparingByKey()))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-	}
-
 	@Override
 	public void createTwoTread() throws InterruptedException {
 

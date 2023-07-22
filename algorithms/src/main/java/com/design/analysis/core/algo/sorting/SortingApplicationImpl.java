@@ -10,6 +10,7 @@ import java.util.Map;
 import com.design.analysis.core.algo.node.BTNode;
 import com.design.analysis.core.algo.sorting.model.Element;
 import com.design.analysis.core.algo.utils.AlgoUtils;
+import com.design.analysis.utils.ArraysUtil;
 
 public class SortingApplicationImpl implements ISortingApplication {
 
@@ -40,10 +41,7 @@ public class SortingApplicationImpl implements ISortingApplication {
 
 	// without using inbuilt library
 	public int[] sortByFrequencyX(int a[]) {
-		int max = AlgoUtils.max(a);
-		int b[] = new int[max + 1];
-		for (int i = 0; i < a.length; b[a[i]]++, i++)
-			;
+		int b[] = ArraysUtil.getIndexedVal(a);
 		String c[] = new String[AlgoUtils.max(b) + 1];
 
 		for (int i = 0; i < b.length; i++) {
@@ -70,10 +68,7 @@ public class SortingApplicationImpl implements ISortingApplication {
 
 	@Override
 	public int[] sortByFrequencyMaxToMin(int a[]) {
-		int max = AlgoUtils.max(a);
-		int b[] = new int[max + 1];
-		for (int i = 0; i < a.length; b[a[i]]++, i++)
-			;
+		int b[] = ArraysUtil.getIndexedVal(a);
 		int bMax = AlgoUtils.max(b);
 		int k = 0;
 		for (int i = bMax; i > 0; i--) {
@@ -90,10 +85,7 @@ public class SortingApplicationImpl implements ISortingApplication {
 
 	@Override
 	public int[] sortByFrequencyMinToMax(int a[]) {
-		int max = AlgoUtils.max(a);
-		int b[] = new int[max + 1];
-		for (int i = 0; i < a.length; b[a[i]]++, i++)
-			;
+        int b[] = ArraysUtil.getIndexedVal(a);
 		int bMax = AlgoUtils.max(b);
 		int k = 0;
 		for (int i = 1; i <= bMax; i++) {
@@ -138,17 +130,13 @@ public class SortingApplicationImpl implements ISortingApplication {
 					b[j++] = ch - 48;
 				}
 			}
-
 			revInorderTravel(node.lt, b);
 		}
 	}
 
 	@Override
 	public int[] sortByFrequencyBst(int a[]) {
-		int max = AlgoUtils.max(a);
-		int b[] = new int[max + 1];
-		for (int i = 0; i < a.length; b[a[i]]++, i++)
-			;
+		int b[] = ArraysUtil.getIndexedVal(a);
 		BTNode node = null;
 		for (int i = 0; i < b.length; i++) {
 			if (b[i] != 0)
@@ -320,8 +308,8 @@ public class SortingApplicationImpl implements ISortingApplication {
 	@Override
 	public boolean isSubsetArrInOtherArray(int a[], int b[]) {
 
-		// O(mn) by leanr search
-		Arrays.sort(a); // nlogn
+		// O(mn) by lenear search
+		Arrays.sort(a); // n(log(n))
 
 		for (int i = 0; i < b.length; i++) {
 			if (AlgoUtils.binarySearch(a, 0, a.length - 1, b[i]) == -1) {

@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-public class CountDoneLatchExmpl implements Runnable {
+public class CountDownLatchExmpl implements Runnable {
 
 	public CountDownLatch latch = null;
 	List<Integer> list = new ArrayList<>();
 
-	public CountDoneLatchExmpl(int size) {
+	public CountDownLatchExmpl(int size) {
 		latch = new CountDownLatch(size);
 	}
 
 	public static void main(String[] args) {
 
-		CountDoneLatchExmpl cnl = new CountDoneLatchExmpl(3);
+		CountDownLatchExmpl cnl = new CountDownLatchExmpl(3);
 		Thread t1 = new Thread(cnl, "decremental");
 		Thread t2 = new Thread(cnl, "waiter");
 		t1.start();
