@@ -37,4 +37,21 @@ public class EmpowerImpl implements IEmpower {
 		return initalDes + "->" + finalDes;
 	}
 
+	public String getRouts(List<BoardingPass> passes)
+	{
+		String []initFinal = findInitailAndFinalDesitination(passes).split("->");
+		StringBuilder builder = new StringBuilder();
+		Map<String, String> map = new HashMap<>();
+		for (BoardingPass bps : passes) {
+			map.put(bps.getStart(), bps.getEnd());
+		}
+		while (map.get(initFinal[0])!=null)
+		{
+			builder.append(initFinal[0]+"->");
+			initFinal[0]= map.get(initFinal[0]);
+		}
+		builder.append(initFinal[0]);
+		return builder.toString();
+	}
+
 }

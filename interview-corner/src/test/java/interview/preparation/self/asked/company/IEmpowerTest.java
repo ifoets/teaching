@@ -36,4 +36,12 @@ public class IEmpowerTest {
 		);
 		Assert.assertTrue(iemp.findInitailAndFinalDesitination(passes).equals("A->C"));
 	}
+	@Test
+	public void getRoutsTest()
+	{
+		List<BoardingPass> passes = List.of(new BoardingPass("D", "E"), new BoardingPass("A", "B"),
+				new BoardingPass("B", "D"), new BoardingPass("E", "C")
+		);
+		Assert.assertTrue(iemp.getRouts(passes).equals("A->B->D->E->C"));
+	}
 }

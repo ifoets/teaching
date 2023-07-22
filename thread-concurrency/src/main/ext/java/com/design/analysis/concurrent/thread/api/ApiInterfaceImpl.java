@@ -3,7 +3,7 @@ package com.design.analysis.concurrent.thread.api;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 
-import com.design.analysis.concurrent.thread.ext.running.CalciConsumer;
+import com.design.analysis.concurrent.thread.ext.running.Calcir;
 import com.design.analysis.concurrent.thread.ext.running.CalciPoducer;
 
 public class ApiInterfaceImpl implements IApiInterface {

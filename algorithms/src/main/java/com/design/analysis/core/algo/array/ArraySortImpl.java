@@ -5,7 +5,7 @@ import java.util.*;
 import com.design.analysis.core.algo.sorting.ISortingAlgo;
 import com.design.analysis.core.algo.sorting.SortingAlgoImpl;
 import com.design.analysis.core.algo.utils.AlgoUtils;
-import com.design.analysis.core.algo.utils.ArraysUtil;
+import com.design.analysis.utils.ArraysUtil;
 
 public class ArraySortImpl implements IArraySort {
 

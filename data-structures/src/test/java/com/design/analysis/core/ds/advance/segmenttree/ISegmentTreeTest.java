@@ -79,12 +79,12 @@ public class ISegmentTreeTest {
 	/** 3. Lazy Propagation **/
 	@Test
 	public void getLazySumTest() {
-		// tested in SegmentTreeUtilTest.java
+		// tested in SegmentTreeUtil
 	}
 
 	@Test
 	public void getLazyUpdateRangeTest() {
-		// tested in SegmentTreeUtilTest.java
+		// tested in SegmentTreeUtil
 	}
 
 	/* 4. Persistent Segment Tree */
