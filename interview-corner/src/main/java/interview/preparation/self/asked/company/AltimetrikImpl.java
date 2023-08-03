@@ -1,6 +1,7 @@
 package interview.preparation.self.asked.company;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AltimetrikImpl implements IAltimetrik {
 
@@ -53,5 +54,11 @@ public class AltimetrikImpl implements IAltimetrik {
 		for(Map.Entry entry:map.entrySet())
 			set.add((Integer) entry.getValue());
 		return set.size()==map.size();
+	}
+
+	@Override
+	public int get2ndMaxNo(List<List<Integer>> ll){
+		List<Integer> l = ll.stream().flatMap( e-> e.stream()).collect(Collectors.toSet()).stream().sorted().collect(Collectors.toList());
+		return l.get(l.size()-2);
 	}
 }
