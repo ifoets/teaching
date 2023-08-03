@@ -42,7 +42,7 @@ public class WissenIninfotechImpl implements IWissenIninfotech {
 
 	public Map<String, String> getMapOrderByValuesX(Map<String, String> map) {
 		Map<String, String> linkedHasMap = new LinkedHashMap<>();
-		List<Map.Entry<String, String>> list = new LinkedList<Map.Entry<String, String>>(map.entrySet());
+		List<Map.Entry<String, String>> list = new LinkedList<>(map.entrySet());
 		Collections.sort(list, new Comparator<Map.Entry<String, String>>() {
 			@Override
 			public int compare(Entry<String, String> o1, Entry<String, String> o2) {
