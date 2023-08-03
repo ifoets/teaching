@@ -66,7 +66,7 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 	public Lap<SLNode<Integer>, SLNode<Integer>> insertElementLast(Lap<SLNode<Integer>, SLNode<Integer>> lap,
 			Integer x) {
 
-		SLNode<Integer> temp = new SLNode<Integer>(x);
+		SLNode<Integer> temp = new SLNode<>(x);
 		if (lap == null) {
 			lap = new SLHashLap();
 			head = tail = temp;

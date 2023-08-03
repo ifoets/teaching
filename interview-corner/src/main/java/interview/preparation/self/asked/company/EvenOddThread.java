@@ -6,24 +6,8 @@ public class EvenOddThread {
 
 	public static void main(String[] args) {
 		EvenOddThread ev = new EvenOddThread();
-		Thread t1 = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-
-				ev.printEven();
-			}
-		});
-
-		Thread t2 = new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				ev.printOdd();
-			}
-		});
-		t1.start();
-		t2.start();
+		new Thread( ()->ev.printEven(),"even").start();
+		new Thread( ()->ev.printOdd(),"odd").start();
 	}
 
 	public void printEven() {
