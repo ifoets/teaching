@@ -1,5 +1,7 @@
 package interview.preparation.self.asked.company;
 
+import java.util.List;
+
 public interface IMphysis {
 
 	/*
@@ -13,5 +15,8 @@ public interface IMphysis {
 	public int maxProfitSingleStockBuyShell(int prices[]);
 
 	/* find the 2nd max value in array by single iteration */
-	public int secnodMaxSingleIteration(int a[]);
+	public int secondMaxSingleIteration(int a[]);
+
+	/*("Australia");"India");("Africa");("Indonesia");("Malaysia"); output ={"AustraliaAA","AfricaAA"};*/
+	public List<String> concatFilter(List<String> list);
 }
