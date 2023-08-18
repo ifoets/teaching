@@ -46,11 +46,11 @@ package com.design.analysis.core.algo.array;
 	41.	Check given matrix is magic square or not
 	42.	Check given matrix is magic square or not
 	43.	Kronecker Product of two matrices
-	44.	Count sub-matrices having sum divisible ‘k’
+	44.	Count sub-matrices having sum divisible â€˜kâ€™
 	45.	Diagonally Dominant Matrix
 	46.	Minimum operations required to make each row and column of matrix equals
 	47.	Count frequency of k in a matrix of size n where matrix(i, j) = i+j
-	48.	Given 1’s, 2’s, 3’s ……k’s print them in zig zag way.
+	48.	Given 1â€™s, 2â€™s, 3â€™s â€¦â€¦kâ€™s print them in zig zag way.
 	49.	Number of cells a queen can move with obstacles on the chessborad
 	50.	Maximum product of 4 adjacent elements in matrix
 	51.	Minimum flip required to make Binary Matrix symmetric
@@ -72,7 +72,7 @@ package com.design.analysis.core.algo.array;
 	66.	Create a matrix with alternating rectangles of O and X
 	67.	Zigzag (or diagonal) traversal of Matrix
 	68.	Inplace (Fixed space) M x N size matrix transpose | Updated
-	69.	Minimum cost to sort a matrix of numbers from 0 to n^2 – 1
+	69.	Minimum cost to sort a matrix of numbers from 0 to n^2 â€“ 1
 	70.	Unique cells in a binary matrix
 	71.	Count entries equal to x in a special matrix
 	72.	Check if a given matrix is sparse or not
@@ -94,7 +94,7 @@ package com.design.analysis.core.algo.array;
 	88.	Construct tree from ancestor matrix
 	89.	Circular Matrix (Construct a matrix with numbers 1 to m*n in spiral way)
 	90.	Program for Sudoku Generator
-	91.	Program for Conway’s Game Of Life
+	91.	Program for Conwayâ€™s Game Of Life
 	92.	Maximum sum of hour glass in matrix
 	93.	Maximum and Minimum in a square matrix.
 	94.	Print matrix in antispiral form
@@ -125,11 +125,11 @@ package com.design.analysis.core.algo.array;
 	119.	Maximum XOR value in matrix
 	120.	Maximum mirrors which can transfer light from bottom to right
 	121.	Direction at last square block
-	122.	Print K’th element in spiral form of matrix
+	122.	Print Kâ€™th element in spiral form of matrix
 	123.	Find if given matrix is Toeplitz or not
 	124.	Count zeros in a row wise and column wise sorted matrix
 	125.	Count Negative Numbers in a Column-Wise and Row-Wise Sorted Matrix
-	126.	Find size of the largest ‘+’ formed by all ones in a binary matrix
+	126.	Find size of the largest â€˜+â€™ formed by all ones in a binary matrix
 	127.	Return previous element in an expanding matrix
 	128.	Print n x n spiral matrix using O(1) extra space
 	129.	Shortest path in a Binary Maze
@@ -139,9 +139,9 @@ package com.design.analysis.core.algo.array;
 	133.	Common elements in all rows of a given matrix
 	134.	In-place convert matrix in specific order
 	135.	A Boolean Matrix Question
-	136.	Given a Boolean Matrix, find k such that all elements in k’th row are 0 and k’th column are 1.
+	136.	Given a Boolean Matrix, find k such that all elements in kâ€™th row are 0 and kâ€™th column are 1.
 	137.	Print unique rows in a given boolean matrix
-	138.	Find the largest rectangle of 1’s with swapping of columns allowed
+	138.	Find the largest rectangle of 1â€™s with swapping of columns allowed
 	139.	Validity of a given Tic-Tac-Toe board configuration
 	140.	Submatrix Sum Queries
 	141.	Program for Rank of Matrix
@@ -150,9 +150,9 @@ package com.design.analysis.core.algo.array;
 	144.	Find sum of all elements in a matrix except the elements in row and/or column of given cell?
 	145.	Count number of islands where every island is row-wise and column-wise separated
 	146.	Find a common element in all rows of a given row-wise sorted matrix
-	147.	Given a matrix of ‘O’ and ‘X’, replace ‘O’ with ‘X’ if surrounded by ‘X’
-	148.	Given a matrix of ‘O’ and ‘X’, find the largest subsquare surrounded by ‘X’
-	149.	Flood fill Algorithm – how to implement fill() in paint?
+	147.	Given a matrix of â€˜Oâ€™ and â€˜Xâ€™, replace â€˜Oâ€™ with â€˜Xâ€™ if surrounded by â€˜Xâ€™
+	148.	Given a matrix of â€˜Oâ€™ and â€˜Xâ€™, find the largest subsquare surrounded by â€˜Xâ€™
+	149.	Flood fill Algorithm â€“ how to implement fill() in paint?
 	150.	Print all elements in sorted order from row and column wise sorted matrix
 	151.	Given an n x n square matrix, find sum of all sub-squares of size k x k
 	152.	Program to find transpose of a matrix
@@ -164,7 +164,7 @@ package com.design.analysis.core.algo.array;
 	158.	Find length of the longest consecutive path from a given starting character
 	159.	Find the longest path in a matrix with given constraints
 	160.	Minimum Initial Points to Reach Destination
-	161.	Divide and Conquer | Set 5 (Strassen’s Matrix Multiplication)
+	161.	Divide and Conquer | Set 5 (Strassenâ€™s Matrix Multiplication)
 	162.	Dynamic Programming | Set 27 (Maximum sum rectangle in a 2D matrix)
 
  */

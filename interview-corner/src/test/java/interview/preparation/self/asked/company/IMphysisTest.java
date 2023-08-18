@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class IMphysisTest {
 
 	IMphysis imp = null;
@@ -31,7 +34,13 @@ public class IMphysisTest {
 	@Test
 	public void secnodMaxSingleIterationTest() {
 		int a[] = { 7, 1, 5, 3, 6, 4 };
-		Assert.assertTrue(imp.secnodMaxSingleIteration(a) == 5);
+		Assert.assertTrue(imp.secondMaxSingleIteration(a) == 5);
 	}
-
+	/*("Australia");"India");("Africa");("Indonesia");("Malaysia"); output ={"AustraliaAA","AfricaAA"};*/
+	@Test
+	public void concatFilterTest(){
+	List<String> list = List.of("Australia","India","Africa","Indonesia","Malaysia");
+	System.out.println(imp.concatFilter(list).toString());
+	Assert.assertTrue(imp.concatFilter(list).containsAll(List.of("AustraliaAA","AfricaAA")));
+	}
 }

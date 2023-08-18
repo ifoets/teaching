@@ -2,6 +2,8 @@ package interview.preparation.self.asked.company;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MphysisImpl implements IMphysis {
 
@@ -31,7 +33,7 @@ public class MphysisImpl implements IMphysis {
 	}
 
 	/* fid the 2nd max value in array by single iteration */
-	public int secnodMaxSingleIteration(int a[]) {
+	public int secondMaxSingleIteration(int a[]) {
 		int N = a.length;
 		int fmx;
 		int smx;
@@ -49,5 +51,11 @@ public class MphysisImpl implements IMphysis {
 		}
 		return smx;
 	}
-
+	/*("Australia");"India");("Africa");("Indonesia");("Malaysia"); output ={"AustraliaAA","AfricaAA"};*/
+	@Override
+	public List<String> concatFilter(List<String> list){
+		return list.stream().filter(e -> e.startsWith("A"))
+				.map(e-> (new StringBuilder(e).append((e.charAt(0)+"").repeat(2))).toString())
+				.collect(Collectors.toList());
+	}
 }
