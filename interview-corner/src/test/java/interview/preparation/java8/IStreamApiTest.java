@@ -4,15 +4,16 @@ import java.util.*;
 
 import interview.preparation.java8.datautils.DataUtils;
 import interview.preparation.java8.model.Employee;
+import interview.preparation.java8.model.Notes;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import interview.preparation.java8.model.Book;
-import interview.preparation.self.asked.model.A;
-import interview.preparation.self.asked.model.B;
-import interview.preparation.self.asked.model.C;
-import interview.preparation.self.asked.model.D;
+import interview.preparation.self.asked.company.model.A;
+import interview.preparation.self.asked.company.model.B;
+import interview.preparation.self.asked.company.model.C;
+import interview.preparation.self.asked.company.model.D;
 
 public class IStreamApiTest {
 
@@ -194,6 +195,29 @@ public class IStreamApiTest {
 	public void sumOfDuplicateEleTest()
 	{
       Assert.assertTrue(isa.sumOfDuplicateEle(List.of(1,2,3,4,5,6,3,4,5,7,3,9))==15);
+	}
+
+	/*Write a program to print the count of each character in a String?*/
+	@Test
+	public void findCountOfCharsTest()
+	{
+      System.out.println(isa.findCountOfChars("string data to count each character"));
+	}
+	/*How to check if list is empty in Java 8 using Optional, if not null iterate through the list and print the object?*/
+	@Test
+	public void getNonEmptyNonNullListTest()
+	{
+         List<Notes> list = null;
+		 Assert.assertTrue(isa.getNonEmptyNonNullList(list).isEmpty());
+		 list = List.of(new Notes("AB"), new Notes("BC"));
+		 System.out.println(isa.getNonEmptyNonNullList(list));
+	}
+	/*How to find only duplicate elements with its count from the String ArrayList in Java8*/
+	@Test
+	public void findDuplicateTest()
+	{
+		System.out.println(isa.findDuplicateOrUnique("string data to count each character",true));
+		System.out.println(isa.findDuplicateOrUnique("string data to count each character",false));
 	}
 }
 

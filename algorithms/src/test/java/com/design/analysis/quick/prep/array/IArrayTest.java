@@ -3,10 +3,12 @@ package com.design.analysis.quick.prep.array;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class IArrayTest {
-
     IArray ir;
 
     @Before
