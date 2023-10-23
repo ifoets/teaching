@@ -8,7 +8,8 @@ import java.util.stream.Stream;
 
 import interview.preparation.java8.model.Book;
 import interview.preparation.java8.model.Employee;
-import interview.preparation.self.asked.model.A;
+import interview.preparation.java8.model.Notes;
+import interview.preparation.self.asked.company.model.A;
 
 public class StremApiImpl implements IStremApi {
 
@@ -226,6 +227,7 @@ public class StremApiImpl implements IStremApi {
 				.collect(Collectors.toList());
 	}
 	/*sum of duplicate element*/
+	@Override
 	public int sumOfDuplicateEle(List<Integer> list)
 	{
 		Set<Integer> set = new HashSet<>();
@@ -233,4 +235,29 @@ public class StremApiImpl implements IStremApi {
 				.mapToInt(Integer::intValue)
 				.sum();
 	}
+	/*Write a program to print the count of each character in a String?*/
+	@Override
+	public Map<String, Long> findCountOfChars(String s)
+	{
+		return Arrays.stream(s.split(""))
+				.collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new, Collectors.counting()));
+	}
+	/*How to check if list is empty in Java 8 using Optional, if not null iterate through the list and print the object?*/
+	@Override
+	public List<String> getNonEmptyNonNullList(List<Notes> list)
+	{
+		return Optional.ofNullable(list)
+				.orElseGet(Collections::emptyList)
+				.stream()
+				.filter(Objects::nonNull)
+				.map(Notes::getName).collect(Collectors.toList());
+	}
+	/*How to find only duplicate or unique elements with its count from the String ArrayList in Java8*/
+	public Map<String, Long> findDuplicateOrUnique(String s, boolean uniqueOrDuplicate){
+		return Arrays.stream(s.split("")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+				.entrySet().stream()
+				.filter( e-> uniqueOrDuplicate ? e.getValue() > 1 : e.getValue()==1)
+				.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+	}
+
 }
