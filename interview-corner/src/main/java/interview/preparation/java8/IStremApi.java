@@ -4,7 +4,8 @@ import java.util.*;
 
 import interview.preparation.java8.model.Book;
 import interview.preparation.java8.model.Employee;
-import interview.preparation.self.asked.model.A;
+import interview.preparation.java8.model.Notes;
+import interview.preparation.self.asked.company.model.A;
 
 public interface IStremApi {
 
@@ -84,4 +85,13 @@ public interface IStremApi {
 
 	/*sum of duplicate element*/
 	public int sumOfDuplicateEle(List<Integer> list);
+
+	/*Write a program to print the count of each character in a String?*/
+	public Map<String, Long> findCountOfChars(String s);
+
+	/*How to check if list is empty in Java 8 using Optional, if not null iterate through the list and print the object?*/
+	public List<String> getNonEmptyNonNullList(List<Notes> list);
+
+	/*How to find only duplicate or unique elements with its count from the String ArrayList in Java8*/
+	public Map<String, Long> findDuplicateOrUnique(String s, boolean uniqueOrDuplicate);
 }

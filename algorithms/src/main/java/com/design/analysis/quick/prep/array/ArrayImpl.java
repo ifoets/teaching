@@ -582,6 +582,10 @@ public class ArrayImpl implements  IArray{
                 b[t++] = a[i++];
         }
         System.out.println(Arrays.toString(b));
-
     }
+
+
+
+
+
 }
