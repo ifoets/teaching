@@ -71,6 +71,16 @@ public class WissenIninfotechImpl implements IWissenIninfotech {
 								.thenComparing(Map.Entry.comparingByKey()))
 						.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 	}
+	@Override
+	public Map<String, String> getMapOrderByValuesThenByKeyX(Map<String, String> map) {
+		return
+				map.entrySet()
+						.stream()
+						.sorted(Map.Entry.comparingByValue())
+						.sorted(Map.Entry.comparingByKey())
+						.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue, (e1,e2)->e1,LinkedHashMap::new));
+
+	}
 
 	public Map<String, String> getMapOrderByKey(Map<String, String> map){
 		return

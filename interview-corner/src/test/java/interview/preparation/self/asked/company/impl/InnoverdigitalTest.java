@@ -3,7 +3,6 @@ package interview.preparation.self.asked.company.impl;
 import java.io.Serializable;
 
 import interview.preparation.self.asked.company.question.Iinnoverdigital;
-import interview.preparation.self.asked.company.question.InnoverdigitalImpl;
 import org.junit.Before;
 
 public class InnoverdigitalTest {

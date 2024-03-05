@@ -1,11 +1,13 @@
 package interview.preparation.java8;
 
-import java.util.*;
-
 import interview.preparation.java8.model.Book;
 import interview.preparation.java8.model.Employee;
 import interview.preparation.java8.model.Notes;
 import interview.preparation.self.asked.company.model.A;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface IStremApi {
 
@@ -94,4 +96,10 @@ public interface IStremApi {
 
 	/*How to find only duplicate or unique elements with its count from the String ArrayList in Java8*/
 	public Map<String, Long> findDuplicateOrUnique(String s, boolean uniqueOrDuplicate);
+
+	/*find first  or last non-repeated val in arr*/
+	public int firstNonRepeatedVal(int []a);
+
+	/*find first or last repeated val in arr*/
+	public int firstRepeatedVal(int []a);
 }

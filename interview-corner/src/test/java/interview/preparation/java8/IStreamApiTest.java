@@ -15,7 +15,9 @@ import interview.preparation.self.asked.company.model.B;
 import interview.preparation.self.asked.company.model.C;
 import interview.preparation.self.asked.company.model.D;
 
-public class IStreamApiTest {
+public class
+
+IStreamApiTest {
 
 	IStremApi isa = null;
 
@@ -219,5 +221,23 @@ public class IStreamApiTest {
 		System.out.println(isa.findDuplicateOrUnique("string data to count each character",true));
 		System.out.println(isa.findDuplicateOrUnique("string data to count each character",false));
 	}
+
+
+	/*find first  or last non-repeated val in arr*/
+	@Test
+	public void firstNonRepeatedValTest()
+	{
+		int a[] = {8,1,2,3,6,3,2,4,9};
+		System.out.println(isa.firstNonRepeatedVal(a));
+	}
+
+	/*find first or last repeated val in arr*/
+	@Test
+	public void firstRepeatedValTest()
+	{
+		int a[] = {8,1,2,3,6,3,2,4,9};
+		System.out.println(isa.firstRepeatedVal(a));
+	}
+
 }
 

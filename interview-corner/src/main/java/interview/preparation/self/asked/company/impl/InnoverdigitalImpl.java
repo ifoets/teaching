@@ -1,4 +1,6 @@
-package interview.preparation.self.asked.company.question;
+package interview.preparation.self.asked.company.impl;
+
+import interview.preparation.self.asked.company.question.Iinnoverdigital;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

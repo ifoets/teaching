@@ -22,6 +22,8 @@ public interface IWissenIninfotech {
 
 	public Map<String, String> getMapOrderByValuesThenByKey(Map<String, String> map);
 
+	public Map<String, String> getMapOrderByValuesThenByKeyX(Map<String, String> map);
+
 	public Map<String, String> getMapOrderByKey(Map<String, String> map);
 
 	/** 2. Create biggest number form array element using string addition */

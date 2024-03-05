@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class NetcoreImpl implements INetcore {
+public class
+NetcoreImpl implements INetcore {
 
 	/* The total number of subarrays */
 	public int subArrayCount(int a[]) {
@@ -26,6 +27,7 @@ public class NetcoreImpl implements INetcore {
 					List<List<Integer>> ll = map.get(i + 1);
 					ll.add(l);
 					map.put(i + 1, ll);
+
 				} else {
 					List<List<Integer>> ll = new ArrayList<>();
 					ll.add(l);
@@ -42,12 +44,30 @@ public class NetcoreImpl implements INetcore {
 
 		return count;
 	}
+	// pattern 1+2+3+..n pattern getting no of sab array
+	public int subArrayCountX(int a[]){
+		return a.length*(a.length+1)/2;
+	}
 
 	/* Count sub-arrays which have elements less than or equal to X */
 	public int subArrayLesEqualToX(int a[], int x) {
-		return 1;
+		Map<Integer, Integer> map = new HashMap<>();
+		int N = a.length;
+		int sum=0;
+		for(int i=1;i<=N;map.put(i,N-i+1),i++);
+		for(Map.Entry keySet:map.entrySet()) {
+			if ((int)keySet.getKey() <= x)
+				sum += (int)keySet.getValue();
+		}
+		return sum;
 	}
-
+	// pattern 1+2+3+..n length pattern getting no of noncontinuous sab array multiply factorial/arrangement
+	public int subArrayCountNonContinuous(int a[]){
+		int N= a.length;
+		int factVal = 1;
+		for(int i=1;i<=N;factVal*=i,i++);
+		return factVal*subArrayCountX(a);
+	}
 	/* Number of subarrays having even product */
 	public int countSubArrayEvenProd(int a[]) {
 		return 1;

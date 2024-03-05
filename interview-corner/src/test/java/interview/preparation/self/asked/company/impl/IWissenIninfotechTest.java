@@ -64,6 +64,17 @@ public class IWissenIninfotechTest {
 		System.out.println(iw.getMapOrderByValuesThenByKey(map));
 	}
 	@Test
+	public void getMapOrderByValuesThenByKeyXTest() {
+		Map<String, String> map = new LinkedHashMap<>();
+		map.put("Delhi", "a");
+		map.put("New York", "c");
+		map.put("Mumbai", "a");
+		map.put("Tokyo", "b");
+		map.put("Bangalore", "a");
+
+		System.out.println(iw.getMapOrderByValuesThenByKeyX(map));
+	}
+	@Test
 	public void getMapOrderByKeyTest()
 	{
 		Map<String, String> map = new LinkedHashMap<>();
