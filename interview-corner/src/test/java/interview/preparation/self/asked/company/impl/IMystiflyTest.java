@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import interview.preparation.self.asked.company.question.IMystifly;
 import org.junit.Before;
+import org.junit.Test;
 
 public class IMystiflyTest {
 
@@ -22,22 +23,11 @@ public class IMystiflyTest {
 	 * 0 11 000 1111 00000
 	 */
 
+	@Test
 	public void processingTest() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter the value, 0 for exit:");
-		String ob = sc.next();
 
-		while (true) {
-			List<String> list = im.processing(ob);
+			List<String> list = im.processing("5");
 			for (String str : list)
 				System.out.println(str);
-			if (ob.equals(ZERO)) {
-				System.out.println("Thanks");
-				break;
-			}
-			System.out.println("Enter the value, 0 for exit:");
-			ob = sc.next();
-		}
-
 	}
 }

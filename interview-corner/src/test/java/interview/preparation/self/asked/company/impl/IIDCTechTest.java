@@ -1,6 +1,5 @@
 package interview.preparation.self.asked.company.impl;
 
-import interview.preparation.self.asked.company.question.IDCTechImpl;
 import interview.preparation.self.asked.company.question.IIDCTech;
 import org.junit.Assert;
 import org.junit.Before;

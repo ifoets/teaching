@@ -1,8 +1,10 @@
-package interview.preparation.self.asked.company.question;
+package interview.preparation.self.asked.company.impl;
+
+import interview.preparation.self.asked.company.question.IIDCTech;
 
 import java.util.*;
 
-public class IDCTechImpl implements  IIDCTech{
+public class IDCTechImpl implements IIDCTech {
     public int stringToInt(String str)
     {
         if(Objects.isNull(str))
