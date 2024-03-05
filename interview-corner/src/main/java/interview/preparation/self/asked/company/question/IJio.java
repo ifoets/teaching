@@ -1,6 +1,9 @@
 package interview.preparation.self.asked.company.question;
 
-public interface IJio {
+public interface
+
+
+IJio {
 
 	/*
 	 * 1 how to desin system so if we have 100K customer to handle/purchange product

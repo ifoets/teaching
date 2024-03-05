@@ -74,7 +74,6 @@ public class StremApiImpl implements IStremApi {
 	public List<Integer> addListsOnIndexes(List<Integer> l1, List<Integer> l2) {
 		int N1 = l1.size();
 		int N2 = l2.size();
-
 		return IntStream.range(0, N1 > N2 ? N1 : N2).mapToObj(i -> (i < N1 ? l1.get(i) : 0) + (i < N2 ? l2.get(i) : 0))
 				.collect(Collectors.toList());
 	}
@@ -258,6 +257,32 @@ public class StremApiImpl implements IStremApi {
 				.entrySet().stream()
 				.filter( e-> uniqueOrDuplicate ? e.getValue() > 1 : e.getValue()==1)
 				.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+	}
+
+	/*find first  or last non-repeated val in arr*/
+	public int firstNonRepeatedVal(int []a){
+		return Arrays.stream(a).mapToObj( i->String.valueOf(a[i-1])).reduce("",(t1,t2)->t1+t2)
+				.chars().mapToObj( c->Character.toLowerCase(c))
+				.collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new, Collectors.counting()))
+				.entrySet()
+				.stream()
+				.filter(e->e.getValue()==1l)
+				.map(x -> x.getKey())
+				.findFirst()
+				.get()-48; //48 ascii value of char 0
+	}
+
+	/*find first or last repeated val in arr*/
+	public int firstRepeatedVal(int []a){
+		return Arrays.stream(a).mapToObj( i->String.valueOf(a[i-1])).reduce("",(t1,t2)->t1+t2)
+				.chars().mapToObj( c->Character.toLowerCase(c))
+				.collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new, Collectors.counting()))
+				.entrySet()
+				.stream()
+				.filter(e->e.getValue()>1l)
+				.map(x -> x.getKey())
+				.findFirst()
+				.get()-48; //48 ascii value of char 0
 	}
 
 }

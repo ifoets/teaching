@@ -60,7 +60,6 @@ public class MorganStanleyImpl implements IMorganStanley {
 							notifyAll();
 						}
 					}
-
 					if (tName == "Y") {
 						synchronized (this) {
 							while (i % 3 != 2) {
