@@ -82,6 +82,8 @@ public interface IArray {
      */
     public int minNoOfPlatform(int a[], int d[]);
 
+    public int minNoOfPlatformX(int a[], int d[]);
+
     /*
      * Question 17 : Find a Pair Whose Sum is Closest to zero in Array Question
      */

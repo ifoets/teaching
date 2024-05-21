@@ -1,5 +1,7 @@
 package interview.preparation.java8.model;
 
+import java.util.HashMap;
+
 public class Book {
 	String ISBN;
 	String name;

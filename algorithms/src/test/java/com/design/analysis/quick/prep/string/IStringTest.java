@@ -136,4 +136,11 @@ public class IStringTest {
         for(String str:strArr1)
         Assert.assertFalse(is.canBePalindrome(str));
     }
+
+    /*for any type string small, caps number space etc..*/
+    @Test
+    public void canBePalindromeXTest()
+    {
+        Assert.assertTrue(is.canBePalindromeX("aabAA"));
+    }
 }
