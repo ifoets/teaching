@@ -439,7 +439,8 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 
 	/** 14. Reverse a linked list recursive **/
 	@Override
-	public SLNode<Integer> reverseRcv(SLNode<Integer> node) {
+	public SLNode<Integer>
+	reverseRcv(SLNode<Integer> node) {
 		if (node == null || node.next == null)
 			return node;
 		SLNode<Integer> newNode = reverseRcv(node.next);

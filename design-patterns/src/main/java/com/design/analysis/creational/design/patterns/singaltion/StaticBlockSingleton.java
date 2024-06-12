@@ -12,7 +12,7 @@ public class StaticBlockSingleton {
 		try {
 			instance = new StaticBlockSingleton();
 		} catch (Exception e) {
-			throw new RuntimeException("Exception occured in creating singleton instance");
+			throw new RuntimeException("Exception occurred in creating singleton instance");
 		}
 	}
 

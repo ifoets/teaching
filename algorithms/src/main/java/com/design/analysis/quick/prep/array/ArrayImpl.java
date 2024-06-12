@@ -1,8 +1,10 @@
 package com.design.analysis.quick.prep.array;
 
 import com.design.analysis.core.algo.utils.AlgoUtils;
+import com.design.analysis.quick.prep.model.TrainSchedule;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ArrayImpl implements  IArray{
 
@@ -159,7 +161,33 @@ public class ArrayImpl implements  IArray{
         }
         return result;
     }
+    @Override
+    public int minNoOfPlatformX(int a[], int d[]){
+        int N=a.length;
+        List<TrainSchedule> tList = new ArrayList<>();
+        for(int i=0;i<N;tList.add(new TrainSchedule(a[i],d[i])),i++);
+        tList = tList.stream().sorted((o1,o2)->o1.arrivalTime-o2.arrivalTime)
+                .collect(Collectors.toList());
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
 
+        pq.add(tList.get(0).deptTime);
+        int count = 1;
+        for (int i = 1; i < N; i++) {
+            TrainSchedule curr = tList.get(i);
+            // Check if arrival time of current train
+            // is less than or equals to departure time
+            // of previous train
+            if (curr.arrivalTime <= pq.peek()) {
+                count++;
+            }
+            else {
+                pq.poll();
+            }
+            pq.add(curr.deptTime);
+        }
+        // return the count of number of platforms required
+        return count;
+    }
     /*
      * Question 17 : Find a Pair Whose Sum is Closest to zero in Array Question
      */

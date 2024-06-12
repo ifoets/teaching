@@ -256,7 +256,9 @@ public class DLinkListImpl implements IDLinkList<Integer> {
 	/** 3. Reverse a Doubly Linked List **/
 	/* iterative way to reverse */
 	@Override
-	public DLNode<Integer> reverseIterative(DLNode<Integer> head) {
+	public DLNode<Integer>
+
+	reverseIterative(DLNode<Integer> head) {
 
 		DLNode<Integer> p = head;
 		DLNode<Integer> t = null;

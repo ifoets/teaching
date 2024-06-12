@@ -27,7 +27,7 @@ public class IArrangeReArrangeTest {
 			Assert.assertTrue(a[i] == b[i]);
 	}
 
-	/* another apporach with O(n) both SC and TC */
+	/* another approach with O(n) both SC and TC */
 	@Test
 	public void fixedAtIndexXTest() {
 		int a[] = new int[] { -1, -1, 6, 1, 9, 3, 2, -1, 4, -1 };
@@ -46,7 +46,6 @@ public class IArrangeReArrangeTest {
 		for (int i = 0; i < a.length; i++)
 			 if(a[i]>0)
 				 Assert.assertTrue(a[i] == b[i]);
-
 	}
 	/*using java 8*/
 	@Test

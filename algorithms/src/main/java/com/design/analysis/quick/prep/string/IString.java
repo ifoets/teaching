@@ -71,4 +71,7 @@ public interface IString {
 
     /*Question 10 : Check is this string can be form a palindrome string*/
     public boolean canBePalindrome(String str);
+
+    /*for any type string small, caps number space etc..*/
+    public boolean canBePalindromeX(String str);
 }
