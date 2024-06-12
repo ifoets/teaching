@@ -25,7 +25,7 @@ public class UserBuilder {
     }
     //Return the finally consrcuted User object
     public User build() {
-        User user =  new User(new UserBuilder(firstName,lastName));
+        User user =  new User(new UserBuilder(firstName,lastName).phone("979").address("abc"));
         validateUserObject(user);
         return user;
     }

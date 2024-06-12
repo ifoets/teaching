@@ -4,6 +4,8 @@ import com.design.analysis.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class StringImpl implements IString {
     /* Search element in array in fastest way */
@@ -219,5 +221,15 @@ public class StringImpl implements IString {
                 return false;
         }
         return true;
+    }
+    /*for any type string small, caps number space etc..*/
+    @Override
+    public boolean canBePalindromeX(String str){
+        long count = str.chars().mapToObj(c->(char)c).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter( e-> e.getValue()%2 == 1)
+                .count();
+        return count>1l ? false : true;
     }
 }
