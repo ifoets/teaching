@@ -10,7 +10,7 @@ import com.design.analysis.company.preparation.model.LNode;
 /**
  * @author Guruji
  */
-public interface IWissenIninfotech {
+public interface IWissenInfotech {
 
 	/** 1. Add values in map so it map print sorted order based on values */
 

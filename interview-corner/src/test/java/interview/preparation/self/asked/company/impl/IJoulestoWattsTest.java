@@ -24,15 +24,27 @@ public class IJoulestoWattsTest {
         List<String> listR = List.of("aabb","ababaa","abaabababa","abaabaabab");
         for(int i=0; i<list.size();i++)
         {
-            Assert.assertTrue(ijw.transform(list.get(i)).equals(listR.get(i)));
+            Assert.assertEquals(ijw.transform(list.get(i)), listR.get(i));
         }
     }
     @Test
     public void transformStrTest()
     {
-        Assert.assertTrue(ijw.transformStr("a?bb".toCharArray(),4,1).equals("aabb"));
-        Assert.assertTrue(ijw.transformStr("a?b?aa".toCharArray(),6,2).equals("ababaa"));
-        Assert.assertTrue(ijw.transformStr("???a??b???".toCharArray(),10,8).equals("abaabababa"));
-        Assert.assertTrue(ijw.transformStr("??????????".toCharArray(),10,10).equals("abaabaabab"));
+        Assert.assertEquals("aabb", ijw.transformStr("a?bb".toCharArray(), 4, 1));
+        Assert.assertEquals("ababaa", ijw.transformStr("a?b?aa".toCharArray(), 6, 2));
+        Assert.assertEquals("abaabababa", ijw.transformStr("???a??b???".toCharArray(), 10, 8));
+        Assert.assertEquals("abaabaabab", ijw.transformStr("??????????".toCharArray(), 10, 10));
+    }
+
+    /*technique build string of length str.length() ababab...series then replace indexed a or b
+   and finally check 3 consecutive a or b
+    */
+    @Test
+    public void convertTest()
+    {
+        Assert.assertEquals("aabb", ijw.convert("a?bb"));
+        Assert.assertEquals("aabbaa", ijw.convert("a?b?aa"));
+        Assert.assertEquals("aabababbaa", ijw.convert("???a??b???"));
+        Assert.assertEquals("aabbaabbaa", ijw.convert("??????????"));
     }
 }

@@ -2,6 +2,7 @@ package interview.preparation.self.asked.company.impl;
 
 import interview.preparation.self.asked.company.question.IMorganStanley;
 
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -32,7 +33,7 @@ public class MorganStanleyImpl implements IMorganStanley {
 	 */
 	public Map<Thread, String> sortMapOnKeyProperty(Map<Thread, String> tmap) {
 
-		return tmap.entrySet().stream().sorted(Map.Entry.comparingByKey((x, y) -> x.getPriority() - y.getPriority()))
+		return tmap.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.comparingInt(Thread::getPriority)))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 	}
 

@@ -45,7 +45,7 @@ public class IArrangeReArrangeTest {
 		iar.fixedAtIndexY(a);
 		for (int i = 0; i < a.length; i++)
 			 if(a[i]>0)
-				 Assert.assertTrue(a[i] == b[i]);
+				 Assert.assertEquals(a[i], b[i]);
 	}
 	/*using java 8*/
 	@Test
@@ -57,7 +57,7 @@ public class IArrangeReArrangeTest {
 		System.out.println(Arrays.toString(a));
 		for (int i = 0; i < a.length; i++)
 			if(a[i]>0)
-				Assert.assertTrue(a[i] == b[i]);
+				Assert.assertEquals(a[i], b[i]);
 	}
 
 	/** 2. Write a program to reverse an array or string TC O(n/2) **/
@@ -68,7 +68,7 @@ public class IArrangeReArrangeTest {
 		int b[] = { 7, 6, 5, 4, 3, 2, 1 };
 		iar.reverseArr(a);
 		for (int i = 0; i < a.length; i++)
-			Assert.assertTrue(a[i] == b[i]);
+			Assert.assertEquals(a[i], b[i]);
 	}
 	/*using java 8 stream*/
 	@Test
@@ -77,7 +77,7 @@ public class IArrangeReArrangeTest {
 		int a[] = { 1, 2, 3, 4, 5, 6, 7 };
 		List<Integer> list = iar.reverseArrX(a);
 		for (int i = 0; i < a.length; i++) {
-			Assert.assertTrue(a[i] == list.get(a.length-1-i).intValue());
+			Assert.assertEquals(a[i], list.get(a.length - 1 - i).intValue());
 		}
 	}
 	/**
@@ -201,7 +201,7 @@ public class IArrangeReArrangeTest {
 	}
 
 	/**
-	 * 11. Rearrange an array in order – smallest, largest, 2nd smallest, 2nd
+	 * 11. Rearrange an array in order ï¿½ smallest, largest, 2nd smallest, 2nd
 	 * largest, ..
 	 **/
 	@Test
@@ -245,7 +245,7 @@ public class IArrangeReArrangeTest {
 		Assert.assertTrue(iar.formBiggestNo(b).equals("934331"));
 	}
 
-	/** 16. Rearrange an array such that ‘arr[j]’ becomes ‘i’ if ‘arr[i]’ is ‘j’ **/
+	/** 16. Rearrange an array such that ï¿½arr[j]ï¿½ becomes ï¿½iï¿½ if ï¿½arr[i]ï¿½ is ï¿½jï¿½ **/
 	@Test
 	public void arrangeInSpecialTest() {
 		int a[] = { 1, 3, 0, 2 };
