@@ -9,4 +9,6 @@ public interface IJoulestoWatts {
      String transform(String str);
 
     String transformStr(char[] chars, int N, int count);
+
+    String convert(String str);
 }

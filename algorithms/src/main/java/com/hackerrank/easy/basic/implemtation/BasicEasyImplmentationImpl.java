@@ -166,13 +166,13 @@ public class BasicEasyImplmentationImpl implements IBasicEasylmentationImp {
 	@Override
 	// @Idea collect count, reverse sort by value then by key and return first key
 	public int migratoryBirdsStream(List<Integer> arr) {
-		Map<Integer, Long> map = arr.stream().collect(Collectors.groupingBy(k -> k.intValue(), Collectors.counting()))
+		Map<Integer, Long> map = arr.stream().collect(Collectors.groupingBy(k -> k, Collectors.counting()))
 				.entrySet().stream()
 				.sorted(Comparator.comparing((Map.Entry<Integer, Long> m) -> -m.getValue())
 						.thenComparing(Map.Entry::getKey))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
 
-		return (int) map.entrySet().toArray()[0];
+		return  map.entrySet().stream().findFirst().get().getKey();
 
 	}
 

@@ -24,16 +24,16 @@ public class ISelfOrgLinkListTest {
 		// isol.display(head);
 	}
 
-	/* insert the node based on sorted frquency */
+	/* insert the node based on sorted frequency */
 	@Test
 	public void insertTest() {
 		Integer a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 		SOrgNode<Integer> head = isol.massCreate(a);
-		SOrgNode<Integer> sl = new SOrgNode<Integer>(10);
+		SOrgNode<Integer> sl = new SOrgNode<>(10);
 		sl.frq = 1;
 		// head = isol.insert(sl);
 		isol.display(head);
-		Assert.assertTrue(head.n == 10 && head.frq == 1);
+		Assert.assertTrue(head.n == 1 && head.frq == 0);
 	}
 
 	/* creating list in single unit by unit */

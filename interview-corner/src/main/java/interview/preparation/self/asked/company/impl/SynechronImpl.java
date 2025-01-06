@@ -8,7 +8,7 @@ import java.util.Objects;
 public class SynechronImpl implements ISynechron {
     @Override
     public Node createList(Node node, int a[]){
-        boolean flag = node == null ? true:false;
+        boolean flag = node == null;
         if(Objects.isNull(node) && !Objects.isNull(a) && a.length>0)
             node = new Node(a[0]);
         Node q = node;

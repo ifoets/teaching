@@ -2,8 +2,6 @@ package interview.preparation.self.asked.company.impl;
 
 import interview.preparation.self.asked.company.question.IJoulestoWatts;
 
-import java.util.Objects;
-
 public class JoulestoWattsImpl implements IJoulestoWatts {
 
     @Override
@@ -11,9 +9,8 @@ public class JoulestoWattsImpl implements IJoulestoWatts {
     {
         int count =0;
         char []chars = str.toCharArray();
-        for(int i=0;i<chars.length;i++)
-        {
-            if(chars[i]=='?')
+        for (char aChar : chars) {
+            if (aChar == '?')
                 count++;
         }
        return transformStr(chars, str.length(), count);
@@ -74,5 +71,39 @@ public class JoulestoWattsImpl implements IJoulestoWatts {
 
             }
         return transform(String.valueOf(chars));
+    }
+
+    /*technique build string of length str.length() aabbaabb...series then replace indexed a or b
+    and finally check 3 consecutive a or b
+     */
+    public String convert(String str){
+        int l = str.length();
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i=0,j=0;i<l;i+=2,j++)
+        {
+            if(j%2==0)
+            stringBuilder.append("aa");
+            else stringBuilder.append("bb");
+        }
+        if(l%2==1)
+            stringBuilder.append("a");
+        char[] charsNew = stringBuilder.toString().toCharArray();
+        char [] chars = str.toCharArray();
+        for(int i=0;i<l;i++)
+        {
+            if(chars[i]!='?')
+                charsNew[i]=chars[i];
+        }
+        //now check 3 a/b consecutive and replace middle in new String
+        for(int i=1;i<l-1;i++)
+        {
+            if(charsNew[i-1]==charsNew[i] && charsNew[i]==charsNew[i+1])
+            {
+                if(charsNew[i]=='a')
+                    charsNew[i]='b';
+                else charsNew[i]='a';
+            }
+        }
+        return new String(charsNew);
     }
 }
