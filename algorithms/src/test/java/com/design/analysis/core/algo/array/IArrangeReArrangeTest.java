@@ -431,8 +431,8 @@ public class IArrangeReArrangeTest {
 		List<Integer> cl = iar.sortByFrequency(a,true);
 		for(int i=0;i<a.length;i++)
 		{
-			Assert.assertTrue(b[i]==bl.get(i));
-			Assert.assertTrue(c[i]==cl.get(i));
+			Assert.assertEquals(b[i], (int) bl.get(i));
+			Assert.assertEquals(c[i], (int) cl.get(i));
 		}
 	}
 	/* 35. Maximize sum of consecutive differences in a circular array */
@@ -440,8 +440,50 @@ public class IArrangeReArrangeTest {
 	public  void maxSumConsecutiveDiffCirArrayTest()
 	{
 		int arr[] = { 4, 2, 1, 8 };
-		Assert.assertTrue(iar.maxSumConsecutiveDiffCirArray(arr)==18);
+		Assert.assertEquals(18, iar.maxSumConsecutiveDiffCirArray(arr));
 	}
+
+	/* 36. Sort an array according to the order defined by another array */
+	@Test
+	public void sortByAnotherArray(){
+		int[] a1 = {2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8};
+		int[] b1 = {2, 1, 8, 3};
+		int[] output1 = {2, 2, 1, 1, 8, 8, 3, 5, 6, 7, 9};
+		iar.sortByAnotherArray(a1,b1);
+		Assert.assertArrayEquals(a1, output1);
+		System.out.println(Arrays.toString(a1));
+
+		int[] a2 = {4, 5, 1, 1, 3, 2};
+		int[] b2 = {3, 1};
+		int[] output2 = {3, 1, 1, 2, 4, 5};
+		iar.sortByAnotherArray(a2,b2);
+		Assert.assertArrayEquals(a2, output2);
+		System.out.println(Arrays.toString(a2));
+	}
+	/*
+	 * 37. Find Index of 0 to be replaced with 1 to get longest continuous sequence
+	 * of 1s in a binary array
+	 */
+	@Test
+	public void indexLongestContinuousOneTest(){
+		int[]  a =  {1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1};
+		int outputIndex1 = 9;
+        Assert.assertEquals(outputIndex1, iar.indexLongestContinuousOne(a));
+
+		int[] b =  {1, 1, 1, 1, 0};
+		int outputIndex2 = 4;
+        Assert.assertEquals(outputIndex2, iar.indexLongestContinuousOne(b));
+
+        int[] c  =  {1, 1, 0, 0, 1, 0, 1, 1};
+        Assert.assertEquals(2, iar.indexLongestContinuousOne(c));
+
+	}
+
+    /* 38. Three way partitioning of an array around a given range */
+    public void threeWayPartitionTest()
+    {
+
+    }
 	/**********************************************************************************************/
 
 	/** 3. Sort an array in wave form **/
