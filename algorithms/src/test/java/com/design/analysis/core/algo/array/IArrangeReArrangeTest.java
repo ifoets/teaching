@@ -45,7 +45,7 @@ public class IArrangeReArrangeTest {
 		iar.fixedAtIndexY(a);
 		for (int i = 0; i < a.length; i++)
 			 if(a[i]>0)
-				 Assert.assertTrue(a[i] == b[i]);
+				 Assert.assertEquals(a[i], b[i]);
 	}
 	/*using java 8*/
 	@Test
@@ -57,7 +57,7 @@ public class IArrangeReArrangeTest {
 		System.out.println(Arrays.toString(a));
 		for (int i = 0; i < a.length; i++)
 			if(a[i]>0)
-				Assert.assertTrue(a[i] == b[i]);
+				Assert.assertEquals(a[i], b[i]);
 	}
 
 	/** 2. Write a program to reverse an array or string TC O(n/2) **/
@@ -68,7 +68,7 @@ public class IArrangeReArrangeTest {
 		int b[] = { 7, 6, 5, 4, 3, 2, 1 };
 		iar.reverseArr(a);
 		for (int i = 0; i < a.length; i++)
-			Assert.assertTrue(a[i] == b[i]);
+			Assert.assertEquals(a[i], b[i]);
 	}
 	/*using java 8 stream*/
 	@Test
@@ -77,7 +77,7 @@ public class IArrangeReArrangeTest {
 		int a[] = { 1, 2, 3, 4, 5, 6, 7 };
 		List<Integer> list = iar.reverseArrX(a);
 		for (int i = 0; i < a.length; i++) {
-			Assert.assertTrue(a[i] == list.get(a.length-1-i).intValue());
+			Assert.assertEquals(a[i], list.get(a.length - 1 - i).intValue());
 		}
 	}
 	/**
@@ -201,7 +201,7 @@ public class IArrangeReArrangeTest {
 	}
 
 	/**
-	 * 11. Rearrange an array in order – smallest, largest, 2nd smallest, 2nd
+	 * 11. Rearrange an array in order ï¿½ smallest, largest, 2nd smallest, 2nd
 	 * largest, ..
 	 **/
 	@Test
@@ -245,7 +245,7 @@ public class IArrangeReArrangeTest {
 		Assert.assertTrue(iar.formBiggestNo(b).equals("934331"));
 	}
 
-	/** 16. Rearrange an array such that ‘arr[j]’ becomes ‘i’ if ‘arr[i]’ is ‘j’ **/
+	/** 16. Rearrange an array such that ï¿½arr[j]ï¿½ becomes ï¿½iï¿½ if ï¿½arr[i]ï¿½ is ï¿½jï¿½ **/
 	@Test
 	public void arrangeInSpecialTest() {
 		int a[] = { 1, 3, 0, 2 };
@@ -431,8 +431,8 @@ public class IArrangeReArrangeTest {
 		List<Integer> cl = iar.sortByFrequency(a,true);
 		for(int i=0;i<a.length;i++)
 		{
-			Assert.assertTrue(b[i]==bl.get(i));
-			Assert.assertTrue(c[i]==cl.get(i));
+			Assert.assertEquals(b[i], (int) bl.get(i));
+			Assert.assertEquals(c[i], (int) cl.get(i));
 		}
 	}
 	/* 35. Maximize sum of consecutive differences in a circular array */
@@ -440,8 +440,50 @@ public class IArrangeReArrangeTest {
 	public  void maxSumConsecutiveDiffCirArrayTest()
 	{
 		int arr[] = { 4, 2, 1, 8 };
-		Assert.assertTrue(iar.maxSumConsecutiveDiffCirArray(arr)==18);
+		Assert.assertEquals(18, iar.maxSumConsecutiveDiffCirArray(arr));
 	}
+
+	/* 36. Sort an array according to the order defined by another array */
+	@Test
+	public void sortByAnotherArray(){
+		int[] a1 = {2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8};
+		int[] b1 = {2, 1, 8, 3};
+		int[] output1 = {2, 2, 1, 1, 8, 8, 3, 5, 6, 7, 9};
+		iar.sortByAnotherArray(a1,b1);
+		Assert.assertArrayEquals(a1, output1);
+		System.out.println(Arrays.toString(a1));
+
+		int[] a2 = {4, 5, 1, 1, 3, 2};
+		int[] b2 = {3, 1};
+		int[] output2 = {3, 1, 1, 2, 4, 5};
+		iar.sortByAnotherArray(a2,b2);
+		Assert.assertArrayEquals(a2, output2);
+		System.out.println(Arrays.toString(a2));
+	}
+	/*
+	 * 37. Find Index of 0 to be replaced with 1 to get longest continuous sequence
+	 * of 1s in a binary array
+	 */
+	@Test
+	public void indexLongestContinuousOneTest(){
+		int[]  a =  {1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1};
+		int outputIndex1 = 9;
+        Assert.assertEquals(outputIndex1, iar.indexLongestContinuousOne(a));
+
+		int[] b =  {1, 1, 1, 1, 0};
+		int outputIndex2 = 4;
+        Assert.assertEquals(outputIndex2, iar.indexLongestContinuousOne(b));
+
+        int[] c  =  {1, 1, 0, 0, 1, 0, 1, 1};
+        Assert.assertEquals(2, iar.indexLongestContinuousOne(c));
+
+	}
+
+    /* 38. Three way partitioning of an array around a given range */
+    public void threeWayPartitionTest()
+    {
+
+    }
 	/**********************************************************************************************/
 
 	/** 3. Sort an array in wave form **/

@@ -571,7 +571,7 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 			p1 = p1.next;
 		}
 		while (p2 != null) {
-			if (s1.contains(p2))
+			if (s1.contains(p2)) //@TODO
 				return p2;
 			p2 = p2.next;
 		}

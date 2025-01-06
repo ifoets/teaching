@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
 
-import interview.preparation.self.asked.company.question.IWissenIninfotech;
+import interview.preparation.self.asked.company.question.IWissenInfotech;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,23 +17,23 @@ import com.design.analysis.company.preparation.utils.SListUtils;
 
 public class IWissenIninfotechTest {
 
-	IWissenIninfotech iw = null;
+	IWissenInfotech iw = null;
 
 	@Before
 	public void init() {
-		iw = new WissenIninfotechImpl();
+		iw = new WissenInfotechImpl();
 	}
 
 	/** 1. Add values in map so it map print sorted order based on values */
 	@Test
 	public void getMapOrderByValuesTest() {
-		Assert.assertTrue(iw.getMapOrderByValues(getFilledMapValue()).equals(getSortedFilledValue()));
+        Assert.assertEquals(iw.getMapOrderByValues(getFilledMapValue()), getSortedFilledValue());
 
 	}
 
 	@Test
 	public void getMapOrderByValuesTestX() {
-		Assert.assertTrue(iw.getMapOrderByValuesX(getFilledMapValue()).equals(getSortedFilledValue()));
+        Assert.assertEquals(iw.getMapOrderByValuesX(getFilledMapValue()), getSortedFilledValue());
 
 	}
 
@@ -49,7 +49,7 @@ public class IWissenIninfotechTest {
 		mapresult.put("Tokyo", "b");
 		mapresult.put("New York", "c");
 
-		Assert.assertTrue(iw.getMapOrderByValuesY(map).equals(mapresult));
+        Assert.assertEquals(iw.getMapOrderByValuesY(map), mapresult);
 
 	}
 	@Test
@@ -92,11 +92,11 @@ public class IWissenIninfotechTest {
 	public void getBiggestNumberTest() {
 
 		int a[] = { 3, 30, 9 };
-		Assert.assertTrue(iw.getBiggestNumber(a).equals("9330"));
+        Assert.assertEquals("9330", iw.getBiggestNumber(a));
 		int b[] = { 952, 9, 90 };
-		Assert.assertTrue(iw.getBiggestNumber(b).equals("995290"));
+        Assert.assertEquals("995290", iw.getBiggestNumber(b));
 		int c[] = { 952, 94, 953 };
-		Assert.assertTrue(iw.getBiggestNumber(c).equals("95395294"));
+        Assert.assertEquals("95395294", iw.getBiggestNumber(c));
 
 	}
 
@@ -104,11 +104,11 @@ public class IWissenIninfotechTest {
 	public void getBiggestNumberXTest() {
 
 		int a[] = { 3, 30, 9 };
-		Assert.assertTrue(iw.getBiggestNumberX(a).equals("9330"));
+        Assert.assertEquals("9330", iw.getBiggestNumberX(a));
 		int b[] = { 952, 9, 90 };
-		Assert.assertTrue(iw.getBiggestNumberX(b).equals("995290"));
+        Assert.assertEquals("995290", iw.getBiggestNumberX(b));
 		int c[] = { 952, 94, 953 };
-		Assert.assertTrue(iw.getBiggestNumber(c).equals("95395294"));
+        Assert.assertEquals("95395294", iw.getBiggestNumber(c));
 
 	}
 
@@ -119,7 +119,7 @@ public class IWissenIninfotechTest {
 		Integer[] a = new Integer[1000];
 		for (int i = 0; i < 1000; a[i] = i + 1, i++)
 			;
-		Assert.assertTrue(iw.getSum(a, 10) == 500500);
+        Assert.assertEquals(500500, iw.getSum(a, 10));
 	}
 
 	@Test
@@ -128,7 +128,7 @@ public class IWissenIninfotechTest {
 		Integer[] a = new Integer[1000];
 		for (int i = 0; i < 1000; a[i] = i + 1, i++)
 			;
-		Assert.assertTrue(iw.getSumAX(a, 10) == 500500);
+        Assert.assertEquals(500500, iw.getSumAX(a, 10));
 	}
 
 	/** sum array with performance heaving n thread using ForkandJJoin */
@@ -148,8 +148,8 @@ public class IWissenIninfotechTest {
 			;
 		a[100] = 500000;
 		a[101] = -10;
-		Assert.assertTrue(iw.getMaxOrMin(a, 100, true) == a[100]);
-		Assert.assertTrue(iw.getMaxOrMin(a, 100, false) == a[101]);
+        Assert.assertEquals(iw.getMaxOrMin(a, 100, true), (int) a[100]);
+        Assert.assertEquals(iw.getMaxOrMin(a, 100, false), (int) a[101]);
 
 	}
 
@@ -162,8 +162,8 @@ public class IWissenIninfotechTest {
 		a[100] = 500000;
 		a[101] = -10;
 		//System.out.println(iw.getMaxOrMinX(a, 100, true));
-		Assert.assertTrue(iw.getMaxOrMinX(a, 100, true) == a[100]);
-		Assert.assertTrue(iw.getMaxOrMinX(a, 100, false) == a[101]);
+        Assert.assertEquals(iw.getMaxOrMinX(a, 100, true), (int) a[100]);
+        Assert.assertEquals(iw.getMaxOrMinX(a, 100, false), (int) a[101]);
 
 	}
 
@@ -175,12 +175,12 @@ public class IWissenIninfotechTest {
 		LNode x = SListUtils.createList(null, a);
 		LNode y = SListUtils.createList(null, b);
 		y.next.next = x.next.next.next.next.next;
-		Assert.assertTrue(iw.getInterSectionNode(x, y).dt == 2);
+        Assert.assertEquals(2, iw.getInterSectionNode(x, y).dt);
 	}
 
 	/** 6 find start circular node */
 	@Test
-	public void getCirculrPointNodeTest() {
+	public void getCirculerPointNodeTest() {
 		int a[] = { 1, 2, 5, 3, 4, 2, 6, 4, 3 };
 		LNode x = SListUtils.createList(null, a);
 		LNode y = SListUtils.tail;
@@ -229,7 +229,7 @@ public class IWissenIninfotechTest {
 	public void commonCharactersTest() {
 		String a = "abcbcd";
 		String b = "cdefefc";
-		Assert.assertTrue(iw.commonCharacters(a, b).equals("ccd"));
+        Assert.assertEquals("ccd", iw.commonCharacters(a, b));
 	}
 
 	@Test
@@ -255,14 +255,14 @@ public class IWissenIninfotechTest {
 	public void snakeToCamelTest() {
 		String str1 = "geeks_for_geeks";
 		String str2 = "GeeksForGeeks";
-		Assert.assertTrue(iw.snakeToCamel(str1).equals(str2));
+        Assert.assertEquals(iw.snakeToCamel(str1), str2);
 	}
 
 	@Test
 	public void camelTOSnakeTest() {
 		String str1 = "geeks_for_geeks";
 		String str2 = "geeksForGeeks";
-		Assert.assertTrue(iw.camelToSnake(str2).equals(str1));
+        Assert.assertEquals(iw.camelToSnake(str2), str1);
 	}
 
 	@Test

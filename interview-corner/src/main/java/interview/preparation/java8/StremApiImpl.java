@@ -16,7 +16,7 @@ public class StremApiImpl implements IStremApi {
 	/** convert list to map */
 	@Override
 	public Map<String, Book> convertListToMap(List<Book> list) {
-		Map<String, Book> map = list.stream().collect(Collectors.toMap(book -> book.getISBN(), book -> book));
+		Map<String, Book> map = list.stream().collect(Collectors.toMap(Book::getISBN, book -> book));
 		// or
 		map = list.stream().collect(Collectors.toMap(Book::getISBN, b -> b));
 		// or
@@ -34,8 +34,8 @@ public class StremApiImpl implements IStremApi {
 	/** sort map based on the value then key */
 	@Override
 	public Map<String, String> sortMapOnValueThenKey(Map<String, String> map) {
-		return map.entrySet().stream().sorted(Map.Entry.comparingByKey()).sorted(Map.Entry.comparingByValue())
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+		return map.entrySet().stream().sorted(Map.Entry.comparingByValue()).sorted(Map.Entry.comparingByKey())
+				.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue, (e1,e2)->e1, LinkedHashMap::new));
 	}
 
 	/* to upper case */

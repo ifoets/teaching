@@ -848,6 +848,96 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
 	   }
 	   return sum;
 	}
+	/* 36. Sort an array according to the order defined by another array then sorted by rest of numbers*/
+	@Override
+	public void sortByAnotherArray(int[] a, int[] b){
+		int c[] = new int[a.length];
+         LinkedHashMap<Integer, Integer> linkedHashMap = new LinkedHashMap<>();
+		 for(Integer in:b)
+			 linkedHashMap.put(in,0);
+		 for(int i=0;i<a.length;i++)
+		 {
+			 if(linkedHashMap.containsKey(a[i])) {
+				 linkedHashMap.put(a[i], linkedHashMap.get(a[i]) + 1);
+				 a[i]=0;
+			 }
+		 }
+		 Arrays.sort(a);
+		 int i=0;
+		 for(Map.Entry<Integer,Integer> entry: linkedHashMap.entrySet())
+		 {
+			 int val = entry.getValue();
+			 while (val-->0)
+				 c[i++]=entry.getKey();
+		 }
+		 for (int j=i;j<a.length;j++)
+		 {
+				 c[j]=a[j];
+		 }
+		for (int k=0;k<a.length;a[k]=c[k],k++);
+	}
+	/*
+	 * 37. Find Index of 0 to be replaced with 1 to get the
+	 * longest continuous sequence
+	 * of 1s in a binary array
+	 */
+	public int indexLongestContinuousOne(int[] a){
+
+        int maxCount=0;
+        int prevZero = -1;
+        int prevPrevZero = -1;
+        int maxIndex = 0;
+        int n = a.length;
+        for(int cur=0;cur<n;cur++)
+        {
+            if(a[cur]==0)
+            {
+                // Update result if count of 1s around prev_zero is more
+                if(cur-prevPrevZero > maxCount)
+                {
+                    maxCount = cur-prevPrevZero;
+                    maxIndex = cur;
+                }
+                // Update for next iteration
+                prevPrevZero = prevZero;
+                prevZero = cur;
+            }
+        }
+        //check for last 0 encounter
+        if(n-prevPrevZero > maxCount) {
+            maxCount = (n-1)-prevPrevZero;
+            maxIndex = prevZero;
+        }
+        System.out.println("Max count: "+maxCount);
+        return maxIndex;
+	}
+
+    /* 38. Three way partitioning of an array around a given range */
+    public void threeWayPartition(int a[], int lowVal, int hiVal){
+       int n = a.length;
+       int start =0;
+       int end = n-1;
+
+        for(int i=0;i<n;)
+        {
+            if(a[i]<lowVal)
+            {
+                int temp = a[i];
+                a[i] = a[start];
+                a[start] = temp;
+                start++;
+            }
+            else if(a[i]>hiVal)
+            {
+                int temp = a[i];
+                a[i] = a[end];
+                a[end] = temp;
+                end--;
+            }
+            else i++;
+        }
+
+    }
 	/***********************************************************************************************************************************************************************/
 
 	/** 3. Sort an array in wave form **/

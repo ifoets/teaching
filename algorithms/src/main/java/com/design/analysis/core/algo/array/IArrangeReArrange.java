@@ -200,11 +200,16 @@ public interface IArrangeReArrange {
 	public  int maxSumConsecutiveDiffCirArray(int a[]);
 
 	/* 36. Sort an array according to the order defined by another array */
+	void sortByAnotherArray(int[] a, int[] b);
 	/*
-	 * 37. Find Index of 0 to be replaced with 1 to get longest continuous sequence
+	 * 37. Find Index of 0 to be replaced with 1 to get the longest continuous sequence
 	 * of 1s in a binary array
 	 */
+	int indexLongestContinuousOne(int[] a);
+
 	/* 38. Three way partitioning of an array around a given range */
+    void threeWayPartition(int a[], int lowVal, int hiVal);
+
 	/*
 	 * 39. Generate all possible sorted arrays from alternate elements of two given
 	 * sorted arrays

@@ -13,7 +13,7 @@ public class SelfOrgLinkListImpl implements ISelfOrgLinkList<Integer> {
 		SOrgNode<Integer> temp = null;
 
 		for (int i = 0; i < n.length; i++) {
-			temp = new SOrgNode<Integer>(n[i]);
+			temp = new SOrgNode<>(n[i]);
 			if (head == null)
 				head = tail = temp;
 			else {

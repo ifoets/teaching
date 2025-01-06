@@ -24,9 +24,9 @@ import java.util.stream.Collectors;
 
 import com.design.analysis.company.preparation.model.LNode;
 import com.design.analysis.company.preparation.utils.SListUtils;
-import interview.preparation.self.asked.company.question.IWissenIninfotech;
+import interview.preparation.self.asked.company.question.IWissenInfotech;
 
-public class WissenIninfotechImpl implements IWissenIninfotech {
+public class WissenInfotechImpl implements IWissenInfotech {
 
 	/**
 	 * 1. Add values in map so it map print sorted order based on values if values
@@ -193,19 +193,17 @@ public class WissenIninfotechImpl implements IWissenIninfotech {
 		Set<Callable<List<Integer>>> callables = new HashSet<>();
 		int slot = a.length / n;
 		for (int i = 0; i < a.length; i += slot) {
-			List<Integer> list = Arrays.asList(Arrays.copyOfRange(a, i, i + slot < a.length ? i + slot : a.length));
-			callables.add(new Callable<List<Integer>>() {
-				public List<Integer> call() throws Exception {
-					int chunKsum = 0;
-					for (Integer inte : list)
-						chunKsum += inte;
-					// int chunKsum = list.stream().reduce(0, (a, b) -> a + b);
-					List<Integer> listNew = new ArrayList<>();
+			Integer[] list = Arrays.copyOfRange(a, i, Math.min(i + slot, a.length));
+			callables.add(() -> {
+                int chunKsum = 0;
+                for (Integer inte : list)
+                    chunKsum += inte;
+                // int chunKsum = list.stream().reduce(0, (a, b) -> a + b);
+                List<Integer> listNew = new ArrayList<>();
 
-					listNew.add(chunKsum);
-					return listNew;
-				}
-			});
+                listNew.add(chunKsum);
+                return listNew;
+            });
 		}
 		List<Future<List<Integer>>> futures = executorService.invokeAll(callables);
 		int totalSum = 0;
@@ -224,15 +222,14 @@ public class WissenIninfotechImpl implements IWissenIninfotech {
 		int slot = N / n;
 
 		for (int i = 0; i < N; i += slot) {
-			List<Integer> list = Arrays.asList(Arrays.copyOfRange(a, i, slot + i < N ? i + slot : N));
-			callables.add(new Callable<Integer>() {
-				public Integer call() throws Exception {
-					int sum = 0;
-					for (Integer x : list)
-						sum += x;
-					return sum;
-				}
-			});
+			Integer[] list = Arrays.copyOfRange(a, i, Math.min(slot + i, N));
+			callables.add(() -> {
+                return Arrays.stream(list).mapToInt(Integer::intValue).sum();
+                /*int sum = 0;
+                for (Integer x : list)
+                    sum += x;
+                return sum;*/
+            });
 		}
 		int totalSum = 0;
 		List<Future<Integer>> futures = executorService.invokeAll(callables);
