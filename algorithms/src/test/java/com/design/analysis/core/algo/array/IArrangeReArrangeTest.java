@@ -559,6 +559,27 @@ public class IArrangeReArrangeTest {
         int []a = {3, 5, 6, 4, 1, 2};
         Assert.assertEquals(iar.minNoOfSwapFindPartner(a,map),2);
     }
+    /* 42. Form minimum number from given sequence or sort an 1-9 digits array as string pattern wave
+    Auxiliary Given a pattern containing only I’s and D’s. I for increasing and D for decreasing. Device an algorithm to print the minimum number following that pattern.
+    Digits from 1-9 and digits can’t repeat.*/
+    @Test
+    public void formMinNumberTest()
+    {
+        Assert.assertEquals(21,iar.formMinNumber("D"));
+        Assert.assertEquals(321,iar.formMinNumber("DD"));
+        Assert.assertEquals(123,iar.formMinNumber("II"));
+        Assert.assertEquals(21435,iar.formMinNumber("DIDI"));
+        Assert.assertEquals(321654798,iar.formMinNumber("DDIDDIID"));
+    }
+    @Test
+    public void formMaxNumberTest()
+    {
+        Assert.assertEquals(21,iar.formMaxNumber("D"));
+        Assert.assertEquals(321,iar.formMaxNumber("DD"));
+        Assert.assertEquals(123,iar.formMaxNumber("II"));
+        Assert.assertEquals(53412,iar.formMaxNumber("DIDI"));
+        Assert.assertEquals(986752341,iar.formMaxNumber("DDIDDIID"));
+    }
     /**********************************************************************************************/
 
     /** 3. Sort an array in wave form **/

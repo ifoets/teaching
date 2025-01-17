@@ -227,7 +227,9 @@ public interface IArrangeReArrange {
     //@see ** 3. Sort an array in wave form **
     /* 41. Convert array into Zig-Zag fashion */
 
-    /* 42. Form minimum number from given sequence */
+    /* 42. Form minimum number from given sequence or sort an 1-9 digits array as string pattern wave*/
+    int formMinNumber(String pattern);
+    int formMaxNumber(String pattern);
     /* 43. Replace two consecutive equal values with one greater */
     /* 44. Rearrange a binary string as alternate x and y occurrences */
     /* 45. Distinct adjacent elements in an array */

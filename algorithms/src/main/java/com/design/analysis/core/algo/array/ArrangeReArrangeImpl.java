@@ -1013,9 +1013,47 @@ public class ArrangeReArrangeImpl implements IArrangeReArrange {
     //@see ** 3. Sort an array in wave form **
     /* 41. Convert array into Zig-Zag fashion */
 
-    /* 42. Form minimum number from given sequence
+    /* 42. Form minimum number from given sequence or sort an 1-9 digits array as string pattern wave
     Auxiliary Given a pattern containing only I’s and D’s. I for increasing and D for decreasing. Device an algorithm to print the minimum number following that pattern.
     Digits from 1-9 and digits can’t repeat.*/
+    @Override
+    public int formMinNumber(String pattern){
+        int len = pattern.length();
+        int []a = new int[len+1];
+        for(int i=1;i<=a.length;a[i-1]=i,i++);
+        int start=0;
+            for(int i=0;i<=pattern.length();i++)
+            {
+                if(i==pattern.length() || pattern.charAt(i)!='D')
+                {
+                    if(start!=i)
+                        AlgoUtils.reversePart(a,start,i);
+                    start=i+1;
+                }
+            }
+            String result="";
+            for(int j=0;j<a.length;result+=a[j++]);
+            return Integer.parseInt(result);
+    }
+    @Override
+    public int formMaxNumber(String pattern){
+        int len = pattern.length();
+        int []a = new int[len+1];
+        for(int i=1;i<=a.length;a[i-1]=a.length-i+1,i++);
+        int start=0;
+        for(int i=0;i<=pattern.length();i++)
+        {
+            if(i==pattern.length() || pattern.charAt(i)!='I')
+            {
+                if(start!=i)
+                    AlgoUtils.reversePart(a,start,i);
+                start=i+1;
+            }
+        }
+        String result="";
+        for(int j=0;j<a.length;result+=a[j++]);
+        return Integer.parseInt(result);
+    }
 
         /* 43. Replace two consecutive equal values with one greater */
         /* 44. Rearrange a binary string as alternate x and y occurrences */
