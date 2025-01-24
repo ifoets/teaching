@@ -23,7 +23,7 @@ public class WallmartImpl implements IWallmart {
 
     /*wrote a function that check weather an array is sub array of another array, return true or false*/
     @Override
-    public boolean checkArrayIsSubArray(int a[], int b[])
+    public boolean checkArrayIsSubArray(int []a, int []b)
     {
         if(b==null || b.length==0)
             return true;

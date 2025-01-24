@@ -125,7 +125,6 @@ public class DynamicBasicImpl implements IDynamicBasic {
 	}
 
 	/** 4. Bell Numbers (Number of ways to Partition a Set) **/
-	// TODO understanding the partition
 	public int bellNumber(int n) {
 		int[][] bell = new int[n + 1][n + 1];
 		bell[0][0] = 1;

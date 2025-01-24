@@ -17,7 +17,7 @@ public class IConversionStringTest {
 		ics = new ConversionStringImpl();
 	}
 
-	/** 1. Convert all substrings of length ‘k’ from base ‘b’ to decimal **/
+	/** 1. Convert all substrings of length k from base b to decimal **/
 	@Test
 	public void substringConversionsTest() {
 		String str = "12212";

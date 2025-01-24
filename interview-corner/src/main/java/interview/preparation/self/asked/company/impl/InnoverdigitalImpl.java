@@ -2,29 +2,47 @@ package interview.preparation.self.asked.company.impl;
 
 import interview.preparation.self.asked.company.question.Iinnoverdigital;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.logging.Logger;
 
 public class InnoverdigitalImpl implements Iinnoverdigital {
 
 	public Object serlizeDeserlizeObject(Object obj) throws Exception {
 		String file = "file.ser";
 		Object rObj = null;
+        FileOutputStream fos = null;
+        ObjectOutputStream oos=null;
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
 		// serlization
-		FileOutputStream fos = new FileOutputStream(file);
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(obj);
-		fos.close();
-		oos.close();
+        try {
+            fos = new FileOutputStream(file);
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(obj);
 
-		// deserlization
-		FileInputStream fis = new FileInputStream(file);
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		rObj = ois.readObject();
-		fis.close();
-		ois.close();
+            // deserlization
+             fis = new FileInputStream(file);
+             ois = new ObjectInputStream(fis);
+            rObj = ois.readObject();
+        }catch (IOException e)
+        {
+            System.out.println("IOException encounter");
+        }
+    finally {
+            try {
+                if (fos != null)
+                    fos.close();
+                if (oos != null)
+                    oos.close();
+                if (fis != null)
+                    fis.close();
+                if (ois != null)
+                    ois.close();
+            }catch (Exception e){
+                System.out.println("Unable to close Resource encounter");
+            }
+        }
+
 		return rObj;
 	}
 }

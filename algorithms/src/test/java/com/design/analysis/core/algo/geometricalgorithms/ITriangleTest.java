@@ -95,7 +95,7 @@ public class ITriangleTest {
 	}
 
 	/**
-	 * 7. Maximum number of n×n squares that can be fit inside a right isosceles
+	 * 7. Maximum number of n n squares that can be fit inside a right isosceles
 	 * triangle
 	 **/
 	@Test

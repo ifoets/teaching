@@ -121,7 +121,7 @@ public class IStandardGreedyAlgoTest {
 			Assert.assertTrue(jb.profit == a[i++]);
 	}
 
-	/** 5. Job Sequencing Problem – Loss Minimization **/
+	/** 5. Job Sequencing Problem Loss Minimization **/
 	@Test
 	public void jobSequencingLossMinStrategyTest() {
 		List<LossMin> list = new ArrayList<>();
@@ -154,7 +154,7 @@ public class IStandardGreedyAlgoTest {
 			Assert.assertTrue(jb.jobId == a[i++]);
 	}
 
-	/** 6. Job Selection Problem – Loss Minimization Strategy | Set 2 **/
+	/** 6. Job Selection Problem  Loss Minimization Strategy | Set 2 **/
 	@Test
 	public void maxVolumeBestJobSelectionTest() {
 		int vol[] = { -1, 3, 5, 4, 1, 2, 7, 6, 8, 9, 10 };

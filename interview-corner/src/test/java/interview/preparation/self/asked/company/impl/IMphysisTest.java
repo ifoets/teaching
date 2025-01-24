@@ -27,14 +27,14 @@ public class IMphysisTest {
 	@Test
 	public void maxProfitSingleStockBuyShellTest() {
 		int a[] = { 7, 1, 5, 3, 6, 4 };
-		Assert.assertTrue(imp.maxProfitSingleStockBuyShell(a) == 5);
+		Assert.assertEquals(5, imp.maxProfitSingleStockBuyShell(a) );
 	}
 
 	/* find the 2nd max value in array by single iteration */
 	@Test
 	public void secnodMaxSingleIterationTest() {
 		int a[] = { 7, 1, 5, 3, 6, 4 };
-		Assert.assertTrue(imp.secondMaxSingleIteration(a) == 6);
+		Assert.assertEquals(6,imp.secondMaxSingleIteration(a));
 	}
 	/*("Australia");"India");("Africa");("Indonesia");("Malaysia"); output ={"AustraliaAA","AfricaAA"};*/
 	@Test

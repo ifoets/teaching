@@ -28,8 +28,35 @@ public class ArraysUtil {
 
     public static int [] getIndexedVal(int a[])
     {
-        int b[] = new int[getMax(a)+1];
+        int []b = new int[getMax(a)+1];
         for (int i=0 ; i<a.length; b[a[i++]]++);
             return b;
+    }
+
+    public static int findFirstOccurenceInSorted(int []a, int low, int high, int x){
+
+        if(high>=low) {
+            int mid = (low + high) / 2;
+            if((mid==0||a[mid-1]<x) && a[mid]==x)
+                return mid;
+            else if(x>a[mid])
+                return findFirstOccurenceInSorted(a,mid+1,high,x);
+            else
+            return findFirstOccurenceInSorted(a,low,mid-1,x);
+        }
+        return -1;
+    }
+    public static int findPeakInSorted(int []a, int low, int high){
+
+        while(high>=low) {
+            int mid = (low + high) / 2;
+            if(a[mid]>a[mid-1] && a[mid]> a[mid+1])
+                return mid;
+            else if(a[mid+1]>a[mid])
+                low=mid+1;
+            else
+               high=mid-1;
+        }
+        return -1;
     }
 }

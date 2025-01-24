@@ -18,7 +18,7 @@ public class IGraphGreedyAlgoTest {
 		iga = new GraphGreedyAlgoImpl();
 	}
 
-	/** 1. Kruskal’s Minimum Spanning Tree **/
+	/** 1. Kruskal s Minimum Spanning Tree **/
 	@Test
 	public void kruskalMinSpanningTreeTest() {
 
@@ -35,7 +35,7 @@ public class IGraphGreedyAlgoTest {
 		GreedyGrapUtils.display(g);
 	}
 
-	/** 2. Prim’s Minimum Spanning Tree **/
+	/** 2. Prim s Minimum Spanning Tree **/
 	@Test
 	public void primsMinSpanningTreeTest() {
 		GreedyGraph g = new GreedyGraph(9);
@@ -53,7 +53,7 @@ public class IGraphGreedyAlgoTest {
 		GreedyGrapUtils.display(g);
 	}
 
-	/** 3. Boruvka’s Minimum Spanning Tree **/
+	/** 3. Boruvka s Minimum Spanning Tree **/
 	@Test
 	public void boruvkasMinSpanningTreeTest() {
 		GreedyGraph g = new GreedyGraph(9);
@@ -86,7 +86,7 @@ public class IGraphGreedyAlgoTest {
 		GreedyGrapUtils.display(g);
 	}
 
-	/** 5. Dijkastra’s Shortest Path Algorithm **/
+	/** 5. Dijkastra s Shortest Path Algorithm **/
 	// TODO by branch and bounding
 	@Test
 	public void dijkastrasShortestPathAlgoTest() {

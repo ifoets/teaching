@@ -140,7 +140,7 @@ public class IRandomAlgoTest {
 	}
 
 	/**
-	 * 10. K’th Smallest/Largest Element in Unsorted Array | Set 2 (Expected Linear
+	 * 10. K th Smallest/Largest Element in Unsorted Array | Set 2 (Expected Linear
 	 * Time)
 	 **/
 	@Test

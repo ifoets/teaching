@@ -16,6 +16,7 @@ public class MphysisImpl implements IMphysis {
 	 * = [7,1,5,3,6,4] Output: 5
 	 */
 	// OC(n)
+    @Override
 	public int maxProfitSingleStockBuyShell(int a[]) {
 
 		int N = a.length;
@@ -33,6 +34,7 @@ public class MphysisImpl implements IMphysis {
 	}
 
 	/* fid the 2nd max value in array by single iteration */
+    @Override
 	public int secondMaxSingleIteration(int a[]) {
 		int N = a.length;
 		int fmx;
@@ -55,7 +57,7 @@ public class MphysisImpl implements IMphysis {
 	@Override
 	public List<String> concatFilter(List<String> list){
 		return list.stream().filter(e -> e.startsWith("A"))
-				.map(e-> (new StringBuilder(e).append((e.charAt(0)+"").repeat(2))).toString())
-				.collect(Collectors.toList());
+				.map(e-> e + (String.valueOf(e.charAt(0))).repeat(2))
+				.toList();
 	}
 }

@@ -12,7 +12,7 @@ public class InnovasolutionsImpl implements IInnovasolutions {
     /*return integer start with 1*/
     public List<Integer> getIntStartWithI(List<Integer> list, int I, boolean startOrEndWith){
         return list.stream().map(String::valueOf).filter(e-> startOrEndWith ? e.startsWith(String.valueOf(I)) : e.endsWith(String.valueOf(I)))
-                .map(Integer::parseInt).collect(Collectors.toList());
+                .map(Integer::parseInt).toList();
     }
 
     /*return max length continuous sub string having unique char*/

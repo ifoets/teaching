@@ -2,7 +2,7 @@ package interview.preparation.self.asked.company.question;
 
 import java.util.Map;
 
-public interface IMorganStanley {
+public interface  IMorganStanley {
 
 	/* how to configure a microservices that is strictly call by only one ms */
 	/* how to show milliion of recored to customer at a time/pagination */

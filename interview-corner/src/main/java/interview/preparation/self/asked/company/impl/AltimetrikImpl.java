@@ -7,40 +7,65 @@ import java.util.stream.Collectors;
 
 public class AltimetrikImpl implements IAltimetrik {
 
-	//Not resolved
+	/*find the minimum number of candies required for distributing to N children such that every
+	child gets at least one candy and the children having the higher rating get more candies than its neighbours.
+	 */
 	@Override
-	public int minimumCandiesPerHour(List<Integer> candyPiles, int numHours) {
-
-		// List<Integer> list = List.of(8,3,2,1,4,5,2,3,4);//(4, 9, 11, 17);//
-		// (8,3,2,1,4,5,2,3,4);
-		// System.out.println(minimumCandiesPerHour(list, 12));
-		// System.out.println(Math.ceilMod(11, 4));
-
-		List<Integer> list = new ArrayList<>(candyPiles);
-		Collections.sort(list);
-		int n = candyPiles.size();
-		double val = 0;
-		int rs;
-		for (int i = 0; i < n; i++) {
-			rs = 0;
-			val = numHours;
-			for (int j = 0; j < n; j++) {
-				int x = list.get(j);
-				int y = list.get(i);
-				while (x > 0) {
-					val--;
-					rs++;
-					x -= y;
-				}
-				if (val < 0)
-					break;
-			}
-			if (val >= 0) {
-				return rs;
-			}
-		}
-		return -1;
+	public int minimumCandiesPerHour(int []a) {
+        int n=a.length;
+        int b[] = new int[n];
+        Arrays.fill(b,1);
+		int count=0;
+        //find the index of min element
+        int minIndex =0;
+        int minElem=a[0];
+        for(int i=0;i<n;i++){
+            if(minElem>a[i]){
+                minElem =a[i];
+                minIndex=i;
+            }
+        }
+        int j= minIndex;
+        while (j<n-1)
+        {
+            if(a[j]<a[j+1])
+                b[j+1]=b[j]+1;
+            j++;
+        }
+        int k = minIndex;
+        while (k>0)
+        {
+            if(a[k-1]>a[k])
+                b[k-1]=b[k]+1;
+            k--;
+        }
+        for(int i=0;i<n;count+=b[i++]);
+        return count;
 	}
+
+    public int minimumCandiesPerHourX(int []c){
+        int n = c.length;
+        if(n<2)
+            return 1;
+        int []a = new int[n];
+        int count=0;
+        Arrays.fill(a,1);
+
+        //forward arrange
+        for (int i=0;i<n-1;i++)
+        {
+            if(c[i+1]>c[i])
+                a[i+1]=a[i]+1;
+        }
+        //backward arrange
+        for(int i=n-1;i>0;i--)
+        {
+            if(c[i-1]>c[i])
+                a[i-1]=Math.max(a[i]+1,a[i-1]);
+        }
+        for(int i=0;i<n;count+=a[i++]);
+        return count;
+    }
 	@Override
 	public boolean checkDuplicateCountVal(int a[])
 	{

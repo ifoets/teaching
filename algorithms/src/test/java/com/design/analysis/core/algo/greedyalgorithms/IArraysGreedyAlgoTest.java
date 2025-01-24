@@ -155,7 +155,7 @@ public class IArraysGreedyAlgoTest {
 	}
 
 	/**
-	 * 10. Partition into two subarrays of lengths k and (N – k) such that the
+	 * 10. Partition into two subarrays of lengths k and (N  k) such that the
 	 * difference of sums is maximum
 	 **/
 	@Test
