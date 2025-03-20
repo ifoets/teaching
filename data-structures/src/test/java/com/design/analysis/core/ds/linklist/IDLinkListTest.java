@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.design.analysis.core.ds.hashing.utils.BTreeUitls;
 import com.design.analysis.core.ds.linklist.node.DLNode;
+import com.design.analysis.core.ds.linklist.node.SLNode;
 import com.design.analysis.core.ds.linklist.node.TTreeNode;
 import com.design.analysis.core.ds.linklist.utils.Lap;
 import com.design.analysis.core.ds.tree.node.BTNode;
@@ -348,5 +349,38 @@ public class IDLinkListTest {
 	@Test
 	public void arbitrarylistTest() {
 
+	}
+
+	/*************************************************Analysis*************************************************************************/
+	@Test
+	public void swapPairWiseFromHeadRcvTest(){
+		Integer []a = {1, 2, 3, 4, 5};
+		Integer []b = {1, 2, 3, 4};
+
+		DLNode<Integer> head = idll.swapPairWiseFromHeadRcv(idll.insertArrLast(null, a).getHead());
+		idll.print(head);
+		Assert.assertEquals(2,(int)head.k);
+		Assert.assertEquals(5,(int)head.next.next.next.next.k);
+
+		DLNode<Integer> head1 = idll.swapPairWiseFromHeadRcv(idll.insertArrLast(null, b).getHead());
+		idll.print(head1);
+		Assert.assertEquals(2,(int)head1.k);
+		Assert.assertEquals(3,(int)head1.next.next.next.k);
+	}
+
+	@Test
+	public void swapPairWiseFromTailRcvTest() {
+		Integer []a = {1, 2, 3, 4, 5};
+		Integer []b = {1, 2, 3, 4};
+
+		DLNode<Integer> head = idll.swapPairWiseFromTailRcv(idll.insertArrLast(null, a).getHead());
+		idll.print(head);
+		Assert.assertEquals(1,(int)head.k);
+		Assert.assertEquals(4,(int)head.next.next.next.next.k);
+
+		DLNode<Integer> head1 = idll.swapPairWiseFromTailRcv(idll.insertArrLast(null, b).getHead());
+		idll.print(head1);
+		Assert.assertEquals(2,(int)head1.k);
+		Assert.assertEquals(3,(int)head1.next.next.next.k);
 	}
 }

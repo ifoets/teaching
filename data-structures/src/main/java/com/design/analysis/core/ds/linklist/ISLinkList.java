@@ -121,13 +121,13 @@ public interface ISLinkList<K> {
 
 	/** 3. Linked List Insertion **/
 	/* insert collection of element */
-	public Lap<SLNode<K>, SLNode<K>> insertArrLast(Lap<SLNode<K>, SLNode<K>> lap, K k[]);
+	public Lap<SLNode<K>, SLNode<K>> insertArrLast(Lap<SLNode<K>, SLNode<K>> lap, K []k);
 
 	/* insert single element */
 	public Lap<SLNode<K>, SLNode<K>> insertElementLast(Lap<SLNode<K>, SLNode<K>> lap, K k);
 
 	/* insert collection of element in sorted order */
-	public SLNode<K> insertArrSorted(SLNode<K> head, K k[]);
+	public SLNode<K> insertArrSorted(SLNode<K> head, K []k);
 
 	/* insert at given position head is at 1st position */
 	public SLNode<K> insertAtPosition(SLNode<K> head, int pos, K k);
@@ -221,6 +221,10 @@ public interface ISLinkList<K> {
 	public SLNode<K> swapPairwise(SLNode<K> k);
 
 	public SLNode<K> swapPairwiseX(SLNode<K> k);
+
+	public SLNode<K> swapPairWiseFromHeadRcv(SLNode<K> kPrev, SLNode<K> k);
+
+	public SLNode<K> swapPairWiseFromTailRcv(SLNode<K> kPrev, SLNode<K> k);
 
 	/** 24. Move last element to front of a given Linked List **/
 	public SLNode<K> moveLastToFirst(SLNode<K> k);
