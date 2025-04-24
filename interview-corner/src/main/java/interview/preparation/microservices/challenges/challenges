@@ -1,0 +1,9 @@
+
+	1. Bounded Context
+	2. Dynamic Scale up and Scale Down
+	3. Monitoring
+	4. Fault Tolerance
+	5. Cyclic dependencies/Circular dependencies in microservices occur when two or more services depend on each other, creating a loop where changes in one service can affect the others,
+making development and deployment more complex.
+	This can lead to increased coupling, reduced maintainability, and difficulty in independent deployment.
+	6. DevOps Culture

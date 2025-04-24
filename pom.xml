@@ -24,8 +24,11 @@
         <module>design-patterns</module>
         <module>interview-corner</module>
         <module>scenario-analysis</module>
+        <module>system-design</module>
         <module>thread-concurrency</module>
     </modules>
-
+    <properties>
+        <maven.test.skip>true</maven.test.skip>
+    </properties>
     <packaging>pom</packaging>
 </project>

@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class IArrayEasyTest {
 
     private IArrayEasy iae;
@@ -54,5 +57,13 @@ public class IArrayEasyTest {
     {
         int[] nums ={0,1,2,2,3,0,4,2};
         Assert.assertEquals(5, iae.removeElement(nums, 2));
+    }
+
+    /**412. Fizz Buzz*/
+    @Test
+    public void fizzBuzzTest(){
+
+        List<String> rs = iae.fizzBuzz(15);
+        System.out.print(Arrays.toString(rs.toArray()));
     }
 }

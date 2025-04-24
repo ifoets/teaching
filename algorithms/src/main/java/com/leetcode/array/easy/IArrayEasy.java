@@ -1,5 +1,7 @@
 package com.leetcode.array.easy;
 
+import java.util.List;
+
 public interface IArrayEasy {
 
     /** 1. Two Sum*/
@@ -12,4 +14,7 @@ public interface IArrayEasy {
 
     /**27. Remove Element*/
     int removeElement(int[] nums, int val);
+
+    /**412. Fizz Buzz*/
+    public List<String> fizzBuzz(int n);
 }

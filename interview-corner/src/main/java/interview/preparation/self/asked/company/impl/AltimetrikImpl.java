@@ -3,7 +3,10 @@ package interview.preparation.self.asked.company.impl;
 import interview.preparation.self.asked.company.question.IAltimetrik;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class AltimetrikImpl implements IAltimetrik {
 
@@ -88,4 +91,15 @@ public class AltimetrikImpl implements IAltimetrik {
 		List<Integer> l = ll.stream().flatMap( e-> e.stream()).collect(Collectors.toSet()).stream().sorted().collect(Collectors.toList());
 		return l.get(l.size()-2);
 	}
+
+    @Override
+    public List<Integer> findVowlesIndex(String str) {
+
+        List<Character> chList = List.of('a', 'e', 'i', 'o', 'u');
+        char[] chars = str.toLowerCase().toCharArray();
+        return IntStream.range(0, chars.length)
+                .filter(i -> chList.contains(chars[i]))
+                .boxed()
+                .toList();
+    }
 }

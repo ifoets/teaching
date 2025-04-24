@@ -63,4 +63,11 @@ public class IAltimetrikTest {
 				Arrays.asList(6, 6, 7, 7, 7, 8, 8, 8));
 		Assert.assertTrue(ial.get2ndMaxNo(lists)==7);
 	}
+
+    @Test
+    public void findVowlesIndexTest(){
+        List<Integer> rsList = List.of(0,3,5,8,11,13);
+        Assert.assertEquals(rsList,ial.findVowlesIndex("abhimanyu kumar"));
+        System.out.print(ial.findVowlesIndex("abhimanyu kumar"));
+    }
 }

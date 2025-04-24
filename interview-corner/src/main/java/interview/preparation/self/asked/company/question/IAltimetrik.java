@@ -11,4 +11,6 @@ public interface IAltimetrik {
 	public boolean checkDuplicateCountVal(int []a);
 
 	public int get2ndMaxNo(List<List<Integer>> ll);
+
+	public List<Integer> findVowlesIndex(String str);
 }
