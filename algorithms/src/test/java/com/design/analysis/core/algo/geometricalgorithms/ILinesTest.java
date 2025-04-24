@@ -124,7 +124,7 @@ public class ILinesTest {
 	/* it will develope after redblack tree implementatin since it use */
 	/** 2. Given n line segments, find if any two segments intersect **/
 
-	/** 3. Klee’s Algorithm (Length Of Union Of Segments of a line) **/
+	/** 3. Klee s Algorithm (Length Of Union Of Segments of a line) **/
 	@Test
 	public void lenUnionOfSegmentOfLineTest() {
 

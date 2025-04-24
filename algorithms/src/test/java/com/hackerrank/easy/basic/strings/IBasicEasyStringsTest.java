@@ -148,7 +148,4 @@ public class IBasicEasyStringsTest {
 
 	/*********************************************************************************************************************************/
 	/** strings **/ // Continue...
-	public static void main(String[] args) {
-		System.out.println("bacdef".substring(-1, 0));
-	}
 }

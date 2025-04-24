@@ -70,7 +70,7 @@ public class ITrieTest {
 		}
 	}
 
-	/** 3. Longest prefix matching – A Trie based solution in Java **/
+	/** 3. Longest prefix matching A Trie based solution in Java **/
 	@Test
 	public void longestPrefixInDictTest() {
 		String keys[] = { "are", "area", "base", "cat", "cater", "basement" };

@@ -42,7 +42,7 @@ public class IBackTrackStrandardTest {
 		ibts.maxSumSubContineous(a);
 	}
 
-	/** 1. Backtracking | Set 1 (The Knight’s tour problem) **/
+	/** 1. Backtracking | Set 1 (The Knights tour problem) **/
 	@Test
 	public void knightTourTest() {
 		ibts.knightTour();

@@ -4,9 +4,13 @@ import java.util.List;
 
 public interface IAltimetrik {
 
-	public int minimumCandiesPerHour(List<Integer> candyPiles, int numHours);
+	public int minimumCandiesPerHour(int []c);
 
-	public boolean checkDuplicateCountVal(int a[]);
+    public int minimumCandiesPerHourX(int []c);
+
+	public boolean checkDuplicateCountVal(int []a);
 
 	public int get2ndMaxNo(List<List<Integer>> ll);
+
+	public List<Integer> findVowlesIndex(String str);
 }

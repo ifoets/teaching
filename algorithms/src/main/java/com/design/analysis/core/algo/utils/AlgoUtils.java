@@ -425,4 +425,45 @@ public class AlgoUtils {
 
 		return r;
 	}
+
+    public static void reversePart(int []a, int i, int j)
+    {
+         while (i<j)
+         {
+             int temp = a[i];
+             a[i]=a[j];
+             a[j]=temp;
+             i++;
+             j--;
+         }
+    }
+    public static void swapAlternative(int []a)
+    {
+        int i=0;
+        while(i+1<a.length)
+        {
+            int temp = a[i];
+            a[i]=a[i+1];
+            a[i+1]=temp;
+            i+=2;
+        }
+    }
+    public static int searchGreaterInSorted(int []a, int x)
+    {
+        for (int j : a) {
+            if (j > x)
+                return j;
+        }
+        return -1;
+    }
+
+    public static int searchIndex(int []a, int x)
+    {
+        for(int i=0;i<a.length;i++)
+        {
+            if(a[i]==x)
+                return i;
+        }
+        return -1;
+    }
 }

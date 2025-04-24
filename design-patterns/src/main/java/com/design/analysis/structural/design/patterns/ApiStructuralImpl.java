@@ -21,14 +21,13 @@ import com.design.analysis.structural.design.patterns.proxy.CommandExecutorProxy
 public class ApiStructuralImpl implements IApiStructural {
 
 	/** 1. Adapter Pattern **/
-	/* Adapter Design Pattern – Class Adapter */
+	/* Adapter Design Pattern  Class Adapter */
 	@Override
 	public int classAdapterDesignPattern(int fromVolt, int toVolt) {
 
 		return getVolt(new SocketClassAdapterImpl(), toVolt).getVolts();
 	}
 
-	/* Adapter Design Pattern – Object Adapter Implementation */
 	@Override
 	public int objectAdapterDesignPattern(int fromVolt, int toVolt) {
 

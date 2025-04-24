@@ -25,19 +25,28 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 
 	/** delete a givin node without head pointer **/
 	public void deleteNode(SLNode<Integer> node) {
-
-		SLNode<Integer> delNode = node;
-		Integer delVal = delNode.k;
-		delNode.k = delNode.next.k;
-		delNode.next.k = delVal;
-		SLNode<Integer> q = delNode.next;
-		delNode.next = q.next;
-		q = null;
+        if(node.next==null)//ie last node
+        {
+            SLNode<Integer> newNode = new SLNode<>(null);
+            node.next = newNode;
+            Integer val = node.k;
+            node.k=newNode.k;
+            newNode.k=val;
+            node.next=null;
+        }
+        //if node is not last node
+        else{
+            Integer delVal = node.k;
+            node.k = node.next.k;
+            node.next.k = delVal;
+            SLNode<Integer> q = node.next;
+            node.next = q.next;
+        }
 	}
 
 	/** 3. Linked List Insertion **/
 	@Override
-	public Lap<SLNode<Integer>, SLNode<Integer>> insertArrLast(Lap<SLNode<Integer>, SLNode<Integer>> lap, Integer a[]) {
+	public Lap<SLNode<Integer>, SLNode<Integer>> insertArrLast(Lap<SLNode<Integer>, SLNode<Integer>> lap, Integer []a) {
 
 		if (a == null || a.length == 0)
 			return lap;
@@ -50,11 +59,11 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 
 		int i = 0;
 		if (head == null) {
-			head = tail = new SLNode<Integer>(a[0]);
+			head = tail = new SLNode<>(a[0]);
 			i++;
 		}
 		for (; i < a.length; i++) {
-			tail.next = new SLNode<Integer>(a[i]);
+			tail.next = new SLNode<>(a[i]);
 			tail = tail.next;
 		}
 		lap.put(head, tail);
@@ -81,7 +90,7 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 
 	/* insert collection of element in sorted order */
 	@Override
-	public SLNode<Integer> insertArrSorted(SLNode<Integer> head, Integer a[]) {
+	public SLNode<Integer> insertArrSorted(SLNode<Integer> head, Integer []a) {
 
 		for (int i = 0; i < a.length; i++) {
 			SLNode<Integer> temp = new SLNode<Integer>(a[i]);
@@ -439,8 +448,7 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 
 	/** 14. Reverse a linked list recursive **/
 	@Override
-	public SLNode<Integer>
-	reverseRcv(SLNode<Integer> node) {
+	public SLNode<Integer> reverseRcv(SLNode<Integer> node) {
 		if (node == null || node.next == null)
 			return node;
 		SLNode<Integer> newNode = reverseRcv(node.next);
@@ -703,7 +711,39 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 		}
 		return h;
 	}
+	@Override
+	public SLNode<Integer> swapPairWiseFromHeadRcv(SLNode<Integer> nodePrev, SLNode<Integer> node){
+		if(node==null||node.next==null)
+			return node;
 
+		SLNode<Integer> y = node.next;
+		node.next=y.next;
+		y.next= node;
+		if(nodePrev!=null)
+			nodePrev.next = y;
+		 swapPairWiseFromHeadRcv(node, node.next);
+		return y;
+	}
+	@Override
+	public SLNode<Integer> swapPairWiseFromTailRcv(SLNode<Integer> nodePrev, SLNode<Integer> node){
+		if(nodePrev ==null&&lengthIterative(node)%2==0)
+			return swapPairWiseFromHeadRcv(nodePrev,node);
+		else if(nodePrev ==null&&lengthIterative(node)%2!=0)
+		{
+			nodePrev=node;
+			node=node.next;
+		}
+		if(node==null||node.next==null)
+			return node;
+
+		SLNode<Integer> y = node.next;
+		node.next=y.next;
+		y.next= node;
+		if(nodePrev!=null)
+			nodePrev.next = y;
+		swapPairWiseFromTailRcv(node, node.next);
+		return nodePrev;
+	}
 	/** 24. Move last element to front of a given Linked List **/
 	@Override
 	public SLNode<Integer> moveLastToFirst(SLNode<Integer> head) {

@@ -121,264 +121,264 @@ Basic Problems :
 
 
  */
-public interface IDynamicBasic {
+interface IDynamicBasic {
 
-	/** 1. Ugly numbers **/
-	/* This function divides a by greatest divisible power of b */
-	public int maxDivide(int a, int b);
+    /** 1. Ugly numbers **/
+    /* This function divides a by greatest divisible power of b */
+    int maxDivide(int a, int b);
 
-	/* check the no is ugly or not */
-	public boolean isUgly(int n);
+    /* check the no is ugly or not */
+    boolean isUgly(int n);
 
-	/* get nth ugly no */
-	public int nthUgalyNumber(int n);
+    /* get nth ugly no */
+    int nthUgalyNumber(int n);
 
-	/** 2. Fibonacci numbers **/
-	/* by using dynamic programming */
-	public int nthFibNoDynamic(int n);
+    /** 2. Fibonacci numbers **/
+    /* by using dynamic programming */
+    int nthFibNoDynamic(int n);
 
-	/* by recursive way */
-	public int nthFibNoRecursive(int n);
+    /* by recursive way */
+    int nthFibNoRecursive(int n);
 
-	/* by using minimum space */
-	public int nthFibNoMinSpaceUse(int n);
+    /* by using minimum space */
+    int nthFibNoMinSpaceUse(int n);
 
-	/** 3. nth Catalan Number **/
-	public int catalan(int n);
+    /** 3. nth Catalan Number **/
+    int catalan(int n);
 
-	/* using dp */
-	public int catalanDP(int n);
+    /* using dp */
+    int catalanDP(int n);
 
-	/* Using Binomial Coefficient */
-	public int catalanByBinomicalCoeff(int n);
+    /* Using Binomial Coefficient */
+    int catalanByBinomicalCoeff(int n);
 
-	/** 4. Bell Numbers (Number of ways to Partition a Set) **/
-	public int bellNumber(int n);
+    /** 4. Bell Numbers (Number of ways to Partition a Set) **/
+    int bellNumber(int n);
 
-	/** 5. Binomial Coefficient **/
-	public int binomialCoeff(int n, int k);
+    /** 5. Binomial Coefficient **/
+    int binomialCoeff(int n, int k);
 
-	/* using dp */
-	public int binomialCoeffDp(int n, int k);
-	
-	public int binomialCoeffDpX(int n, int k);
+    /* using dp */
+    int binomialCoeffDp(int n, int k);
 
-	/** 6.Permutation Coefficient **/
-	public int permutationCoefficient(int n, int k);
-	
-	public int permutationCoefficientX(int n, int k);
+    int binomialCoeffDpX(int n, int k);
 
-	/** 7. Tiling Problem **/ // bord 2*n and tiles 2*1
-	public int tillingProblem(int n);
-	
-	/*Tiling Problem 1*m to n*m borad**/
-	public int tillingProblemX(int n, int m);
+    /** 6.Permutation Coefficient **/
+    int permutationCoefficient(int n, int k);
 
-	/** 8. Gold Mine Problem **/
-	public int goldMineProblem(int g[][]);
+    int permutationCoefficientX(int n, int k);
 
-	/** 9. Coin change problem **/
-	/* recursive way */
-	public int noOfWayCoinChangeRecv(int a[], int m, int n);
+    /** 7. Tiling Problem **/ // bord 2*n and tiles 2*1
+    int tillingProblem(int n);
 
-	/* by dynamic programming way */
-	public int noOfWayCoinChangeDynamic(int a[], int m, int n);
+    /*Tiling Problem 1*m to n*m borad**/
+    int tillingProblemX(int n, int m);
 
-	/** 10. Friends Pairing Problem **/
-	public int countFriendsPairings(int n);
+    /** 8. Gold Mine Problem **/
+    int goldMineProblem(int g[][]);
 
-	/** 11. Subset Sum Problem **/
-	public boolean isSubsetSumRcv(int set[], int n, int sum);
+    /** 9. Coin change problem **/
+    /* recursive way */
+    int noOfWayCoinChangeRecv(int []a, int m, int n);
 
-	public boolean isSubsetSumDp(int set[], int n, int sum);
+    /* by dynamic programming way */
+    int noOfWayCoinChangeDynamic(int []a, int m, int n);
 
-	/** 12. Subset Sum Problem in O(sum) space **/
-	public boolean isSubsetSum(int set[], int n, int sum);
+    /** 10. Friends Pairing Problem **/
+    int countFriendsPairings(int n);
 
-	/** 13. Subset with sum divisible by m **/
-	public boolean modularSum(int arr[], int n, int m);
+    /** 11. Subset Sum Problem **/
+    boolean isSubsetSumRcv(int set[], int n, int sum);
 
-	/** 14. Largest divisible pairs subset **/
-	public int largestDivisiblePairSubsetDp(int a[]);
+    boolean isSubsetSumDp(int set[], int n, int sum);
 
-	public int largestDivisiblePairSubset(int a[]);
+    /** 12. Subset Sum Problem in O(sum) space **/
+    boolean isSubsetSum(int set[], int n, int sum);
 
-	/** 15. Perfect Sum Problem (Print all subsets with given sum) **/
-	public List<List<Integer>> subsetsOfGivenSum(int a[], int sum);
+    /** 13. Subset with sum divisible by m **/
+    boolean modularSum(int arr[], int n, int m);
 
-	/** 16. Compute nCr % p **/
-	public int nCrModp(int n, int r, int p);
+    /** 14. Largest divisible pairs subset **/
+    int largestDivisiblePairSubsetDp(int []a);
 
-	/** 17. Choice of area **/
-	// TODDO
-	/** 18. Cutting a Rod **/
-	public int cutRodRcv(int price[], int n);
+    int largestDivisiblePairSubset(int []a);
 
-	public int cutRoDp(int price[], int n);
+    /** 15. Perfect Sum Problem (Print all subsets with given sum) **/
+    List<List<Integer>> subsetsOfGivenSum(int []a, int sum);
 
-	/** 19. Tiling with Dominoes **/
-	public int tillingDominoes(int n);
+    /** 16. Compute nCr % p **/
+    int nCrModp(int n, int r, int p);
 
-	/** 20. Painting Fence Algorithm **/
-	public int paintingFence(int n, int k);
+    /** 17. Choice of area **/
+    // TODDO
+    /** 18. Cutting a Rod **/
+    int cutRodRcv(int price[], int n);
 
-	public int paintingFenceX(int n, int k);
+    int cutRoDp(int price[], int n);
 
-	/** 21. Newman�Shanks�Williams prime **/
-	public int newmanShanksWilliamsPrime(int n);
+    /** 19. Tiling with Dominoes **/
+    int tillingDominoes(int n);
 
-	public int newmanShanksWilliamsPrimeDp(int n);
+    /** 20. Painting Fence Algorithm **/
+    int paintingFence(int n, int k);
 
-	/** 22. Assembly line scheduling **/
-	public int carAssembly(int a[][], int t[][], int e[], int x[]);
+    int paintingFenceX(int n, int k);
 
-	/** 23. Golomb sequence **/
-	public List<Integer> printGolomb(int n);
+    /** 21. Newman�Shanks�Williams prime **/
+    int newmanShanksWilliamsPrime(int n);
 
-	/** 24. Moser-de Bruijn Sequence **/
-	public int[] moserDeBruijnSequence(int n);
+    int newmanShanksWilliamsPrimeDp(int n);
 
-	/** 25. Newman-Conway Sequence **/
-	public int newmanConwaySequence(int n);
+    /** 22. Assembly line scheduling **/
+    int carAssembly(int []a[], int t[][], int e[], int x[]);
 
-	public int newmanConwaySequenceDp(int n);
+    /** 23. Golomb sequence **/
+    List<Integer> printGolomb(int n);
 
-	/** 26. Find maximum length Snake sequence **/
-	public List<Integer> maxLenSnakeSequence(int a[][]);
+    /** 24. Moser-de Bruijn Sequence **/
+    int[] moserDeBruijnSequence(int n);
 
-	/** 27. Print n terms of Newman-Conway Sequence **/
-	// @See 25.
-	/** 28. Print Fibonacci sequence using 2 variables **/
-	public void fib(int n);
+    /** 25. Newman-Conway Sequence **/
+    int newmanConwaySequence(int n);
 
-	/** 29. Print Fibonacci Series in reverse order **/
-	public void reverseFibonacci(int n);
+    int newmanConwaySequenceDp(int n);
 
-	/**
-	 * 30. Count even length binary sequences with same sum of first and second half
-	 * bits
-	 **/
-	public int countSeq(int n, int diff);
+    /** 26. Find maximum length Snake sequence **/
+    List<Integer> maxLenSnakeSequence(int []a[]);
 
-	public int countSeqDp(int n, int diff);
+    /** 27. Print n terms of Newman-Conway Sequence **/
+    // @See 25.
+    /** 28. Print Fibonacci sequence using 2 variables **/
+    void fib(int n);
 
-	public int countSeqUtil(int[][] t, int n, int dif);
+    /** 29. Print Fibonacci Series in reverse order **/
+    void reverseFibonacci(int n);
 
-	public int countSeqRec(int n);
+    /**
+     * 30. Count even length binary sequences with same sum of first and second half
+     * bits
+     **/
+    int countSeq(int n, int diff);
 
-	/**
-	 * 31. Sequences of given length where every element is more than or equal to
-	 * twice of previous
-	 **/
-	public int getTotalNumberOfSequences(int m, int n);
+    int countSeqDp(int n, int diff);
 
-	/* using dp */
-	public int getTotalNumberOfSequencesDp(int m, int n);
+    int countSeqUtil(int[][] t, int n, int dif);
 
-	/** 32. Longest Common Subsequence **/
-	/* using recursive way */
-	public int longestCommonSubsequenceRecv(String st1, String st2, int m, int n);
+    int countSeqRec(int n);
 
-	/* using dynaic programming */
-	public int longestCommonSubsequenceDynamic(char[] ch1, char[] ch2, int m, int n);
+    /**
+     * 31. Sequences of given length where every element is more than or equal to
+     * twice of previous
+     **/
+    int getTotalNumberOfSequences(int m, int n);
 
-	/** 33. Longest Repeated Subsequence */
-	public String longestRepeatedSubsequenceDynamic(String st);
+    /* using dp */
+    int getTotalNumberOfSequencesDp(int m, int n);
 
-	/** 34. Longest Increasing Subsequence **/
-	/* by iterative way */
-	public List<Integer> longestIncreasingSubsequenceItr(int arr[], int n);
+    /** 32. Longest Common Subsequence **/
+    /* using recursive way */
+    int longestCommonSubsequenceRecv(String st1, String st2, int m, int n);
 
-	/* by dynamic programming */
-	public int longestIncreasingSubsequenceDynamic(int arr[], int n);
+    /* using dynaic programming */
+    int longestCommonSubsequenceDynamic(char[] ch1, char[] ch2, int m, int n);
 
-	/** 35. A Space Optimized Solution of LCS **/
-	public int spaceOptimizedLongestCommonSubsequence(String X, String Y);
+    /** 33. Longest Repeated Subsequence */
+    String longestRepeatedSubsequenceDynamic(String st);
 
-	/** 36. LCS (Longest Common Subsequence) of three strings **/
-	public int lcsOf3(String X, String Y, String Z, int m, int n, int o);
+    /** 34. Longest Increasing Subsequence **/
+    /* by iterative way */
+    List<Integer> longestIncreasingSubsequenceItr(int arr[], int n);
 
-	/** 37. Maximum sum Bi-tonic Sub-sequence **/
-	public int MaxSumBS(int arr[], int n);
+    /* by dynamic programming */
+    int longestIncreasingSubsequenceDynamic(int arr[], int n);
 
-	/** 38. Maximum Sum Increasing Subsequence **/
-	public int maxSumIncreasingSubseq(int a[], int n);
+    /** 35. A Space Optimized Solution of LCS **/
+    int spaceOptimizedLongestCommonSubsequence(String X, String Y);
 
-	/** 39. Maximum product of an increasing subsequence **/
-	public int maxProductIncreasingSubseq(int a[], int n);
+    /** 36. LCS (Longest Common Subsequence) of three strings **/
+    int lcsOf3(String X, String Y, String Z, int m, int n, int o);
 
-	/** 40. Count all subsequences having product less than K **/
-	public int productSubSeqCount(ArrayList<Integer> arr, int k);
+    /** 37. Maximum sum Bi-tonic Sub-sequence **/
+    int MaxSumBS(int arr[], int n);
 
-	/** 41. Maximum subsequence sum such that no three are consecutive **/
-	public int maxSumWO3Consec(int arr[], int n);
+    /** 38. Maximum Sum Increasing Subsequence **/
+    int maxSumIncreasingSubseq(int []a, int n);
 
-	/** 42. Longest subsequence such that difference between adjacents is one **/
-	public int longestSubseqAdjDiffIsOne(int a[]);
+    /** 39. Maximum product of an increasing subsequence **/
+    int maxProductIncreasingSubseq(int []a, int n);
 
-	/**
-	 * 43. Maximum length subsequence with difference between adjacent elements as
-	 * either 0 or 1
-	 **/
-	public int longestSubseqAdjDiffIsOneOrZero(int a[]);
+    /** 40. Count all subsequences having product less than K **/
+    int productSubSeqCount(ArrayList<Integer> arr, int k);
 
-	/**
-	 * 44. Maximum sum increasing subsequence from a prefix and a given element
-	 * after prefix is must
-	 **/
-	public int preCompute(int a[], int n, int index, int k);
+    /** 41. Maximum subsequence sum such that no three are consecutive **/
+    int maxSumWO3Consec(int arr[], int n);
 
-	/** 45. Maximum Length Chain of Pairs **/
-	public int maxChainLength(Pair arr[], int n);
+    /** 42. Longest subsequence such that difference between adjacents is one **/
+    int longestSubseqAdjDiffIsOne(int []a);
 
-	/** 46. Print Maximum Length Chain of Pairs **/
-	public List<Pair> printMaxChainLength(Pair arr[], int n);
+    /**
+     * 43. Maximum length subsequence with difference between adjacent elements as
+     * either 0 or 1
+     **/
+    int longestSubseqAdjDiffIsOneOrZero(int []a);
 
-	/** 47. Path with maximum average value **/
-	public List<Integer> maxAverageValuePath(int a[][], int n);
+    /**
+     * 44. Maximum sum increasing subsequence from a prefix and a given element
+     * after prefix is must
+     **/
+    int preCompute(int []a, int n, int index, int k);
 
-	/** 48. Maximum games played by winner **/
-	public int maxGameByWinner(int N);
+    /** 45. Maximum Length Chain of Pairs **/
+    int maxChainLength(Pair arr[], int n);
 
-	/** 49. Maximum path sum in a triangle **/
-	public int maxPathSum(int tri[][], int m, int n);
+    /** 46. Print Maximum Length Chain of Pairs **/
+    List<Pair> printMaxChainLength(Pair arr[], int n);
 
-	/** 50. Minimum Sum Path in a Triangle **/
-	public int minSumPath(int A[][]);
+    /** 47. Path with maximum average value **/
+    List<Integer> maxAverageValuePath(int []a[], int n);
 
-	/**51.	Maximum sum of a path in a Right Number Triangle**/
-	public int maxSumPathRightNumTringleRec(int tr[][], int i,int j);
-	public int maxSumPathRightNumTringle(int tr[][], int i,int j,int dp[][]);
+    /** 48. Maximum games played by winner **/
+    int maxGameByWinner(int N);
 
-	/*52.	Size of The Subarray With Maximum Sum, max sum continuous array*/
-	public int maxLexSubArrayOfMaxSum(int a[]);
+    /** 49. Maximum path sum in a triangle **/
+    int maxPathSum(int tri[][], int m, int n);
 
-	/*53.	Maximum sum of pairs with specific difference*/
-	public int maxSumPairsOnKDiff(int a[], int k);
+    /** 50. Minimum Sum Path in a Triangle **/
+    int minSumPath(int []a[]);
 
-	/*54.	Maximum size square sub-matrix with all 1s*/
-	public int[][] maxSquareSubMatrix(int a[][]);
+    /**51.	Maximum sum of a path in a Right Number Triangle**/
+    int maxSumPathRightNumTringleRec(int tr[][], int i,int j);
+    int maxSumPathRightNumTringle(int tr[][], int i,int j,int dp[][]);
 
-	/*55.	Maximum number of segments of lengths a, b and c*/
-	public int maxNoOfSegment(int n , int a, int b, int c);
-	/*********************************************************************************************************************************************************************/
+    /*52.	Size of The Subarray With Maximum Sum, max sum continuous array*/
+    int maxLexSubArrayOfMaxSum(int []a);
 
-	/** 5. Largest Sum Contiguous Subarray **/
-	/* by iterative */
-	public int LargestSumContiguousSubarrayItr(int a[]);
+    /*53.	Maximum sum of pairs with specific difference*/
+    int maxSumPairsOnKDiff(int []a, int k);
 
-	/* by dynamic programming */
-	public int LargestSumContiguousSubarrayDynamic(int a[]);
+    /*54.	Maximum size square sub-matrix with all 1s*/
+    int[][] maxSquareSubMatrix(int []a[]);
 
-	/** max suqure sub matrix whouse corner is x **/
-	// TODO
-	public int maxSqureOfXCorenr(int a[][], int x);
+    /*55.	Maximum number of segments of lengths a, b and c*/
+    int maxNoOfSegment(int n , int a, int b, int c);
+    /*********************************************************************************************************************************************************************/
 
-	/** 9. Min Cost Path **/
-	/* by recursive way */
-	public int minCostPathRecursive(int mcp[][], int m, int n);
+    /** 5. Largest Sum Contiguous Subarray **/
+    /* by iterative */
+    int LargestSumContiguousSubarrayItr(int []a);
 
-	/* by dynamic programming */
-	public int minCostPathDynamic(int cost[][], int m, int n);
+    /* by dynamic programming */
+    int LargestSumContiguousSubarrayDynamic(int []a);
+
+    /** max suqure sub matrix whouse corner is x **/
+    // TODO
+    int maxSqureOfXCorenr(int []a[], int x);
+
+    /** 9. Min Cost Path **/
+    /* by recursive way */
+    int minCostPathRecursive(int mcp[][], int m, int n);
+
+    /* by dynamic programming */
+    int minCostPathDynamic(int cost[][], int m, int n);
 
 }

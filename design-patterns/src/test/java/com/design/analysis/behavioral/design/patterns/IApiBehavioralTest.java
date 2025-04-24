@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.design.analysis.behavioral.design.patterns.template.GlassHouse;
@@ -39,6 +40,7 @@ public class IApiBehavioralTest {
 	}
 
 	/** 3. Chain of Responsibility Pattern **/
+    @Ignore //TEST MANaULLY NOT IN BUILDING APP
 	@Test
 	public void chainOfRespPatternTest() {
 		iab.chainOfRespPattern();

@@ -24,7 +24,7 @@ public class IApiStructuralTest {
 	}
 
 	/** 1. Adapter Pattern **/
-	/* Adapter Design Pattern – Class Adapter */
+	/* Adapter Design Pattern  Class Adapter */
 	@Test
 	public void classAdapterDesignPatternTest() {
 
@@ -33,7 +33,7 @@ public class IApiStructuralTest {
 		Assert.assertTrue(ias.classAdapterDesignPattern(120, 120) == 120);
 	}
 
-	/* Adapter Design Pattern – Object Adapter Implementation */
+	/* Adapter Design Pattern  Object Adapter Implementation */
 	@Test
 	public void objectAdapterDesignPatternTest() {
 

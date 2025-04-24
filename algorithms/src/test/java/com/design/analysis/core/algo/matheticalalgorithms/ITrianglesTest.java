@@ -34,7 +34,7 @@ public class ITrianglesTest {
 		it.leibnizHarmonicTriangle(7);
 	}
 
-	/** 4.Hosoya’s Triangle **/
+	/** 4.Hosoya s Triangle **/
 	/* Print the Hosoya triangle of height n. */
 	@Test
 	public void printHosoyaTest() {
@@ -88,7 +88,11 @@ public class ITrianglesTest {
 
 	/** 11. Number of possible Triangles in a Cartesian coordinate system **/
 	/** 12. Triangular Numbers **/
-	/** 13. Pascal’s Triangle **/
+    public ITrianglesTest() {
+        super();
+    }
+
+    /** 13. Pascal s Triangle **/
 
 	@Test
 	public void printPascalTest() {

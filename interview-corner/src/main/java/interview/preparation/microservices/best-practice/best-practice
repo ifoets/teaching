@@ -1,0 +1,11 @@
+https://piotrminkowski.com/2019/12/06/spring-boot-best-practices-for-microservices/
+
+https://piotrminkowski.com/2017/05/15/part-3-creating-microservices-circuit-breaker-fallback-and-load-balancing-with-spring-cloud/
+
+1. Collect metrics, Grafana, Actuator, spring-boot-starter-actuator, ET /actuator/metrics ,@Configuration class ConfigurationMetrics
+2. Don’t forget about logging, Zipkin
+3. Make your API usable, Swagger clean documentation, springfox-swagger2, springfox-swagger-ui, @EnableSwagger2/contorller
+4. Don’t afraid of using circuit breaker, spring-cloud-starter-circuitbreaker-resilience4j, Customizer<Resilience4JCircuitBreakerFactory>
+5. Make your application transparent, continuous delivery, spring-boot-maven-plugin, management.endpoint.info.enabled: true, @EnableAdminServer.
+6. Write contract tests, Consumer Driven Contract (CDC) testing , spring-cloud-starter-contract-verifier
+7. Be up-to-date, Spring Cloud releases new versions of projects using release train pattern,

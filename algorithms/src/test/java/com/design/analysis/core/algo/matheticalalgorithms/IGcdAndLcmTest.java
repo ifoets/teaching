@@ -68,7 +68,7 @@ public class IGcdAndLcmTest {
 		Assert.assertTrue(igl.gcdWithVeryLargeNo(a, x) == 3);
 	}
 
-	/** 7. Stein’s Algorithm for finding GCD **/
+	/** 7. Stein s Algorithm for finding GCD **/
 	/* it is just finding the gcd by different apporach */
 	/** 8. GCD, LCM and Distributive Property **/
 	/** 9. Replace every matrix element with maximum of GCD of row or column **/

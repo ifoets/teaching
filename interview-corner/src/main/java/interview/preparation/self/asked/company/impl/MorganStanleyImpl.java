@@ -5,6 +5,7 @@ import interview.preparation.self.asked.company.question.IMorganStanley;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MorganStanleyImpl implements IMorganStanley {
@@ -50,7 +51,7 @@ public class MorganStanleyImpl implements IMorganStanley {
 			String tName = Thread.currentThread().getName();
 			while (i < countLimit) {
 				try {
-					if (tName == "X") {
+					if (Objects.equals(tName, "X")) {
 						synchronized (this) {
 							while (i % 3 != 1) {
 								wait();
@@ -61,7 +62,7 @@ public class MorganStanleyImpl implements IMorganStanley {
 							notifyAll();
 						}
 					}
-					if (tName == "Y") {
+					if (Objects.equals(tName, "Y")) {
 						synchronized (this) {
 							while (i % 3 != 2) {
 								wait();
@@ -72,7 +73,7 @@ public class MorganStanleyImpl implements IMorganStanley {
 							notifyAll();
 						}
 					}
-					if (tName == "Z") {
+					if (Objects.equals(tName, "Z")) {
 						synchronized (this) {
 							while (i % 3 != 0) {
 								wait();

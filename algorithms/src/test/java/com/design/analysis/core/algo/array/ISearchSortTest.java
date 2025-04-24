@@ -44,7 +44,7 @@ import org.junit.Test;
 33.	Count all distinct pairs with difference equal to k
 34.	Find if there is a sub-array with 0 sum
 35.	Given a sorted array and a number x, find the pair in array whose sum is closest to x
-36.	Count 1’s in a sorted binary array
+36.	Count 1 s in a sorted binary array
 37.	Print All Distinct Elements of a given integer array
 38.	Construct an array from its pair-sum array
 39.	Find common elements in three sorted arrays

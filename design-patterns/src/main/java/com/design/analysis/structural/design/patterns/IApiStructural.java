@@ -24,10 +24,10 @@ import com.design.analysis.structural.design.patterns.facade.HelperFacade.Report
 public interface IApiStructural {
 
 	/** 1. Adapter Pattern **/
-	/* Adapter Design Pattern – Class Adapter */
+	/* Adapter Design Pattern  Class Adapter */
 	public int classAdapterDesignPattern(int fromVolt, int toVolt);
 
-	/* Adapter Design Pattern – Object Adapter Implementation */
+	/* Adapter Design Pattern  Object Adapter Implementation */
 	public int objectAdapterDesignPattern(int fromVolt, int toVolt);
 
 	public Volt getVolt(SocketAdapter sockAdapter, int toVolt);

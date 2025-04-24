@@ -256,9 +256,7 @@ public class DLinkListImpl implements IDLinkList<Integer> {
 	/** 3. Reverse a Doubly Linked List **/
 	/* iterative way to reverse */
 	@Override
-	public DLNode<Integer>
-
-	reverseIterative(DLNode<Integer> head) {
+	public DLNode<Integer> reverseIterative(DLNode<Integer> head) {
 
 		DLNode<Integer> p = head;
 		DLNode<Integer> t = null;
@@ -913,5 +911,43 @@ public class DLinkListImpl implements IDLinkList<Integer> {
 		q.next = null;
 		return p;
 
+	}
+
+	/*************************************************Analysis*************************************************************************/
+	/*************************************************Analysis*************************************************************************/
+	public DLNode<Integer> swapPairWiseFromHeadRcv(DLNode<Integer> node){
+
+		if(node==null || node.next==null)
+			return node;
+		DLNode<Integer> x=node;
+		DLNode<Integer> y=node.next;
+
+		if(x.prev!=null)
+			x.prev.next=y;
+		x.next=y.next;
+		if(x.next!=null)
+			x.next.prev=x;
+
+		y.prev=x.prev;
+
+		x.prev=y;
+		y.next=x;
+		swapPairWiseFromHeadRcv(node.next);
+		return node.prev;
+	}
+
+	@Override
+	public DLNode<Integer> swapPairWiseFromTailRcv(DLNode<Integer> node){
+
+		if(length(node)%2==0)
+			return swapPairWiseFromHeadRcv(node);
+		swapPairWiseFromHeadRcv(node.next);
+		return node;
+	}
+
+	public int length(DLNode<Integer> node){
+		if(node==null)
+			return 0;
+		return 1+length(node.next);
 	}
 }

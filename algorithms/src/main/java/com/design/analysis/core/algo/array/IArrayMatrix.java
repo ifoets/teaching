@@ -1,5 +1,7 @@
 package com.design.analysis.core.algo.array;
 
+import java.util.List;
+
 /*
 	 Matrix Archives
 	Recent Articles on Matrix
@@ -170,79 +172,87 @@ package com.design.analysis.core.algo.array;
  */
 public interface IArrayMatrix {
 
-	/** 1. Turn an image by 90 degree **/
-	public int[][] rotateImageBy90DegreeClock(int a[][]);
+    /** 1. Turn an image by 90 degree **/
+    public int[][] rotateImageBy90DegreeClock(int [][]a);
 
-	public int[][] rotateImageBy90DegreeClockX(int a[][]);
+    public int[][] rotateImageBy90DegreeClockX(int [][]a);
 
-	/** 2. Rotate Matrix Elements **/
-	public void rotateEleemntColck(int a[][]);
+    /** 2. Rotate Matrix Elements **/
+    public void rotateElementClock(int [][]a);
 
-	public void rotateEleemntColckX(int a[][]);
+    public void rotateElementClockX(int [][]a);
 
-	public void rotateEleemntAntiColck(int a[][]);
+    public void rotateElementAntiClock(int [][]a);
 
-	/** 3. rotate square matrix by 90 degrees n*n matrix without extra space **/
-	public void rotateImageBy90DegreeAntiClock(int a[][]);
+    /** 3. rotate square matrix by 90 degrees n*n matrix without extra space **/
+    public void rotateImageBy90DegreeAntiClock(int [][]a);
 
-	/**
-	 * 4. Rotate a matrix by 90 degree without using any extra space
-	 **/
-	public void rotateMatixBy90AntiColck(int a[][]);
+    /**
+     * 4. Rotate a matrix by 90 degree without using any extra space
+     **/
+    public void rotateMatixBy90AntiColck(int [][]a);
 
-	/** 4. Rotate a Matrix by 180 degree **/
-	public void rorateMatrix180(int a[][]);
+    /** 4. Rotate a Matrix by 180 degree **/
+    public void rorateMatrix180(int [][]a);
 
-	/** 5. Rotate each ring of matrix anti clockwise by K elements **/
-	public void rotateRingKelemAntiClock(int a[][], int k);
+    /** 5. Rotate each ring of matrix anti clockwise by K elements **/
+    public void rotateRingKelemAntiClock(int [][]a, int k);
 
-	/** 6. Turn an image by 90 degree **/
-	public void turnImageBy90Degree(int a[][]);
+    /** 6. Turn an image by 90 degree **/
+    public void turnImageBy90Degree(int [][]a);
 
-	public void turnImageBy90DegreeAntyClockWise(int a[][]);
+    public void turnImageBy90DegreeAntyClockWise(int [][]a);
 
-	/** 7. Check if all rows of a matrix are circular rotations of each other **/
-	public boolean isAllColumnsCiucularRotated(int a[][]);
+    /** 7. Check if all rows of a matrix are circular rotations of each other **/
+    public boolean isAllColumnsCiucularRotated(int [][]a);
 
-	/** 8. Sort the given matrix **/
-	public void strictSotMatrix(int a[][]);
+    /** 8. Sort the given matrix **/
+    public void strictSotMatrix(int [][]a);
 
-	/** 9. Find the row with maximum number of 1s where each row is sorted**/
-	public int rowMaxNumbOf1s(int a[][]);
+    /** 9. Find the row with maximum number of 1s where each row is sorted**/
+    public int rowMaxNumbOf1s(int [][]a);
 
-	/** 10. Find median in row wise sorted matrix **/
-	public int binaryMedian(int a[][], int r, int c);
-	
-	/** 11. Matrix Multiplication | Recursive **/
-	public int[][] multiplyMatrixRec(int a[][], int r1, int c1, int b[][], int r2,int c2);
-	/** 12. Program to multiply two matrices **/
-	/** 13. Program for scalar multiplication of a matrix **/
-	/**
-	 * 14. Program to print Lower triangular and Upper triangular matrix of an array
-	 **/
-	/** 15. Find distinct elements common to all rows of a matrix **/
-	/** 16. Print a given matrix in spiral form clockwise **/
-	/** 17. Find maximum element of each row in a matrix **/
-	/** 18. Find unique elements in a matrix **/
-	/** 19. Shift matrix elements row-wise by k **/
-	/** 20. Different Operations on Matrices **/
-	public void spiralPrintMatrix(int a[][]);
+    /** 10. Find median in row wise sorted matrix **/
+    public int binaryMedian(int [][]a, int r, int c);
 
-	public void spiralPrintMatrixAnticlockwise(int a[][]);
-	// ***********************************************************************************************************************************************************//
+    /** 11. Matrix Multiplication | Recursive **/
+    public int[][] multiplyMatrixRec(int [][]a, int r1, int c1, int [][]b, int r2,int c2);
+    /** 12. Program to multiply two matrices **/
+    int [][] matrixMultiplication(int [][]a,int [][]b);
+    /** 13. Program for scalar multiplication of a matrix
+     *  @Note just iterate and multiplying every element with given value k**/
+    /**
+     * 14. Program to print Lower triangular and Upper triangular matrix of an array
+     **/
+    void lowerTriangle(int [][]a);
+    void upperTriangle(int [][]a);
+    /** 15. Find distinct elements common to all rows of a matrix **/
+    List<Integer> distinctCommonToAllRows(int [][]a);
+    List<Integer> distinctCommonToAllRowsAndCols(int [][]a);
+    /** 16. Print a given matrix in spiral form clockwise **/
+    public void spiralPrintMatrix(int [][]a);
+    public void spiralPrintMatrixAnticlockwise(int [][]a);
+    /** 17. Find maximum element of each row in a matrix **/
+    /** 18. Find unique elements in a matrix **/
+    /** 19. Shift matrix elements row-wise by k **/
+    /** 20. Different Operations on Matrices **/
 
-	/** transpose the matrix **/
-	public void transposeOfMatrix(int a[][]);
 
-	/** Reverse column **/
-	public void reverseColumns(int arr[][]);
 
-	/** Spiral traverse */
-	public int[] spiralTraverse(int a[][]);
+    // ***********************************************************************************************************************************************************//
 
-	/** spiral fill **/
-	public void spiralFill(int a[][], int tamp[]);
+    /** transpose the matrix **/
+    public void transposeOfMatrix(int [][]a);
 
-	/** Function to reverse arr[] from index start to end **/
-	public void rvereseArray(int arr[], int start, int end);
+    /** Reverse column **/
+    public void reverseColumns(int [][]a);
+
+    /** Spiral traverse */
+    public int[] spiralTraverse(int [][]a);
+
+    /** spiral fill **/
+    public void spiralFill(int [][]a, int []tamp);
+
+    /** Function to reverse arr[] from index start to end **/
+    public void reverseArray(int []arr, int start, int end);
 }

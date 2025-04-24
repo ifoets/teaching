@@ -1,4 +1,4 @@
-package interview.preparation.self.basic.prep;
+package interview.preparation.self.basic.prep.mcq;
 
 class Parent {
 	public static void m() {
