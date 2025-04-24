@@ -1,0 +1,27 @@
+Java-Generic-ok
+
+UML digram, tutorial point or course
+Software architecture with lo/high level design
+CR/CD
+Security
+Cloud
+SQL/NoSql
+MongoDB
+API write/Security of API
+new making annotation
+
+Mock testing or others test/Integration testing
+
+docker
+git/command and eclipse
+cubernet
+cloud
+gradle
+query optmization in deep
+
+25 % momth for design senario/project architecture
+kafka, message quequ 
+writting/use own annotation
+
+
+
