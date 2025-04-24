@@ -3,7 +3,7 @@ package com.design.analysis.algorithms.interview.thread;
 import java.util.ArrayList;
 import java.util.List;
 
-/*1.	100 Resource and 10 thread how can run all thread so that 1 thread used to take the resource 0,10,20…ect and 2nth thread 1,11,21..so on resource*/
+/*1.	100 Resource and 10 thread how can run all thread so that 1 thread used to take the resource 0,10,20 ect and 2nth thread 1,11,21..so on resource*/
 public class UtilizeSpecificThread implements Runnable {
 
 	public static List<Integer> li = new ArrayList<>();

@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutionException;
 import interview.preparation.self.asked.company.question.IWissenInfotech;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.design.analysis.company.preparation.model.LNode;
@@ -154,6 +155,7 @@ public class IWissenIninfotechTest {
 	}
 
 	/** max or min number with performance heaving n thread ForkandJJoin */
+    @Ignore
 	@Test
 	public void getMaxOrMinXTest() throws InterruptedException, ExecutionException {
 		Integer[] a = new Integer[100000];

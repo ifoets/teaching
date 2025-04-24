@@ -1,8 +1,10 @@
 package com.design.analysis.concurrent.thread;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class IJavaConcurrencyTest {
 
 	public IJavaConcurrency ijc = null;

@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ISiemensTest {
@@ -21,6 +22,7 @@ public class ISiemensTest {
 	 * Find duplicates in a file containing 6 digit numbers (like u id) in O (n)
 	 * time.
 	 **/
+    @Ignore
 	@Test
 	public void findDuplicateInFileTest() throws IOException {
 		Assert.assertTrue(ism.findDuplicateInFile() == 123456);

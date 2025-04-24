@@ -8,7 +8,7 @@ import java.util.List;
  * Searching :
 1.	Search, insert and delete in an unsorted array
 2.	Search, insert and delete in a sorted array
-3.	Given an array A[] and a number x, check for pair in A[] with sum as x
+3.	Given an array []a and a number x, check for pair in []a with sum as x
 4.	Searching in an array where adjacent differ by at most k
 5.	Find common elements in three sorted arrays
 6.	Find position of an element in a sorted array of infinite numbers
@@ -33,25 +33,42 @@ import java.util.List;
 25.	Find all triplets with zero sum
 
  */
-public interface IArraySearch {
+interface IArraySearch {
 
-	/** 1. Search, insert and delete in an unsorted array **/
-	public boolean searchInsertDelUnsortedArr(int a[], int n, int x, String flage);
+    /** 1. Search, insert and delete in an unsorted array **/
+    boolean searchInsertDelUnsortedArr(int []a, int n, int x, String flage);
 
-	/** 2. Search, insert and delete in an sorted array **/
-	public boolean searchInsertDelSortedArr(int a[], int n, int x, String flage);
+    /** 2. Search, insert and delete in an sorted array **/
+    boolean searchInsertDelSortedArr(int []a, int n, int x, String flage);
 
-	/**
-	 * 3. Given an array A[] and a number x, check for pair in A[] with sum as x
-	 **/
-	public List<List<Integer>> pairOfSumX(int a[], int x);
+    /**
+     * 3. Given an array []a and a number x, check for pair in []a with sum as x
+     **/
+    List<List<Integer>> pairOfSumX(int []a, int x);
 
-	/** 4. Searching in an array where adjacent differ by at most k **/
+    /** 4. Searching in an array where adjacent differ by at most k **/
 
-	/** 12.Leaders in an array **/
-	public List<Integer> findLeader(int a[]);
+    /** 12.Leaders in an array **/
+    List<Integer> findLeader(int []a);
 
-	/** 14. Majority Element **/
-	public Integer majorityElement(int a[]);
+    /** 14. Majority Element **/
+    //o(n)
+    Integer majorityElement(int []a);
+
+    /** 15.	Check for Majority Element in a sorted array,
+     A majority element in an array arr of size N is an element that appears more than N/2 times in the array.**/
+    //O(long(n))
+    boolean majorityElementSorted(int []a, int x);
+
+    /**16.	Check if an array has a majority element
+     * A majority element in an array is an element that appears strictly more than arr.size() / 2 times in the array**/
+    boolean checkMajorityElements(int []a);
+    /**17.	Two Pointers Technique, it get used for sorted array
+     * typically used for Two Sum in Sorted Arrays, Closest Two Sum, Three Sum, Four Sum, Trapping Rain Water **/
+    List<Integer> pairSumTwoPointerTech(int []a, int sum);
+    /**18.	Find a peak element, greater than its left and right Log(n)**/
+    int peakElement(int []a);
+    /**19.	Find the two repeating elements in a given array**/
+    /**20.	Find a Fixed Point in a given array**/
 
 }

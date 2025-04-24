@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class JioImpl implements IJio {
 
 	@Override
-	public void specialSort(int a[], int b[]) {
+	public void specialSort(int []a, int []b) {
 
 		// shift all zero of b to left as keep sorted order
 		int N = b.length - 1;

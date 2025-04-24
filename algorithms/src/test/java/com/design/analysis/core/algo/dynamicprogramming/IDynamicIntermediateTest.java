@@ -101,7 +101,7 @@ public class IDynamicIntermediateTest {
 		idi.floydWarshall(graph);
 	}
 
-	/** 9. Bellman–Ford Algorithm **/
+	/** 9. Bellman Ford Algorithm **/
 	// TODO
 	/** 1. 0-1 Knapsack Problem **/
 	@Test

@@ -59,7 +59,7 @@ public class ICharCountTest {
 		Assert.assertTrue(icc.firstKndMostChar("geeksforgeekstt", 2) == 's');
 	}
 
-	/** 4. K’th Non-repeating Character **/
+	/** 4. K th Non-repeating Character **/
 	@Test
 	public void kthNonRepeatingCharTest() {
 		Assert.assertTrue(icc.kthNonRepeatingChar("geeksforgeeks", 3) == 'r');
@@ -77,7 +77,7 @@ public class ICharCountTest {
 	}
 
 	@Test
-	/** 6. Find k’th character of decrypted string **/
+	/** 6. Find kth character of decrypted string **/
 	public void kthCharInDesryptedTest() {
 		Assert.assertTrue(icc.kthCharInDesrypted("a2b2c3", 5) == 'c');
 		Assert.assertTrue(icc.kthCharInDesrypted("ab4c2ed3", 9) == 'c');
@@ -153,7 +153,7 @@ public class ICharCountTest {
 	public void stringFormationTest() {
 		/*
 		 * Given a length n, count the number of strings of length n that can be made
-		 * using ‘a’, ‘b’ and ‘c’ with at-most one ‘b’ and two ‘c’s allowed.
+		 * using a, b and c with at-most one b and two c s allowed.
 		 */
 		String str = "abc";
 		Assert.assertTrue(icc.stringFormation(str) == 19);

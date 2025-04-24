@@ -1,0 +1,54 @@
+data base design
+==================
+design and scale depends on use of database
+db design not impact function requirement but it impact non functional requirement
+
+which types of data need to store or certain types of scale to handle
+design of db depends on couples of facter
+
+amount of scale need to handle
+having certain query pattern
+/structured data/
+/non structured data/
+image or video in large amount
+matrix types of data like grafana dashboard ie application matrix tracing system
+analytic requirement data amazon/uber, analytic of all the transaction/orders/geography ie data warehouse ie large amount of data
+
+cashing solution
+cashing for multiple hit db or multiple hit remote server having more latency
+key value store for caching
+Redis cache or any similar caching
+
+
+image or video in large amount
+use blob storage this not db for query but for serving from storage
+cloud storage service like Amazon S3, Google Cloud Storage, or Microsoft Azure Blob Storage
+
+for this use content delivery network (CDM) it is used to distribute same image/video to multiple servers
+Amazon S3+CMD for image/video storage
+
+text searching capabilities
+-missing alphabet, bit typing mistake, alphabet gaping/edit distance
+text search engine elastic search or solr/ Solr is more focused on text-based queries and Elasticsearch works towards analytical queries
+Fuzzy search is a search technique that finds results that are similar to a search query, even if there are typos or misspelling
+
+A time series database (TSDB) is a software system that stores and manages data that changes over time
+sequential update up and down write mode/ normal dab having random update/access
+read query on bulk in time range
+open TSDB
+Amazon Timestream
+InfluxDB
+Graphite
+
+
+analytic requirement data /not used for transaction but offline reporting
+hadoop
+
+RDBMS/ACID or non ACID but structured-Mysql Oracle,Posgres
+DOCUMENTS DB /non structured json, complex searching-Momgo Db/Cosmos
+COLUMNAR DB/ever increasing data, uber location vehicle location search-Cassandra, Hbase
+
+
+
+
+

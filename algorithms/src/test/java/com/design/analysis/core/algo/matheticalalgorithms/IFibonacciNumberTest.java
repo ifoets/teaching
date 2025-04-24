@@ -40,7 +40,7 @@ public class IFibonacciNumberTest {
 		Assert.assertTrue(!ifn.isFibonacci(56));
 	}
 
-	/** 4. Zeckendorf’s Theorem (Non-Neighbouring Fibonacci Representation) **/
+	/** 4. Zeckendorf s Theorem (Non-Neighbouring Fibonacci Representation) **/
 	@Test
 	public void nonNeighborFibonacciRepresentTest() {
 		List<Integer> list = ifn.nonNeighborFibonacciRepresent(30);
@@ -72,7 +72,7 @@ public class IFibonacciNumberTest {
 		Assert.assertTrue(ifn.largestFiboIndexLessOrEqual(30) == 6);
 	}
 
-	/** 8. n’th multiple of a number in Fibonacci Series **/
+	/** 8. n th multiple of a number in Fibonacci Series **/
 	@Test
 	public void nthMaulitpleInFiboIndexTest() {
 		Assert.assertTrue(ifn.nthMaulitpleInFiboIndex(2, 3) == 9);
@@ -86,7 +86,7 @@ public class IFibonacciNumberTest {
 		Assert.assertTrue(ifn.gcdOfFiboNums(3, 12) == 2);
 	}
 
-	/** 10. Cassini’s Identity **/
+	/** 10. Cassini s Identity **/
 	@Test
 	public void cassintiIndentityTest() {
 		Assert.assertTrue(ifn.cassintiIndentity(5) == -1);

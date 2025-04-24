@@ -272,7 +272,7 @@ public class ICodingProblemsTest {
 		Assert.assertTrue(list.get(1) == 5);
 	}
 
-	/** 25. Count 1’s in a sorted binary array **/
+	/** 25. Count 1 s in a sorted binary array **/
 	@Test
 	public void countOneInBinaryArrTest() {
 		int arr[] = { 1, 1, 1, 1, 0, 0, 0 };
@@ -303,13 +303,16 @@ public class ICodingProblemsTest {
 		Assert.assertTrue(list.get(0) == 7);
 		Assert.assertTrue(list.get(1) == 30);
 	}
-	/** 28. K’th Smallest/Largest Element in Unsorted Array | Set 1 **/
-	/**
-	 * 29. K’th Smallest/Largest Element in Unsorted Array | Set 2 (Expected Linear
+	/** 28. Kth Smallest/Largest Element in Unsorted Array | Set 1 **/
+    public ICodingProblemsTest() {
+        super();
+    }
+    /**
+	 * 29. Kth Smallest/Largest Element in Unsorted Array | Set 2 (Expected Linear
 	 * Time)
 	 **/
 	/**
-	 * 30. K’th Smallest/Largest Element in Unsorted Array | Set 3 (Worst Case
+	 * 30. K th Smallest/Largest Element in Unsorted Array | Set 3 (Worst Case
 	 * Linear Time)
 	 **/
 	/* all above are common for minimum complxity O(k*n) */
@@ -366,7 +369,7 @@ public class ICodingProblemsTest {
 		for (int i = 0; i < a.length; i++)
 			Assert.assertTrue(a[i] == rs[i]);
 	}
-	/** 35. K’th largest element in a stream **/
+	/** 35. K th largest element in a stream **/
 	/* @see @IOrderStatistics.java....3....program8 */
 
 	/** 36. Find a pair with maximum product in array of Integers **/

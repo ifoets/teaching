@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 public class EPAMImpl implements IEPAM {
 
     /*java 8 merge two sorted array in sorted*/
-    public List<Integer> mergeTwoSortedArray(int a1[], int a2[]){
-       return Stream.concat(Arrays.stream(a1).boxed(),Arrays.stream(a2).boxed()).sorted().collect(Collectors.toList());
+    public List<Integer> mergeTwoSortedArray(int []a1, int []a2){
+       return Stream.concat(Arrays.stream(a1).boxed(),Arrays.stream(a2).boxed()).sorted().toList();
     }
 
     public Map<Character, Long> countCharsInStr(String str){

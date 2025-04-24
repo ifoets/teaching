@@ -13,7 +13,7 @@ public class IBinaryStringTest {
 		ibs = new BinaryStringImpl();
 	}
 
-	/** 1. Count of operations to make a binary string”ab” free **/
+	/** 1. Count of operations to make a binary string ab free **/
 	@Test
 	public void countFreeAdjecentBinaryTest() {
 
@@ -45,7 +45,7 @@ public class IBinaryStringTest {
 		Assert.assertTrue(ibs.minFlipMakeAlternative("0001010111") == 2);
 	}
 
-	/** 5. 1’s and 2’s complement of a Binary Number **/
+	/** 5. 1 s and 2 s complement of a Binary Number **/
 	@Test
 	public void onceComplementTest() {
 		

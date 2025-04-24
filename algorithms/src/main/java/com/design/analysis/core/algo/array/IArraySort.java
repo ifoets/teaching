@@ -71,79 +71,84 @@ import java.util.Map;
 59.	Elements to be added so that all elements of a range are present in array
 
  */
-public interface IArraySort {
+interface IArraySort {
 
-	/** 1. Alternative Sorting **/
-	public void alternativeSorting(int a[]);
+    /** 1. Alternative Sorting **/
+    void alternativeSorting(int []a);
 
-	/** 2. Sort a nearly sorted (or K sorted) array **/
-	public void sortNearlySorted(int a[]);
+    /** 2. Sort a nearly sorted (or K sorted) array **/
+    void sortNearlySorted(int []a);
 
-	/** 3. Sort an array according to absolute difference with given value **/
-	public void sortByAbsDiffGivenValue(int a[], int x);
-	
-	public void sortByAbsDiffGivenValueX(int a[], int x);
+    /** 3. Sort an array according to absolute difference with given value **/
+    void sortByAbsDiffGivenValue(int []a, int x);
 
-	/** 4. Sort an array in wave form **/
-	public void sortInWaveForm(int a[]);
+    void sortByAbsDiffGivenValueX(int []a, int x);
 
-	/** 5. Merge an array of size n into another array of size m+n **/
-	public void meargeNArrToMNArr(int mnArr[], int nArr[]);
+    /** 4. Sort an array in wave form **/
+    void sortInWaveForm(int []a);
 
-	public void meargeNArrToMNArrX(int mnArr[], int nArr[]);
+    /** 5. Merge an array of size n into another array of size m+n **/
+    void meargeNArrToMNArr(int mnArr[], int nArr[]);
 
-	/** 6. Sort an array which contain 1 to n values **/
-	public void sortNaturalNo(int a[]);
+    void meargeNArrToMNArrX(int mnArr[], int nArr[]);
 
-	/** 7. Sort 1 to N by swapping adjacent elements **/
-	public boolean sort1ToNBySwapAdjacent(int a[], boolean b[]);
+    /** 6. Sort an array which contain 1 to n values **/
+    void sortNaturalNo(int []a);
 
-	/** 8. Sort an array containing two types of elements **/
-	public void sort0And1(int a[]);
+    /** 7. Sort 1 to N by swapping adjacent elements **/
+    boolean sort1ToNBySwapAdjacent(int []a, boolean b[]);
 
-	/** 9. Sort elements by frequency | Set 1 */
-	public void sortByfriquency(int a[]);
-	/** 10. Count Inversions in an array | Set 1 (Using Merge Sort) **/
-	/// @See @IStandardAlgo.java 9.
+    /** 8. Sort an array containing two types of elements **/
+    void sort0And1(int []a);
 
-	/** 11. Two elements whose sum is closest to zero **/
-	public int[] sumCloseToZero(int a[]);
+    /** 9. Sort elements by frequency | Set 1 */
+    void sortByfriquency(int []a);
+    /** 10. Count Inversions in an array | Set 1 (Using Merge Sort) **/
+    /// @See @IStandardAlgo.java 9.
 
-	/** 12. Shortest Un-ordered Subarray **/
-	public int unOrderedLen(int a[]);
+    /** 11. Two elements whose sum is closest to zero **/
+    int[] sumCloseToZero(int []a);
 
-	/** 13. Minimum number of swaps required to sort an array **/
-	public int minSwapForSort(int a[]);
+    /** 12. Shortest Un-ordered Subarray **/
+    int unOrderedLen(int []a);
 
-	/* 14. Union and Intersection of two sorted arrays */
-	public List<Integer> unionOfArrays(int[] a, int[] b);
+    /** 13. Minimum number of swaps required to sort an array **/
+    int minSwapForSort(int []a);
 
-	public List<Integer> intersectionOfArrays(int a[], int b[]);
+    /* 14. Union and Intersection of two sorted arrays */
+    List<Integer> unionOfArrays(int[] a, int[] b);
 
-	/* 15. Find Union and Intersection of two unsorted arrays */
-	public List<Integer> unionOfUnSortedArrays(int[] a, int[] b);
+    List<Integer> intersectionOfArrays(int []a, int b[]);
 
-	public List<Integer> intersectionOfUnSortedArrays(int a[], int b[]);
+    /* 15. Find Union and Intersection of two unsorted arrays */
+    List<Integer> unionOfUnSortedArrays(int[] a, int[] b);
 
-	/* 16. Sort an array of 0s, 1s and 2s */
-	public List<Integer> sort0s1s2s3s(int a[]);
-	/*
-	 * 17. Find the Minimum length Unsorted Subarray, sorting which makes the
-	 * complete array sorted
-	 */
-	public int minLenUnSortedSubArray(int a[]);
+    List<Integer> intersectionOfUnSortedArrays(int []a, int b[]);
 
-	/* 18. Median in a stream of integers (running integers),Median of Stream of Running Integers using STL */
-	public double[] medianInStream(int a[]);
+    /* 16. Sort an array of 0s, 1s and 2s */
+    List<Integer> sort0s1s2s3s(int []a);
+    /*
+     * 17. Find the Minimum length Unsorted Subarray, sorting which makes the
+     * complete array sorted
+     */
+    int minLenUnSortedSubArray(int []a);
 
-	/* 19. Count the number of possible triangles */
-	public List<List<Integer>> possibleTriangles(int a[]);
+    /* 18. Median in a stream of integers (running integers),Median of Stream of Running Integers using STL */
+    double[] medianInStream(int []a);
 
-	/* 20. Find number of pairs (x, y) in an array such that x^y > y^x */
-    public int pairOfXY(int x[], int y[]);
-	/* 21. Count all distinct pairs with difference equal to k */
-	/* 22. Print All Distinct Elements of a given integer array */
-	/* 23. Construct an array from its pair-sum array */
-	/* 24. Merge two sorted arrays with O(1) extra space */
-	/* 25. Product of maximum in first array and minimum in second */
+    /* 19. Count the number of possible triangles */
+    List<List<Integer>> possibleTriangles(int []a);
+
+    /* 20. Find number of pairs (x, y) in an array such that x^y > y^x */
+    int pairOfXY(int []x, int []y);
+
+    /* 21. Count all distinct pairs with difference equal to k */
+    int countDistinctPairDiffX(int []a, int k);
+    //Count pairs with absolute difference equal to k
+    int countDistinctAbsPairDiffX(int []a, int k);
+    /* 22. Print All Distinct Elements of a given integer array */
+
+    /* 23. Construct an array from its pair-sum array */
+    /* 24. Merge two sorted arrays with O(1) extra space */
+    /* 25. Product of maximum in first array and minimum in second */
 }

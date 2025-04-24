@@ -11,7 +11,7 @@ public class
 NetcoreImpl implements INetcore {
 
 	/* The total number of subarrays */
-	public int subArrayCount(int a[]) {
+	public int subArrayCount(int []a) {
 
 		Map<Integer, List<List<Integer>>> map = new HashMap<>();
 		int N = a.length;
@@ -45,7 +45,7 @@ NetcoreImpl implements INetcore {
 		return count;
 	}
 	// pattern 1+2+3+..n pattern getting no of sab array
-	public int subArrayCountX(int a[]){
+	public int subArrayCountX(int []a){
 		return a.length*(a.length+1)/2;
 	}
 
@@ -61,7 +61,8 @@ NetcoreImpl implements INetcore {
 		}
 		return sum;
 	}
-	// pattern 1+2+3+..n length pattern getting no of noncontinuous sab array multiply factorial/arrangement
+	// pattern 1!*1/subarrays+2!*2/subarrays+3!*3/subarrays+..n length pattern getting no of noncontinuous sab array multiply factorial/arrangement
+    //ie n!*n(n+1)/2
 	public int subArrayCountNonContinuous(int a[]){
 		int N= a.length;
 		int factVal = 1;

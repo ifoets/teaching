@@ -35,7 +35,7 @@ package com.design.analysis.core.algo.bitalgorithms;
 31.	Swap three variables without using temporary variable
 32.	Check if a number has bits in alternate pattern
 33.	Count minimum bits to flip such that XOR of A and B equal to C
-34.	Efficient method for 2’s complement of a binary string
+34.	Efficient method for 2 s complement of a binary string
 35.	Toggle case of a string using Bitwise operators
 36.	Toggling k-th bit of a number
 37.	Convert decimal fraction to binary number

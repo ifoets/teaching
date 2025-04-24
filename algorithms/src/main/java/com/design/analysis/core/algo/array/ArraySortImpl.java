@@ -7,6 +7,8 @@ import com.design.analysis.core.algo.sorting.SortingAlgoImpl;
 import com.design.analysis.core.algo.utils.AlgoUtils;
 import com.design.analysis.utils.ArraysUtil;
 
+import javax.swing.*;
+
 public class ArraySortImpl implements IArraySort {
 
 	public ISortingAlgo isa = new SortingAlgoImpl();
@@ -545,5 +547,53 @@ public class ArraySortImpl implements IArraySort {
         count+=pairOfXY(X_right, Y_right);
         return count;
     }
-
+    /* 21. Count all distinct pairs with difference equal to k */
+    @Override
+    public int countDistinctPairDiffX(int []a, int k){
+        int count=0;
+        Map<Integer,Integer> map = new HashMap<>();
+           for(int i=0;i<a.length;i++)
+           {
+               if(map.containsKey(a[i]-k))
+                   count++;
+               else map.put(a[i],a[i]-k);
+           }
+           return count;
+    }
+    //Count pairs with absolute difference equal to k
+    @Override
+    public int countDistinctAbsPairDiffX(int []a, int k){
+        Arrays.sort(a);
+        int n=a.length;
+        int i=0;
+        int j=0;
+        int cnt=0;
+        while (j<n)
+        {
+            if(a[j]-a[i]<k)
+                j++;
+            else if(a[j]-a[i]>k)
+                i++;
+            else {
+                int ele1=a[i];
+                int ele2=a[j];
+                int cnt1=0;
+                int cnt2=0;
+                while(j<n && a[j]==ele2)
+                {
+                    cnt2++;
+                    j++;
+                }
+                while (i<n&&a[i]==ele1)
+                {
+                    i++;
+                    cnt1++;
+                }
+                if(ele1==ele2)
+                    cnt+=cnt1*(cnt1-1)/2;
+                else cnt+=cnt1*cnt2;
+            }
+        }
+        return cnt;
+    }
 }

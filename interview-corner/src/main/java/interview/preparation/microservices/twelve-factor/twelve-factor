@@ -1,0 +1,18 @@
+
+Twelve-Factor Methodology in a Spring Boot Microservice
+---------------------------------------------------------------------
+https://www.baeldung.com/spring-boot-12-factor
+https://www.netsolutions.com/insights/12-factor-app-methodology/
+
+ 1. Codebase
+ 2. Dependencies
+ 3. Configurations
+ 4. Backing Services
+ 5. Build, Release and Run
+ 6. Processes
+ 7. Port Binding
+ 8. Concurrency
+ 9. Disposability
+ 10. Dev/Prod Parity
+ 11. Logs
+ 12. Admin Processes
