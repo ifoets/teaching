@@ -280,7 +280,7 @@ public class StremApiImpl implements IStremApi {
 				.entrySet()
 				.stream()
 				.filter(e->e.getValue()>1l)
-				.map(x -> x.getKey())
+				.map(Map.Entry::getKey)
 				.findFirst()
 				.get()-48; //48 ascii value of char 0
 	}

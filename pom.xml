@@ -17,7 +17,6 @@
         <scope>test</scope>
     </dependency>
     </dependencies>
-
     <modules>
         <module>algorithms</module>
         <module>data-structures</module>
