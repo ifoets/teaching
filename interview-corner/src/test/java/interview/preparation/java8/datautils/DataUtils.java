@@ -1,6 +1,6 @@
 package interview.preparation.java8.datautils;
 
-import interview.preparation.java8.model.Employee;
+import interview.preparation.newjava.java8.model.Employee;
 
 import java.util.ArrayList;
 import java.util.List;

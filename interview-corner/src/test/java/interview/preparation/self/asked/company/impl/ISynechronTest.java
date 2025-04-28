@@ -1,6 +1,7 @@
 package interview.preparation.self.asked.company.impl;
 
-import interview.preparation.self.asked.company.question.ISynechron;
+import interview.preparation.company.interviews.impl.SynechronImpl;
+import interview.preparation.company.interviews.question.ISynechron;
 import org.junit.Before;
 import org.junit.Test;
 

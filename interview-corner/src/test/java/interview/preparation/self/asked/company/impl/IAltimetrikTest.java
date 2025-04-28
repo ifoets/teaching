@@ -1,6 +1,7 @@
 package interview.preparation.self.asked.company.impl;
 
-import interview.preparation.self.asked.company.question.IAltimetrik;
+import interview.preparation.company.interviews.impl.AltimetrikImpl;
+import interview.preparation.company.interviews.question.IAltimetrik;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

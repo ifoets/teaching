@@ -1,6 +1,7 @@
 package interview.preparation.self.asked.company.impl;
 
-import interview.preparation.self.asked.company.question.ICoforge;
+import interview.preparation.company.interviews.impl.CoforgeImpl;
+import interview.preparation.company.interviews.question.ICoforge;
 import org.junit.Before;
 import org.junit.Test;
 

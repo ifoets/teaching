@@ -23,8 +23,9 @@
         <module>data-structures</module>
         <module>design-patterns</module>
         <module>interview-corner</module>
+        <module>rx-java</module>
         <module>scenario-analysis</module>
-        <module>system-design</module>
+       <!-- <module>system-design</module>-->
         <module>thread-concurrency</module>
     </modules>
     <properties>

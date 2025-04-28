@@ -7,7 +7,8 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.ExecutionException;
 
-import interview.preparation.self.asked.company.question.IWissenInfotech;
+import interview.preparation.company.interviews.impl.WissenInfotechImpl;
+import interview.preparation.company.interviews.question.IWissenInfotech;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;

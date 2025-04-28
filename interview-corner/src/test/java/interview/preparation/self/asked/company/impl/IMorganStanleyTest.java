@@ -3,7 +3,8 @@ package interview.preparation.self.asked.company.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import interview.preparation.self.asked.company.question.IMorganStanley;
+import interview.preparation.company.interviews.impl.MorganStanleyImpl;
+import interview.preparation.company.interviews.question.IMorganStanley;
 import org.junit.Before;
 import org.junit.Test;
 

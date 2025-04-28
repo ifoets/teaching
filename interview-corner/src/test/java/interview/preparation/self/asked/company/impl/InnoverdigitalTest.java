@@ -2,7 +2,8 @@ package interview.preparation.self.asked.company.impl;
 
 import java.io.Serializable;
 
-import interview.preparation.self.asked.company.question.Iinnoverdigital;
+import interview.preparation.company.interviews.impl.InnoverdigitalImpl;
+import interview.preparation.company.interviews.question.Iinnoverdigital;
 import org.junit.Before;
 
 public class InnoverdigitalTest {

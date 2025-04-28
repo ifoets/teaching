@@ -1,6 +1,7 @@
 package interview.preparation.self.asked.company.impl;
 
-import interview.preparation.self.asked.company.question.INetcore;
+import interview.preparation.company.interviews.impl.NetcoreImpl;
+import interview.preparation.company.interviews.question.INetcore;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

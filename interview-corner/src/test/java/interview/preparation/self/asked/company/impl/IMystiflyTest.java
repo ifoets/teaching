@@ -1,9 +1,9 @@
 package interview.preparation.self.asked.company.impl;
 
 import java.util.List;
-import java.util.Scanner;
 
-import interview.preparation.self.asked.company.question.IMystifly;
+import interview.preparation.company.interviews.impl.MystiflyImpl;
+import interview.preparation.company.interviews.question.IMystifly;
 import org.junit.Before;
 import org.junit.Test;
 

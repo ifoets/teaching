@@ -1,5 +1,6 @@
 package interview.preparation.java21;
 
+import interview.preparation.newjava.java21.SwitchPattern;
 import org.junit.Assert;
 import org.junit.Test;
 

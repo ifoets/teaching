@@ -1,6 +1,7 @@
 package interview.preparation.self.asked.company.impl;
 
-import interview.preparation.self.asked.company.question.IZeinAndArt;
+import interview.preparation.company.interviews.impl.ZeinAndArtImpl;
+import interview.preparation.company.interviews.question.IZeinAndArt;
 import org.junit.Before;
 import org.junit.Test;
 

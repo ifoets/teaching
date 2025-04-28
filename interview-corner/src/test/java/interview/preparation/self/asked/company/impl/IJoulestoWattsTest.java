@@ -1,6 +1,7 @@
 package interview.preparation.self.asked.company.impl;
 
-import interview.preparation.self.asked.company.question.IJoulestoWatts;
+import interview.preparation.company.interviews.impl.JoulestoWattsImpl;
+import interview.preparation.company.interviews.question.IJoulestoWatts;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

@@ -2,7 +2,8 @@ package interview.preparation.self.asked.company.impl;
 
 import java.util.Arrays;
 
-import interview.preparation.self.asked.company.question.IJio;
+import interview.preparation.company.interviews.impl.JioImpl;
+import interview.preparation.company.interviews.question.IJio;
 import org.junit.Before;
 import org.junit.Test;
 

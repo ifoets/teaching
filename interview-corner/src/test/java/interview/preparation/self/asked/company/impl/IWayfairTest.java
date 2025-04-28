@@ -1,6 +1,7 @@
 package interview.preparation.self.asked.company.impl;
 
-import interview.preparation.self.asked.company.question.IWayfair;
+import interview.preparation.company.interviews.impl.WayfairImpl;
+import interview.preparation.company.interviews.question.IWayfair;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

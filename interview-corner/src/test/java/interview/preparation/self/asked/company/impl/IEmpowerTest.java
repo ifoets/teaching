@@ -2,12 +2,13 @@ package interview.preparation.self.asked.company.impl;
 
 import java.util.List;
 
-import interview.preparation.self.asked.company.question.IEmpower;
+import interview.preparation.company.interviews.impl.EmpowerImpl;
+import interview.preparation.company.interviews.question.IEmpower;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import interview.preparation.self.asked.company.model.BoardingPass;
+import interview.preparation.company.interviews.model.BoardingPass;
 
 /*
  * find the initial and final destination by looking boarding pass of passenger

@@ -1,6 +1,7 @@
 package interview.preparation.self.asked.company.impl;
 
-import interview.preparation.self.asked.company.question.IMphysis;
+import interview.preparation.company.interviews.impl.MphysisImpl;
+import interview.preparation.company.interviews.question.IMphysis;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
