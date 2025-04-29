@@ -4,6 +4,7 @@ import interview.preparation.company.interviews.model.Employee;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface IMphysis {
 
@@ -27,7 +28,7 @@ public interface IMphysis {
 	String removeDuplicateChar(String str);
 
 	/*find highest salary employee in each of department*/
-	Map<String,Double> maxEarningOnDeprt(List<Employee> employeeList);
+	Map<String, Optional<Employee>> maxEarningOnDeprt(List<Employee> employeeList);
 
 	/*run two thread and print hi hello*/
 	void useTwoThread();

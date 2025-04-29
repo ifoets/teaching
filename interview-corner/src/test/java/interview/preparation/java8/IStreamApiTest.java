@@ -230,7 +230,7 @@ IStreamApiTest {
 	public void firstNonRepeatedValTest()
 	{
 		int a[] = {8,1,2,3,6,3,2,4,9};
-		System.out.println(isa.firstNonRepeatedVal(a));
+        Assert.assertEquals(8,isa.firstNonRepeatedVal(a));
 	}
 
 	/*find first or last repeated val in arr*/
@@ -238,7 +238,7 @@ IStreamApiTest {
 	public void firstRepeatedValTest()
 	{
 		int a[] = {8,1,2,3,6,3,2,4,9};
-		System.out.println(isa.firstRepeatedVal(a));
+        Assert.assertEquals(2,isa.firstRepeatedVal(a));
 	}
 
 }

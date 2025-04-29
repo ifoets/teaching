@@ -1,12 +1,16 @@
-package interview.preparation.self.asked.company.impl;
+package interview.preparation.company.interviews;
 
 import interview.preparation.company.interviews.impl.MphysisImpl;
+import interview.preparation.company.interviews.model.Employee;
 import interview.preparation.company.interviews.question.IMphysis;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class IMphysisTest {
 
@@ -44,4 +48,32 @@ public class IMphysisTest {
 	System.out.println(imp.concatFilter(list).toString());
 	Assert.assertTrue(imp.concatFilter(list).containsAll(List.of("AustraliaAA","AfricaAA")));
 	}
+
+    /*remove duplicate char from string*/
+    @Test
+    public void removeDuplicateCharTest()
+    {
+        String s ="abhimanyukumar";
+        Assert.assertEquals("abhimnyukr",imp.removeDuplicateChar(s));
+    }
+
+    /*find highest salary employee in each of department*/
+    @Test
+    public void maxEarningOnDeprtTest()
+    {
+        List<String> names = List.of("A","B","C","D","E","F","G","H","I","J");
+        List<String> depts = List.of("X","Y","Z","X","Y","X","X","X","Y","Z");
+        List<Integer> salaries = List.of(100,200,300,400,300,200,100,50,25,10);
+
+        List<Employee> list = new ArrayList<>();
+        for(int i=0;i<names.size();i++)
+            list.add(new Employee(names.get(i),salaries.get(i),depts.get(i)));
+        Map<String, Optional<Employee>> empMap = imp.maxEarningOnDeprt(list);
+        for(Map.Entry entry:empMap.entrySet())
+        {
+            Optional<Employee> e = (Optional) entry.getValue();
+            System.out.println(entry.getKey() +"::"+e.get().salary);
+        }
+
+    }
 }

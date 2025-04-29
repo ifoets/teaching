@@ -3,13 +3,12 @@ package interview.preparation.company.interviews.impl;
 import interview.preparation.company.interviews.model.Employee;
 import interview.preparation.company.interviews.question.IMphysis;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MphysisImpl implements IMphysis {
 
@@ -69,21 +68,21 @@ public class MphysisImpl implements IMphysis {
 
 	/*remove duplicate char from string*/
 	public String removeDuplicateChar(String str){
-
-		return str.chars().mapToObj( e->(char)e).collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting())).
-				entrySet()
+        StringBuilder sb = new StringBuilder();
+            List<Character> charList = str.chars().mapToObj( e->(char)e).collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting())).
+                keySet()
 				.stream()
-				.map( String::valueOf)
-				.collect(Collectors.joining());
-
+                .toList();
+            charList.forEach(sb::append);
+            return sb.toString();
 	}
 
 	/*find highest salary employee in each of department*/
-	public Map<String,Double> maxEarningOnDeprt(List<Employee> employeeList){
-
-		//return employeeList.stream().collect(Collectors.groupingBy(Employee::getDepartment, Collectors.toList()));
-        return null;
-
+	public Map<String,Optional<Employee>> maxEarningOnDeprt(List<Employee> employeeList){
+          return  employeeList.stream().collect(
+                Collectors.groupingBy(
+                    Employee::getDepartment,
+                    Collectors.reducing(BinaryOperator.maxBy(Comparator.comparing(Employee::getSalary)))));
 	}
 
 	/*run two thread and print hi hello*/

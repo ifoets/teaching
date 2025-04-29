@@ -253,36 +253,33 @@ public class StremApiImpl implements IStremApi {
 	}
 	/*How to find only duplicate or unique elements with its count from the String ArrayList in Java8*/
 	public Map<String, Long> findDuplicateOrUnique(String s, boolean uniqueOrDuplicate){
-		return Arrays.stream(s.split("")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
-				.entrySet().stream()
-				.filter( e-> uniqueOrDuplicate ? e.getValue() > 1 : e.getValue()==1)
-				.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+      return  Arrays.stream(s.split("")).collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()))
+            .entrySet()
+            .stream()
+            .filter(e-> uniqueOrDuplicate ? e.getValue() > 1 : e.getValue()==1)
+            .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue, (e1,e2)->e1,LinkedHashMap::new));
 	}
 
 	/*find first  or last non-repeated val in arr*/
 	public int firstNonRepeatedVal(int []a){
-		return Arrays.stream(a).mapToObj( i->String.valueOf(a[i-1])).reduce("",(t1,t2)->t1+t2)
-				.chars().mapToObj( c->Character.toLowerCase(c))
-				.collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new, Collectors.counting()))
-				.entrySet()
-				.stream()
-				.filter(e->e.getValue()==1l)
-				.map(x -> x.getKey())
-				.findFirst()
-				.get()-48; //48 ascii value of char 0
+		return Arrays.stream(a).boxed()
+            .collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()))
+            .entrySet()
+            .stream()
+            .filter( e-> e.getValue()==1l)
+            .mapToInt(Map.Entry::getKey)
+            .findFirst().getAsInt();
 	}
 
 	/*find first or last repeated val in arr*/
 	public int firstRepeatedVal(int []a){
-		return Arrays.stream(a).mapToObj( i->String.valueOf(a[i-1])).reduce("",(t1,t2)->t1+t2)
-				.chars().mapToObj( c->Character.toLowerCase(c))
-				.collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new, Collectors.counting()))
-				.entrySet()
-				.stream()
-				.filter(e->e.getValue()>1l)
-				.map(Map.Entry::getKey)
-				.findFirst()
-				.get()-48; //48 ascii value of char 0
+
+       return Arrays.stream(a).boxed().collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new, Collectors.counting()))
+            .entrySet()
+            .stream()
+            .filter( e-> e.getValue()>1l)
+            .mapToInt(Map.Entry::getKey)
+            .findFirst().getAsInt();
 	}
 
 }

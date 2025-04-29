@@ -1,4 +1,4 @@
-package interview.preparation.self.asked.company.impl;
+package interview.preparation.company.interviews;
 
 import interview.preparation.company.interviews.impl.SynechronImpl;
 import interview.preparation.company.interviews.question.ISynechron;

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Employee {
     private String name;
-    private int salary;
+    public int salary;
 
     private String department;
     public List<Employee> list;
@@ -51,5 +51,15 @@ public class Employee {
 
     public void setList(List<Employee> list) {
         this.list = list;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+            "name='" + name + '\'' +
+            ", salary=" + salary +
+            ", department='" + department + '\'' +
+            ", list=" + list +
+            '}';
     }
 }
