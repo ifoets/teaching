@@ -66,4 +66,17 @@ public class IArrayEasyTest {
         List<String> rs = iae.fizzBuzz(15);
         System.out.print(Arrays.toString(rs.toArray()));
     }
+    /**35. Search Insert Position, Given a sorted array of distinct integers and a target value, return the index if the target is found.
+     If not, return the index where it would be if it were inserted in order*/
+    @Test
+    public void searchInsertTest(){
+
+        int[] nums = {1,3,5,6};
+        Assert.assertEquals(2, iae.searchInsert(nums, 5));
+        Assert.assertEquals(1, iae.searchInsert(nums, 2));
+        Assert.assertEquals(4, iae.searchInsert(nums, 7));
+        Assert.assertEquals(0, iae.searchInsert(nums, 0));
+        int []a={1,3,5};
+        Assert.assertEquals(2, iae.searchInsert(a, 4));
+    }
 }

@@ -49,4 +49,11 @@ public class IStringMediumTest {
         for(int i=0;i<rs.length;i++)
             Assert.assertEquals(rs[i],ism.myAtoi(str[i]));
     }
+    @Test
+    public void intToRomanTest()
+    {
+        Assert.assertEquals("MMMDCCXLIX", ism.intToRoman(3749));
+        Assert.assertEquals("LVIII", ism.intToRoman(58));
+        Assert.assertEquals("MCMXCIV", ism.intToRoman(1994));
+    }
 }

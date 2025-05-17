@@ -81,4 +81,27 @@ public class IArrayMediumTest {
         Assert.assertEquals(1, iam.search(nums1,1));
     }
 
+    /**34. Find First and Last Position of Element in Sorted Array**/
+    @Test
+    public void searchRangeTest(){
+       int [] nums = {5,7,7,8,8,10};
+       int target = 8;
+       int []rs = iam.searchRange(nums,target);
+        Assert.assertEquals(3, rs[0]);
+        Assert.assertEquals(4, rs[1]);
+
+        int [] nums1 = {5,7,7,8,8,10};
+        int target1 = 6;
+        int []rs1 = iam.searchRange(nums1,target1);
+        Assert.assertEquals(-1, rs1[0]);
+        Assert.assertEquals(-1, rs1[1]);
+    }
+
+    /**36. Valid Sudoku*/
+    @Test
+    public void isValidSudokuTest()
+    {
+
+    }
+
 }

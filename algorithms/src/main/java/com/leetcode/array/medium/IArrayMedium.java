@@ -11,16 +11,31 @@ public interface IArrayMedium {
     List<List<Integer>> threeSumX(int[] nums);
 
     /**16. 3Sum Closest*/
-    public int threeSumClosest(int[] nums, int target);
-    public int threeSumClosestX(int[] nums, int target);
+     int threeSumClosest(int[] nums, int target);
+     int threeSumClosestX(int[] nums, int target);
 
     /**18. 4Sum return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]]*/
-    public List<List<Integer>> fourSum(int[] nums, int target);
+     List<List<Integer>> fourSum(int[] nums, int target);
 
     /**31. Next Permutation in lexicographical order*/
-    public void nextPermutation(int[] nums);
-    public void permutationLexicalOrder(List<List<Integer>> list, int nums[], int idx);
+     void nextPermutation(int[] nums);
+     void permutationLexicalOrder(List<List<Integer>> list, int nums[], int idx);
 
     /**33. Search in Rotated Sorted Array */
-    public int search(int[] nums, int target);
+     int search(int[] nums, int target);
+
+    /**34. Find First and Last Position of Element in Sorted Array**/
+    int[] searchRange(int[] nums, int target);
+    int[] searchRangeX(int[] nums, int target);
+
+    /**36. Valid Sudoku
+     * Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+     *
+     * Each row must contain the digits 1-9 without repetition.
+     * Each column must contain the digits 1-9 without repetition.
+     * Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+     */
+    boolean isValidSudoku(char[][] board);
+
+
 }
