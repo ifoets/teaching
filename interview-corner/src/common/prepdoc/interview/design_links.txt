@@ -1,0 +1,30 @@
+Scenarios/Question for LLD
+https://in.indeed.com/career-advice/interviewing/low-level-design-interview-questions
+https://www.java67.com/2018/05/top-20-system-design-interview-questions-answers-programming.html
+https://github.com/topics/low-level-design-problems
+https://medium.com/javarevisited/25-software-design-interview-questions-to-crack-any-programming-and-technical-interviews-4b8237942db0
+https://betterprogramming.pub/how-to-ace-the-low-level-design-interview-3f1be6401070
+
+=======================================================================================================
+Tips for LLD
+https://www.linkedin.com/pulse/cracking-he-low-level-design-lld-interview-shashi-bhushan-kumar/
+https://www.geeksforgeeks.org/5-tips-to-crack-low-level-system-design-interviews/
+
+
+
+docker cubernate interview questions
+--------------------------------------------	
+https://www.simplilearn.com/tutorials/kubernetes-tutorial/kubernetes-interview-questions
+
+https://www.edureka.co/blog/interview-questions/kubernetes-interview-questions/
+
+https://www.guru99.com/kubernetes-interview-questions-answers.html
+
+https://intellipaat.com/blog/interview-question/kubernetes-interview-questions-answers/
+
+ACID
+https://www.ibm.com/docs/en/cics-ts/5.4?topic=processing-acid-properties-transactions
+
+
+auth1 and auth 2 diff
+https://medium.com/identity-beyond-borders/oauth-1-0-vs-oauth-2-0-e36f8924a835#:~:text=OAuth%201.0%20has%20been%20designed,do%20not%20use%20web%20UIs.
