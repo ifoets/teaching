@@ -642,7 +642,97 @@ Combination of columns	Yes (composite key possible)	Yes (also allows composite u
 Default behavior	Automatically NOT NULL + UNIQUE	Only UNIQUE (nullable unless specified
 
 
+Transaction management spring boot-12-factor
+=================================================
+https://www.marcobehler.com/guides/spring-transaction-management-transactional-in-depth
 
+L9.
+How can you catch an exception thrown by another thread in Java?
+This can be done using Thread.UncaughtExceptionHandler.
+
+12 factor app in microservices
+https://www.baeldung.com/spring-boot-12-factor
+
+DDOS attack
+https://www.onelogin.com/learn/ddos-attack
+
+multi-factor authentication
+
+sernario based question in microservices
+1.what is response type object in microservices -ResponseEntity
+2.Explain Auth2.architecture in full details
+https://github.com/hendisantika/spring-boot-security-oauth2-example
+
+3.how to Authorized role based in microservices
+4.How to Authenticate user for particular action
+5.L-stack, EFK logging, Splunk, grafana
+6.how to stop user to no of times access API
+7.auth token and access token
+8.How to recognise this access api is fake acess, Docc attack
+9.Dev ops entire flow
+10.Docker koobernet, CI/CD
+11.HOw to acess properties in spring boot/ how to update live properties in production
+12. mfa authenticaiton
+https://www.javadevjournal.com/spring-security/two-factor-authentication-with-spring-security/
+
+
+@Bean and @Autowire difference
+for method level @Bean is for instantiation of bean in config that get added in spring context
+@Bean annotation in a @Configuration-annotated or in a @Component-annotated class.
+
+and @Autowied on method is seeter injection ie injection haapening after setting some properties
+
+On class level
+
+@Autowired annotation is optional for constructor based injection
+@Component is a class-level annotation, but @Bean is at the method level, so
+@Component is only an option when a class's source code is editable. @Bean can always be used, but it's more verbose.
+
+
+What is the difference between @bean and @component?
+@Component is a class-level annotation, but @Bean is at the method level, so @Component is only an option when a class's source code is editable.
+@Bean can always be used, but it's more verbose.
+@Component is compatible with Spring's auto-detection, but @Bean requires manual class instantiation.
+
+Snacks and Lattder design
+https://workat.tech/machine-coding/editorial/how-to-design-snake-and-ladder-machine-coding-ehskk9c40x2w
+
+find min sum in maxtrix pick an element from each row
+
+@Aspect oriented programming
+https://docs.spring.io/spring-framework/docs/2.5.5/reference/aop.html
+
+session based authenticaiton and Authbase difference and how to implements
+
+
+read write lock colum table or row
+horizontal /vertical scaling the appling how
+
+Questions for L1 (Theory round)
+
+OOPs, Immutability, Overridden and Overloading concepts
+Ability to explain project scenarios covering all the exception/edge cases
+Internal implementation of HashMap and different collections worked on
+Design patterns - Singleton, Builder & Chain of responsibility.
+Difference between NoClassDefFound errors and ClassNotFound exceptions
+Java multi-threading project experience details.
+
+Questions for L2 (Coding round)
+
+Wrote code for Builder design pattern or singleton design pattern in Java (private constructor, static get instance method, suppressing ability to clone)
+Algorithms
+simple "anagram" Java program
+program to check whether a string {[()]} is balanced or not using Java stack; Find if the string containing multiple types of parentheses is balanced ex - {()}[]
+Java program to check if any number given as input is the sum of two prime numbers
+List of integers is called perfect if it has a minimum of 3 numbers in it and the difference between any 2 adjacent numbers is the same. Given a list of integers, return number of perfect sub lists
+Debugging experience with JVM crash logs (thread dumps and heap dump log files)
+
+where we store db password in microservices- in encrypted in web.xml and decripted in security file
+how confiure deployment descriptor in spring boot-web.xml example that maps all URL paths (/*)
+DispatcherServlet
+DispatcherServlet handles an incoming HttpRequest, delegates the request, and processes that request a
+ccording to the configured HandlerAdapter interfaces that have been implemented within the Spring application
+along with accompanying annotations specifying handlers, controller endpoints, and response objects.
 
 
 

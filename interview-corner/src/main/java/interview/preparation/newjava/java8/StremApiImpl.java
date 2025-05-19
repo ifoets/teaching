@@ -34,8 +34,17 @@ public class StremApiImpl implements IStremApi {
 	/** sort map based on the value then key */
 	@Override
 	public Map<String, String> sortMapOnValueThenKey(Map<String, String> map) {
-		return map.entrySet().stream().sorted(Map.Entry.comparingByValue()).sorted(Map.Entry.comparingByKey())
-				.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue, (e1,e2)->e1, LinkedHashMap::new));
+        return map.entrySet()
+            .stream()
+            .sorted(Map.Entry.<String,String>comparingByValue()
+                .thenComparing(Map.Entry.comparingByKey()))
+            .collect(
+                Collectors.toMap(
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+                    (e1, e2)->e1,
+                    LinkedHashMap::new
+            ));
 	}
 
 	/* to upper case */
@@ -202,7 +211,7 @@ public class StremApiImpl implements IStremApi {
 	@Override
 	public int sumFirstNEvenElements(List<Integer> list, int n)
 	{
-		List<Integer> nList = list.stream().filter( e-> e%2==0).collect(Collectors.toList());
+		List<Integer> nList = list.stream().filter( e-> e%2==0).toList();
        return IntStream.range(0, list.size() > n ? n : list.size())
 			   .mapToObj( i -> nList.get(i))
 			   .mapToInt(Integer::intValue)
@@ -212,7 +221,7 @@ public class StremApiImpl implements IStremApi {
 	@Override
 	public int sumLastNOddElements(List<Integer> list, int n)
 	{
-		List<Integer> nList = list.stream().filter(e -> e%2==1).collect(Collectors.toList());
+		List<Integer> nList = list.stream().filter(e -> e%2==1).toList();
 		return IntStream.range(nList.size()-n, nList.size()).mapToObj( i -> nList.get(i))
 				.mapToInt(Integer::intValue)
 				.sum();
@@ -222,8 +231,8 @@ public class StremApiImpl implements IStremApi {
 	public List<Integer> nthPosXValue(List<Integer> list, int n, int x){
 		return list.stream().map( e-> e+"")
 				.filter( y -> (y.toCharArray().length >= n && Integer.valueOf((char)y.toCharArray()[n-1]+"")==Integer.valueOf(x)))
-				.map(t-> Integer.parseInt(t))
-				.collect(Collectors.toList());
+				.map(Integer::parseInt)
+                .toList();
 	}
 	/*sum of duplicate element*/
 	@Override
@@ -249,7 +258,7 @@ public class StremApiImpl implements IStremApi {
 				.orElseGet(Collections::emptyList)
 				.stream()
 				.filter(Objects::nonNull)
-				.map(Notes::getName).collect(Collectors.toList());
+				.map(Notes::getName).toList();
 	}
 	/*How to find only duplicate or unique elements with its count from the String ArrayList in Java8*/
 	public Map<String, Long> findDuplicateOrUnique(String s, boolean uniqueOrDuplicate){
@@ -268,7 +277,7 @@ public class StremApiImpl implements IStremApi {
             .stream()
             .filter( e-> e.getValue()==1l)
             .mapToInt(Map.Entry::getKey)
-            .findFirst().getAsInt();
+            .findFirst().orElseThrow();
 	}
 
 	/*find first or last repeated val in arr*/
