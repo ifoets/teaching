@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>groupId</groupId>
@@ -17,15 +18,15 @@
         <scope>test</scope>
     </dependency>
     </dependencies>
-
     <modules>
         <module>algorithms</module>
         <module>data-structures</module>
         <module>design-patterns</module>
         <module>interview-corner</module>
+        <module>rx-java</module>
         <module>scenario-analysis</module>
-        <module>system-design</module>
         <module>thread-concurrency</module>
+        <module>system-design</module>
     </modules>
     <properties>
         <maven.test.skip>true</maven.test.skip>

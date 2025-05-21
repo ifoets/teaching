@@ -3,17 +3,19 @@ package interview.preparation.java8;
 import java.util.*;
 
 import interview.preparation.java8.datautils.DataUtils;
-import interview.preparation.java8.model.Employee;
-import interview.preparation.java8.model.Notes;
+import interview.preparation.newjava.java8.IStremApi;
+import interview.preparation.newjava.java8.StremApiImpl;
+import interview.preparation.newjava.java8.model.Employee;
+import interview.preparation.newjava.java8.model.Notes;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import interview.preparation.java8.model.Book;
-import interview.preparation.self.asked.company.model.A;
-import interview.preparation.self.asked.company.model.B;
-import interview.preparation.self.asked.company.model.C;
-import interview.preparation.self.asked.company.model.D;
+import interview.preparation.newjava.java8.model.Book;
+import interview.preparation.company.interviews.model.A;
+import interview.preparation.company.interviews.model.B;
+import interview.preparation.company.interviews.model.C;
+import interview.preparation.company.interviews.model.D;
 
 public class
 
@@ -228,7 +230,7 @@ IStreamApiTest {
 	public void firstNonRepeatedValTest()
 	{
 		int a[] = {8,1,2,3,6,3,2,4,9};
-		System.out.println(isa.firstNonRepeatedVal(a));
+        Assert.assertEquals(8,isa.firstNonRepeatedVal(a));
 	}
 
 	/*find first or last repeated val in arr*/
@@ -236,7 +238,7 @@ IStreamApiTest {
 	public void firstRepeatedValTest()
 	{
 		int a[] = {8,1,2,3,6,3,2,4,9};
-		System.out.println(isa.firstRepeatedVal(a));
+        Assert.assertEquals(2,isa.firstRepeatedVal(a));
 	}
 
 }

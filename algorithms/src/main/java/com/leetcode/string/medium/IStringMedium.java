@@ -13,4 +13,7 @@ public interface IStringMedium {
 
     /**8. String to Integer (atoi)*/
     int myAtoi(String s);
+
+    /**12. Integer to Roman*/
+    String intToRoman(int num);
 }

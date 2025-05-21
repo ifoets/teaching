@@ -1,5 +1,7 @@
 package interview.preparation.java11;
 /*New Features in Java 11*/
+import interview.preparation.newjava.java11.IJava11;
+import interview.preparation.newjava.java11.Java11Impl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

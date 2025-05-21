@@ -1,5 +1,6 @@
 package interview.preparation.java21;
 
+import interview.preparation.newjava.java21.SwitchPattern;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,5 +17,6 @@ public class SwitchPatternTest {
     Assert.assertEquals((int)SwitchPattern.getBalanceWithOutSwitchPattern(sa),(int)SwitchPattern.getBalanceWithSwitchPattern(sa));
     Assert.assertEquals((int)SwitchPattern.getBalanceWithOutSwitchPattern(ta),(int)SwitchPattern.getBalanceWithSwitchPattern(ta));
     Assert.assertEquals((int)SwitchPattern.getBalanceWithOutSwitchPattern(ca),(int)SwitchPattern.getBalanceWithSwitchPattern(ca));
-}
+
+    }
 }

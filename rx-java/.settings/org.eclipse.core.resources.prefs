@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+encoding//src/common/inputdoc/notebook.txt=UTF-8
+org.eclipse.jdt.core.formatter.brace_position_for_lambda_body=next_line_shifted
+org.eclipse.jdt.core.formatter.insert_space_before_lambda_arrow=insert

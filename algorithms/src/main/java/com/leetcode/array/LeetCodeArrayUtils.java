@@ -83,4 +83,37 @@ public class LeetCodeArrayUtils {
         // No Element Found
         return -1;
     }
+
+    public static int binarySearchFirstIndex(int[] a, int l, int r, int x){
+
+        while (l <= r) {
+            int m = (l + r) / 2;
+            if (m==0&&a[m] == x || m!=0 && a[m]==x && a[m-1]<a[m]) {
+                return m;
+            } else if (a[m] >= x) {
+                r = m - 1;
+            } else {
+                l = m + 1;
+            }
+        }
+        // No Element Found
+        return -1;
+    }
+
+    public static int binarySearchLastIndex(int[] a, int l, int r, int x){
+
+        while (l <= r) {
+            int m = (l + r) / 2;
+            if (m==a.length-1 && a[m] == x || a[m]==x && m != a.length-1 && a[m]<a[m+1]) {
+                return m;
+            } else if (a[m]<=x) {
+                l = m + 1;
+            } else {
+                r = m - 1;
+            }
+        }
+        // No Element Found
+        return -1;
+    }
+
 }

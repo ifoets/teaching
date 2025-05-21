@@ -1,5 +1,7 @@
 package interview.preparation.java8;
 
+import interview.preparation.newjava.java8.ILambdaExpression;
+import interview.preparation.newjava.java8.LambdaExpressionImpl;
 import org.junit.Before;
 import org.junit.Test;
 

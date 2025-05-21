@@ -1,10 +1,12 @@
 package interview.preparation.java17;
 
-import interview.preparation.java17.record.RecordUtils;
-import interview.preparation.java17.sealedclass.Rectangle;
-import interview.preparation.java17.sealedclass.Square;
-import interview.preparation.java17.sealedclass.Triangle;
-import interview.preparation.java17.switchexpr.Position;
+import interview.preparation.newjava.java17.IJava17;
+import interview.preparation.newjava.java17.Java17Impl;
+import interview.preparation.newjava.java17.record.RecordUtils;
+import interview.preparation.newjava.java17.sealedclass.Rectangle;
+import interview.preparation.newjava.java17.sealedclass.Square;
+import interview.preparation.newjava.java17.sealedclass.Triangle;
+import interview.preparation.newjava.java17.switchexpr.Position;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
