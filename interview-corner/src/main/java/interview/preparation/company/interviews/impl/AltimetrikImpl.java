@@ -1,5 +1,6 @@
 package interview.preparation.company.interviews.impl;
 
+import interview.preparation.company.interviews.Utils.InterviewUtils;
 import interview.preparation.company.interviews.question.IAltimetrik;
 
 import java.util.*;
@@ -86,7 +87,7 @@ public class AltimetrikImpl implements IAltimetrik {
 
 	@Override
 	public int get2ndMaxNo(List<List<Integer>> ll){
-		List<Integer> l = ll.stream().flatMap( e-> e.stream()).collect(Collectors.toSet()).stream().sorted().collect(Collectors.toList());
+		List<Integer> l = ll.stream().flatMap(Collection::stream).collect(Collectors.toSet()).stream().sorted().toList();
 		return l.get(l.size()-2);
 	}
 
@@ -100,4 +101,39 @@ public class AltimetrikImpl implements IAltimetrik {
                 .boxed()
                 .toList();
     }
+
+    @Override
+    public void rotateArrayFromRight(int []a,int x){
+        InterviewUtils.reverse(a,0,x-1);
+        InterviewUtils.reverse(a,x,a.length-1);
+        InterviewUtils.reverse(a,0,a.length-1);
+    }
+
+    @Override
+    public int searchInRotatedArray(int []a, int x){
+      int pivot = pivotInRotatedArray(a,0,a.length-1);
+
+       if(x<a[0]) {
+           return InterviewUtils.binarySearch(a, x, pivot+1, a.length-1);
+       }
+      else return InterviewUtils.binarySearch(a,x,0,pivot);
+    }
+
+    @Override
+    public int pivotInRotatedArray(int []a,int l, int r){
+        int m = (l+r)/2;
+        if (l<=r)
+        {
+            if(m>0 && a[m-1]>a[m])
+                return m-1;
+            if(m<a.length-1 && a[m]>a[m+1])
+                return m;
+            if(a[m]<a[r])
+                return pivotInRotatedArray(a,l,m-1);
+            else
+                return pivotInRotatedArray(a,m+1,r);
+        }
+       return -1;
+    }
+
 }

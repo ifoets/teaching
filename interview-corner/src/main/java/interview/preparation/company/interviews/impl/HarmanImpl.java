@@ -37,7 +37,7 @@ public class HarmanImpl implements IHarman {
     public int kthMaxMinX(int a[], int k, boolean maxOrMin)
     {
         return
-        maxOrMin ? Arrays.stream(a).boxed().distinct().sorted(Comparator.reverseOrder()).skip(k-1).findFirst().get()
-                 : Arrays.stream(a).boxed().distinct().sorted().skip(k-1).findFirst().get();
+        maxOrMin ? Arrays.stream(a).boxed().distinct().sorted(Comparator.reverseOrder()).skip(k-1).findFirst().orElseThrow()
+                 : Arrays.stream(a).boxed().distinct().sorted().skip(k-1).findFirst().orElseThrow();
     }
 }

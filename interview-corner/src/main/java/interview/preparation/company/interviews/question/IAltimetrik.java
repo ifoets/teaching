@@ -4,13 +4,20 @@ import java.util.List;
 
 public interface IAltimetrik {
 
-	public int minimumCandiesPerHour(int []c);
+	 int minimumCandiesPerHour(int []c);
 
-    public int minimumCandiesPerHourX(int []c);
+     int minimumCandiesPerHourX(int []c);
 
-	public boolean checkDuplicateCountVal(int []a);
+	 boolean checkDuplicateCountVal(int []a);
 
-	public int get2ndMaxNo(List<List<Integer>> ll);
+	 int get2ndMaxNo(List<List<Integer>> ll);
 
-	public List<Integer> findVowlesIndex(String str);
+	 List<Integer> findVowlesIndex(String str);
+
+     void rotateArrayFromRight(int []a,int x);
+
+     int searchInRotatedArray(int []a, int x);
+
+     int pivotInRotatedArray(int []a, int l, int r);
+
 }

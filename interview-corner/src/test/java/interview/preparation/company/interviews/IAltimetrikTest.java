@@ -71,4 +71,25 @@ public class IAltimetrikTest {
         Assert.assertEquals(rsList,ial.findVowlesIndex("abhimanyu kumar"));
         System.out.print(ial.findVowlesIndex("abhimanyu kumar"));
     }
+
+    @Test
+    public void pivotInRotatedArrayTest()
+    {
+        int []a = {5,6,7,8,9,1,2,3,4};
+        int []b = {9,1,2,3,4,5,6,7,8};
+        int []c = {2,3,4,5,6,7,8,9,1};
+        Assert.assertEquals(4,ial.pivotInRotatedArray(a,0,a.length-1));
+        Assert.assertEquals(0,ial.pivotInRotatedArray(b,0,b.length-1));
+        Assert.assertEquals(7,ial.pivotInRotatedArray(c,0,c.length-1));
+    }
+    @Test
+    public void searchInRotatedArrayTest()
+    {
+        int []a = {5,6,7,8,9,1,2,3,4};
+        int []b = {9,1,2,3,4,5,6,7,8};
+        int []c = {2,3,4,5,6,7,8,9,1};
+        Assert.assertEquals(5,ial.searchInRotatedArray(a,1));
+        Assert.assertEquals(3,ial.searchInRotatedArray(b,3));
+        Assert.assertEquals(8,ial.searchInRotatedArray(c,1));
+    }
 }

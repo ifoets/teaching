@@ -1,11 +1,13 @@
-package interview.preparation.company.interviews.question;
+package interview.preparation.company.interviews.impl;
+
+import interview.preparation.company.interviews.question.IUnknown;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class UnknownImpl implements IUnknown{
+public class UnknownImpl implements IUnknown {
 
     /**Handle exception thrown by one thread in another thread using
      Future and ExecutorService**/

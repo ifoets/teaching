@@ -1,7 +1,7 @@
 package interview.preparation.company.interviews;
 
 import interview.preparation.company.interviews.question.IUnknown;
-import interview.preparation.company.interviews.question.UnknownImpl;
+import interview.preparation.company.interviews.impl.UnknownImpl;
 import org.junit.Before;
 import org.junit.Test;
 
