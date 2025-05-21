@@ -1,0 +1,6 @@
+java 21 to 24
+---------------
+java: java.lang.ExceptionInInitializerError
+com.sun.tools.javac.code.TypeTag :: UNKNOWN
+Sol- change lombok compatible version for java 24 ie x.x.x->1.18.38
+------------------

@@ -151,4 +151,22 @@ public class StringMediumImpl implements IStringMedium{
         return res * sign;
     }
 
+    /**12. Integer to Roman*/
+    @Override
+    public String intToRoman(int num){
+
+        int[] values ={1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        String[] symbols = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+
+       StringBuilder sb = new StringBuilder();
+       for(int i=0;i<values.length;i++)
+       {
+           if(num/values[i]>0)
+           {
+               sb.append(symbols[i].repeat(Math.max(0, num / values[i])));
+           }
+           num=num%values[i];
+       }
+       return sb.toString();
+    }
 }

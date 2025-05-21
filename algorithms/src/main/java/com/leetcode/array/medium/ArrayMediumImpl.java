@@ -3,6 +3,8 @@ package com.leetcode.array.medium;
 import com.leetcode.array.LeetCodeArrayUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ArrayMediumImpl implements IArrayMedium{
 
@@ -165,6 +167,7 @@ public class ArrayMediumImpl implements IArrayMedium{
         }
         return ans;
     }
+    @Override
     /**18. 4Sum*/
     public List<List<Integer>> fourSum(int[] nums, int target){
         Arrays.sort(nums);
@@ -233,6 +236,7 @@ public class ArrayMediumImpl implements IArrayMedium{
         //reverse element from pivot+1 to end
         LeetCodeArrayUtils.reverse(nums,pivot+1,N-1);
     }
+    @Override
     public void permutationLexicalOrder(List<List<Integer>> list, int nums[], int idx)
     {
         if(idx==nums.length) {
@@ -286,4 +290,66 @@ public class ArrayMediumImpl implements IArrayMedium{
         }
         return -1;
     }
+
+    /**34. Find First and Last Position of Element in Sorted Array**/
+    public int[] searchRange(int[] nums, int target){
+
+        int []rs = {-1,-1};
+        int []resultArr = IntStream.range(0,nums.length).filter( i-> nums[i]==target).toArray();
+        if(resultArr.length==0)
+            return rs;
+        if(resultArr.length==1) {
+            rs[1]=rs[0] = resultArr[0];
+        }
+        else {
+            rs[0] = resultArr[0];
+            rs[1] = resultArr[resultArr.length - 1];
+        }
+        return rs;
+    }
+    public int[] searchRangeX(int[] nums, int target){
+       int []rs = new int[2];
+        rs[0]=LeetCodeArrayUtils.binarySearchFirstIndex(nums,0,nums.length-1, target);
+        rs[1]=LeetCodeArrayUtils.binarySearchLastIndex(nums,0,nums.length-1, target);
+        return rs;
+
+    }
+
+    /**36. Valid Sudoku*/
+    @Override
+    public boolean isValidSudoku(char[][] board){
+
+        int N = board.length;
+        HashSet<Character>[] rows = new HashSet[N];
+        HashSet<Character>[] cols = new HashSet[N];
+        HashSet<Character>[] boxes = new HashSet[N];
+
+        for (int i = 0; i < N; i++) {
+            rows[i] = new HashSet<>();
+            cols[i] = new HashSet<>();
+            boxes[i] = new HashSet<>();
+        }
+
+        for (int r = 0; r < N; r++) {
+            for (int c = 0; c < N; c++) {
+                if (board[r][c] == '.') {
+                    continue;
+                }
+
+                char value = board[r][c];
+                int boxIndex = (r / 3) * 3 + (c / 3);
+
+                if (rows[r].contains(value) || cols[c].contains(value) || boxes[boxIndex].contains(value)) {
+                    return false;
+                }
+
+                rows[r].add(value);
+                cols[c].add(value);
+                boxes[boxIndex].add(value);
+            }
+        }
+
+        return true;
+    }
+
 }
