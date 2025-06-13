@@ -6,8 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class IAltimetrikTest {
 
@@ -91,5 +90,90 @@ public class IAltimetrikTest {
         Assert.assertEquals(5,ial.searchInRotatedArray(a,1));
         Assert.assertEquals(3,ial.searchInRotatedArray(b,3));
         Assert.assertEquals(8,ial.searchInRotatedArray(c,1));
+    }
+
+    @Test
+    public void maxPalindromeSubStrTest()
+    {
+        String str ="abdbcd";
+        Assert.assertEquals("bdb",ial.maxPalindromeSubStr(str));
+    }
+
+    @Test
+    public void rotateListTest()
+    {
+        List<Integer> list1 = List.of(1,2,3,4,5);
+        List<Integer> list2 = List.of(3,4,5,1,2);
+
+        list1 = ial.rotateList(list1,2);
+        for(int i=0;i<list2.size();i++)
+            Assert.assertEquals(list1.get(i),list2.get(i));
+    }
+
+    @Test
+    public void rotateListXTest()
+    {
+        List<Integer> list1 = List.of(1,2,3,4,5);
+        List<Integer> list2 = List.of(3,4,5,1,2);
+
+        list1 = ial.rotateListX(list1,2);
+        for(int i=0;i<list2.size();i++)
+            Assert.assertEquals(list1.get(i),list2.get(i));
+    }
+    @Test
+    public void rotateListYTest()
+    {
+        List<Integer> list1 = new ArrayList<>(Arrays.asList(1,2,3,4,5));
+        List<Integer> list2 = List.of(3,4,5,1,2);
+
+        ial.rotateListY(list1,2);
+        for(int i=0;i<list2.size();i++)
+            Assert.assertEquals(list1.get(i),list2.get(i));
+    }
+
+    @Test
+    public void rotateMapTest()
+    {
+
+        LinkedHashMap<Integer,Integer> lhm1 = new LinkedHashMap();
+        lhm1.put(1,10);//Map.of(
+        lhm1.put(2,20);
+        lhm1.put(3,30);
+        lhm1.put(4,40);
+        lhm1.put(5,50);
+
+        LinkedHashMap<Integer,Integer> lhm2 = new LinkedHashMap(Map.of(
+            3,30,
+            4,40,
+            5,50,
+            1,10,
+            2,20
+        ));
+
+        lhm1 = (LinkedHashMap<Integer,Integer>)ial.rotateMap(lhm1,2);
+        for(int i=0;i<lhm1.size();i++)
+            Assert.assertEquals(lhm1.get(i),lhm2.get(i));
+    }
+    @Test
+    public void rotateMapXTest()
+    {
+        LinkedHashMap<Integer,Integer> lhm1 = new LinkedHashMap();
+        lhm1.put(1,10);//Map.of(
+        lhm1.put(2,20);
+        lhm1.put(3,30);
+        lhm1.put(4,40);
+        lhm1.put(5,50);
+
+        LinkedHashMap<Integer,Integer> lhm2 = new LinkedHashMap(Map.of(
+            3,30,
+            4,40,
+            5,50,
+            1,10,
+            2,20
+        ));
+
+        lhm1 = (LinkedHashMap<Integer, Integer>) ial.rotateMapX(lhm1,2);
+        for(int i=0;i<lhm1.size();i++)
+            Assert.assertEquals(lhm1.get(i),lhm2.get(i));
     }
 }
