@@ -2,10 +2,12 @@ package interview.preparation.company.interviews.impl;
 
 import interview.preparation.company.interviews.Utils.InterviewUtils;
 import interview.preparation.company.interviews.question.IAltimetrik;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class AltimetrikImpl implements IAltimetrik {
 
@@ -136,4 +138,92 @@ public class AltimetrikImpl implements IAltimetrik {
        return -1;
     }
 
+    @Override
+    public String maxPalindromeSubStr(String str){
+        int maxLen=0;
+        String maxLenPalindromStr=null;
+        for(int i=0;i<str.length();i++)
+        {
+            for(int j=i+1;j<str.length() ;j++)
+            {
+                    String s = str.substring(i, j);
+                    if (isPalindrome(s))
+                    {
+                        if (maxLen < s.length()) {
+                            maxLen = s.length();
+                            maxLenPalindromStr = s;
+                        }
+                    }
+            }
+        }
+        return maxLenPalindromStr;
+    }
+
+    public boolean isPalindrome(String str)
+    {
+        int i=0;
+        int j=str.length()-1;
+        while (i<j)
+        {
+            if(str.charAt(i)!=str.charAt(j))
+                return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    @Override
+    public List<Integer> rotateList(List<Integer> list, int k){
+        return Stream.concat(list.subList(k, list.size()).stream(),list.subList(0,k).stream()).toList();
+    }
+    @Override
+    public  List<Integer> rotateListX(List<Integer> list, int k){
+        List<Integer> list1 = new ArrayList<>(list);
+        Collections.rotate(list1,-k); //for right rotation
+        return list1;
+    }
+
+    @Override
+    public  void rotateListY(List<Integer> list, int k){
+        reverse(list,0,k-1);
+        reverse(list,k,list.size()-1);
+        reverse(list,0,list.size()-1);
+    }
+    public void reverse(List<Integer> list, int i, int j)
+    {
+        while (i<j)
+        {
+            int temp = list.get(i);
+            list.set(i,list.get(j));
+            list.set(j,temp);
+            i++;
+            j--;
+        }
+    }
+    /**rotate map position by k to right**/
+    @Override
+    public Map<Integer,Integer> rotateMap(LinkedHashMap<Integer, Integer> map, int k)
+    {
+         return Stream.concat(map.entrySet().stream().toList().subList(k, map.size()).stream(),map.entrySet().stream().toList().subList(0, k).stream())
+             .collect(Collectors.toMap(
+                 Map.Entry::getKey,
+                 Map.Entry::getValue,
+                 (e1,e2)->e1,
+                 LinkedHashMap::new
+             ));
+    }
+    @Override
+    //make map index based key and vlaue=
+    public Map<Integer,Integer> rotateMapX(Map<Integer, Integer> map, int k){
+
+        List<Map.Entry<Integer,Integer>> entryList = new ArrayList<>(map.entrySet().stream().toList());
+        Collections.rotate(entryList,-k);
+        return entryList.stream().collect(Collectors.toMap(
+            Map.Entry::getKey,
+            Map.Entry::getValue,
+            (e1,e2)->e1,
+            LinkedHashMap::new
+        ));
+    }
 }
