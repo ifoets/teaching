@@ -224,7 +224,7 @@ public class ArrayMediumImpl implements IArrayMedium{
             LeetCodeArrayUtils.reverse(nums, 0, N - 1);
             return ;
         }
-        //find first big element from right than pivot element
+        //find first big element from right to pivot element
         for(int i=N-1;i>pivot;i--)
         {
             if(nums[pivot]<nums[i])
