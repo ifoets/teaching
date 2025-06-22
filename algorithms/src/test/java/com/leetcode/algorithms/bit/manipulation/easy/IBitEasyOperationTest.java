@@ -41,9 +41,19 @@ public class IBitEasyOperationTest {
         Assert.assertEquals(200,ibo.multipleNumberByBitOptr(10,20));
         Assert.assertEquals(-200,ibo.multipleNumberByBitOptr(20,-10));
     }
+
+    @Test
+    public void divideNumberBYBitOptrTest()
+    {
+       // ibo.divideNumberBYBitOptr(20,5);
+        Assert.assertEquals(4,ibo.divideNumberBYBitOptr(78,6));
+       // Assert.assertEquals(10,ibo.divideNumberBYBitOptr(200,20));
+    }
     @Test
     public void test() {
 
         System.out.println(10>>>1);
     }
+
+
 }
