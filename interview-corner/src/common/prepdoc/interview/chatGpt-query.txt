@@ -1,0 +1,13 @@
+when use global session scope of bean in details
+
+if A and B implement I then @Autoware I a Spring automatically understand it use class A implementation not B
+Ans: no
+
+Tow class implement interface how to inject interface in spring so it can understand which class get called
+ANs- use @Qualifier, @Service(named) Map<String,ServiceInterface> map, map.get(name of @service(named))
+
+mango db implementation in spring boot end to end implementation
+
+When we must use mango and when we must use sql db
+CURD operation in mogo db implementation
+how to do Sharding in NoSQL databases
