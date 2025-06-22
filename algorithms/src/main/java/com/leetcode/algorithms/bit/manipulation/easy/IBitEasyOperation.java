@@ -9,4 +9,5 @@ public interface IBitEasyOperation {
     int addNumberByBitOptr(int a, int b);
     int subtractNumberByBitOptr(int a, int b);
     int multipleNumberByBitOptr(int a, int b);
+    int divideNumberBYBitOptr(int a, int b);
 }

@@ -59,4 +59,21 @@ public class BitEasyOperationImpl implements IBitEasyOperation {
       }
       return result;
     }
+
+    @Override
+    public int divideNumberBYBitOptr(int dividend, int divisor){
+        int quotient=0;
+        for(int i=31;i>=0;i--)
+        {
+            if((divisor<<i)<=dividend)
+            {
+                //subtract that value when left shit of divisor is less than dividend
+                dividend = subtractNumberByBitOptr(dividend,divisor<<i);
+                // set bit i in quotient
+                quotient = quotient | (1<<i);
+            }
+        }
+        return quotient;
+    }
+
 }
