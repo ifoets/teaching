@@ -862,7 +862,37 @@ how to get routed newly dynamic ip instance on cloud
 when to know horizontal scalling require how to instruct cloud to create new instance and how to tell delete one instance
 
 
+wipro
+=============================================================
+select emply having max salray in each department where emp count in depart>1000
+SELECT e.emp_id, e.emp_name, e.salary, e.department_id
+FROM employees e
+JOIN (
+    SELECT department_id, MAX(salary) AS max_salary
+    FROM employees
+    GROUP BY department_id
+    HAVING COUNT(*) > 1000
+) dept_max ON e.department_id = dept_max.department_id
+           AND e.salary = dept_max.max_salary;
 
+@RateLimite, @CircuitBreaker, @Advise, @PointCut, all Type of Advise
+Purpose of git cherry-pick
+------
+Apply a specific fix or feature to another branch without merging everything.
+Avoid merging unrelated or experimental work when only certain changes are needed.
+
+best practices to write RestAPI
+----------------------------
+✅ 1. Use Proper HTTP Methods & Naming
+✅ Example: GET /users, GET /products, GET /articles
+✅ 2. Support Pagination
+✅ 3. Allow Filtering
+✅ 4. Allow Sorting
+✅ 5. Use Consistent Response Format
+✅ 6. Use Status Codes Properly
+✅ 7. Support Sparse Fieldsets (optional but nice)
+✅ 8. Cache Headers (optional for optimization)
+✅ 9. Rate Limit Responses (optional)
 
 
 

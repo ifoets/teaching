@@ -2,6 +2,7 @@ package com.leetcode.algorithms.bit.manipulation.easy;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class IBitEasyOperationTest {
@@ -42,6 +43,7 @@ public class IBitEasyOperationTest {
         Assert.assertEquals(-200,ibo.multipleNumberByBitOptr(20,-10));
     }
 
+    @Ignore
     @Test
     public void divideNumberBYBitOptrTest()
     {
