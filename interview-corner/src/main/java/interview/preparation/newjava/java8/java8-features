@@ -1,0 +1,44 @@
+1. Lambda Expressions
+Benefit:-
+    1. 🔹 Concise Code (Less Boilerplate)
+    2. 🔹 Improved Readability
+    3. 🔹 Enables Functional Programming
+    4. 🔹 Facilitates Use of Stream API
+    6. 🔹 Improves API Usability
+
+2. Functional Interfaces
+Benefit:-
+    1. 🔹 Enables Use of Lambda Expressions
+    2. 🔹 Promotes Cleaner and More Readable Code
+    3. 🔹 Improves Code Reusability and Modularity
+    4. 🔹 Foundation for Java 8 Functional APIs
+    5. 🔹 Supports Stream and Collection API Enhancements
+    6. 🔹 Helps with Dependency Injection and Callbacks
+    7. 🔹 Testability and Mocking
+
+3. Default Methods in Interfaces(Why default method introduced even static can to similar task),
+🔑 Short Answer:
+static methods can’t be overridden or inherited. default methods can.
+ In-Depth Explanation
+     🔹 1. Static Methods Are Not Inheritable by Implementing Classes
+         A static method in an interface is like a utility method:
+         You can't override it
+         You can’t call it via implementing class or instance
+         🔸 But a default method is inherited:
+    🔹 2. Backward Compatibility Without Breaking Existing Code
+    🔹 3. Multiple Inheritance of Behavior
+    🔹 4. Dynamic Polymorphism
+
+
+4. Streams API
+5. Method References
+6. Optional Class
+7. New Date and Time API (java.time)
+8. Collectors (Terminal operations in Stream API)
+9. Predicate, Consumer, Supplier, Function Interfaces
+10. Parallel Streams
+    A parallel stream divides the workload into multiple threads, each processing a chunk of data concurrently.
+    It abstracts away the complexity of managing threads.
+
+    List<String> names = List.of("A", "B", "C", "D", "E");
+    names.parallelStream().forEach(System.out::println); // May print in any order
