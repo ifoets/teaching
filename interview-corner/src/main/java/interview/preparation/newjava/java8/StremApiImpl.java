@@ -83,7 +83,7 @@ public class StremApiImpl implements IStremApi {
 	public List<Integer> addListsOnIndexes(List<Integer> l1, List<Integer> l2) {
 		int N1 = l1.size();
 		int N2 = l2.size();
-		return IntStream.range(0, N1 > N2 ? N1 : N2).mapToObj(i -> (i < N1 ? l1.get(i) : 0) + (i < N2 ? l2.get(i) : 0))
+		return IntStream.range(0, Math.max(N1, N2)).mapToObj(i -> (i < N1 ? l1.get(i) : 0) + (i < N2 ? l2.get(i) : 0))
 				.collect(Collectors.toList());
 	}
 	
