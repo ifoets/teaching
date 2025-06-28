@@ -1,0 +1,19 @@
+
+🔹 1. Record Patterns (Preview) – JEP 440
+🔹 2. Pattern Matching for switch (Final) – JEP 441
+🔹 3. Virtual Threads (Final) – JEP 444
+🔹 4. Structured Concurrency (Preview) – JEP 437
+🔹 5. Scoped Values (Preview) – JEP 446
+🔹 6. Sequenced Collections – JEP 431
+🔹 7. Unnamed Classes and Instance Main Methods (Preview) – JEP 445
+🔹 8. String Templates (Preview) – JEP 430
+🔹 9. Foreign Function & Memory API (Third Preview) – JEP 442
+🔹 10. Deprecate and Disable Finalization – JEP 421
+
+Use record when:
+    You want to create a simple, immutable data carrier—like a DTO (Data Transfer Object) or a value object.
+    ✅ Benefits:
+        Auto-generates constructor, getters, equals, hashCode, and toString
+        Immutable by default
+        Less boilerplate
+        Great for data modeling
