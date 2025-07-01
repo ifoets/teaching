@@ -1,39 +1,6 @@
-package com.design.analysis.leetcode.ds.stack;
+package com.design.analysis.leetcode.ds.stack.hard;
 
-import java.util.Stack;
-
-public class IStackImpl implements IStack{
-
-
-    /** 20. Valid Parentheses*/
-    @Override
-   public  boolean isValidParentheses(String s){
-
-        Stack<Character> stack = new Stack<>();
-         for (char ch : s.toCharArray())
-        {
-            switch (ch)
-            {
-                case '(', '[', '{' -> stack.push(ch);
-                case ')', '}', ']' ->
-                {
-                    if(stack.isEmpty())
-                        return false;
-                    else {
-                        char top = stack.pop();
-                        if ((ch == ')' && top != '(') ||
-                            (ch == '}' && top != '{') ||
-                            (ch == ']' && top != '[')) {
-                            return false;
-                        }
-                    }
-                }
-                default -> throw new IllegalStateException("Unexpected value: " + ch);
-            }
-        }
-        return stack.empty();
-    }
-
+public class StackHardImpl implements IStackHard{
     /**32. Longest Valid Parentheses, Given a string containing just the characters '(' and ')', return the length of the longest valid (well-formed) parentheses substring.*/
     @Override
     public int longestValidParentheses(String s){
@@ -80,9 +47,9 @@ public class IStackImpl implements IStack{
         int tap=0, lmax=0, rmx=0,i=0,j=h.length-1;
         while (i<j)
         {
-           lmax = Math.max(lmax,h[i]);
-           rmx = Math.max(rmx, h[j]);
-           tap+= lmax<rmx ? lmax-h[i++] : rmx - h[j--];
+            lmax = Math.max(lmax,h[i]);
+            rmx = Math.max(rmx, h[j]);
+            tap+= lmax<rmx ? lmax-h[i++] : rmx - h[j--];
         }
         return tap;
     }

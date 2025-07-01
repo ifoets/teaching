@@ -1,10 +1,9 @@
-package com.design.analysis.leetcode.ds.single.linkedlist;
+package com.design.analysis.leetcode.ds.single.linkedlist.medium;
 
 import com.design.analysis.leetcode.ds.node.SLNode;
+import com.design.analysis.leetcode.ds.single.linkedlist.SLinkedListUtils;
 
-import java.util.List;
-
-public class SLinkedListImpl implements ISLinkedList<Integer> {
+public class SLinkedListMediumImpl implements ISLinkedListMedium<Integer> {
 
     /**
      * 2. Add Two Numbers, The digits are stored in reverse order, and each of their nodes contains a single digit
@@ -36,7 +35,7 @@ public class SLinkedListImpl implements ISLinkedList<Integer> {
     }
 
     @Override
-   public SLNode<Integer> addTwoNoReversedNumbers(SLNode<Integer> l1, SLNode<Integer> l2){
+    public SLNode<Integer> addTwoNoReversedNumbers(SLNode<Integer> l1, SLNode<Integer> l2){
         return SLinkedListUtils.reverse(addTwoNumbers(SLinkedListUtils.reverse(l1),SLinkedListUtils.reverse(l2)));
     }
 
@@ -55,7 +54,7 @@ public class SLinkedListImpl implements ISLinkedList<Integer> {
         for(int i=1;i<lenFromFirst;i++){
             if(head!=null)
             {
-               head = head.next;
+                head = head.next;
             }
         }
         if(head!=null && head.next!=null)
@@ -67,30 +66,4 @@ public class SLinkedListImpl implements ISLinkedList<Integer> {
 
         return l1;
     }
-
-    @Override
-    public /**21. Merge Two Sorted Lists, space efficient, not use extra space**/
-    SLNode<Integer> mergeTwoLists(SLNode<Integer> l1,SLNode<Integer> l2){
-
-        SLNode<Integer> head = new SLNode<>(0,null);
-        SLNode<Integer> tail = head;
-
-        while (l1!=null && l2!=null)
-        {
-            if(l1.k<l2.k)
-            {
-                tail.next=l1;
-                l1=l1.next;
-            }else {
-                tail.next=l2;
-                l2=l2.next;
-            }
-            tail = tail.next;
-        }
-        //append reaming node
-        if(l1!=null)tail.next=l1;
-        if(l2!=null)tail.next=l2;
-        return head.next;
-    }
-
 }
