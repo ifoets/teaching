@@ -1,9 +1,7 @@
-package com.design.analysis.leetcode.ds.stack;
+package com.design.analysis.leetcode.ds.stack.hard;
 
-public interface IStack {
+public interface IStackHard {
 
-    /** 20. Valid Parentheses*/
-    boolean isValidParentheses(String s);
 
     /**32. Longest Valid Parentheses, Given a string containing just the characters '(' and ')', return the length of the longest valid (well-formed) parentheses substring.*/
     int longestValidParentheses(String s);
