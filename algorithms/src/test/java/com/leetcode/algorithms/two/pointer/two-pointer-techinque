@@ -1,0 +1,16 @@
+The Two Pointer Technique is a common algorithmic strategy used to solve problems involving arrays or linked lists,
+especially when the input is sorted or when you're trying to find pairs or subarrays that meet certain conditions.
+
+
+🔍 What is the Two Pointer Technique?
+    It involves using two indices (or "pointers") that iterate through the data structure in a coordinated way. The most common types:
+        Start-End (Opposite Ends): One pointer starts from the beginning, and the other from the end. They move toward each other.
+        Sliding Window (Same Direction): Both pointers start from the beginning and move forward, often used to track a range/subarray.
+
+✅ When to Use Two Pointers
+    Sorted arrays where you're looking for pairs/sums
+    Removing duplicates
+    Reversing arrays
+    Palindrome checking
+    Partitioning
+    Subarrays or substring problems (with conditions like max sum, length, etc.)
