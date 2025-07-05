@@ -35,7 +35,11 @@ public class MorganStanleyImpl implements IMorganStanley {
 	public Map<Thread, String> sortMapOnKeyProperty(Map<Thread, String> tmap) {
 
 		return tmap.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.comparingInt(Thread::getPriority)))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+				.collect(Collectors.toMap(
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+                    (e1, e2) -> e1,
+                    LinkedHashMap::new));
 	}
 
 	/* print 1 to 100 odd from one thread and even form another thread */

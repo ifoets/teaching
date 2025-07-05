@@ -1,0 +1,9 @@
+Sealed Classes (Final)	[JEP 409]	Restrict which classes can extend or implement a class or interface.
+🪓 Pattern Matching for switch (Preview)	[JEP 406]	Enables pattern matching in switch expressions for cleaner type-safe code.
+🪟 Foreign Function & Memory API (Incubator)	[JEP 412]	Access native code and memory outside the JVM without JNI.
+🧬 Enhanced Pseudo-Random Number Generators	[JEP 356]	Provides new interfaces and implementations for random number generation.
+🧵 Context-Specific Deserialization Filters	[JEP 415]	Improves security during object deserialization.
+🧼 Strong Encapsulation of JDK Internals	[JEP 403]	Encapsulates internal APIs like sun.misc.* (no longer accessible).
+🧹 Deprecate and Remove RMI Activation	[JEP 407]	Removes outdated Remote Method Invocation (RMI) Activation mechanism.
+🧯 Remove Experimental AOT and JIT Compiler	[JEP 410]	Removes Graal JIT and AOT compilation support.
+🪪 Restore Always-Strict Floating-Point Semantics

@@ -37,7 +37,7 @@ public class WissenInfotechImpl implements IWissenInfotech {
 	public Map<String, String> getMapOrderByValues(Map<String, String> map) {
 
 		return map.entrySet().stream().sorted(Map.Entry.comparingByValue())
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 	}
 
 	public Map<String, String> getMapOrderByValuesX(Map<String, String> map) {

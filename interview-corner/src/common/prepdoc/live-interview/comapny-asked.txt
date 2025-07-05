@@ -632,7 +632,8 @@ how to configure service discovery api gatway in ms
 
 what is service discovery and api gatway
 ----------------------
-an API gateway serves as the single entry point for all client requests, acting as a front-end for the microservices. Service discovery, on the other hand, is a mechanism that allows microservices to find and communicate with each other within the application
+an API gateway serves as the single entry point for all client requests, acting as a front-end for the microservices. Service discovery, 
+on the other hand, is a mechanism that allows microservices to find and communicate with each other within the application
 
 API Gateway:
 Single Entry Point:
@@ -894,7 +895,14 @@ best practices to write RestAPI
 ✅ 8. Cache Headers (optional for optimization)
 ✅ 9. Rate Limit Responses (optional)
 
-
-
-
+TESCO
+=========================================================================================
+how secure communication we do between ms/Auth2 and others, JWT token
+how to open our service for fixed no of services/ip whitelisting/whitelisting upstream ms
+how diffrent wasy to handle transaction in ms/2PC and Saga(for less time)
+how pallel stream api work internall /join and fork using no of core cup threads
+what is JWT token and when and where it get used and how to use implementation
+what is Dead Latter Query
+Details abbout GC and how internall it works
+max stock winning in stock price list in diffrent days
 

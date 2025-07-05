@@ -18,10 +18,8 @@ public class ArrayMediumImpl implements IArrayMedium{
         {
             int maxCurrent= Math.min(height[i],height[j])*Math.abs(j-i);
             maxArea = Math.max(maxArea, maxCurrent);
-            if(height[i]<height[j])
-                i++;
-            else if(height[i]>=height[j])
-                j--    ;
+            if(height[i]<height[j]) i++;
+            else j--    ;
         }
         return maxArea;
     }
@@ -166,6 +164,38 @@ public class ArrayMediumImpl implements IArrayMedium{
         }
         return ans;
     }
+    public static int threeSumClosestChatGpt(int[] nums, int target) {
+        Arrays.sort(nums);  // O(n log n)
+        int closestSum = nums[0] + nums[1] + nums[2];
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            int left = i + 1;
+            int right = nums.length - 1;
+
+            while (left < right) {
+                int currentSum = nums[i] + nums[left] + nums[right];
+
+                // If exact match found, return immediately
+                if (currentSum == target) {
+                    return currentSum;
+                }
+
+                // Update the closest sum if needed
+                if (Math.abs(currentSum - target) < Math.abs(closestSum - target)) {
+                    closestSum = currentSum;
+                }
+
+                // Move pointers based on comparison
+                if (currentSum < target) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+
+        return closestSum;
+    }
     @Override
     /**18. 4Sum*/
     public List<List<Integer>> fourSum(int[] nums, int target){
@@ -202,6 +232,45 @@ public class ArrayMediumImpl implements IArrayMedium{
             }
         }
         return rs.stream().distinct().toList();
+    }
+    public static List<List<Integer>> fourSumChatGpt(int[] nums, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);  // O(n log n)
+
+        int n = nums.length;
+        for (int i = 0; i < n - 3; i++) {
+            // Skip duplicates for i
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+            for (int j = i + 1; j < n - 2; j++) {
+                // Skip duplicates for j
+                if (j > i + 1 && nums[j] == nums[j - 1]) continue;
+
+                int left = j + 1;
+                int right = n - 1;
+
+                while (left < right) {
+                    long sum = (long) nums[i] + nums[j] + nums[left] + nums[right];
+
+                    if (sum == target) {
+                        result.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
+
+                        // Skip duplicates for left and right
+                        while (left < right && nums[left] == nums[left + 1]) left++;
+                        while (left < right && nums[right] == nums[right - 1]) right--;
+
+                        left++;
+                        right--;
+                    } else if (sum < target) {
+                        left++;
+                    } else {
+                        right--;
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 
     /**31. Next Permutation*/
