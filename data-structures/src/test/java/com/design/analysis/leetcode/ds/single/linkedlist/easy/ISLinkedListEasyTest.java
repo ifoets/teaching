@@ -1,6 +1,6 @@
 package com.design.analysis.leetcode.ds.single.linkedlist.easy;
 
-import com.design.analysis.leetcode.ds.single.linkedlist.node.SLNode;
+import com.design.analysis.leetcode.ds.node.SLNode;
 import com.design.analysis.leetcode.ds.single.linkedlist.SLinkedListUtils;
 import org.junit.Assert;
 import org.junit.Before;

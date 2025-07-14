@@ -1,4 +1,4 @@
-package com.design.analysis.leetcode.ds.single.linkedlist.node;
+package com.design.analysis.leetcode.ds.node;
 
 import lombok.Data;
 

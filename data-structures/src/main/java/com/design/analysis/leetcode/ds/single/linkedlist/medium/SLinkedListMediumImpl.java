@@ -1,6 +1,6 @@
 package com.design.analysis.leetcode.ds.single.linkedlist.medium;
 
-import com.design.analysis.leetcode.ds.single.linkedlist.node.SLNode;
+import com.design.analysis.leetcode.ds.node.SLNode;
 import com.design.analysis.leetcode.ds.single.linkedlist.SLinkedListUtils;
 
 public class SLinkedListMediumImpl implements ISLinkedListMedium<Integer> {
