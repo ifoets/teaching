@@ -1,16 +1,20 @@
 package interview.preparation.company.interviews.impl;
 
 import interview.preparation.company.interviews.Utils.InterviewUtils;
+import interview.preparation.company.interviews.model.Student;
 import interview.preparation.company.interviews.question.IAltimetrik;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class AltimetrikImpl implements IAltimetrik {
+public  class AltimetrikImpl implements IAltimetrik {
 
 	/*find the minimum number of candies required for distributing to N children such that every
 	child gets at least one candy and the children having the higher rating get more candies than its neighbours.
@@ -226,6 +230,127 @@ public class AltimetrikImpl implements IAltimetrik {
             (e1,e2)->e1,
             LinkedHashMap::new
         ));
+    }
+    /**O(n2)*/
+    public int countUniqueSubstring(String s){
+       int N = s.length();
+       if(N==s.chars().distinct().toArray().length)
+           return N*(N+1)/2;
+       int count=0;
+       for(int i=0;i<N;i++)
+       {
+           for(int j=i+1;j<=N;j++)
+           {
+               String sub = s.substring(i,j);
+               if(sub.equals(sub.chars().mapToObj(c->(char)c).distinct().map(String::valueOf).collect(Collectors.joining())))
+                   count++;
+           }
+       }
+        return  count;
+    }
+
+    @Override
+    public int countUniqueSubstringX(String s){
+        int N = s.length();
+        int count=0;
+        Set<Character> set = new HashSet<>();
+        int left=0,right=0;
+
+        while (right<N)
+        {
+            char c = s.charAt(right);
+            while (set.contains(c))
+            {
+                set.remove(s.charAt(left++));
+            }
+            set.add(c);
+            count+=right-left+1;
+            right++;
+        }
+        return count;
+    }
+
+    @Override
+    public void allUniqueSubstring(List<String> list, String s){
+        int N = s.length();
+
+        for(int i=0;i<N;i++)
+        {
+            for(int j=i+1;j<=N;j++)
+            {
+                String str = s.substring(i, j);
+                if(str.equals(str.chars().mapToObj(c->(char)c).distinct().map(String::valueOf).collect(Collectors.joining()))) {
+                    list.add(str);
+                }
+            }
+        }
+    }
+
+    @Override
+    public Map<String, Integer> getSumOfAgeSameNameStudent(List<Student> list){
+
+        return
+           list.stream()
+               .collect(
+                   Collectors.groupingBy(
+                       Student::getName,
+                       Collectors.summingInt(Student::getAge)
+                   )
+               );
+    }
+
+    @Override
+    public Map<String, Optional<Student>> getMaxAgeStudent(List<Student> list){
+
+        return list.stream()
+            .collect(
+                Collectors.groupingBy(
+                    Student::getName,
+                    Collectors.
+                        reducing(
+                        BinaryOperator.maxBy(Comparator.comparing(Student::getAge))
+                )
+            )
+        );
+    }
+    @Override
+    public Map<String, Optional<Student>> getMinAgeStudent(List<Student> list){
+
+      return   list.stream()
+                 .collect(
+                     Collectors.groupingBy(
+                      Student::getName,
+                      Collectors.reducing(
+                          BinaryOperator.minBy(Comparator.comparing(Student::getAge))
+                  )
+              )
+            );
+    }
+    @Override
+    public List<List<Integer>> segregateOddEvenPredicate(List<Integer> list){
+        List<List<Integer>> rsList = new ArrayList<>();
+        Predicate<Integer> oddPredicate = i -> i%2!=0;
+        Predicate<Integer> evenPredicate = i-> i%2==0;
+        rsList.add(filterOddEven(list,evenPredicate));
+        rsList.add(filterOddEven(list,oddPredicate));
+        return rsList;
+    }
+
+    @Override
+    public <T> List<T> filterOddEven(List<T> list, Predicate<T> predicate){
+        List<T> rsList = new ArrayList<>();
+        for(T t:list)
+            if(predicate.test(t))
+                rsList.add(t);
+        return rsList;
+    }
+    @Override
+    public  Map<Boolean, List<Integer>> segregateOddEvenPredicateX(List<Integer> list){
+        Predicate<Integer> evenPredicate = num -> num%2==0;
+        return list.stream()
+            .collect(
+                Collectors.partitioningBy(evenPredicate)
+            );
     }
 }
 

@@ -65,6 +65,9 @@ Challenges of Microservices Architecture
 	4. Fault Tolerance
 	5. Cyclic dependencies/Circular dependencies in microservices occur when two or more services depend on each other, creating a loop where changes in one service can affect the others,
 making development and deployment more complex.
+Use Asynchronous Communication (Event-Driven)
+Replace direct API calls with events using Kafka, RabbitMQ, etc., 5. Service Facade Pattern,  4. Use Shared Datastore or Caching Carefully, 6. Circuit Breakers + Timeouts
+
 	This can lead to increased coupling, reduced maintainability, and difficulty in independent deployment.
 	6. DevOps Culture
 
@@ -79,6 +82,18 @@ Essential Microservice Design Patterns and Principles
 https://www.edureka.co/blog/microservices-design-patterns
 https://microservices.io/patterns/microservices.html
 
+Best practive microservice
+
+	1. Service Design
+	2. Communication
+	3. Data Management
+	4. Deployment & Scaling
+	5. Fault Tolerance & Resilience
+	6. Security
+	8. Service Discovery & Configuration
+	9. DevOps and CI/CD
+	10. Testing
+ 
 Let's look at the principles in which the microservice architecture has been built.
 
 Principles Used to Design Microservice Architecture
@@ -275,6 +290,63 @@ orchestration vs choreography in microservices
 orchestration uses a central controller to manage interactions between services, while choreography relies on decentralized, event-driven communication. Orchestration is simpler to implement and debug,
 but can create a single point of failure. Choreography offers loose coupling and flexibility, but can be more complex to debug and manage.
 
+✅ 1. Service Design
+Keep services small, single-responsibility, and independently deployable
+Define clear boundaries using Domain-Driven Design (DDD)
+Use Bounded Contexts to separate data and responsibilities
+Avoid cyclic dependencies between services
+
+✅ 2. Communication
+Prefer asynchronous communication (e.g., Kafka, RabbitMQ) over synchronous REST when possible
+Use well-defined APIs (OpenAPI/Swagger)
+Implement versioning for public APIs
+Avoid direct database access between services
+
+✅ 3. Data Management
+Follow Database per Service principle
+Use event-driven architecture for eventual consistency
+Handle distributed transactions using SAGA pattern (not 2PC)
+Avoid shared mutable state
+
+✅ 4. Deployment & Scaling
+Deploy each service independently
+Use containers (Docker) and orchestration tools (Kubernetes)
+Enable horizontal scaling of stateless services
+Automate CI/CD pipelines
+
+✅ 5. Fault Tolerance & Resilience
+Use circuit breakers, bulkheads, retries, and timeouts (e.g., Resilience4j)
+Implement graceful degradation and fallback mechanisms
+Monitor service health and auto-restart failures
+
+✅ 6. Security
+Use OAuth2 / JWT for authentication and authorization
+Apply Role-based or Attribute-based access control (RBAC / ABAC)
+Secure communication with HTTPS and mutual TLS
+Validate and sanitize all external inputs
+
+✅ 7. Observability & Monitoring
+Use centralized logging (e.g., ELK, Loki)
+Use metrics collection (e.g., Prometheus, Grafana)
+Enable distributed tracing (e.g., Jaeger, Zipkin)
+Set up alerting for performance and error thresholds
+
+✅ 8. Service Discovery & Configuration
+Use service registry (e.g., Eureka, Consul) for dynamic discovery
+Externalize configurations (e.g., Spring Cloud Config, Consul, Vault)
+Support dynamic refresh of config without redeployment
+
+✅ 9. DevOps and CI/CD
+Build CI/CD pipelines for each microservice
+Automate testing, linting, containerization, and deployment
+Use feature toggles for safe deployment
+Enable blue-green or canary deployments
+
+✅ 10. Testing
+Perform unit, integration, contract, and end-to-end tests
+Use consumer-driven contract testing (e.g., Pact)
+Mock external services in tests
+Use test containers for isolated testing environments
 
 Redis cache impl
 =======================

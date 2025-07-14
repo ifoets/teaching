@@ -532,6 +532,24 @@ https://www.onelogin.com/learn/how-single-sign-on-works
 altimetrik
 ===============================================================
 explain architecture of current project
+                [ Frontend (React/Angular/Mobile) ]
+                               |
+                          [API Gateway](Rate limiting, routing, authentication)/AWS API Gateway
+                               |
+  ┌────────────┬─────────────┬─────────────┬─────────────┐
+  │  User MS   │  Product MS │  Cart MS    │  Order MS   │ ... (other MS)
+  └────▲───────┴──────▲──────┴────▲────────┴──────▲──────┘
+       │              │            │               │
+   [DB - Users]   [DB - Products] [Redis + DB]  [Kafka + DB]
+       │              │            │               │
+       └──────►  Shared Services (Auth, Notification, Payment, Inventory)
+                               |
+                           [Kafka / RabbitMQ]
+                               |
+                        [Event Consumers / Workers]
+                               |
+                     [Analytics / Audit / Fraud Detection]
+
 
 12 factor in ms
 microservices orchestration and choreography
@@ -610,6 +628,15 @@ how to create composite key in jpa
 @Embeddable + @EmbeddedId
 
 which of design pattern use in microservices
+✅ 1. Decomposition Patterns
+✅ 2. Database Patterns
+✅ 3. Communication Patterns
+✅ 4. Resiliency Patterns
+✅ 5. Observability Patterns
+✅ 6. Security Patterns
+✅ 7. Transaction and Consistency Patterns
+✅ 8. Deployment Patterns
+✅ 9. API Patterns
 
 docker and cubernetee
 ------------------------------
@@ -683,8 +710,12 @@ management.endpoints.web.exposure.include=startup
 Reduce logging on startup:
 logging.level.root=WARN
 logging.level.org.springframework=ERROR
-
-============================================
+find no of unique substring
+find sum of age having same name in Student(name, age)
+segrate odd and even no in list using predicate
+write query to find all employee who dont have manager(is on bench)
+select *from employee where mgrid=null;
+=====================================================================================================
 paypal
 -----------------------------
 what r benifit we getting by stream programming
@@ -775,6 +806,14 @@ https://www.baeldung.com/spring-boot-12-factor
 
 DDOS attack
 https://www.onelogin.com/learn/ddos-attack
+occurs when a group of systems flood a server with fraudulent traffic. Eventually, the server is overwhelmed, causing it to either go down, or become unresponsive, even to legitimate requests.
+solution:
+2. Rate Limiting & Throttling
+ 4. Auto Scaling Infrastructure
+ Use DDoS Protection Services
+ 7. CAPTCHA / Challenge Mechanism
+  IP Blacklisting / Whitelisting
+  
 
 multi-factor authentication
 
@@ -787,9 +826,9 @@ https://github.com/hendisantika/spring-boot-security-oauth2-example
 
 4.How to Authenticate user for particular action
 5.L-stack, EFK logging, Splunk, grafana
-6.how to stop user to no of times access API
+6.how to stop user to no of times access API//t Rate Limiting based on the user identity (like user ID or IP address).
 7.auth token and access token
-8.How to recognise this access api is fake acess, Docc attack
+8.How to recognise this access api is fake acess, Docc attack //Validate all tokens (signature, expiration, issuer)
 9.Dev ops entire flow
 10.Docker koobernet, CI/CD
 11.HOw to acess properties in spring boot/ how to update live properties in production
@@ -835,7 +874,9 @@ OOPs, Immutability, Overridden and Overloading concepts
 Ability to explain project scenarios covering all the exception/edge cases
 Internal implementation of HashMap and different collections worked on
 Design patterns - Singleton, Builder & Chain of responsibility.
-Difference between NoClassDefFound errors and ClassNotFound exceptions
+Difference between NoClassDefFound errors and ClassNotFoundExceptions 
+//ClassNotFoundExceptions/At runtime, during class loading via reflection (e.g., Class.forName())	/exception, need to handle
+//NoClassDefFound/At runtime when class was present at compile time but missing at run time //error need to Ensure class is available at runtime (JAR in classpath)
 Java multi-threading project experience details.
 
 Questions for L2 (Coding round)
@@ -898,11 +939,92 @@ best practices to write RestAPI
 TESCO
 =========================================================================================
 how secure communication we do between ms/Auth2 and others, JWT token
+-------------------------
+Secure communication between two microservices typically involves the use of:
+Mutual TLS (mTLS) for transport-level encryption and authentication
+JWT or OAuth2 tokens for identity and authorization
+HTTPS as the communication protocol
+Spring Boot + Spring Security in Java for implementation
+
 how to open our service for fixed no of services/ip whitelisting/whitelisting upstream ms
+------------------
+Option 1: Mutual TLS (mTLS)
+Cryptographically secure
+Doesn’t need tokens or extra requests
+Enforces access based on client identity (CN, OU, etc.)
+
+ Implementation Steps:
+✅ Generate a unique certificate for each service
+✅ Your server validates client certificates
+✅ Restrict access only to specific certificate identities
+
+Option 2: JWT Tokens with Service Whitelisting
+ Benefits:
+Easier to rotate/renew credentials
+No SSL cert generation required
+Easier in containerized/cloud-native environments
+
 how diffrent wasy to handle transaction in ms/2PC and Saga(for less time)
+----
+✅ 1. Local Transactions
+Use local database transactions within a single microservice.
+✅ 2. Distributed Transactions (2PC - Two Phase Commit)
+Coordinates a transaction across multiple services/databases.
+✅ 3. Saga Pattern (Most Common)
+Manages long-running, distributed transactions via a series of local transactions and compensating actions.
+🔹 Types of Saga:
+Choreography-based Saga:
+Services emit events and listen for events from others.
+✅ 4. Eventual Consistency with Event Sourcing
+Uses event sourcing and eventual consistency instead of immediate consistency.
+✅ 5. Transactional Outbox Pattern
+Writes domain event to a local “outbox” table in the same DB transaction.
+A background process publishes these events to a message broker (Kafka, RabbitMQ).
+
+✅ 6. Change Data Capture (CDC)
+Monitors DB changes and publishes events (e.g., using Debezium).
+✅ 7. Compensation and Retry Mechanisms
+If a step fails, previous successful steps are compensated (undone).
+
+✅ 8. Idempotency Handling
+Ensures that retrying an operation doesn’t produce duplicate results.
+Important for APIs and event processing in distributed systems.
+
 how pallel stream api work internall /join and fork using no of core cup threads
 what is JWT token and when and where it get used and how to use implementation
 what is Dead Latter Query
-Details abbout GC and how internall it works
+----------------
+Dead Letter Queue (DLQ)
+As described earlier, a DLQ is a messaging concept (used in systems like SQS, RabbitMQ, Kafka, etc.) for handling messages that can't be successfully processed.
+If you're working in microservices or event-driven systems, “Dead Letter Query” might refer to:
+🟡 Querying the Dead Letter Queue
+i.e., checking which messages failed and ended up in the DLQ.
+
+Details about GC java 17 and how internall it works
+------------------
 max stock winning in stock price list in diffrent days
+when and where we use volatile key woards
+--------------
+he **volatile** keyword in Java is used for multi-threaded programming to ensure visibility of shared variables across threads.
+✅ Definition
+volatile tells the JVM that a variable may be modified by multiple threads, and:
+Reads/writes go directly to and from main memory (not thread-local CPU cache).
+Ensures that updates made by one thread are visible to all others immediately.
+
+class/object/method/blaock level of synchronization
+Why kafka when and where use in java/ms
+----
+Feature	Why It Matters
+High throughput	Can handle millions of messages per second.
+Durability	Messages are stored on disk, with configurable retention.
+Scalability	Horizontally scalable via partitions and brokers.
+Fault tolerance	Replicated data across brokers, survives failures.
+Decoupling services	Producers and consumers are loosely coupled.
+Replayable logs	Consumers can reprocess messages anytime.
+Event-driven	Promotes reactive, decoupled systems.
+
+can we use kafka for request/response communication betwwen two ms
+ChatGPT said:
+Yes, Kafka can be used for request/response communication between two microservices, but it’s not the ideal tool for synchronous communication. Kafka is inherently asynchronous, event-driven, and loosely coupled.
+
 
