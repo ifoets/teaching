@@ -6,24 +6,23 @@ import java.util.stream.IntStream;
 public class ArrayEasyImpl implements IArrayEasy{
 
     /** 1. Two Sum*/
-    public int[] twoSum(int[] arr, int target){
+    public int[] twoSum(int[] nums, int target){
 
-        int len = arr.length;
-        int[] rs = new int[2];
-        for(int i=0;i<len;i++)
-        {
-            final int k=i;
-            int t = IntStream.range(i+1,len)
-                    .filter(j -> arr[k]==target-arr[j]).
-                    findAny().orElse(-1);
-            if(t!=-1)
-            {
-                rs[0]=i;
-                rs[1]=t;
+        Map<Integer, Integer> map = new HashMap<>();  // value → index
+
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
             }
+
+            map.put(nums[i], i);  // Store value and index
         }
-        return rs;
+
+        return new int[] {};  // No solution found
     }
+
     @Override
     public int[] twoSumX(int[] nums, int target){
         int N=nums.length;

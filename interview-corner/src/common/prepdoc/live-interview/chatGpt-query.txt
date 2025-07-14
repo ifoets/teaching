@@ -12,3 +12,227 @@ When we must use mango and when we must use sql db
 CURD operation in mogo db implementation
 how to do Sharding in NoSQL databases
 
+how to open our service for fixed no of services/ip whitelisting/whitelisting upstream ms
+
+how many wasy handle transaction in ms list out
+
+Details about GC java 17 and how internall it works
+
+how https in microservice steps by steps ms java
+
+how https in microservice steps by steps ms java
+
+implements auth2
+
+
+🔹 1–20: Core Java (Advanced Concepts)
+Deep copy vs shallow copy – implement deep clone of object
+
+Design your own HashMap
+
+Implement ThreadPoolExecutor
+
+Custom class loader – when and how?
+
+Implement Immutable class and explain final behavior
+
+Circular dependency resolution in Java
+
+Serialize and deserialize complex object graph
+
+Difference between volatile and AtomicReference, with example
+
+Custom annotation with runtime processing
+
+Implement custom equals and hashCode logic
+
+Internals of String.intern()
+
+Design and implement LRU cache
+
+Java memory model in multithreaded context
+
+Simulate synchronized behavior using ReentrantLock
+
+How does Java handle class versioning in serialization?
+
+Deadlock simulation and resolution
+
+Design custom Observable/Observer pattern
+
+Why hashCode() must change with equals
+
+Difference between CountDownLatch and CyclicBarrier – code example
+
+Write a thread-safe Singleton pattern with lazy initialization
+
+🔹 21–40: Collections, Generics, Streams
+Sort list of objects with multiple comparators
+
+Implement your own LinkedList
+
+Use Collectors.groupingBy to group custom objects
+
+Flatten nested collection using streams
+
+Parallel stream behavior with shared resources
+
+Custom comparator for TreeMap
+
+Remove duplicates using Set with custom object
+
+Stream operations on nested maps
+
+Design a multimap using Java collections
+
+Stream infinite data until a condition
+
+Merge k sorted lists using PriorityQueue
+
+Stream vs traditional iteration performance comparison
+
+Convert Map<Key, List<Value>> → Map<Key, Set<Value>>
+
+Reverse a map with collision handling
+
+Compare performance of ArrayList vs LinkedList in real code
+
+Flatten multi-level nested object using stream
+
+Implement custom Spliterator
+
+Stream pipeline short-circuit behavior
+
+Functional interface chaining with andThen()
+
+Create a read-only wrapper over a List with Java 8
+
+🔹 41–60: Multithreading and Concurrency
+Implement Producer-Consumer using BlockingQueue
+
+Design a thread-safe rate limiter
+
+Java ForkJoinPool use-case and implementation
+
+Concurrent modification in HashMap – simulate and fix
+
+Explain ThreadLocal with use case
+
+Create a custom ReadWriteLock
+
+Implement bounded buffer
+
+CompletableFuture chaining with exception handling
+
+Asynchronous file reader with ExecutorService
+
+Implement job scheduler
+
+CountDownLatch vs Phaser practical difference
+
+Design a reusable barrier
+
+Detect and resolve deadlock in custom code
+
+Rate-limiter with Token Bucket algorithm
+
+Design parallel file processor using multithreading
+
+Real-world use of Semaphore in Java
+
+Implement priority job processor
+
+ScheduledExecutorService vs Timer
+
+Cache invalidation using weak references
+
+Atomic operations with custom locking logic
+
+🔹 61–80: System Design / Architecture in Java
+Design a scalable microservices-based e-commerce app
+
+Implement distributed ID generator (like Snowflake)
+
+Build your own in-memory cache with eviction
+
+Design a config management system
+
+Logging framework implementation
+
+Distributed locking mechanism using Redis or Zookeeper
+
+Implement circuit breaker pattern
+
+Service discovery from scratch
+
+Design schema-less document store API
+
+Microservice to handle bulk data import efficiently
+
+Implement rate limiter with Redis
+
+High-throughput message consumer design
+
+Build a custom REST framework
+
+Implement dynamic feature toggle system
+
+Write a lightweight ORM
+
+Session management in stateless architecture
+
+File storage API with chunking and retry
+
+Implement event-sourcing in a Java-based system
+
+Real-time data pipeline using Java and Kafka
+
+Design a Java service to support horizontal scaling
+
+🔹 81–100: Miscellaneous / Real-World Scenarios
+Java agent for runtime monitoring
+
+Reflection-based dynamic API handler
+
+Custom encryption & decryption for sensitive data
+
+Bulk database updater with batching
+
+Thread-safe logging library
+
+Monitor memory leaks in Java application
+
+Dependency injection implementation without Spring
+
+JWT implementation in Java from scratch
+
+Retry mechanism with exponential backoff
+
+Audit logging framework
+
+Pagination in large dataset processing
+
+Clean architecture in Java project structure
+
+How to design versioned APIs
+
+Secure inter-service communication
+
+Monitor thread health in runtime
+
+Generate diff between two object states
+
+Reconcile data between two data sources
+
+Database failover handling in Java code
+
+Custom validation framework using annotations
+
+Detect performance bottlenecks in JVM application
+
+📌 Tips for Interview Preparation:
+Practice with real-world design problems.
+
+Use LeetCode, HackerRank, and DesignGuru.io for mock coding interviews.
+
+Deep dive into JVM internals, Garbage Collection, and Concurrency tools.

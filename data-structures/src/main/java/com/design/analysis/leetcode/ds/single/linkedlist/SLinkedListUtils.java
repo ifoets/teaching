@@ -1,6 +1,6 @@
 package com.design.analysis.leetcode.ds.single.linkedlist;
 
-import com.design.analysis.leetcode.ds.node.SLNode;
+import com.design.analysis.leetcode.ds.single.linkedlist.node.SLNode;
 
 import java.util.List;
 
