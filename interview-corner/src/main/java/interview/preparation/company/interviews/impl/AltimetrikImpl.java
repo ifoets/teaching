@@ -3,13 +3,10 @@ package interview.preparation.company.interviews.impl;
 import interview.preparation.company.interviews.Utils.InterviewUtils;
 import interview.preparation.company.interviews.model.Student;
 import interview.preparation.company.interviews.question.IAltimetrik;
-import jdk.jshell.spi.ExecutionControl;
 
 import java.util.*;
 import java.util.function.BinaryOperator;
-import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;

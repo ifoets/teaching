@@ -1,6 +1,5 @@
 package interview.preparation.company.interviews;
 
-import com.sun.source.tree.LiteralTree;
 import interview.preparation.company.interviews.impl.AltimetrikImpl;
 import interview.preparation.company.interviews.model.Student;
 import interview.preparation.company.interviews.question.IAltimetrik;
@@ -9,9 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
-
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
 public class IAltimetrikTest {
