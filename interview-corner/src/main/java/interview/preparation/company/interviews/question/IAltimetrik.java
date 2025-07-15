@@ -2,12 +2,11 @@ package interview.preparation.company.interviews.question;
 
 import interview.preparation.company.interviews.model.Student;
 
-import java.util.*;
-import java.util.function.Predicate;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 
 public interface IAltimetrik {
