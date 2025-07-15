@@ -16,8 +16,9 @@ public class Java17Impl implements IJava17{
     {
        if(obj instanceof String str)
            return str.toUpperCase();
-       else if(obj instanceof String str && !str.isEmpty())
+       else if(obj instanceof String str && !str.isEmpty()) {
            return str.toUpperCase(Locale.ROOT);
+       }
        throw new RuntimeException("Please provide String");
     }
 

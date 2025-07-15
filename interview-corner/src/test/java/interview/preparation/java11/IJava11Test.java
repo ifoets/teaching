@@ -4,6 +4,7 @@ import interview.preparation.newjava.java11.IJava11;
 import interview.preparation.newjava.java11.Java11Impl;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -50,6 +51,7 @@ public class IJava11Test {
         Assert.assertTrue(ij.localVariable(Arrays.asList("Java", "\n \n", "Kotlin", " ")).containsAll(List.of("JAVA","KOTLIN")));
     }
     /* HTTP Client*/
+    @Ignore
     @Test
     public void getHttpResponseTest() throws IOException, InterruptedException{
           HttpResponse httpResponse = ij.getHttpResponse("https://www.google.com");

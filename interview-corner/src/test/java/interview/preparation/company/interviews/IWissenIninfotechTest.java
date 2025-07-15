@@ -1,10 +1,6 @@
 package interview.preparation.company.interviews;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 import interview.preparation.company.interviews.impl.WissenInfotechImpl;
@@ -282,4 +278,80 @@ public class IWissenIninfotechTest {
 		Assert.assertFalse(iw.isPermutationOfPalindrome("asciic"));
 	}
 
+    @Test
+    public void groupAnagramsTest()
+    {
+        List<String> strList = new ArrayList<>(Arrays.asList(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"}));
+        List<List<String>> rsList = iw.groupAnagrams(strList);
+        System.out.println(rsList);
+        Assert.assertEquals(3,rsList.size());
+    }
+
+    @Test
+    public void allNDiditPalindromeTest()
+    {
+        List<Integer> list = iw.allNDiditPalindrome(6);
+        Assert.assertEquals(900,list.size());
+        Assert.assertEquals(9,iw.allNDiditPalindrome(1).size());
+
+    }
+
+    @Test
+    public void allNDiditPalindromeXTest()
+    {
+        List<Integer> list = iw.allNDiditPalindromeX(6);
+        Assert.assertEquals(900,list.size());
+        System.out.println(list);
+        Assert.assertEquals(9,iw.allNDiditPalindromeX(1).size());
+
+    }
+
+    @Test
+    public void allNDiditPalindromeYTest()
+    {
+        List<Integer> list = iw.allNDiditPalindromeY(6);
+        Assert.assertEquals(900,list.size());
+        System.out.println(list);
+        Assert.assertEquals(9,iw.allNDiditPalindromeY(2).size());
+
+    }
+    @Test
+    public void allNDiditPalindromeZTest()
+    {
+        List<Integer> list = iw.allNDiditPalindromeZ(5);
+        Assert.assertEquals(900,list.size());
+        System.out.println(list);
+        Assert.assertEquals(900,iw.allNDiditPalindromeZ(5).size());
+
+    }
+
+    @Test
+    public void minSlidingWindowTest()
+    {
+        String s ="ADOBECODEBANC";
+        String t ="ABC";
+        Assert.assertEquals("BANC",iw.minSlidingWindow(s,t));
+    }
+
+    @Test
+    public void oddPosIsGreaterOrEvenIsSmallerTest()
+    {
+        int[] a = {1,2,3,4,5,9,8,7,6};
+        iw.oddPosIsGreaterOrEvenIsSmaller(a);
+        Assert.assertEquals(9,a[a.length-1]);
+        Assert.assertEquals(2,a[0]);
+    }
+    @Test
+    public void posBeforeAfterSumEqualTest()
+    {
+        int []a = {1, 4, 2, 5, 0};
+        Assert.assertEquals(3,iw.posBeforeAfterSumEqual(a));
+        Assert.assertEquals(4,iw.posBeforeAfterSumEqual(new int[]{2, 3, 4, 1, 4, 5}));
+        Assert.assertEquals(-1,iw.posBeforeAfterSumEqual(new int[]{1,2,3}));
+    }
+    @Test
+    public void test()
+    {
+        Assert.assertNotNull(iw);
+    }
 }

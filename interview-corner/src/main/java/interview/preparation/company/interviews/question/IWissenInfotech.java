@@ -80,4 +80,19 @@ public interface IWissenInfotech {
 	// check a string is permutation of palindrome
 	public boolean isPermutationOfPalindrome(String str);
 
+    /**group the string that are anagrams to each other*/
+    List<List<String>> groupAnagrams(List<String> strList);
+
+    /**for any positive natural number digits*/
+    List<Integer> allNDiditPalindrome(int n);
+    /**for only even number of digits only**/
+    List<Integer> allNDiditPalindromeX(int n);
+    List<Integer> allNDiditPalindromeY(int n);
+    /**for any positive natural number of digits*/
+    List<Integer> allNDiditPalindromeZ(int n);
+
+    String minSlidingWindow(String s, String t);
+    void oddPosIsGreaterOrEvenIsSmaller(int[] a);
+
+    int posBeforeAfterSumEqual(int [] a);
 }

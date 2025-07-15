@@ -1,0 +1,1369 @@
+impl circut breaker
+-------------------------
+ 1. Add Dependencies
+If you're using Maven, add this to your pom.xml:
+
+xml
+Copy
+Edit
+<dependency>
+    <groupId>io.github.resilience4j</groupId>
+    <artifactId>resilience4j-spring-boot2</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+For Spring Boot 3+, use: resilience4j-spring-boot3
+
+🧾 2. Configure Circuit Breaker
+Add to your application.yml:
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      myService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+🧑‍💻 3. Annotate Your Method
+Use @CircuitBreaker on the method you want to protect.
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyService {
+
+    @CircuitBreaker(name = "myService", fallbackMethod = "fallback")
+    public String callExternalService() {
+        // simulate external call
+        if (Math.random() > 0.5) {
+            throw new RuntimeException("Service failed");
+        }
+        return "Success from external service";
+    }
+
+    public String fallback(Throwable t) {
+        return "Fallback response due to error: " + t.getMessage();
+    }
+}
+
+================================================================================================================================================================================================================
+multi-factor authentication
+
+Implementing Multi-Factor Authentication (MFA) in Java typically involves two main steps:
+Primary Authentication — usually with username/password.
+Secondary Authentication — typically via:
+OTP (One-Time Password) via SMS/email/app (like Google Authenticator)
+Hardware tokens (less common in small apps)
+
+We'll walk through a simple MFA implementation using:
+
+Spring Boot
+TOTP (Time-Based One-Time Password) for the second factor
+Google Authenticator or similar app for OTP validation
+
+ Step-by-Step: MFA with Java (Spring Boot + TOTP)
+📦 1. Add Dependencies
+In pom.xml (for Spring Boot + OTP support):
+
+<dependencies>
+    <!-- Spring Boot Web and Security -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!-- For TOTP generation/verification -->
+    <dependency>
+        <groupId>com.warrenstrange</groupId>
+        <artifactId>googleauth</artifactId>
+        <version>1.6.0</version>
+    </dependency>
+</dependencies>
+🧠 2. How TOTP Works
+Generate a secret key and show it as a QR code to the user.
+User adds it to Google Authenticator.
+On login, after password is verified, prompt for 6-digit OTP.
+Validate the OTP using the secret.
+
+🧑‍💻 3. Java Service for TOTP (Google Authenticator)
+import com.warrenstrange.googleauth.GoogleAuthenticator;
+import com.warrenstrange.googleauth.GoogleAuthenticatorKey;
+import com.warrenstrange.googleauth.GoogleAuthenticatorQRGenerator;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TOTPService {
+    private final GoogleAuthenticator gAuth = new GoogleAuthenticator();
+
+    public String createSecretKey() {
+        GoogleAuthenticatorKey key = gAuth.createCredentials();
+        return key.getKey();
+    }
+
+    public String getQRCode(String user, String secret) {
+        return GoogleAuthenticatorQRGenerator.getOtpAuthURL("MyApp", user, secret);
+    }
+
+    public boolean verifyCode(String secret, int code) {
+        return gAuth.authorize(secret, code);
+    }
+}
+🎯 4. Sample Flow
+Registration
+
+User signs up.
+You generate a TOTP secret and show QR code.
+User scans it using Google Authenticator.
+Save the secret in DB tied to the user.
+
+Login Flow
+
+User logs in with username/password.
+If correct, ask for 6-digit code.
+Verify the TOTP using the secret.
+
+🖼️ 5. Generate QR Code (Optional)
+Use Google Charts API:
+
+String qrUrl = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" + URLEncoder.encode(authUrl, "UTF-8");
+You can return this image URL to the frontend or render it in a QRCode library in Java.
+
+✅ 6. SecurityController (Simplified Example)
+
+@RestController
+@RequestMapping("/auth")
+public class AuthController {
+
+    @Autowired
+    private TOTPService totpService;
+
+    private Map<String, String> userSecrets = new HashMap<>(); // simulate DB
+
+    @PostMapping("/register")
+    public String register(@RequestParam String username) {
+        String secret = totpService.createSecretKey();
+        userSecrets.put(username, secret);
+        return totpService.getQRCode(username, secret);
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam int code) {
+        String secret = userSecrets.get(username);
+        if (secret == null) return "User not found";
+
+        if (totpService.verifyCode(secret, code)) {
+            return "Login successful!";
+        } else {
+            return "Invalid TOTP code";
+        }
+    }
+}
+
+================================================================================================================================================================================================================
+ zipkin implentation microservices
+ 
+ 1. Add Dependencies
+For each microservice, include the following dependencies in your pom.xml (for Maven):
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-zipkin</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+Also add the Spring Cloud BOM in your dependencyManagement section:
+
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>your-spring-cloud-version</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+Use a compatible Spring Cloud version like Hoxton, 2020.x, or 2021.x depending on your Spring Boot version.
+
+✅ 2. Configure Zipkin in application.yml or application.properties
+
+spring:
+  application:
+    name: your-microservice-name
+  zipkin:
+    base-url: http://localhost:9411  # URL where Zipkin server is running
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1.0  # Sends 100% of traces (use lower value in production)
+Or in application.properties:
+
+
+spring.application.name=your-microservice-name
+spring.zipkin.base-url=http://localhost:9411
+spring.sleuth.sampler.probability=1.0
+✅ 3. Run Zipkin Server
+You can run the Zipkin server in several ways:
+
+Option 1: Docker
+
+docker run -d -p 9411:9411 openzipkin/zipkin
+Option 2: Java (if you prefer JAR)
+Download from Zipkin GitHub Releases and run:
+
+
+java -jar zipkin-server-*.jar
+✅ 4. Add HTTP Call Tracing
+If your services use RestTemplate or WebClient, Sleuth will automatically instrument them. But you can add custom spans for more control:
+
+With RestTemplate
+
+@Autowired
+private RestTemplate restTemplate;
+
+// Already auto-instrumented by Sleuth
+With WebClient
+@Bean
+public WebClient.Builder webClientBuilder() {
+    return WebClient.builder();
+}
+
+
+=========================================================================================================================================================================================================================
+implement radis cache
+--------------------
+1. Redis Cluster Setup (for Production)
+Use Redis Cluster for high availability. For dev/local testing, a single Redis instance via Docker is often enough
+docker run -d -p 6379:6379 --name redis redis
+
+2. Microservices Architecture Example
+[ API Gateway ]
+      |
+-----------------------
+|  User Service       |
+|  Product Service    |
+|  Order Service      |
+-----------------------
+       |
+  [ Redis Cluster ]
+
+3. Add Redis to a Spring Boot Microservice
+a. Add Dependencies (pom.xml)
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+yml file
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 6000
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 2
+		
+		spring:
+		
+		For cluster:yml file
+  redis:
+    cluster:
+      nodes:
+        - 127.0.0.1:7000
+        - 127.0.0.1:7001
+        - 127.0.0.1:7002
+		
+c. Configure Redis in Service
+
+@Configuration
+@EnableCaching
+public class RedisConfig {
+
+    @Bean
+    public RedisCacheManager cacheManager(RedisConnectionFactory factory) {
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
+            .entryTtl(Duration.ofMinutes(60))
+            .disableCachingNullValues();
+
+        return RedisCacheManager.builder(factory)
+                .cacheDefaults(config)
+                .build();
+    }
+}
+
+4. Caching in Your Service Layer
+@Service
+public class UserService {
+
+    @Cacheable(value = "users", key = "#userId")
+    public User getUser(String userId) {
+        System.out.println("Fetching user from DB...");
+        return userRepository.findById(userId).orElse(null);
+    }
+
+    @CachePut(value = "users", key = "#user.id")
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @CacheEvict(value = "users", key = "#userId")
+    public void deleteUser(String userId) {
+        userRepository.deleteById(userId);
+    }
+}
+
+3.how to Authorized role based in microservices
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/myrealm/protocol/openid-connect/certs
+		  
+		  @EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(authz -> authz
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt()); // JWT-based auth
+        return http.build();
+    }
+}
+
+@Bean
+public JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtGrantedAuthoritiesConverter converter = new JwtGrantedAuthoritiesConverter();
+    converter.setAuthoritiesClaimName("roles");
+    converter.setAuthorityPrefix("ROLE_");
+
+    JwtAuthenticationConverter authConverter = new JwtAuthenticationConverter();
+    authConverter.setJwtGrantedAuthoritiesConverter(converter);
+    return authConverter;
+}
+
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .authorizeHttpRequests(authz -> authz
+            .anyRequest().authenticated()
+        )
+        .oauth2ResourceServer(oauth2 -> oauth2
+            .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())));
+    return http.build();
+}
+
+
+
+------------------
+Method-Level Authorization in Microservices (Spring Boot)
+
+1. Enable Method Security
+In your config class (e.g., SecurityConfig.java), enable method-level security:
+
+@EnableMethodSecurity(prePostEnabled = true)  // Spring Security 6+
+@Configuration
+public class SecurityConfig {
+    // Your JWT configuration here
+}
+For Spring Boot 2.x use: @EnableGlobalMethodSecurity(prePostEnabled = true)
+
+2. Use Role-Based Annotations on Methods
+You can now use:
+
+✅ @PreAuthorize Example
+
+@Service
+public class OrderService {
+
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deleteOrder(Long orderId) {
+        // Only ADMIN can delete
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public Order getOrder(Long orderId) {
+        // Both USER and ADMIN can view
+    }
+}
+✅ @Secured Example
+
+@Secured("ROLE_ADMIN")
+public void performAdminTask() {
+    // Only ADMIN
+}
+Note: @Secured is simpler but supports only roles, not SpEL expressions.
+
+3. Customizing Role Claim in JWT (if needed)
+If your JWT token uses roles claim instead of authorities, use this converter:
+
+@Bean
+public JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtGrantedAuthoritiesConverter converter = new JwtGrantedAuthoritiesConverter();
+    converter.setAuthoritiesClaimName("roles"); // or "authorities" based on token
+    converter.setAuthorityPrefix("ROLE_");      // Prefix needed for hasRole()
+
+    JwtAuthenticationConverter authConverter = new JwtAuthenticationConverter();
+    authConverter.setJwtGrantedAuthoritiesConverter(converter);
+    return authConverter;
+}
+
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+        .oauth2ResourceServer(oauth2 -> oauth2
+            .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())));
+    return http.build();
+}
+🧪 Example: Microservice Method Security
+Controller
+
+@RestController
+@RequestMapping("/product")
+public class ProductController {
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/create")
+    public ResponseEntity<?> createProduct(@RequestBody Product product) {
+        return ResponseEntity.ok("Product Created");
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getProduct(@PathVariable Long id) {
+        return ResponseEntity.ok("Product details");
+    }
+}
+
+
+java 17 new features
+1. Sealed Classes (Finalized)
+Limit which classes can extend or implement a class/interface.
+
+public sealed class Animal permits Dog, Cat {}
+
+public final class Dog extends Animal {}
+public final class Cat extends Animal {}
+Use case: Finite and controlled inheritance.
+
+Improves type safety and exhaustive pattern matching.
+
+2. Pattern Matching for instanceof (Finalized)
+Simplifies casting after instanceof.
+
+if (obj instanceof String s) {
+    System.out.println(s.toLowerCase());
+}
+Cleaner, safer, and avoids manual casting.
+
+3. Switch Expressions (Previewed earlier, stable in Java 14)
+Still relevant: concise switch statements.
+
+
+int result = switch (day) {
+    case MONDAY, FRIDAY -> 6;
+    case TUESDAY -> 7;
+    default -> throw new IllegalArgumentException("Invalid day");
+};
+4. New record Class (Introduced in Java 14, stable in 16)
+Lightweight data carriers with minimal boilerplate.
+
+public record Person(String name, int age) {}
+Auto-generates constructor, equals(), hashCode(), and toString().
+
+5. Text Blocks (Finalized)
+Multi-line string literals with clean formatting.
+
+String html = """
+    <html>
+        <body>
+            Hello, Java 17!
+        </body>
+    </html>
+    """;
+Better readability for JSON, SQL, HTML, etc.
+
+6. JEP 356: Enhanced Pseudo-Random Number Generators
+New API for random number generation with more flexibility.
+
+RandomGenerator generator = RandomGenerator.of("L64X128MixRandom");
+int randomInt = generator.nextInt();
+Useful for simulations, games, and testing.
+
+====================================================================================================================
+how many wasy call ms from another ms
+1. HTTP/REST API Call
+ebClient webClient = WebClient.create("http://service-b");
+
+Mono<String> response = webClient.get()
+    .uri("/api/data")
+    .retrieve()
+    .bodyToMono(String.class);
+
+response.subscribe(System.out::println);
+
+Using Spring RestTemplate (Blocking)
+RestTemplate restTemplate = new RestTemplate();
+String response = restTemplate.getForObject("http://service-b/api/data", String.class);
+System.out.println(response);
+
+2. gRPC Call
+ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051)
+    .usePlaintext()
+    .build();
+
+MyServiceGrpc.MyServiceBlockingStub stub = MyServiceGrpc.newBlockingStub(channel);
+
+MyRequest request = MyRequest.newBuilder()
+    .setParam("value")
+    .build();
+
+MyResponse response = stub.myMethod(request);
+
+Message Broker (RabbitMQ)
+@Autowired
+private RabbitTemplate rabbitTemplate;
+
+public void sendMessage() {
+    String message = "{\"event\": \"user_created\", \"data\": {\"id\": 123}}";
+    rabbitTemplate.convertAndSend("service-b-queue", message);
+}
+
+4. Kafka Producer
+@Autowired
+private KafkaTemplate<String, String> kafkaTemplate;
+
+public void sendEvent() {
+    kafkaTemplate.send("user-events", "{\"userId\":123}");
+}
+
+5. Feign Client (HTTP - Declarative)
+@FeignClient(name = "service-b", url = "http://service-b")
+public interface ServiceBClient {
+    @GetMapping("/api/data")
+    String getData();
+}
+
+// Usage
+@Autowired
+private ServiceBClient serviceBClient;
+
+public void callServiceB() {
+    String data = serviceBClient.getData();
+    System.out.println(data);
+}
+
+6. Service Discovery (Eureka + Ribbon or Kubernetes)
+String response = restTemplate.getForObject("http://service-b/api/data", String.class);
+
+GraphQL (Optional)
+String query = "{ user(id: \"123\") { name email } }";
+String response = restTemplate.postForObject("http://service-b/graphql", query, String.class);
+
+===========================================================================
+When you have multiple implementations of an interface in Spring and want to inject one of them, Spring cannot determine which one to use automatically, so you need to help it choose.
+
+1. Use @Qualifier Annotation
+public interface PaymentService {
+    void pay();
+}
+Two implementations:
+
+@Service("paypalService")
+public class PaypalService implements PaymentService {
+    public void pay() {
+        System.out.println("Paid with PayPal");
+    }
+}
+
+@Service("stripeService")
+public class StripeService implements PaymentService {
+    public void pay() {
+        System.out.println("Paid with Stripe");
+    }
+}
+Inject using:
+
+@Autowired
+@Qualifier("paypalService") // or "stripeService"
+private PaymentService paymentService;
+
+2. Use @Primary Annotation (Default Implementation)
+Service
+@Primary
+public class PaypalService implements PaymentService {
+    public void pay() {
+        System.out.println("Paid with PayPal");
+    }
+}
+Then you can just use:
+
+@Autowired
+private PaymentService paymentService; // will inject PaypalService
+
+3. Inject All Implementations as a Map or List
+@Autowired
+private List<PaymentService> paymentServices;
+
+or
+
+@Autowired
+private Map<String, PaymentService> paymentServiceMap;
+Then Spring will inject a Map with keys as the bean names ("paypalService", "stripeService") and values as the instances.
+
+Example:
+
+paymentServiceMap.get("paypalService").pay();
+
+ 4. Custom Configuration (Advanced)
+ 
+ @Configuration
+public class PaymentConfig {
+    
+    @Bean("paypal")
+
+@Autowired
+@Qualifier("paypal")
+private PaymentService paymentService;
+
+how to open our service for fixed no of services/ip whitelisting/whitelisting upstream ms
+=========================================================================================================================================
+ Option 1: Mutual TLS (mTLS)
+ ================
+Use X.509 certificates to verify the identity of each client.
+
+✅ Benefits:
+Cryptographically secure
+Doesn’t need tokens or extra requests
+Enforces access based on client identity (CN, OU, etc.)
+
+🧱 Implementation Steps:
+✅ Generate a unique certificate for each service
+✅ Your server validates client certificates
+✅ Restrict access only to specific certificate identities
+
+🚀 How to Restrict Access:
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/**").access(this::clientAccessCheck)
+                .anyRequest().denyAll())
+            .x509(x509 -> x509
+                .subjectPrincipalRegex("CN=(.*?)(?:,|$)")
+                .userDetailsService(username -> new User(username, "", List.of()))
+            );
+        return http.build();
+    }
+
+    private AuthorizationDecision clientAccessCheck(Authentication auth, HttpServletRequest request) {
+        String clientCN = auth.getName();
+        List<String> allowedClients = List.of("service-a", "service-b", "gateway"); // allowed CNs
+        return new AuthorizationDecision(allowedClients.contains(clientCN));
+    }
+}
+
+
+Option 2: JWT Tokens with Service Whitelisting
+==============
+Services send JWT tokens signed with a shared key (or via OAuth2 server). Your service verifies:
+
+Signature
+Expiry
+Issuer
+AND sub or aud claims against a whitelist
+✅ Benefits:
+Easier to rotate/renew credentials
+No SSL cert generation required
+Easier in containerized/cloud-native environments
+🚀 JWT Claim Whitelisting Example:
+public class JwtAuthFilter extends OncePerRequestFilter {
+
+    private static final List<String> allowedServices = List.of("service-a", "service-b");
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain chain) throws ServletException, IOException {
+        String token = resolveToken(request);
+        if (token != null && validateToken(token)) {
+            Claims claims = parseToken(token);
+            String serviceName = claims.getSubject(); // or claims.get("client_id")
+
+            if (!allowedServices.contains(serviceName)) {
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                return;
+            }
+
+            // Set auth context
+            SecurityContextHolder.getContext().setAuthentication(
+                new UsernamePasswordAuthenticationToken(serviceName, null, List.of())
+            );
+        }
+
+        chain.doFilter(request, response);
+    }
+}
+
+
+how diffrent wasy to handle transaction in ms/2PC and Saga(for less time)
+================================================================================================================================================
+✅ 1. Local Transactions
+Use local database transactions within a single microservice.
+Handled via traditional ACID-compliant transactions (e.g., using JPA/Hibernate in Java).
+Limit: Only works within one service boundary.
+
+✅ 2. Distributed Transactions (2PC - Two Phase Commit)
+Coordinates a transaction across multiple services/databases.
+Uses a transaction coordinator (e.g., JTA/XA).
+Limitations:
+Complex and hard to scale.
+Tight coupling between services.
+Poor fault tolerance.
+
+✅ 3. Saga Pattern (Most Common)
+Manages long-running, distributed transactions via a series of local transactions and compensating actions.
+🔹 Types of Saga:
+Choreography-based Saga:
+Services emit events and listen for events from others.
+
+No centralized orchestrator.
+Lightweight but harder to manage for large workflows.
+Orchestration-based Saga:
+A centralized orchestrator directs all participants.
+Easier to track and debug.
+Central coordination logic.
+
+✅ 4. Eventual Consistency with Event Sourcing
+Uses event sourcing and eventual consistency instead of immediate consistency.
+Stores state changes as a sequence of events.
+Services react to events asynchronously.
+Often paired with CQRS (Command Query Responsibility Segregation).
+
+✅ 5. Transactional Outbox Pattern
+Writes domain event to a local “outbox” table in the same DB transaction.
+A background process publishes these events to a message broker (Kafka, RabbitMQ).
+Ensures event publishing is part of the local transaction.
+
+✅ 6. Change Data Capture (CDC)
+Monitors DB changes and publishes events (e.g., using Debezium).
+Used in conjunction with Transactional Outbox or alone.
+Useful for keeping read models in sync.
+
+✅ 7. Compensation and Retry Mechanisms
+If a step fails, previous successful steps are compensated (undone).
+Implement retry strategies (exponential backoff, circuit breakers).
+
+✅ 8. Idempotency Handling
+Ensures that retrying an operation doesn’t produce duplicate results.
+Important for APIs and event processing in distributed systems.
+
+
+Details about GC java 17 and how internall it works
+===============================================================================================================================
+Young Generation
+
+New objects are allocated here.
+Frequent GC (called Minor GC).
+
+Divided into:
+
+Eden (where new objects go)
+Survivor spaces (S0, S1)
+
+Objects that survive multiple collections get promoted to:
+
+Old Generation (Tenured)
+Stores long-lived objects.
+Less frequent GC (called Major or Full GC).
+
+(Optional) Metaspace: Stores class metadata, not managed by traditional heap GC.
+
+🔄 GC Lifecycle:
+New object → Eden.
+Minor GC occurs → survivors move to S0/S1.
+After N survivals → promote to Old Gen.
+If Old Gen fills → Major GC occurs (slower).
+
+GC Algorithms in Java 17
+GC Algorithm	Description	When to Use
+Serial GC	Single-threaded, stop-the-world. Simple and compact.	Best for small heaps, single-core machines.
+Parallel GC	Multi-threaded, throughput-focused.	Good default for large batch-processing apps.
+G1 GC (Default)	Splits heap into regions; concurrent + incremental compaction.	Balanced latency and throughput. Default in Java 9+.
+ZGC	Ultra-low pause time GC. Most of the work is done concurrently.	Large heap applications needing low latency.
+Shenandoah GC	Similar to ZGC; low-pause, concurrent compaction.	Also for low-latency apps with big heaps.
+Epsilon GC	No GC. Only allocates memory. For testing/performance tuning.
+
+Why kafka when and where use in java/ms
+===================================================================================
+Why Kafka?
+Feature	Why It Matters
+High throughput	Can handle millions of messages per second.
+Durability	Messages are stored on disk, with configurable retention.
+Scalability	Horizontally scalable via partitions and brokers.
+Fault tolerance	Replicated data across brokers, survives failures.
+Decoupling services	Producers and consumers are loosely coupled.
+Replayable logs	Consumers can reprocess messages anytime.
+Event-driven	Promotes reactive, decoupled systems.
+
+ When to Use Kafka in Java/Microservices
+🔹 1. Event-Driven Architecture
+Publish events like OrderPlaced, UserSignedUp, etc.
+Multiple services can subscribe and react.
+
+// Producer
+kafkaTemplate.send("user-signup", new UserEvent(...));
+🔹 2. Asynchronous Communication
+Avoid synchronous REST calls between services.
+Better fault isolation and loose coupling.
+
+🔹 3. Audit Logs / Activity Tracking
+Record every change/event (like logs, metrics).
+🔹 4. Data Ingestion Pipelines
+Stream data from various sources (IoT, logs, databases).
+🔹 5. Stream Processing
+Real-time analytics using Kafka Streams, Flink, etc.
+🔹 6. CQRS / Event Sourcing
+Commands trigger events stored in Kafka.
+Query models built by listening to event streams.
+
+kafka implentation between two ms complete java code implemntation
+-------------------------------------------------------------------------
+✅ Scenario:
+Service A (Producer): Sends a message when a user signs up.
+
+Service B (Consumer): Listens to the Kafka topic and logs the event.
+
+🧱 Technologies:
+Spring Boot
+
+Spring Kafka
+
+Apache Kafka (running locally or Docker)
+
+🐘 Kafka Setup (Docker Compose)
+If Kafka is not yet running, use this in docker-compose.yml:
+
+version: '3'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+Start with:
+
+docker-compose up -d
+🧩 1. Service A – Kafka Producer
+🛠️ Create Spring Boot Project (user-service)
+pom.xml
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.kafka</groupId>
+        <artifactId>spring-kafka</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+</dependencies>
+application.yml
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+UserEvent.java
+
+public class UserEvent {
+    private String userId;
+    private String email;
+
+    // getters and setters
+}
+KafkaProducerConfig.java
+@Configuration
+public class KafkaProducerConfig {
+
+    @Bean
+    public ProducerFactory<String, UserEvent> producerFactory() {
+        Map<String, Object> config = new HashMap<>();
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        return new DefaultKafkaProducerFactory<>(config);
+    }
+
+    @Bean
+    public KafkaTemplate<String, UserEvent> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
+    }
+}
+UserController.java
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    @Autowired
+    private KafkaTemplate<String, UserEvent> kafkaTemplate;
+
+    private static final String TOPIC = "user-signup-topic";
+
+    @PostMapping
+    public ResponseEntity<String> registerUser(@RequestBody UserEvent userEvent) {
+        kafkaTemplate.send(TOPIC, userEvent);
+        return ResponseEntity.ok("User registered and event sent!");
+    }
+}
+🧩 2. Service B – Kafka Consumer
+🛠️ Create Spring Boot Project (notification-service)
+pom.xml
+Same as above, but also:
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+</dependency>
+application.yml
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+UserEvent.java
+Same class as in Producer (userId, email).
+
+KafkaConsumerConfig.java
+@Configuration
+public class KafkaConsumerConfig {
+
+    @Bean
+    public ConsumerFactory<String, UserEvent> consumerFactory() {
+        Map<String, Object> config = new HashMap<>();
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "notification-group");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+        config.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+
+        return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), new JsonDeserializer<>(UserEvent.class));
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, UserEvent> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, UserEvent> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }
+}
+NotificationListener.java
+@Service
+public class NotificationListener {
+
+    @KafkaListener(topics = "user-signup-topic", groupId = "notification-group")
+    public void consume(UserEvent userEvent) {
+        System.out.println("📨 Received User Signup Event: " + userEvent.getUserId() + ", " + userEvent.getEmail());
+    }
+}
+
+
+how https in microservice steps by steps ms java
+============================================================================
+Step 1: Generate Self-Signed Certificate
+Step 2: Move Keystore to src/main/resources/
+Step 3: Configure HTTPS in application.yml
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
+    key-alias: mysslkey
+
+implements auth2	
+===============================================================
++-------------+       (Access Token)       +----------------+
+|   Client    |  ───────────────────────▶  |  Service A     |
+| (Frontend)  |                            |  (API Gateway) |
++-------------+                            +----------------+
+                                                │
+                                                ▼
+                                        [OAuth2 Authorization Server]
+                                                │
+                             Calls secured MSs using access token
+							 
+							 +----------------+  ←────────── Auth Token ───────────→  +----------------+
+|  Service A     |                                     |  Service B      |
+| (Resource API) |───── [Token Forwarding] ───────────▶|  (Downstream)   |
++----------------+                                     +----------------+
+
+1️⃣ Set Up OAuth2 Authorization Server
+Use Spring Authorization Server or Keycloak (production ready)
+
+Option 1: Spring Authorization Server (lightweight)
+xml
+<!-- pom.xml -->
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
+</dependency>
+// @Configuration
+@EnableAuthorizationServer
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+    // define clients, token store, authentication manager
+}
+Or use Keycloak if you want a ready-made tool.
+
+2️⃣ Microservice A — Authenticated API
+application.yml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000  # Your auth server
+SecurityConfig.java
+@EnableWebSecurity
+public class SecurityConfig {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/public/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt());
+        return http.build();
+    }
+}
+3️⃣ Microservice A → Call Microservice B
+Use OAuth2RestTemplate or WebClient with token propagation.
+
+Example: Forward token with WebClient
+
+@Bean
+public WebClient webClient(ReactiveOAuth2AuthorizedClientManager manager) {
+    ServerOAuth2AuthorizedClientExchangeFilterFunction oauth =
+        new ServerOAuth2AuthorizedClientExchangeFilterFunction(manager);
+    oauth.setDefaultOAuth2AuthorizedClient(true);
+    return WebClient.builder()
+        .filter(oauth)
+        .build();
+}
+Then in controller:
+
+@Autowired
+private WebClient webClient;
+
+@GetMapping("/forward")
+public Mono<String> callServiceB() {
+    return webClient.get()
+        .uri("http://service-b:8082/secure-endpoint")
+        .retrieve()
+        .bodyToMono(String.class);
+}
+4️⃣ Microservice B — Protected by OAuth2 Token
+Same as Microservice A:
+
+Configure Spring Security with resource server
+
+Token validation by issuer URI
+
+application.yml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000  # Same auth server
+SecurityConfig.java
+
+@EnableWebSecurity
+public class SecurityConfig {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt());
+        return http.build();
+    }
+}
+
+
+3.how to Authorized role based in microservices
+===================================================================
+
+JWT token should have a roles claim like:
+{
+  "sub": "john",
+  "roles": ["ROLE_ADMIN", "ROLE_USER"]
+}
+
+application.yml
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9000  
+		  
+		  @EnableWebSecurity
+		  
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt());
+
+        return http.build();
+    }
+}
+
+@Bean
+public JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtGrantedAuthoritiesConverter authoritiesConverter = new JwtGrantedAuthoritiesConverter();
+    authoritiesConverter.setAuthorityPrefix("ROLE_");
+    authoritiesConverter.setAuthoritiesClaimName("roles");
+
+    JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
+    converter.setJwtGrantedAuthoritiesConverter(authoritiesConverter);
+    return converter;
+}
+Use it in your resource server config:
+.oauth2ResourceServer(oauth2 -> oauth2
+    .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+);
+
+@RestController
+@RequestMapping("/admin")
+public class AdminController {
+
+    @GetMapping("/dashboard")
+    public String adminOnly() {
+        return "Welcome Admin!";
+    }
+}
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @GetMapping("/profile")
+    public String userOnly() {
+        return "Welcome User!";
+    }
+}
+
+how to manag mathod level love base authentication
+To manage method-level role-based authentication in Spring Boot microservices, you use Spring Security’s @PreAuthorize or @Secured annotations to restrict access based on roles from JWT tokens.
+
+@EnableMethodSecurity  // replaces @EnableGlobalMethodSecurity in Spring Security 6+
+public class SecurityConfig {
+    ...
+}
+
+@Bean
+public JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+    grantedAuthoritiesConverter.setAuthoritiesClaimName("roles");
+    grantedAuthoritiesConverter.setAuthorityPrefix("ROLE_"); // required
+
+    JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
+    converter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
+    return converter;
+}
+
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http
+        .authorizeHttpRequests(auth -> auth
+            .anyRequest().authenticated()
+        )
+        .oauth2ResourceServer(oauth -> oauth
+            .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter()))
+        );
+
+    return http.build();
+}
+
+@RestController
+@RequestMapping("/admin")
+public class AdminController {
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/dashboard")
+    public String adminOnly() {
+        return "Welcome Admin";
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @GetMapping("/shared")
+    public String sharedAccess() {
+        return "Welcome Admin or User";
+    }
+}
+
+===================================================================================================================================
+Step-by-Step Implementation (Simulated 2PC)
+📌 1. TransactionCoordinatorService (acts as 2PC Manager)
+java
+Copy
+Edit
+@RestController
+@RequestMapping("/transaction")
+public class TransactionCoordinatorController {
+
+    private final RestTemplate restTemplate = new RestTemplate();
+
+    @PostMapping("/process")
+    public ResponseEntity<String> processTransaction() {
+        String orderService = "http://localhost:8081/order";
+        String paymentService = "http://localhost:8082/payment";
+
+        try {
+            // Phase 1: Prepare
+            ResponseEntity<String> orderPrepare = restTemplate.postForEntity(orderService + "/prepare", null, String.class);
+            ResponseEntity<String> paymentPrepare = restTemplate.postForEntity(paymentService + "/prepare", null, String.class);
+
+            if (!orderPrepare.getBody().equals("OK") || !paymentPrepare.getBody().equals("OK")) {
+                throw new RuntimeException("Prepare failed");
+            }
+
+            // Phase 2: Commit
+            restTemplate.postForEntity(orderService + "/commit", null, String.class);
+            restTemplate.postForEntity(paymentService + "/commit", null, String.class);
+
+            return ResponseEntity.ok("Transaction committed");
+        } catch (Exception e) {
+            // Rollback if any service fails
+            restTemplate.postForEntity(orderService + "/rollback", null, String.class);
+            restTemplate.postForEntity(paymentService + "/rollback", null, String.class);
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Transaction rolled back");
+        }
+    }
+}
+📌 2. OrderService
+java
+Copy
+Edit
+@RestController
+@RequestMapping("/order")
+public class OrderController {
+
+    private boolean prepared = false;
+
+    @PostMapping("/prepare")
+    public ResponseEntity<String> prepare() {
+        // Simulate DB lock and staging
+        prepared = true;
+        System.out.println("Order Prepared");
+        return ResponseEntity.ok("OK");
+    }
+
+    @PostMapping("/commit")
+    public ResponseEntity<String> commit() {
+        if (prepared) {
+            System.out.println("Order Committed");
+            // Persist changes
+            prepared = false;
+            return ResponseEntity.ok("Committed");
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Not prepared");
+    }
+
+    @PostMapping("/rollback")
+    public ResponseEntity<String> rollback() {
+        if (prepared) {
+            System.out.println("Order Rolled Back");
+            prepared = false;
+        }
+        return ResponseEntity.ok("Rolled back");
+    }
+}
+📌 3. PaymentService (similar to OrderService)
+java
+Copy
+Edit
+@RestController
+@RequestMapping("/payment")
+public class PaymentController {
+
+    private boolean prepared = false;
+
+    @PostMapping("/prepare")
+    public ResponseEntity<String> prepare() {
+        prepared = true;
+        System.out.println("Payment Prepared");
+        return ResponseEntity.ok("OK");
+    }
+
+    @PostMapping("/commit")
+    public ResponseEntity<String> commit() {
+        if (prepared) {
+            System.out.println("Payment Committed");
+            prepared = false;
+            return ResponseEntity.ok("Committed");
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Not prepared");
+    }
+
+    @PostMapping("/rollback")
+    public ResponseEntity<String> rollback() {
+        if (prepared) {
+            System.out.println("Payment Rolled Back");
+            prepared = false;
+        }
+        return ResponseEntity.ok("Rolled back");
+    }
+}
