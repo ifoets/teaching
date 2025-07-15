@@ -1,0 +1,22 @@
+
+    -Sealed Classes (Final)	[JEP 409]	Restrict which classes can extend or implement a class or interface.
+    -Pattern Matching for switch (Preview)	[JEP 406]	Enables pattern matching in switch expressions for cleaner type-safe code.
+    -insteadof use in if condition
+    -A text block can be declared by starting with three double quotes """ which should be followed by a line break and
+          closed by three double quotes again.
+    -3. Foreign Function & Memory API (Incubator): This API allows Java code to interact with code and data outside of the Java runtime environment (native code and memory)
+     -4. Enhanced Pseudo-Random Number Generators
+     -5. New macOS Rendering Pipeline: enhance performance in masOs
+     -6. Strongly Encapsulate JDK Internals:.Java 17 strongly encapsulates JDK internals by default, making it harder to access and use internal APIs, promoting better security and stability.
+     -7. Deprecation and Removal of Legacy Features:
+      Java 17 deprecates the Applet API for removal in future versions, and also removes the RMI activation mechanism.
+
+
+ -6. Strongly Encapsulate JDK Internals:
+How to Bypass (Not Recommended for Production)
+If you must access internal APIs (e.g., for legacy reasons), use the following JVM flags:
+
+Option 1: Use --add-exports to export a package to your code
+--add-exports java.base/sun.misc=ALL-UNNAMED
+Option 2: Use --add-opens to allow reflection
+--add-opens java.base/sun.misc=ALL-UNNAMED

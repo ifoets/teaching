@@ -3,6 +3,7 @@ package interview.preparation.company.interviews.impl;
 import interview.preparation.company.interviews.question.IIDCTech;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class IDCTechImpl implements IIDCTech {
     public int stringToInt(String str)
@@ -81,6 +82,7 @@ public class IDCTechImpl implements IIDCTech {
     {
         if(Objects.isNull(str)||str.length()==1)
             return str;
+       // or Stream.of(str.split("")).reduce("",(a,b)->b+a);
         return str.chars().mapToObj( c-> (char)c).reduce("", (a,b) -> b+a, (s1,s2)-> s2+s1);
     }
 }

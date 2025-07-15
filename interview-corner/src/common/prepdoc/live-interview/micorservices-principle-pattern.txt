@@ -1,0 +1,428 @@
+
+Load balancing
+--------------------------
+https://www.sayonetech.com/blog/load-balancing-microservices-architecture/#:~:text=Two%20types%20of%20load%20balancing,in%20front%20of%20the%20servers.
+server side load balancers nginx, netscaler etc.
+https://www.vultr.com/docs/how-to-setup-load-balancing-using-nginx?utm_source=performance-max-apac&utm_medium=paidmedia&obility_id=16876059738&utm_adgroup=&utm_campaign=&utm_term=&utm_content=&gclid=EAIaIQobChMIxfqoov6T_AIVTpJmAh2dqgQWEAAYAiAAEgLULfD_BwE
+
+SOlid: Desing principle
+https://www.baeldung.com/solid-principles
+
+Essential Microservice Design Patterns and Principles
+-------------------------
+https://javarevisited.blogspot.com/2021/09/microservices-design-patterns-principles.html#axzz7o66qcj8I
+
+
+
+Spring Boot Best Practices for Microservices
+------------------------------------------------------
+https://piotrminkowski.com/2019/12/06/spring-boot-best-practices-for-microservices/
+
+https://piotrminkowski.com/2017/05/15/part-3-creating-microservices-circuit-breaker-fallback-and-load-balancing-with-spring-cloud/
+
+1. Collect metrics, Grafana, Actuator, spring-boot-starter-actuator, ET /actuator/metrics ,@Configuration class ConfigurationMetrics
+2. Don’t forget about logging, Zipkin
+3. Make your API usable, Swagger clean documentation, springfox-swagger2, springfox-swagger-ui, @EnableSwagger2/contorller
+4. Don’t afraid of using circuit breaker, spring-cloud-starter-circuitbreaker-resilience4j, Customizer<Resilience4JCircuitBreakerFactory>
+5. Make your application transparent, continuous delivery, spring-boot-maven-plugin, management.endpoint.info.enabled: true, @EnableAdminServer.
+6. Write contract tests, Consumer Driven Contract (CDC) testing , spring-cloud-starter-contract-verifier
+7. Be up-to-date, Spring Cloud releases new versions of projects using release train pattern,
+
+ms distributed transactions pattern explanations
+-----------------------------------------
+https://www.baeldung.com/cs/saga-pattern-microservices
+Orchestration involves a central controller that manages the workflow, while choreography relies on decentralized, event-driven communication between services
+
+distributed cache in ms
+---------------------------------------------
+https://www.nexsoftsys.com/articles/distributed-caching-in-java-microservices-using-redis-cluster.html
+
+Components of Microservices
+=====================================
+
+	1. Spring Cloud Config Server//HTTP resource-based API for external configuration in the distributed system
+	2. Netflix Eureka Naming Server //discovery server. It provides the REST interface to the outside for communicating with i
+	3. Hystrix Server //acts as a fault-tolerance robust system. It is used to avoid complete failure of an application. It does this by using the Circuit Breaker mechanism
+	4. Netflix ZuulAPI Gateway Server //inbuilt load balancer to load the balance of all incoming request from the client.
+	5. Netflix Ribbon //It provides the client-side balancing algorithm. It uses a Round Robin Load Balancing:
+	6. Zipkin Distributed Tracing Server //That provides a mechanism for sending, receiving, and visualization traces.
+
+
+	1.Service Discovery //Spring Cloud Eureka is a service registry and discovery server. It allows microservices to register themselves and discover other services in the ecosystem. This enables dynamic scaling and routing.
+	2.Load Balancer //Ribbon is a client-side load balancer used for this purpose.
+	3.API Gateway //Spring Cloud Zuul acts as an API gateway that manages the routing, filtering, and load balancing of requests to different microservices.
+	4.Service Registry //Spring Cloud Eureka is a service registry
+	5.Circuit Breaker
+	6.Service Monitoring
+	7.Service Containerization and Orchestration
+	8.Configuration Server //Spring Cloud Config Server manages externalized configuration for microservices. It allows you to centralize configuration properties for different environments and services.
+
+Challenges of Microservices Architecture
+=========================================
+	1. Bounded Context
+	2. Dynamic Scale up and Scale Down
+	3. Monitoring
+	4. Fault Tolerance
+	5. Cyclic dependencies/Circular dependencies in microservices occur when two or more services depend on each other, creating a loop where changes in one service can affect the others,
+making development and deployment more complex.
+Use Asynchronous Communication (Event-Driven)
+Replace direct API calls with events using Kafka, RabbitMQ, etc., 5. Service Facade Pattern,  4. Use Shared Datastore or Caching Carefully, 6. Circuit Breakers + Timeouts
+
+	This can lead to increased coupling, reduced maintainability, and difficulty in independent deployment.
+	6. DevOps Culture
+
+Microservices Monitoring Tool
+==============================
+	1. Hystrix dashboard
+	2. Eureka admin dashboard
+	3. Spring boot admin dashboard
+
+Essential Microservice Design Patterns and Principles
+------------------------------------------------------
+https://www.edureka.co/blog/microservices-design-patterns
+https://microservices.io/patterns/microservices.html
+
+Best practive microservice
+
+	1. Service Design
+	2. Communication
+	3. Data Management
+	4. Deployment & Scaling
+	5. Fault Tolerance & Resilience
+	6. Security
+	8. Service Discovery & Configuration
+	9. DevOps and CI/CD
+	10. Testing
+ 
+Let's look at the principles in which the microservice architecture has been built.
+
+Principles Used to Design Microservice Architecture
+
+The principles used to design Microservices are as follows:
+
+	1.	Independent & Autonomous Services
+	2.	Scalability
+	3.	Decentralization
+	4.	Resilient Services
+	5.	Real-Time Load Balancing
+	6.	Availability
+	7.	Continuous delivery through DevOps Integration
+	8.	Seamless API Integration and Continuous Monitoring
+	9.	Isolation from Failures //preventing a failure in one microservice from cascading and affecting other services, ensuring the overall system's resilience and reliability
+	10.	Auto -Provisioning //automates the process of deploying and managing resources for microservices, including containers, infrastructure, and even user access
+
+
+In this article, we are going to discuss 10 main design patterns which are mentioned below.
+
+	1. Database per Microservice
+	2. Event Sourcing //The event sourcing design pattern creates events regarding the changes in the application state.
+	3. CQRS //he command part will handle all the requests related to CREATE, UPDATE, DELETE while the query part will take care of the materialized views.
+	4. Saga //a design pattern used in microservices architecture to manage distributed transactions, ensuring consistency across multiple services, t breaks down a global transaction into a series of local transactions, each performed by a different service. If any local transaction fails, compensating transactions are used to revert the changes made by previous transactions, ensuring eventual consistency
+	5. BFF  // Frontend (BFF) patterns involve managing communication between clients and backend services, an API gateway acts as a single entry point for all clients, while a BFF is a client-specific backend tailored to the needs of a particular frontend.
+	6. API Gateway
+	7. Strangler //a software design pattern used to gradually refactor monolithic applications into microservices It's a phased approach where existing functionalities are replaced with new microservices, one by one, eventually phasing out the original monolithic application
+	8. Circuit Breaker //https://javatechonline.com/how-to-implement-hystrix-circuit-breaker-in-microservices-application/
+	9. Externalized Configuration
+	10. Consumer-Driven Contract Tracing
+
+Twelve-Factor Methodology in a Spring Boot Microservice
+---------------------------------------------------------------------
+https://www.baeldung.com/spring-boot-12-factor
+https://www.netsolutions.com/insights/12-factor-app-methodology/
+
+ 1. Codebase
+ 2. Dependencies
+ 3. Configurations
+ 4. Backing Services
+ 5. Build, Release and Run
+ 6. Processes
+ 7. Port Binding
+ 8. Concurrency
+ 9. Disposability
+ 10. Dev/Prod Parity
+ 11. Logs
+ 12. Admin Processes
+
+ https://blog.clearscale.com/12-factor-approach-for-microservices/
+
+=========================================================================
+Let's look at the principles in which the microservice architecture has been built.
+
+	1. Scalability
+Simplified Application Updates:
+Multi-Language development:
+Easier Governance:
+Decentralize
+d Data Management:
+ No external dependencies:
+ Focused functionality:
+Independent interfaces:
+
+https://www.fiorano.com/blogs/microservices_architecture
+	2. Flexibility
+
+Flexibility: Add or remove functions as needed in near real time;
+Responsiveness: Satisfy user change requests quickly and efficiently;
+Maintainability: Code repair and version upgrades limited to a single service;
+Scalability: Add functionality quickly and incrementally
+
+	3. Independent and autonomous
+Microservices should be architected to be autonomous, able to
+ operate and be maintained without relying on other microservices. If they can operate independently of each other,
+they will neither be derailed by problems or performance issues
+in another microservice nor act as a point of failure. All this adds up to performance, scalability, and elasticity.
+
+	4. Decentralized governance
+Decentralized governance gives Microservices teams
+ the freedom to develop software components using different stacks.
+A strong Microservices Governance foundation contains
+ three elements: people, process, and technology.
+For a successful functioning governance, these three elements must align
+
+	5. Resiliency
+Service A is not able to communicate with Service B.
+Database is not accessible.
+Your application is not able to connect to the file system.
+Server is down or not responding.
+Inject faults/delays into the services.
+
+Design for Failures
+By following some commonly used design patterns you can make your service self-healing. Let's discuss these design patterns in detail now.
+
+What Are the Design Patterns to Ensure Service Resiliency?
+Circuit Breaker Pattern
+Retry Design Pattern
+Timeout Design Pattern
+https://dzone.com/articles/making-your-microservices-resilient-and-fault-tole-1
+
+	6. Failure isolation.
+Use asynchronous communication (for example, message-based communication) across internal microservices
+Use retries with exponential backoff.
+Work around network timeouts.
+Use the Circuit Breaker pattern
+Provide fallbacks
+
+Limit the number of queued requests
+https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/partial-failure-strategies
+
+	7. Continuous delivery through the DevOps
+
+	1. Scalability
+
+	-----------------------------------
+
+In this article, we are going to discuss 10 main design patterns which are mentioned below.
+
+	1. Database per Microservice
+An important rule for microservices architecture is
+that each microservice must own its domain data and logic.
+Just as a full application owns its logic and data,
+so must each microservice own its logic and data under an autonomous
+lifecycle, with independent deployment per microservice
+In the shared-database-per-service pattern, the same database is shared by several microservices.
+You need to carefully assess the application architecture
+before adopting this pattern, and make sure that you avoid hot tables (single tables that are shared among multiple microservices).
+
+	2. Event Sourcing
+A service command typically needs to update the database and send messages/events. For example, a service that participates
+in a saga needs to atomically update the database and sends messages/events.
+ Similarly, a service that publishes a domain event must atomically update an aggregate and publish an event.
+
+	3. CQRS
+CQRS is about segregating the command and query side of the application architecture. CQRS is based on the Command Query Separation (CQS) principle
+ CQS suggests that we divide the operations on domain objects into two distinct categories: Queries and Commands:
+Queries return a result and do not change the observable state of a system. Commands change the state of the system but do not necessarily return a value.
+
+	4. Saga
+You have applied the Database per Service pattern. Each service has its own database. Some business transactions,
+however, span multiple service so you need a mechanism to implement transactions that span services
+
+Implement each business transaction that spans multiple services is a saga. A saga is a sequence of local transactions.
+ Each local transaction updates the database and publishes a message or event to trigger the next local transaction in the saga. If a local transaction fails because
+it violates a business rule then the saga executes a series of compensating transactions that undo the changes that were made by the preceding local transactions.
+
+	5. BFF
+BFF acts as a perfect abstraction for underlying microservices. For an API,
+it can connect to necessary microservices, gather the responses, and respond. This ensures that we are not fetching data that we don't need.
+
+	6. API Gateway
+API gateway represents a single entry point into the system, providing the request routing, security, protocol translation,
+and composition of microservices in an application. API gateway also enables to mark the failure in the backend services of the application by returning the default data
+
+
+	7. Strangler
+The strangler application consists of two types of services. First, there are services that implement functionality that previously resided in the monolith. Second,
+there are services that implement new features.
+The latter are particularly useful since they demonstrate to the business the value of using microservices
+
+	8. Circuit Breaker
+https://medium.com/nerd-for-tech/design-patterns-for-microservices-circuit-breaker-pattern-ba402a45aac2
+https://medium.com/@truongbui95/circuit-breaker-pattern-in-spring-boot-d2d258b75042
+
+Circuit breakers are a design pattern to create resilient microservices by limiting the impact of service failures and latencies.
+The major aim of the Circuit Breaker pattern is to prevent any cascading failure in the system.
+In a microservice system, failing fast is critical.
+
+		The Circuit Breaker Design pattern have three states:
+
+		Closed
+		Open
+		Half-Open
+
+	9. Externalized Configuration
+Microservices are designed to be deployed in multiple environments. Externalizing the configuration with MicroProfile Config
+helps microservices run in different environments without a change in code.
+
+	10. Consumer-Driven Contract Tracing
+Consumer-Driven Contracts is an approach to ensure service communication compatibility, in which Consumer and Provider
+make an agreement about the format of the data they transfter between each other. This agreement forms the so called Contract.
+
+12 factor app in microservices
+https://www.baeldung.com/spring-boot-12-factor
+
+
+https://www.amazon.in/Nike-3-White-Black-Summit-White-Platinum-Tint-Dr2695-102-8Uk/dp/B0CZHMSGHW/ref=sr_1_4?crid=1YDOYRPE3U600&dib=eyJ2IjoiMSJ9.UIE39eqWcER91N9rlDTuHmHLJ_MOUL75jrZCfa3tAPKnVp84i8BUGgkgv5eQKqt00UDrORKzFLF6wMZpZOWyjwNqfOAmzLlbcDfRYAmZ6A2d7xrIKvRUXgj09RgUMoZzmJ84XTkjylkMpS4o_qM64X3AHKchrVVCh5Ui6d6eX-jJZZC6ANvfT0BssawTLxxYgDN1AQkx6Y0DT_Cep0sMIko9kKK__S-hAK8h43oYrZ4kwAdGwUCLB-s61LSYPZ7YJBUZKMMfYExy5rutRDtTe8ePjRW8qmk9Qp5IHtUzG5w.OGAvK055-zcUSbPSyAXMj_WcdBAxiSw1tR6GT5xB08s&dib_tag=se&keywords=nike+shoes+for+men&qid=1723888649&sprefix=nyki%2Caps%2C491&sr=8-4
+
+https://www.amazon.in/NIKE-Revolution-Running-Shoes-White/dp/B0CL7XVF7R/ref=sr_1_15?crid=1YDOYRPE3U600&dib=eyJ2IjoiMSJ9.UIE39eqWcER91N9rlDTuHmHLJ_MOUL75jrZCfa3tAPKnVp84i8BUGgkgv5eQKqt00UDrORKzFLF6wMZpZOWyjwNqfOAmzLlbcDfRYAmZ6A2d7xrIKvRUXgj09RgUMoZzmJ84XTkjylkMpS4o_qM64X3AHKchrVVCh5Ui6d6eX-jJZZC6ANvfT0BssawTLxxYgDN1AQkx6Y0DT_Cep0sMIko9kKK__S-hAK8h43oYrZ4kwAdGwUCLB-s61LSYPZ7YJBUZKMMfYExy5rutRDtTe8ePjRW8qmk9Qp5IHtUzG5w.OGAvK055-zcUSbPSyAXMj_WcdBAxiSw1tR6GT5xB08s&dib_tag=se&keywords=nike+shoes+for+men&qid=1723888649&sprefix=nyki%2Caps%2C491&sr=8-15
+
+orchestration vs choreography in microservices
+----------------------------------------------
+orchestration uses a central controller to manage interactions between services, while choreography relies on decentralized, event-driven communication. Orchestration is simpler to implement and debug,
+but can create a single point of failure. Choreography offers loose coupling and flexibility, but can be more complex to debug and manage.
+
+✅ 1. Service Design
+Keep services small, single-responsibility, and independently deployable
+Define clear boundaries using Domain-Driven Design (DDD)
+Use Bounded Contexts to separate data and responsibilities
+Avoid cyclic dependencies between services
+
+✅ 2. Communication
+Prefer asynchronous communication (e.g., Kafka, RabbitMQ) over synchronous REST when possible
+Use well-defined APIs (OpenAPI/Swagger)
+Implement versioning for public APIs
+Avoid direct database access between services
+
+✅ 3. Data Management
+Follow Database per Service principle
+Use event-driven architecture for eventual consistency
+Handle distributed transactions using SAGA pattern (not 2PC)
+Avoid shared mutable state
+
+✅ 4. Deployment & Scaling
+Deploy each service independently
+Use containers (Docker) and orchestration tools (Kubernetes)
+Enable horizontal scaling of stateless services
+Automate CI/CD pipelines
+
+✅ 5. Fault Tolerance & Resilience
+Use circuit breakers, bulkheads, retries, and timeouts (e.g., Resilience4j)
+Implement graceful degradation and fallback mechanisms
+Monitor service health and auto-restart failures
+
+✅ 6. Security
+Use OAuth2 / JWT for authentication and authorization
+Apply Role-based or Attribute-based access control (RBAC / ABAC)
+Secure communication with HTTPS and mutual TLS
+Validate and sanitize all external inputs
+
+✅ 7. Observability & Monitoring
+Use centralized logging (e.g., ELK, Loki)
+Use metrics collection (e.g., Prometheus, Grafana)
+Enable distributed tracing (e.g., Jaeger, Zipkin)
+Set up alerting for performance and error thresholds
+
+✅ 8. Service Discovery & Configuration
+Use service registry (e.g., Eureka, Consul) for dynamic discovery
+Externalize configurations (e.g., Spring Cloud Config, Consul, Vault)
+Support dynamic refresh of config without redeployment
+
+✅ 9. DevOps and CI/CD
+Build CI/CD pipelines for each microservice
+Automate testing, linting, containerization, and deployment
+Use feature toggles for safe deployment
+Enable blue-green or canary deployments
+
+✅ 10. Testing
+Perform unit, integration, contract, and end-to-end tests
+Use consumer-driven contract testing (e.g., Pact)
+Mock external services in tests
+Use test containers for isolated testing environments
+
+Redis cache impl
+=======================
+1. Add Dependencies:
+In your pom.xml (or build.gradle):
+Code
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+2. Configure Redis:
+Add the following to your application.properties (or application.yml):
+Code
+
+spring.cache.type=redis
+spring.redis.host=localhost
+spring.redis.port=6379
+3. Enable Caching:
+In your main application class (or a configuration class), add the @EnableCaching annotation:
+Java
+
+@SpringBootApplication
+@EnableCaching
+public class RedisCacheApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(RedisCacheApplication.class, args);
+    }
+}
+4. Use Caching Annotations:
+@Cacheable: This annotation caches the result of a method based on its parameters.
+Java
+
+    @Cacheable(value = "users", key = "#userId")
+    public User getUserById(Long userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
+@CachePut: This annotation updates the cache with the result of the method.
+Java
+
+    @CachePut(value = "users", key = "#user.id")
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+@CacheEvict: This annotation removes entries from the cache.
+Java
+
+    @CacheEvict(value = "users", key = "#userId")
+    public void deleteUser(Long userId) {
+        userRepository.deleteById(userId);
+    }
+Example:
+Java
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Cacheable(value = "users", key = "#userId")
+    public User getUserById(Long userId) {
+        // Simulate a database call
+        return userRepository.findById(userId).orElse(null);
+    }
+}
+Now, when getUserById is called, the first time it will fetch the user from the database and store it in Redis. Subsequent calls with the same userId will retrieve the user directly from the cache
+
+
+
+
+
+
+
+

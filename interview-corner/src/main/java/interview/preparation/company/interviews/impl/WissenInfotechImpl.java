@@ -21,6 +21,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.RecursiveTask;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import com.design.analysis.company.preparation.model.LNode;
 import com.design.analysis.company.preparation.utils.SListUtils;
@@ -36,7 +37,7 @@ public class WissenInfotechImpl implements IWissenInfotech {
 	public Map<String, String> getMapOrderByValues(Map<String, String> map) {
 
 		return map.entrySet().stream().sorted(Map.Entry.comparingByValue())
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 	}
 
 	public Map<String, String> getMapOrderByValuesX(Map<String, String> map) {
@@ -69,7 +70,13 @@ public class WissenInfotechImpl implements IWissenInfotech {
 				map.entrySet().stream()
 						.sorted(Map.Entry.<String, String>comparingByValue()
 								.thenComparing(Map.Entry.comparingByKey()))
-						.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+						.collect(Collectors.
+                            toMap(
+                                Map.Entry::getKey,
+                                Map.Entry::getValue,
+                                (e1, e2) -> e1,
+                                LinkedHashMap::new)
+                        );
 	}
 	@Override
 	public Map<String, String> getMapOrderByValuesThenByKeyX(Map<String, String> map) {
@@ -78,14 +85,26 @@ public class WissenInfotechImpl implements IWissenInfotech {
 						.stream()
 						.sorted(Map.Entry.comparingByValue())
 						.sorted(Map.Entry.comparingByKey())
-						.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue, (e1,e2)->e1,LinkedHashMap::new));
+                    .collect(Collectors.
+                        toMap(
+                            Map.Entry::getKey,
+                            Map.Entry::getValue,
+                            (e1, e2) -> e1,
+                            LinkedHashMap::new)
+                    );
 
 	}
 
 	public Map<String, String> getMapOrderByKey(Map<String, String> map){
 		return
 				map.entrySet().stream().sorted(Map.Entry.comparingByKey())
-						.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue, (e1,e2)->e1, LinkedHashMap::new));
+                    .collect(Collectors.
+                        toMap(
+                            Map.Entry::getKey,
+                            Map.Entry::getValue,
+                            (e1, e2) -> e1,
+                            LinkedHashMap::new)
+                    );
 	}
 
 	/** 1. Create biggest number from array element using string addition */
@@ -672,4 +691,135 @@ public class WissenInfotechImpl implements IWissenInfotech {
 		}
 		return true;
 	}
+
+    @Override
+    public  List<List<String>> groupAnagrams(List<String> strList){
+
+        return strList.stream().collect(
+            Collectors.groupingBy(
+                e->
+                {
+                    char[] chars = e.toCharArray();
+                    Arrays.sort(chars);
+                    return new String(chars);
+                }
+            )
+        ).values().stream().toList();
+    }
+
+    @Override
+    public List<Integer> allNDiditPalindrome(int n){
+        return IntStream.rangeClosed((int)Math.pow(10,n-1),(int)Math.pow(10,n)-1).filter(
+            e->
+            {
+                String s = String.valueOf(e);
+                return s.contentEquals(new StringBuilder(s).reverse());
+            }
+        ).boxed().toList();
+    }
+
+    @Override
+    public List<Integer> allNDiditPalindromeX(int n){
+
+        if(n%2!=0)
+            return allNDiditPalindrome(n);
+        return IntStream.rangeClosed((int) Math.pow(10, n / 2 - 1), (int) Math.pow(10, n / 2) - 1)
+            .mapToObj(i ->
+            {
+                return Integer.parseInt(i + new StringBuilder(String.valueOf(i)).reverse().toString());
+            }).toList();
+
+    }
+    @Override
+    public List<Integer> allNDiditPalindromeY(int n){
+        IntStream intStream = IntStream.rangeClosed((int) Math.pow(10, n / 2 - 1), (int) Math.pow(10, n / 2) - 1);
+        return intStream.mapToObj(
+            i->
+            {
+                List<Integer> intList = new ArrayList<>();
+                int j = 0;
+                int oddNo = i%10;
+                while (j < n / 2) {
+                    intList.add((int) (i / Math.pow(10, j)) % 10);
+                    j++;
+                }
+                i = (int) (i * Math.pow(10, n / 2));
+                for (int t = 0; t < intList.size(); t++)
+                    i += (int) (intList.get(t) * Math.pow(10, (n / 2 - 1) - t));
+                return i;
+            }
+        ).toList();
+    }
+    public List<Integer> allNDiditPalindromeZ(int n){
+        return IntStream.rangeClosed((int)Math.pow(10,n-1),(int)Math.pow(10,n)-1)
+            .boxed().filter(i->
+                {
+                    int x = i%(int) Math.pow(10, n / 2);
+                    int y = n%2!=0 ? i / (int) Math.pow(10, n / 2 + 1):i / (int) Math.pow(10, n / 2);
+                    return x==reverseNo(y);
+                }
+            ).toList();
+    }
+    public Integer reverseNo(int n)
+    {
+        int rev=0;
+        while (n>0)
+        {
+            rev=rev*10+n%10;
+            n=n/10;
+        }
+        return rev;
+    }
+    @Override
+    public String minSlidingWindow(String s, String t){
+        int n = s.length();
+        String newT = t.chars().mapToObj(c->(char)c).sorted().map(String::valueOf).collect(Collectors.joining());
+        for(int k=t.length();k<=n;k++) {
+            for (int i = 0; i < n - t.length(); i++) {
+                String str = s.substring(i, i+k).chars().mapToObj(c->(char)c).sorted().map(String::valueOf).collect(Collectors.joining());;
+                if (str.contains(newT))
+                    return s.substring(i, i+k);
+            }
+        }
+        return "";
+    }
+
+    @Override
+    public void oddPosIsGreaterOrEvenIsSmaller(int[] a){
+        Arrays.sort(a);
+        for(int i=0;i+1<a.length;i+=2)
+        {
+            int temp = a[i];
+            a[i]=a[i+1];
+            a[i+1]=temp;
+        }
+    }
+
+    @Override
+    public int posBeforeAfterSumEqual(int [] a){
+        int i=0;
+        int j=a.length-1;
+        int sumLeft=a[i];
+        int sumRight=a[j];
+
+        while (i<j)
+        {
+            if(sumLeft==sumRight) {
+                i++;
+                sumLeft+=a[i];
+                j--;
+                sumRight+=a[j];
+            }
+            else if(sumRight>sumLeft)
+            {
+                i++;
+                sumLeft+=a[i];
+            }
+            else {
+                j--;
+                sumRight+=a[j];
+            }
+        }
+        return  sumLeft==sumRight&&i==j ? i+1 : -1;
+    }
 }

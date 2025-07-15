@@ -1,0 +1,11 @@
+my system have 4 core how many virtual thread run concurrently efficiently
+Can i gain benefit of time using virtual thread compared to normal java thread
+parallelStream and virtual thread which is better to use
+how to handle race condition by virtual thread
+
+Parallel Streams in details
+
+parallelism in stream and virtual thread use in two opposite first for CUP intensive and letter on network call db call , I am right\
+    1. Use parallelStream() for CPU-Intensive Tasks/ logical computation
+    2. Use Virtual Threads for I/O-Intensive Tasks / non logical computation
+

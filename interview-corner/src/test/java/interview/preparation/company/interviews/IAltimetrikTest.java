@@ -1,12 +1,18 @@
 package interview.preparation.company.interviews;
 
+import com.sun.source.tree.LiteralTree;
 import interview.preparation.company.interviews.impl.AltimetrikImpl;
+import interview.preparation.company.interviews.model.Student;
 import interview.preparation.company.interviews.question.IAltimetrik;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
+
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 
 public class IAltimetrikTest {
 
@@ -33,6 +39,9 @@ public class IAltimetrikTest {
         Assert.assertEquals(10,ial.minimumCandiesPerHour(d));
     }
 
+    public static void main(String[] args) {
+        System.out.println("Hi");
+    }
     @Test
     public void minimumCandiesPerHourXTest()
     {
@@ -176,4 +185,70 @@ public class IAltimetrikTest {
         for(int i=0;i<lhm1.size();i++)
             Assert.assertEquals(lhm1.get(i),lhm2.get(i));
     }
+
+    /**O(n2)*/
+    @Test
+    public void countUniqueSubstringTest()
+    {
+        String str="abcd";
+        //Assert.assertEquals(10,ial.countUniqueSubstring(str));
+        str ="abca";
+        Assert.assertEquals(9,ial.countUniqueSubstring(str));
+    }
+    @Test
+    public void allUniqueSubstringTest()
+    {
+        List<String> strList = new ArrayList<>();
+        ial.allUniqueSubstring(strList,"abca");
+        Assert.assertEquals(9,strList.size());
+        System.out.println(strList.toString());
+    }
+
+    @Test
+    public void getSumOfAgeSameNameStudentTest()
+    {
+        List<Student> studentLit = DataUtils.getStudentList();
+        Map<String,Integer> map = ial.getSumOfAgeSameNameStudent(studentLit);
+        Assert.assertEquals(45,(int)map.get("Alice"));
+        Assert.assertEquals(50,(int)map.get("Bob"));
+        Assert.assertEquals(19,(int)map.get("Charlie"));
+    }
+    @Test
+    public void getMaxAgeStudentTest()
+    {
+        List<Student> studentLit = DataUtils.getStudentList();
+        Map<String, Optional<Student>> map = ial.getMaxAgeStudent(studentLit);
+        Assert.assertEquals(25,map.get("Alice").orElseThrow().age);
+        Assert.assertEquals(28,map.get("Bob").orElseThrow().age);
+        Assert.assertEquals(19,map.get("Charlie").orElseThrow().age);
+    }
+
+    @Test
+    public void getMinAgeStudentTest()
+    {
+        List<Student> studentLit = DataUtils.getStudentList();
+        Map<String, Optional<Student>> map = ial.getMinAgeStudent(studentLit);
+        Assert.assertEquals(20,map.get("Alice").orElseThrow().age);
+        Assert.assertEquals(22,map.get("Bob").orElseThrow().age);
+        Assert.assertEquals(19,map.get("Charlie").orElseThrow().age);
+    }
+    @Test
+    public void segregateOddEvenPredicateTest()
+    {
+        List<Integer> list = List.of(1,2,3,4,5,6,7,8,9,10,11);
+        List<List<Integer>> oddEvenList = ial.segregateOddEvenPredicate(list);
+        System.out.println(oddEvenList.get(0));
+        System.out.println(oddEvenList.get(1));
+        Assert.assertEquals(5,oddEvenList.get(0).size());
+        Assert.assertEquals(6,oddEvenList.get(1).size());
+    }
+    @Test
+    public void test()
+    {
+        String s = "abca";
+
+       // System.out.println(s.chars().distinct().length);
+    }
+
 }
+
