@@ -6,6 +6,43 @@ how call microservice http and https
 how implements https in microservice
 ------------------------------------
 https://dzone.com/articles/how-to-achieve-oauth2-security-in-microservices-di
+@EnableResourceServer
+@Configuration
+extends ResourceServerConfigAdaptor
+String resourceId
+@Override both config method
+config(HttpSecurity)
+
+config(ResourceServerSecurityConfigurer)
+set resourceId
+
+@Configuration
+@EnableWebSecurity
+extends WebSecurityConfigureAdaptor
+cliend_id, client_secrate
+authUrl
+
+@Bean
+ResourceServerTokenService //see all param
+
+@Override
+AuthenticationManager
+setToken BEAN HERE
+
+or
+@Configuration
+@EnableMethodSecurity
+public class SecurityConfig {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2.jwt());
+        return http.build();
+    }
+}
 
 how to implements auth2
 ----------------------------------
@@ -13,7 +50,7 @@ https://dzone.com/articles/how-to-achieve-oauth2-security-in-microservices-di
 
 CrossOriginSiteinjection explains
 ---------------------
-CORS (Cross-Origin Resource Sharing, applications can only access resources from the same domain they are hosted on) 
+CORS (Cross-Origin Resource Sharing, applications can only access resources from the same domain they are hosted on)
 If a web page from example.com tries to access resources from api.example.com, the browser will check if CORS is enabled and allowed by the server of api.example.comand
 CORS is configured on the server-side using HTTP header
 CORS is a browser-based feature,
@@ -21,7 +58,7 @@ CORS is a browser-based feature,
                 registry.addMapping("/**") // Allow all endpoints
                         .allowedOrigins("https://example.com") // Set your allowed origins
 
-CSRF (Cross-Site Request Forgery) 
+CSRF (Cross-Site Request Forgery)
 attacker tricks a user's browser into performing unwanted actions on a website they are logged into
 CSRF protects against malicious requests from one domain forcing a user to perform actions on another domain where they're authenticated.  while CSRF is a server-side vulnerability
 CSRF protection is typically implemented by using a CSRF token, which is a unique, secret value that is included in requests and validated by the server
@@ -59,8 +96,8 @@ Often have expiration times with refresh tokens
 
 primary key vs unique key
 -------------------------
-The primary key does not store null values, whereas the unique key does. 
-A table can only have one primary key, 
+The primary key does not store null values, whereas the unique key does.
+A table can only have one primary key,
 whereas it can have multiple unique keys.
  The primary key does not allow you to delete or modify the data. On the other hand, a unique key does
 The primary key’s purpose is to enforce entity integrity, whereas the unique key’s purpose is to enforce unique data.
@@ -83,15 +120,15 @@ You need to iterate in a non-standard way (e.g., skipping elements, reverse orde
 
 when use filter on stream and when shouldn,t use
 ---------------------------------------------------------
-There are a few special cases where streams are hard to apply, like loop over 2 or 3 collections simultaneously. 
-In such case streams make not much sense, for is preferable. 
+There are a few special cases where streams are hard to apply, like loop over 2 or 3 collections simultaneously.
+In such case streams make not much sense, for is preferable.
 But in general there are no rules when to use or not to use specific construct.
 
 convert stream to string java IO Utils
 -------------------------------------------
 https://stackoverflow.com/questions/309424/how-do-i-read-convert-an-inputstream-into-a-string-in-java
  String result = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
- 
+
 when and where use microservice and not
 ----------------------------------------
 tranaction better to use monotholic ie in one ms is combinaion of all transaction that is bit more better
@@ -100,17 +137,17 @@ senario when call parent or child class your choice
 when == and equals both same, case of String
 countdown and cycle barrier when and where use senario example
 
-how make spring bean thread safe if required 
+how make spring bean thread safe if required
 ------------------------------------------
 http://dolszewski.com/spring/spring-bean-thread-safety-guide/
-//using request scope bean if inside any prototype, 
+//using request scope bean if inside any prototype,
 other waise prototye can also work if it not within singalton
 Prototype’s thread safety depends on the scope of the bean which contains the prototype.
 
 How to make any Spring bean thread-safe?
 The best thing you can do to tackle access synchronization is to avoid it.
 ---------------------------------------------
-If it is a web-application , Scope("request") can achieve thread-safety as for each new request 
+If it is a web-application , Scope("request") can achieve thread-safety as for each new request
 it creates a new object or scope("prototype") will do this.(for each  invocation it creates new bean .)
 
 some design pattern which u used senario
@@ -150,7 +187,7 @@ Downstream: receiving requests from / sending responses to
 A service downstream is calling me.==
 
 
-java api for ip address validation crdr, ip rang ip 
+java api for ip address validation crdr, ip rang ip
 ------------------------------------
 
 -----------------------------------
@@ -159,25 +196,25 @@ What is difference between Lambda Expression and Anonymous class?
 https://www.geeksforgeeks.org/difference-between-anonymous-inner-class-and-lambda-expression/
 
 Anonymous Inner Class	Lambda Expression
-It is a class without name.	
+It is a class without name.
 It is a method without name.(anonymous function)
 
-It can extend abstract and concrete class.	
+It can extend abstract and concrete class.
 It can’t extend abstract and concrete class.
 
-It can implement an interface that contains any number of abstract methods.	
+It can implement an interface that contains any number of abstract methods.
 It can implement an interface which contains a single abstract methods.
 
-Inside this we can declare instance variables.	
+Inside this we can declare instance variables.
 It does not allow declaration of instance variables, whether the variables declared simply act as local variables.
 
-Anonymous inner class can be instantiated.	
+Anonymous inner class can be instantiated.
 Lambda Expression can’t be instantiated.
 
-Inside Anonymous inner class, “this” always refers to current anonymous inner class object but not to outer object.	
+Inside Anonymous inner class, “this” always refers to current anonymous inner class object but not to outer object.
 Inside Lambda Expression, “this” always refers to current outer class object that is, enclosing class object.
 
-It is the best choice if we want to handle multiple methods.	
+It is the best choice if we want to handle multiple methods.
 It is the best choice if we want to handle interface.
 
 At the time of compilation, a separate .class file will be generated.
@@ -185,10 +222,10 @@ At the time of compilation, no separate .class file will be generated. It simply
 Memory allocation is on demand, whenever we are creating an object.	It resides in a permanent memo
 
 If we make multiple identical requests and receive the same response every time, the APIs are generally called idempotent.
-PUT is an idempotent method because it updates a record. If PUT/payment endpoint is called with an identical request, 
+PUT is an idempotent method because it updates a record. If PUT/payment endpoint is called with an identical request,
 it will result in no state change other than the first request.
 
-Spring applies the class-level annotation to all public methods of this class that we did not annotate with @Transactional.	
+Spring applies the class-level annotation to all public methods of this class that we did not annotate with @Transactional.
 However, if we put the annotation on a private or protected method, Spring will ignore it without an error.
 
 GP morgan
@@ -203,15 +240,15 @@ DEFAULT: Uses the database's default isolation level, often READ_COMMITTED.
 READ_UNCOMMITTED: Allows dirty reads (reading uncommitted changes).
 READ_COMMITTED: Prevents dirty reads but might allow non-repeatable reads.
 REPEATABLE_READ: Prevents non-repeatable reads but might allow phantom(occurs when a transaction retrieves a set of rows twice and new rows are inserted into or removed from that set by another transaction that is committed in between) reads.
-SERIALIZABLE: Highest isolation level, preventing all concurrency anomalies, often at the cost of performance. 
+SERIALIZABLE: Highest isolation level, preventing all concurrency anomalies, often at the cost of performance.
 Propagation:
-REQUIRED (default): If a transaction is already active, the method participates in it. If not, a new transaction is started. 
-REQUIRES_NEW: Always creates a new transaction, suspending any existing one. The existing transaction is not affected by the new one. 
-SUPPORTS: Supports the current transaction if one exists. If no transaction exists, the method executes non-transactionally. 
-MANDATORY: Requires a current transaction. If none exists, throws an exception. 
-NEVER: Throws an exception if a transaction is active. The method executes non-transactionally. 
-NOT_SUPPORTED: Executes non-transactionally, suspending any existing transaction. 
-NESTED: Executes within a nested transaction, allowing rollback of the nested transaction while preserving the outer one. 
+REQUIRED (default): If a transaction is already active, the method participates in it. If not, a new transaction is started.
+REQUIRES_NEW: Always creates a new transaction, suspending any existing one. The existing transaction is not affected by the new one.
+SUPPORTS: Supports the current transaction if one exists. If no transaction exists, the method executes non-transactionally.
+MANDATORY: Requires a current transaction. If none exists, throws an exception.
+NEVER: Throws an exception if a transaction is active. The method executes non-transactionally.
+NOT_SUPPORTED: Executes non-transactionally, suspending any existing transaction.
+NESTED: Executes within a nested transaction, allowing rollback of the nested transaction while preserving the outer one.
 
 select *from Emply,Dept what output//select both table as combined
 can we join more than one table //many can join together
@@ -222,11 +259,11 @@ You can create a data.sql file in your src/main/resources folder and it will be 
 without @Retry how to hadle the retry functionlity
 useing while(true) keep counter in catch block if count==max break the loop
 
-how to select from n1 row to n2 row no of record from db the 
+how to select from n1 row to n2 row no of record from db the
 
 SELECT * FROM table limit 100` -- get 1st 100 records
 SELECT * FROM table limit 100, 200` -- get 200 records beginning with row 101
-	
+
 
 how to configure db in spring/where keep user name and password
 <!-- JPA Data (We are going to use Repositories, Entities, Hibernate, etc...) -->
@@ -242,11 +279,11 @@ how to configure db in spring/where keep user name and password
         </dependency>
     </dependencies>
 
-properties file //but user an dpassword whold be in encypted formate	
+properties file //but user an dpassword whold be in encypted formate
 spring.datasource.url=jdbc:mysql://localhost:3306/restapi
 spring.datasource.username=root
 spring.datasource.password=
-or 
+or
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/yourdb
@@ -289,53 +326,53 @@ public static void doWithRetry(int maxAttempts, Operation operation) {
         }
     }
 	https://dzone.com/articles/spring-retry-way-to-handle-failures#:~:text=You%20can%20configure%20on%20what,SQLException%2C%20in%20this%20case).
-	
+
 	@Retryable(value = { SQLException.class }, maxAttempts = 3)
-	
+
 	BackOff policy to create a gap between retries.
 	 @Retryable(value = { SQLException.class }, maxAttempts = 3, backoff = @Backoff(delay = 5000))
-	 
+
 	 Spring Cloud Circuit Breaker
 	 ===================================
 	 Auto Configuration
 	 <artifactId>spring-cloud-starter-circuitbreaker-resilience4j<
-	 
+
 	 @RefreshScope
 	 @RestController
 	 automatically take up the new value from spring config server
-	 
+
 	 @Order
 	 87
 
-SELECT  * FROM table_name ORDER BY colm_name DESC LIMIT n - 1, 1;  
-or 
-SELECT  * FROM table_name ORDER BY colm_name DESC LIMIT 1 offset n-1; 
+SELECT  * FROM table_name ORDER BY colm_name DESC LIMIT n - 1, 1;
+or
+SELECT  * FROM table_name ORDER BY colm_name DESC LIMIT 1 offset n-1;
 This query will return the first row after the n-1 rows that should be the nth highest record.
- 
+
 
 SELECT *
 FROM (
-    SELECT your_table.*, ROWNUM AS rn
+    SELECT *, ROWNUM AS rn
     FROM your_table
     ORDER BY your_column
 )
 WHERE rn = N;
 
 delete duplicate record
-SELECT  
-    email, COUNT(email)  
-FROM  
-    contacts  
-GROUP BY  
-    email  
-HAVING  
-COUNT (email) > 1;  
+SELECT
+    email, COUNT(email)
+FROM
+    contacts
+GROUP BY
+    email
+HAVING
+COUNT (email) > 1;
 
-DELETE c1 FROM contacts c1  
-INNERJOIN contacts c2   
-WHERE  
-    c1.id > c2.id AND  
-    c1.email = c2.email;  
+DELETE c1 FROM contacts c1
+INNERJOIN contacts c2
+WHERE
+    c1.id > c2.id AND
+    c1.email = c2.email;
 
 join in better pictorial representation
 http://www.differencebetween.net/technology/software-technology/difference-between-join-and-inner-join/
@@ -347,7 +384,7 @@ Rate limiter
 <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
  <artifactId>spring-cloud-zuul-ratelimit</artifactId>
  Secondly, let's add the following Zuul properties in our application.yml file:
- 
+
  zuul:
   routes:
     serviceSimple:
@@ -371,7 +408,7 @@ Rate limiter
           type:
             - origin
   strip-prefix: true
-  
+
 @Order
 It is used for Advice execution precedence.
 The highest precedence advice runs first. The lower the number, the higher the precedence
@@ -393,7 +430,7 @@ write producer consumer problmes
 
 write discovery server ms
 ----------------------------
-create spring boolt with
+create spring boot with
 @SpringBootApplication
 @EnableEurekaServer
 pplication.properties file is given below
@@ -404,7 +441,7 @@ eureka.client.registerWithEureka = false
 eureka.client.fetchRegistry = false
 server.port = 8761
 
-register servive with eureka server
+register survice with eureka server
 ------------------------------------
 create spring booth with
 @SpringBootApplication
@@ -435,39 +472,65 @@ public class Account {
 
     // other fields, getters and setters
 }
-or 
+or
 @Embeddable
 public class BookId implements Serializable {
     private String title;
     private String language;
-	
+
 	}
 	@Entity
 public class Book {
     @EmbeddedId
     private BookId bookId;
 	}
-	
+
 what is dimond problmes
 https://www.ccbp.in/blog/articles/diamond-problem-in-java
 
 list of varnarbility and how to resolve them
 find list of employe under seniour manager in tree structure
 
+WITH RECURSIVE employee_hierarchy AS (
+    -- Anchor: Start from the senior manager
+    SELECT
+        employee_id,
+        name,
+        manager_id,
+        1 AS level
+    FROM employees
+    WHERE employee_id = 1 -- <-- Replace with the senior manager's ID
+
+    UNION ALL
+
+    -- Recursive part: Find direct reports
+    SELECT
+        e.employee_id,
+        e.name,
+        e.manager_id,
+        eh.level + 1
+    FROM employees e
+    INNER JOIN employee_hierarchy eh ON e.manager_id = eh.employee_id
+)
+
+SELECT * FROM employee_hierarchy
+ORDER BY level, employee_id;
+
 Bipro
 -------------
 MetaSpace
 -----
-In Java 8, PermGen method area replaced with MetaSpace. They have moved permGem to the separate memory in the native OS and that is called MetaSpace. 
+In Java 8, PermGen method area replaced with MetaSpace. They have moved permGem to the separate memory in the native OS and that is called MetaSpace.
 It can by default auto increases its size. In MetaSpace, classes can load and unload during the lifespan of the JVM.
 
 sso
 ------------
+Building SSO (Single Sign-On) in Java typically involves combining the OAuth 2.0 protocol with OpenID Connect (OIDC) and using a central identity provider (IdP) like Keycloak, Okta, Auth0, or Azure AD
 https://www.onelogin.com/learn/how-single-sign-on-works
 
 
 altimetrik
-====================
+===============================================================
 explain architecture of current project
 
 12 factor in ms
@@ -475,7 +538,18 @@ microservices orchestration and choreography
 implemented cache?
 https://medium.com/@germainnsibula/implementing-an-lru-cache-in-java-a-comprehensive-guide-94e8884ff17b#:~:text=To%20implement%20an%20LRU%20cache%2C%20we%20can%20use%20a%20combination,table%20and%20a%20linked%20list.
 
-circuit breaker pattern, 
+LRUCache<K, V> extends LinkedHashMap
+public LRUCache(int capacity) {
+        // accessOrder = true makes LinkedHashMap behave like an LRU cache
+        super(capacity, 0.75f, true);
+        this.capacity = capacity;
+    }
+@Override
+    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+        return size() > capacity;
+    }
+
+circuit breaker pattern,
 --------------------------------
 https://medium.com/geekculture/design-patterns-for-microservices-circuit-breaker-pattern-276249ffab33#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjIzZjdhMzU4Mzc5NmY5NzEyOWU1NDE4ZjliMjEzNmZjYzBhOTY0NjIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTY5MDk0NzQ3OTU5MDgwODk3NDciLCJlbWFpbCI6ImFrczAwN3ZpdEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmJmIjoxNzQ1NDY0OTA3LCJuYW1lIjoiYWJoaW1hbnl1IGt1bWFyIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0x1aGNweGloOGYwLXdESFpDTTBIakI5WF9Pc1FMN0c5MDBEVTIzZ0d0cHktQU1ZZz1zOTYtYyIsImdpdmVuX25hbWUiOiJhYmhpbWFueXUiLCJmYW1pbHlfbmFtZSI6Imt1bWFyIiwiaWF0IjoxNzQ1NDY1MjA3LCJleHAiOjE3NDU0Njg4MDcsImp0aSI6IjIyYWQ2MmRmOWJhZDgzOWYyNjI2YzVjOGMzNjQzOWQyMzUxOTc0ZmUifQ.Q8qUlgWlL7xL86bucbZKRYjZdINsoaqJQHY_QmN2iA_83oOk4jAKtCWubEEN_PMLcExQtQBXQ7hI3W5wG_9UGGwFO7nQZutAnwbGidafBA2pu3HOdGflStKj6ozKsx-i-Z_OkzoxU4IzHAETeiKCym50TlMVp4_AREVHWCl8ziUa2m7qqr-6IuTtMVKb6bs9nQjKyHzu5d0pF2Y7FZRFEkrr3Gsa2mNhDpDdzspNslVjMipiEPX7pk6k9egytMgX84jyCDaysJOYDyMmSHTEYSNF-WtnDRIEcILbMjiUiDmPcWTZpBEll9tG2aERm9Dn5QBC38l_dIbmUh9wS-Y_wQ
 
@@ -507,6 +581,20 @@ why we use other db when already JPS/Hibernate is there
 how to call store procedure
 -------------------------------
 https://docs.snowflake.com/en/developer-guide/stored-procedure/stored-procedures-calling
+CREATE PROCEDURE GetEmployeeById(IN emp_id INT)
+BEGIN
+    SELECT * FROM employees WHERE id = emp_id;
+END
+try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
+            // Prepare the call
+            CallableStatement stmt = conn.prepareCall("{ call GetEmployeeById(?) }");
+
+            // Set the input parameter
+            stmt.setInt(1, 101);
+
+            // Execute the procedure
+            ResultSet rs = stmt.executeQuery();
+
 
 when we use functional interface
 -----------------------------------
@@ -519,6 +607,7 @@ focus on query optimization, indexing, hardware optimization, and database tunin
 
 
 how to create composite key in jpa
+@Embeddable + @EmbeddedId
 
 which of design pattern use in microservices
 
@@ -547,42 +636,65 @@ an API gateway serves as the single entry point for all client requests, acting 
 
 API Gateway:
 Single Entry Point:
-The API gateway acts as the sole interface for client requests, handling all external interactions with the microservices. 
+The API gateway acts as the sole interface for client requests, handling all external interactions with the microservices.
 Request Routing and Transformation:
-It determines which microservice should handle a particular request and forwards it accordingly, potentially transforming the request along the way. 
+It determines which microservice should handle a particular request and forwards it accordingly, potentially transforming the request along the way.
 Cross-cutting Concerns:
-The gateway handles tasks like authentication, authorization, rate limiting, and security, simplifying the development and maintenance of microservices. 
+The gateway handles tasks like authentication, authorization, rate limiting, and security, simplifying the development and maintenance of microservices.
 Load Balancing:
-It can distribute traffic across multiple instances of a microservice to ensure high availability and performance. 
+It can distribute traffic across multiple instances of a microservice to ensure high availability and performance.
 
 Service Discovery:
 Dynamic Location:
-Service discovery helps microservices locate and communicate with each other dynamically, even if services are added or removed from the network. 
+Service discovery helps microservices locate and communicate with each other dynamically, even if services are added or removed from the network.
 Service Registry:
-Microservices register their presence and location (e.g., IP address and port) with a service registry. 
+Microservices register their presence and location (e.g., IP address and port) with a service registry.
 Lookup and Communication:
-When a microservice needs to communicate with another, it queries the service registry to find its location and then connects directly. 
+When a microservice needs to communicate with another, it queries the service registry to find its location and then connects directly.
 Scalability and Flexibility:
-Service discovery allows for easier scaling of microservices and makes the architecture more flexible and resilient. 
+Service discovery allows for easier scaling of microservices and makes the architecture more flexible and resilient.
 
 GC how it work and java memory model
 
 how to configure multiple db or db types in ms
 -------------------------------
 https://dev.to/javafullstackdev/a-comprehensive-guide-to-multiple-database-configuration-for-microservices-in-spring-boot-1la4
+how to decrease startup time of spring boot
+spring:
+  main:
+    lazy-initialization: true
+	OR
+	SpringApplication app = new SpringApplication(MyApplication.class);
+app.setLazyInitialization(true);
 
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+Use Spring profiles (@Profile) to load only environment-specific beans:
+@Profile("dev")
+@Bean
+public DevOnlyService devOnlyService() {
+    return new DevOnlyService();
+}
 
+Actuator gives detailed startup metrics.
+management.endpoint.startup.enabled=true
+management.endpoints.web.exposure.include=startup
+
+Reduce logging on startup:
+logging.level.root=WARN
+logging.level.org.springframework=ERROR
+
+============================================
 paypal
 -----------------------------
 what r benifit we getting by stream programming
 1. Concise and Readable Code:
 2. Functional Programming Paradigm:
-3. Lazy Evaluation: 
-4. Parallel Processing: 
-5. Abstraction: 
+3. Lazy Evaluation:
+4. Parallel Processing:
+5. Abstraction:
 6. Reduced Error Potential:
 7. Pipeline of Functions:
-8. Stateless Operations: 
+8. Stateless Operations:
 9. Versatile Data Sources:
 what happen internallly in spring boot from http request to http response
 🧭 1. HTTP Request Reaches the Server
@@ -614,8 +726,16 @@ Interceptors: Spring MVC-level, e.g., logging, pre/post processing.
 AOP: Aspect-oriented programming for cross-cutting concerns like transactions.
 
 sql languages DDL/DML, diff in delete and truncate
+There are five main categories for the SQL commands:
+
+DDL – Data Definition Language – defines and alters the database schema;
+DQL – Data Query Language – performs the query operations on the data within schema objects;
+DML – Data Manipulation Language – manipulate the data present in the database;
+DCL – Data Control Language – manages the database system’s rights, permissions, and other controls.
+TCL – Transaction Control Language – deals with the transaction within the database.
+
 ----------------
-DDL 
+DDL
 ----
 CREATE	Creates a new table, view, or other object
 ALTER	Modifies an existing database object
@@ -641,7 +761,6 @@ Index created	Automatically creates a clustered index (in some DBs)	Creates a no
 Combination of columns	Yes (composite key possible)	Yes (also allows composite unique keys)
 Default behavior	Automatically NOT NULL + UNIQUE	Only UNIQUE (nullable unless specified
 
-
 Transaction management spring boot-12-factor
 =================================================
 https://www.marcobehler.com/guides/spring-transaction-management-transactional-in-depth
@@ -664,6 +783,7 @@ sernario based question in microservices
 https://github.com/hendisantika/spring-boot-security-oauth2-example
 
 3.how to Authorized role based in microservices
+
 4.How to Authenticate user for particular action
 5.L-stack, EFK logging, Splunk, grafana
 6.how to stop user to no of times access API
@@ -735,9 +855,16 @@ ccording to the configured HandlerAdapter interfaces that have been implemented 
 along with accompanying annotations specifying handlers, controller endpoints, and response objects.
 
 
+sql/no sql which db use how to decide
+how to ALC/NLC how to configure
+how to get routed newly dynamic ip instance on cloud
+
+when to know horizontal scalling require how to instruct cloud to create new instance and how to tell delete one instance
 
 
- 
+
+
+
 
 
 
