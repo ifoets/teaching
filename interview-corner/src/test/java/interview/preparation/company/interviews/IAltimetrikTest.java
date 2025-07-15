@@ -9,8 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
+
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 
 public class IAltimetrikTest {
 
@@ -183,6 +185,7 @@ public class IAltimetrikTest {
         for(int i=0;i<lhm1.size();i++)
             Assert.assertEquals(lhm1.get(i),lhm2.get(i));
     }
+
     /**O(n2)*/
     @Test
     public void countUniqueSubstringTest()
@@ -248,3 +251,4 @@ public class IAltimetrikTest {
     }
 
 }
+

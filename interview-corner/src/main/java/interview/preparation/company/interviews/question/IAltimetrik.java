@@ -1,9 +1,15 @@
 package interview.preparation.company.interviews.question;
 
+
 import interview.preparation.company.interviews.model.Student;
 
 import java.util.*;
 import java.util.function.Predicate;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public interface IAltimetrik {
 
@@ -36,6 +42,7 @@ public interface IAltimetrik {
 
     Map<Integer,Integer> rotateMapX(Map<Integer, Integer> map, int k);
 
+
     /**O(n2)*/
     int countUniqueSubstring(String str);
 
@@ -55,5 +62,6 @@ public interface IAltimetrik {
     <T> List<T> filterOddEven(List<T> list, Predicate<T> predicate);
 
     Map<Boolean, List<Integer>> segregateOddEvenPredicateX(List<Integer> list);
+
 
 }

@@ -231,6 +231,7 @@ public  class AltimetrikImpl implements IAltimetrik {
             LinkedHashMap::new
         ));
     }
+
     /**O(n2)*/
     public int countUniqueSubstring(String s){
        int N = s.length();
@@ -352,6 +353,7 @@ public  class AltimetrikImpl implements IAltimetrik {
                 Collectors.partitioningBy(evenPredicate)
             );
     }
+
 }
 
 
