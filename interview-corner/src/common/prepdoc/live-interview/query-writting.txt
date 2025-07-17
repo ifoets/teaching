@@ -1,0 +1,117 @@
+100 sql query writing qeustion for experice folk that asked in intervew
+
+🔹 Section 1: Basics Refresher (1–10)
+1.	Select the second highest salary from an employee table.
+2.	Retrieve duplicate records from a table.
+3.	Find the nth highest salary.
+4.	Count the number of employees in each department.
+5.	Get employees who joined in the last 90 days.
+6.	List departments with no employees.
+7.	Find employees with salaries above the department average.
+8.	Retrieve all employees whose names start with a vowel.
+9.	Delete duplicate records but keep one.
+10.	List all employees without using WHERE.
+________________________________________
+🔹 Section 2: Joins & Multi-table Queries (11–25)
+11.	Inner vs Outer Join: write queries to compare outputs.
+12.	Get employees and their manager names from the same table.
+13.	List departments with more than 5 employees.
+14.	Find customers who placed orders and those who didn't.
+15.	Left join vs right join in practice.
+16.	Self join to find employees in the same department.
+17.	Join 3 tables to get product, category, and supplier name.
+18.	Anti-join using NOT EXISTS or NOT IN.
+19.	Find employees who don’t manage anyone.
+20.	List customers who ordered all products in category X.
+21.	Get highest-selling product per region.
+22.	Fetch customers with no orders in the last year.
+23.	Merge data from two customer sources and show conflicts.
+24.	Match customers and their first order date.
+25.	Join using non-equi conditions (e.g., range join).
+________________________________________
+🔹 Section 3: Aggregation & Grouping (26–40)
+26.	Group by multiple columns (e.g., region + product).
+27.	Get top 3 earning departments.
+28.	Total sales per month for past 12 months.
+29.	Number of orders per customer per year.
+30.	Employees with same salary.
+31.	Pivot rows into columns using CASE.
+32.	Unpivot columns into rows.
+33.	Find average salary per job level, exclude managers.
+34.	Compute sales % contribution per product.
+35.	Rank departments by average tenure.
+36.	Show only departments with >10 employees and avg salary >50k.
+37.	Top 2 products per category using dense_rank().
+38.	Monthly active users (users with activity in each month).
+39.	Daily user retention (compare users across days).
+40.	Most used product per user in last 30 days.
+________________________________________
+🔹 Section 4: Subqueries & CTEs (41–55)
+41.	Write a correlated subquery for salary comparison.
+42.	Use CTE to recursively get management hierarchy.
+43.	CTE to find second level subordinates of a manager.
+44.	Use multiple CTEs in one query.
+45.	Top performers per team using CTE and rank.
+46.	Filter orders with a subquery in FROM clause.
+47.	Count of users who never logged in — using subquery.
+48.	Inline view with aggregations + joins.
+49.	Reuse a subquery in SELECT and ORDER BY.
+50.	WITH clause with multiple levels of recursion.
+51.	Use CTE to generate a calendar table.
+52.	CTE for running total by product and month.
+53.	Reuse CTE across UNION queries.
+54.	Query to find the department with the maximum sum of salaries.
+55.	Combine CTE and window function for leaderboards.
+________________________________________
+🔹 Section 5: Window Functions (56–70)
+56.	Rank employees by salary within each department.
+57.	Get running total of sales by region.
+58.	Percentile rank of students by score.
+59.	Find first and last purchase date per user.
+60.	Difference in salary compared to department average.
+61.	Rolling 3-day average sales.
+62.	Compare sales to previous month per product.
+63.	Use ROW_NUMBER() to delete duplicates.
+64.	Compare each day's sales to previous day.
+65.	Get first value and last value using window frames.
+66.	Moving average per customer (last 3 orders).
+67.	Filter only the highest paid employee per team using window.
+68.	Cumulative distinct count using COUNT(DISTINCT) in window.
+69.	Max sales in trailing 7-day period.
+70.	Assign row numbers based on custom ordering logic.
+________________________________________
+🔹 Section 6: String, Date, JSON, and Complex Types (71–80)
+71.	Extract domain from email address.
+72.	Mask credit card numbers except last 4 digits.
+73.	Parse JSON column to get nested value.
+74.	Split full name into first and last name.
+75.	Group users by age bucket (18–25, 26–35, etc.).
+76.	Format date to YYYY-MM format.
+77.	Calculate age from birthdate.
+78.	Find time difference between two datetime fields.
+79.	Extract month name from timestamp.
+80.	Convert comma-separated string to rows.
+________________________________________
+🔹 Section 7: Performance / Advanced Techniques (81–90)
+81.	Rewrite correlated subquery as a join.
+82.	Indexing strategy for WHERE + GROUP BY + ORDER BY.
+83.	Partitioning impact on query performance.
+84.	Explain the use of indexes with EXPLAIN/PLAN.
+85.	Optimize slow query joining 4+ tables.
+86.	Use lateral join for dynamic filtering.
+87.	Materialized view for pre-aggregated reporting.
+88.	When to denormalize for performance.
+89.	Rewrite UNION ALL to improve performance.
+90.	Compare EXISTS vs IN vs JOIN performance.
+________________________________________
+🔹 Section 8: Real-World Scenarios & Case Studies (91–100)
+91.	Find churned users (no activity in last 60 days).
+92.	Detect fraudulent transactions (e.g., same card, different IP).
+93.	Deduplicate recent orders by timestamp.
+94.	Generate leaderboard of users based on event frequency.
+95.	Determine overlapping bookings per room.
+96.	Audit trail of user actions grouped by session.
+97.	Analyze funnel drop-off (step 1 → step 2 → step 3).
+98.	Reconstruct user sessions based on timestamps.
+99.	Show version history of product data changes.
+100.	Daily active users segmented by platform & location.

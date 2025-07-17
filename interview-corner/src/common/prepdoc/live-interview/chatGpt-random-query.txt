@@ -1,0 +1,58 @@
+✅ Difference Between ? super T and ? extends T in Java Generics
+        These are two wildcard bounds used in Java generics to provide flexibility when dealing with generic types, especially in collections and functional interfaces.
+        They are not RxJava-specific, but extremely important when using RxJava with custom types, especially for operators like map(), flatMap(), collect(), etc.
+
+        🔁 Quick Summary
+        Wildcard	Meaning	Read/Write	Use When
+        ? extends T	Any subtype of T (e.g. T or its child)	✅ Read ✅	You want to read from a source
+        ? super T	Any supertype of T (e.g. T or its parent)	✅ Write ✅	You want to write into a sink
+
+        📦 ? extends T — "Producer"
+        You can safely read T or its subtype from the collection, but can’t add to it (except null).
+
+        List<? extends Number> list = new ArrayList<Integer>();
+        Number num = list.get(0); // ✅ OK
+        list.add(10);             // ❌ Compile Error!
+        Think: PECS → Producer Extends
+
+        ✅ Use when you only consume (read) items
+        ❌ Unsafe for adding, because you don't know the exact type
+
+        📦 ? super T — "Consumer"
+        You can safely write T into the structure, but reads are limited to Object.
+        List<? super Integer> list = new ArrayList<Number>();
+        list.add(10);             // ✅ OK
+        Object obj = list.get(0); // ✅ Returns Object, not Integer
+        Think: PECS → Consumer Super
+
+        ✅ Use when you want to add (write) items
+        ❌ Read is only safe as Object
+
+        🧠 PECS Rule
+        PECS = "Producer Extends, Consumer Super"
+
+        If you want to…	Use
+        Read items from a structure	? extends T
+        Write items into a structure	? super T
+
+        ✅ Real-World RxJava Example
+        Suppose you have:
+
+        Observable<? extends Number> numbers
+        Observable<? super Integer> consumers
+        ✅ You can read from numbers and treat each item as a Number
+        ✅ You can send Integer values to consumers, but can’t safely expect to read as Integer
+
+        📊 Visual Example
+
+        class Animal {}
+        class Dog extends Animal {}
+        class Pug extends Dog {}
+        Expression	Valid Assignments
+        List<? extends Dog>	List<Dog>, List<Pug>
+        List<? super Dog>	List<Dog>, List<Animal>
+
+        📝 Summary Table
+        Wildcard	Accepts Types	Safe For	Example Use Case
+        ? extends T	T, any subtype of T	✅ Reading	Return type in List<? extends T>
+        ? super T	T, any supertype of T	✅ Writing	Parameters like Consumer<? super T>

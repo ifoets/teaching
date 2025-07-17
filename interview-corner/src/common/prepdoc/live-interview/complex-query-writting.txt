@@ -1,0 +1,113 @@
+100 complex sql query writing qeustion for experice folk that asked in intervew
+
+
+🔁 1–20: Multi-Table Joins & Complex Relationships
+1.	Get users who placed orders in two consecutive months.
+2.	Retrieve all customers who ordered all products in a category.
+3.	Find employees who have more than one manager (self-join anomaly).
+4.	List projects with no assigned employees, but created more than 30 days ago.
+5.	Retrieve first and last order date per customer in one row.
+6.	Get all products that have never been ordered, grouped by category.
+7.	Find all employees who report to the same manager as employee X.
+8.	List users who made a purchase but never logged in within 24 hours.
+9.	Join three tables (orders, products, inventory) and find stock-outs.
+10.	Find common customers between two product lines.
+11.	List all customers who have returned more than 10% of what they bought.
+12.	Show only latest version of each product using version_id.
+13.	Get top 3 products per category per month.
+14.	Find first-time buyers for each month.
+15.	Return all users who had two purchases on the same day.
+16.	Show orders that were modified after delivery.
+17.	Compare last year vs this year sales by region.
+18.	Find users who upgraded their plan in the last 6 months.
+19.	Fetch all users who subscribed, cancelled, then resubscribed.
+20.	Get users who have not received any email notifications but made purchases.
+________________________________________
+🔁 21–40: Subqueries, CTEs, and Correlated Logic
+21.	Use CTE to find circular management chains (employee reports to themselves).
+22.	Create a rolling 7-day retention matrix.
+23.	Find 3rd highest selling product per category using a subquery.
+24.	List all orders where total is above the average per customer.
+25.	Find customers who never made a second purchase.
+26.	Build a calendar table with all working days between two dates.
+27.	Show top 10 customers by lifetime value excluding refunds.
+28.	Use a recursive CTE to flatten parent-child hierarchy of categories.
+29.	Fetch users whose first purchase was their highest.
+30.	Query to find overlapping bookings by date ranges.
+31.	Fetch only the most recent active record per user using a CTE.
+32.	Identify customers who have progressively spent more each quarter.
+33.	Use a subquery in FROM to get running totals per region.
+34.	Retrieve products that are only bought by VIP users.
+35.	Find inactive customers who were previously high-value.
+36.	Query the first login per day per user using a subquery + ROW_NUMBER().
+37.	Write a query to find users who added to cart but never purchased.
+38.	Use window function + subquery to get first 5 purchases per city.
+39.	Find users with average order value below site average, grouped by state.
+40.	Return customers who purchased in 3 of the last 5 months.
+________________________________________
+🔁 41–60: Window Functions & Advanced Analytics
+41.	Compute user session duration using LAG() and timestamps.
+42.	Identify most frequently bought item per customer.
+43.	Calculate running total and running average for each user.
+44.	Show % contribution of each department to company expenses.
+45.	Return second highest scoring student per subject.
+46.	Create a dense rank leaderboard by score with tie handling.
+47.	Find difference in salary from department average.
+48.	Use FIRST_VALUE() and LAST_VALUE() to track user plan changes.
+49.	Detect users with increasing number of orders month over month.
+50.	Show monthly revenue difference per region using LAG().
+51.	Calculate average time between orders for each customer.
+52.	Track daily active users using date windows.
+53.	Identify customers who made consecutive purchases > 5 days apart.
+54.	Use NTILE() to segment customers by spend percentile.
+55.	Create a moving 3-month revenue average.
+56.	Return all records that are duplicates based on 2 columns.
+57.	Track product price changes over time.
+58.	Get top 5 products per seller with ties included.
+59.	Compare each user’s current value to their previous login state.
+60.	Calculate conversion rate by traffic source with running totals.
+________________________________________
+🔁 61–80: Business Logic & Real-World Scenarios
+61.	Detect duplicate login from different IPs in short time (fraud).
+62.	Find power users: ≥10 logins per week for 3 weeks.
+63.	Fetch the most recent email sent per user, excluding bounce.
+64.	Show revenue lost due to cancelled subscriptions.
+65.	Detect users with gaps in activity ≥ 30 days.
+66.	Show customers who bought only one category ever.
+67.	Query to find most returned item per region.
+68.	Track version history of a product.
+69.	Identify orders that were shipped after SLA deadline.
+70.	Flag customers whose lifetime value decreased.
+71.	Create retention cohort analysis.
+72.	Generate a report of new, active, and churned users per month.
+73.	Track conversion funnel from view → add-to-cart → purchase.
+74.	Find users who downgraded plan but increased spend.
+75.	Track how long each plan lasted per user.
+76.	Detect duplicate credit card usage across multiple accounts.
+77.	Count users who shared same address but different accounts.
+78.	Show inventory mismatch between warehouse and product DB.
+79.	Generate weekly summary of subscription renewals.
+80.	Identify top 5 regions with lowest average response time.
+________________________________________
+🔁 81–100: Optimization, Design, and Performance Queries
+81.	Optimize a query joining 4+ large tables with filters.
+82.	Re-write nested subqueries using CTEs for readability and speed.
+83.	Replace correlated subquery with JOIN for better performance.
+84.	Use indexed columns only for filtering and joining.
+85.	Paginate results using OFFSET/FETCH or ROW_NUMBER().
+86.	Compare performance of IN vs EXISTS vs JOIN.
+87.	Use EXPLAIN PLAN to identify a full table scan.
+88.	Write partitioned query for faster region-wise rollups.
+89.	Write MERGE query to update or insert data from staging.
+90.	Avoid SELECT * and select only required fields.
+91.	Rebuild indexes to improve slow filtering queries.
+92.	Optimize DISTINCT queries with indexes.
+93.	Refactor slow query by materializing a sub-result.
+94.	Build a temp table or CTE to reduce multiple lookups.
+95.	Split one large aggregation into multiple passes.
+96.	Write a query that handles null-safe comparison across 3 columns.
+97.	Design a query that handles case-insensitive matching + unicode.
+98.	Handle timezone conversion in timestamp queries.
+99.	Write a cross-join query to generate all possible combinations.
+100.	Write a query that ensures ACID-safe insert with conflict handling.
+

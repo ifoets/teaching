@@ -1,0 +1,41 @@
+🔹 Conceptual Questions
+What is a Supplier in Java, and how does it relate to RxJava?
+
+How can a Supplier<T> be used with Observable.defer() in RxJava?
+
+Explain the difference between Supplier<T> and Callable<T>. When would you prefer one over the other?
+
+What are the benefits of using a Supplier<T> for lazy evaluation in RxJava?
+
+How do you convert a Supplier<T> into an Observable<T> or Single<T>?
+
+What are some common use cases for using Supplier in RxJava pipelines?
+
+How is backpressure handled when using Supplier in Flowable?
+
+How would you inject a Supplier<T> into a reactive chain for on-demand object creation?
+
+Can a Supplier be used to simulate a caching mechanism in RxJava? If so, how?
+
+Explain how Observable.fromCallable() and Observable.defer() differ when used with Supplier.
+
+🔹 Code-Based Questions
+Write a code example using Observable.defer() and a Supplier<T> to delay data emission until subscription.
+
+How would you create a Single<T> from a Supplier<T> and ensure it's evaluated only once per subscriber?
+
+Use a Supplier<List<String>> to emit a list of names reactively using RxJava.
+
+Demonstrate using a Supplier<Optional<T>> with RxJava to avoid null values.
+
+Convert a blocking Supplier<T> to run asynchronously on an IO scheduler using Single.fromCallable().
+
+Implement caching with a Supplier<T> such that data is only fetched once, and reused for future subscribers.
+
+Write a function that returns an Observable<T> given a Supplier<T>, and explain when it evaluates.
+
+Show how to use Maybe.fromCallable() with a Supplier<T> that might return null.
+
+Create a retry mechanism using RxJava that re-invokes a Supplier<T> if an error occurs.
+
+Wrap a REST API call using a Supplier<Response> and execute it reactively with Single<Response> on a background thread.
