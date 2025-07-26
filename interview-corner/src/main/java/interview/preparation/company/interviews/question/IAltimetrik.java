@@ -1,35 +1,33 @@
 package interview.preparation.company.interviews.question;
 
-
 import interview.preparation.company.interviews.model.Student;
-
-import java.util.*;
-import java.util.function.Predicate;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 
 public interface IAltimetrik {
 
-	 int minimumCandiesPerHour(int []c);
+    int minimumCandiesPerHour(int []c);
 
-     int minimumCandiesPerHourX(int []c);
+    int minimumCandiesPerHourX(int []c);
 
-	 boolean checkDuplicateCountVal(int []a);
+    boolean checkDuplicateCountVal(int []a);
 
-	 int get2ndMaxNo(List<List<Integer>> ll);
+    int get2ndMaxNo(List<List<Integer>> ll);
 
-	 List<Integer> findVowlesIndex(String str);
+    List<Integer> findVowlesIndex(String str);
 
-     void rotateArrayFromRight(int []a,int x);
+    void rotateArrayFromRight(int []a,int x);
 
-     int searchInRotatedArray(int []a, int x);
+    int searchInRotatedArray(int []a, int x);
 
-     int pivotInRotatedArray(int []a, int l, int r);
+    int pivotInRotatedArray(int []a, int l, int r);
 
-     String maxPalindromeSubStr(String str);
+    String maxPalindromeSubStr(String str);
 
     List<Integer> rotateList(List<Integer> list, int k);
 
@@ -62,6 +60,5 @@ public interface IAltimetrik {
     <T> List<T> filterOddEven(List<T> list, Predicate<T> predicate);
 
     Map<Boolean, List<Integer>> segregateOddEvenPredicateX(List<Integer> list);
-
 
 }

@@ -1,20 +1,14 @@
-package interview.preparation.rxjava;
+package interview.preparation.rxjava.stream;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.observers.TestObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
-import jdk.jfr.Timespan;
-import jdk.jfr.Timestamp;
-import org.awaitility.spi.Timeout;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.Delayed;
 
 public class RxJavaTesting {
     private static final List<String> WORDS = Arrays.asList(

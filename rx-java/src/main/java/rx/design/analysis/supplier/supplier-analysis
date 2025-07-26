@@ -1,0 +1,64 @@
+🔹 Basic to Intermediate Questions
+    Lazy Initialization Using Supplier
+    Write a Supplier<T> that initializes an object only once and returns the cached instance thereafter.
+
+    Random Number Generator
+    Create a Supplier<Integer> that returns a random number between 1 and 100.
+
+    Timestamp Supplier
+    Implement a Supplier<LocalDateTime> that always returns the current system time when called.
+
+    Fibonacci Number Generator (Stateful Supplier)
+    Create a Supplier<Integer> that returns the next Fibonacci number on each get() call.
+
+    UUID Generator
+    Use Supplier<String> to generate a unique identifier each time it's called.
+
+🔹 Advanced Real-World Scenarios
+    Memoized Supplier
+    Write a generic utility method memoize(Supplier<T>) that caches the result of the supplier after the first call.
+
+    Retrying Supplier
+    Implement a Supplier<T> that retries up to N times if an exception occurs when calling get().
+
+    Failover Supplier
+    Combine two Supplier<T>s so that if the first fails (throws), the second is used.
+
+    Supplier with Delay
+    Build a Supplier<T> that waits N milliseconds before returning the result.
+
+    Configuration Loader Supplier
+    Use a Supplier<Properties> to lazily load application configurations from a file.
+
+🔹 Functional and Stream Integration
+    Supplier to Stream
+    Convert a Supplier<T> into an infinite Stream<T> (e.g., generate events or random data).
+
+    Rate-Limited Supplier
+    Wrap a Supplier<T> so it only allows one call every N seconds (throttle).
+
+    Supplier for Simulated Sensor Data
+    Simulate a temperature sensor using a Supplier<Double> that returns a slightly varied value on each call.
+
+    Chain of Suppliers with Priority
+    Create a chain of Supplier<T>s and return the first non-null result.
+
+    Supplier with Logging Side Effect
+    Wrap a Supplier<T> such that every invocation logs the timestamp and result.
+
+🔹 Threading and Concurrency
+    Thread-safe Singleton with Supplier
+    Use Supplier<T> to implement the initialization of a singleton in a concurrent-safe way.
+
+    AtomicReference-backed Supplier
+    Implement a Supplier<T> backed by an AtomicReference that can be updated from other threads.
+
+    Parallel Data Generation
+    Use a Supplier<Data> with parallel streams to simulate multiple data producers.
+
+🔹 Generic and Utility-Oriented
+    Generic Retry Supplier Utility
+    Build a method like <T> Supplier<T> withRetry(Supplier<T>, int maxAttempts) that wraps a retry strategy.
+
+    Timed Supplier Execution
+    Write a wrapper that takes a Supplier<T> and returns another Supplier<T> that logs execution time.

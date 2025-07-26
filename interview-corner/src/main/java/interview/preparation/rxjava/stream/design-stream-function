@@ -1,0 +1,203 @@
+
+✅ Build your own custom collector to group into a map with reverse insertion order.
+
+list on each 25 complex coding interview question on Supplier, Consumer, predicate, Function, UniaryOperator and BinaryOprator for 10 year exp folk
+
+ Categories & Interfaces Covered:
+Supplier<T>
+
+Consumer<T>
+
+Predicate<T>
+
+Function<T, R>
+
+UnaryOperator<T>
+
+BinaryOperator<T>
+
+Each set contains complex, real-world or algorithmic challenges designed for seasoned developers, often involving composition, parallel processing, or integration into real systems.
+
+🔷 1–5: Supplier<T>
+Dynamic Caching Supplier
+Implement a Supplier<T> that caches its value after the first call, but invalidates it after a given TTL.
+
+Lazy Initialization Chain
+Chain multiple Supplier instances, each representing a fallback data source (e.g., memory, disk, remote), returning the first non-null value.
+
+Thread-safe Singleton Factory with Supplier
+Build a thread-safe lazy singleton using Supplier<T> and AtomicReference.
+
+Supplier Stream Generator
+Create an infinite stream using a Supplier<T> and use it to simulate an event feed.
+
+Parameterized Supplier Loader
+Implement a Supplier<Function<String, T>> that loads objects based on different configurations (e.g., from files, DB, network).
+
+🔷 6–10: Consumer<T>
+Batching Consumer
+Write a Consumer<T> that buffers incoming items and processes them in batches of N or every T seconds.
+
+Retrying Consumer
+Implement a Consumer<T> that retries on failure (with exponential backoff).
+
+Logging Consumer Decorator
+Create a Consumer<T> decorator that logs before and after execution (including exceptions).
+
+Chained Resource Consumer
+Build a pipeline of Consumer<File>s that sanitize, transform, and save file contents.
+
+Parallel Consumer Executor
+Accept a List<T> and apply a Consumer<T> concurrently with limited threads and exception handling.
+
+🔷 11–15: Predicate<T>
+Complex Predicate DSL
+Design a mini-language using Predicate<T> composition (e.g., AND/OR/NOT) for data filtering.
+
+Security Access Predicate
+Implement a Predicate<User> that validates access based on dynamic roles, IP restrictions, and time windows.
+
+Multi-Criteria Filter
+Use Predicate<T> to create a dynamic filter system for a product catalog (price, rating, availability).
+
+Predicate Caching for Expensive Checks
+Optimize a Predicate<T> that involves expensive operations (e.g., DB calls) using caching.
+
+Streaming Filter Pipeline
+Compose multiple Predicates to filter a stream of real-time log events.
+
+🔷 16–20: Function<T, R>
+Function Composition Engine
+Build a mini rule engine that chains multiple Function<T, R> transformations conditionally.
+
+Memoized Function
+Write a Function<T, R> with memoization support using ConcurrentHashMap.
+
+Generic Converter Factory
+Use Function<T, R> to build a registry of converters for various types (e.g., DTO <-> Entity).
+
+Map-Reduce Using Function Composition
+Implement a functional-style word count using Function<String, Map<String, Integer>>.
+
+Function Retry with Fallback
+Write a resilient Function<T, R> that can retry on transient errors and fall back to a default provider.
+
+🔷 21–23: UnaryOperator<T>
+Text Normalization Pipeline
+Build a pipeline of UnaryOperator<String>s to clean, normalize, and validate user input.
+
+Mathematical Function Chain
+Compose multiple UnaryOperator<Double>s for numerical computation (e.g., normalize → scale → transform).
+
+Immutable State Transformer
+Use UnaryOperator<State> to apply state transitions in a Redux-style architecture.
+
+🔷 24–25: BinaryOperator<T>
+Reduce Strategy Builder
+Use BinaryOperator<T> to define flexible reduce strategies (e.g., max salary, longest name, etc.).
+
+Conflict Resolver
+Create a BinaryOperator<Record> to merge two versions of a data record, resolving conflicts based on timestamp or priority.
+
+🔄 Bonus: Combine All
+Workflow Engine: Design a mini-workflow engine where each step is a Function<T, R> or UnaryOperator<T>, executed conditionally using Predicate<T>, and outputs logged using Consumer<T>, with configuration loaded via Supplier<T>.
+
+
+===================================================================================
+Java Functional Interfaces:
+
+Supplier<T>
+
+Consumer<T>
+
+Predicate<T>
+
+Function<T, R>
+
+UnaryOperator<T>
+
+BinaryOperator<T>
+
+These are designed for interviews targeting 6–15 years experience, and represent real-world, systems design, or performance-sensitive problems where functional programming adds power or complexity.
+
+🔵 1–4: Supplier<T> Interview Questions
+Lazy Initialization with Supplier
+How would you implement a thread-safe lazy initialization using Supplier<T>?
+
+Dependency Injection with Supplier
+Explain how Supplier can help inject different data sources or strategies at runtime.
+
+Supplier-Based Resource Loader
+Write a Supplier<InputStream> that loads a file only when needed, handles missing files gracefully.
+
+Chained Supplier Fallback
+Combine multiple Supplier<T>s so the system falls back to the next if one returns null or throws.
+
+🔵 5–8: Consumer<T> Interview Questions
+Event Processing Pipeline
+Implement a Consumer<Event> that logs, transforms, and saves an event (using chained Consumers).
+
+Retryable Consumer
+Write a Consumer<T> that wraps another and retries on exceptions up to N times.
+
+Rate-limited Consumer
+How can you enforce that a Consumer<T> can only be called N times per second?
+
+Batching Consumer
+Design a Consumer<T> that buffers inputs and flushes every 10 items or 5 seconds.
+
+🔵 9–12: Predicate<T> Interview Questions
+Dynamic Filter Builder
+Implement a method that takes a list of Predicate<T> and returns a combined Predicate<T> using AND/OR logic.
+
+Predicate with External State
+How do you handle the case where Predicate<T> needs access to shared (mutable) state?
+
+Null-safe Predicate Filter
+How would you wrap a Predicate<T> to ensure null-safe evaluations?
+
+Validation Pipeline
+Use multiple Predicate<User> to validate a complex business rule set (e.g., age, country, active, verified).
+
+🔵 13–16: Function<T, R> Interview Questions
+Function Composition Chain
+How would you compose multiple Function<T, R> transformations on a stream?
+
+Memoized Function
+Implement a Function<T, R> that caches its results for known inputs using a map.
+
+Function Mapper Registry
+Build a function registry that maps Class<?> to a Function<?, ?> and uses it to transform DTOs to entities.
+
+Data Transformation Pipeline
+Build a pipeline using Function<String, String> to transform user input (e.g., trim, lowercase, validate).
+
+🔵 17–19: UnaryOperator<T> Interview Questions
+Immutable State Transition
+Write a UnaryOperator<State> to apply changes immutably in a reducer-like pattern.
+
+Mathematical Pipeline
+Build a sequence of UnaryOperator<Double> for calculations like normalize → scale → square root.
+
+Text Processing Chain
+Create a reusable chain of UnaryOperator<String>s for string normalization in a logging system.
+
+🔵 20–22: BinaryOperator<T> Interview Questions
+Custom Reducer
+Write a BinaryOperator<Employee> that returns the one with higher salary, for use in reduce().
+
+Conflict Resolver
+Merge two records using BinaryOperator<Record> based on version number or timestamp.
+
+Combining Map Entries
+How can BinaryOperator<V> be used to resolve key collisions during map merging?
+
+🔵 23–25: Combined / General Use
+Functional Error Handling Strategy
+Use Function<T, R> and Consumer<Exception> to build a pipeline with centralized exception logging.
+
+Stream Processing with Functional Interfaces
+Build a data processing pipeline that loads, filters, transforms, and logs using all six interfaces.
+
+Functional Retry with Fallbacks
+Combine Supplier, Function, and Predicate to implement retry logic with fallbacks and error suppression.
