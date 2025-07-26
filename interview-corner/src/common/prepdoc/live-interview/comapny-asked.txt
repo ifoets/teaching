@@ -516,7 +516,11 @@ WITH RECURSIVE employee_hierarchy AS (
 SELECT * FROM employee_hierarchy
 ORDER BY level, employee_id;
 
+<<<<<<<< HEAD:interview-corner/src/common/prepdoc/live-interview/comapny-asked.txt
 Wipro
+========
+Bipro
+>>>>>>>> f2b88fb49b9f1ff54ef692b87a95a098382f4542:interview-corner/src/common/prepdoc/interview/comapny-asked.txt
 -------------
 MetaSpace
 -----
@@ -710,12 +714,17 @@ management.endpoints.web.exposure.include=startup
 Reduce logging on startup:
 logging.level.root=WARN
 logging.level.org.springframework=ERROR
+<<<<<<<< HEAD:interview-corner/src/common/prepdoc/live-interview/comapny-asked.txt
 find no of unique substring
 find sum of age having same name in Student(name, age)
 segrate odd and even no in list using predicate
 write query to find all employee who dont have manager(is on bench)
 select *from employee where mgrid=null;
 =====================================================================================================
+========
+
+============================================
+>>>>>>>> f2b88fb49b9f1ff54ef692b87a95a098382f4542:interview-corner/src/common/prepdoc/interview/comapny-asked.txt
 paypal
 -----------------------------
 what r benifit we getting by stream programming
@@ -902,6 +911,7 @@ how to ALC/NLC how to configure
 how to get routed newly dynamic ip instance on cloud
 
 when to know horizontal scalling require how to instruct cloud to create new instance and how to tell delete one instance
+<<<<<<<< HEAD:interview-corner/src/common/prepdoc/live-interview/comapny-asked.txt
 
 
 wipro
@@ -1026,5 +1036,13 @@ Event-driven	Promotes reactive, decoupled systems.
 can we use kafka for request/response communication betwwen two ms
 ChatGPT said:
 Yes, Kafka can be used for request/response communication between two microservices, but it’s not the ideal tool for synchronous communication. Kafka is inherently asynchronous, event-driven, and loosely coupled.
+========
+
+
+
+
+
+
+>>>>>>>> f2b88fb49b9f1ff54ef692b87a95a098382f4542:interview-corner/src/common/prepdoc/interview/comapny-asked.txt
 
 

@@ -1,0 +1,222 @@
+Scenarios/Question for LLD
+https://in.indeed.com/career-advice/interviewing/low-level-design-interview-questions
+https://www.java67.com/2018/05/top-20-system-design-interview-questions-answers-programming.html
+https://github.com/topics/low-level-design-problems
+https://medium.com/javarevisited/25-software-design-interview-questions-to-crack-any-programming-and-technical-interviews-4b8237942db0
+https://betterprogramming.pub/how-to-ace-the-low-level-design-interview-3f1be6401070
+
+=======================================================================================================
+Tips for LLD
+https://www.linkedin.com/pulse/cracking-he-low-level-design-lld-interview-shashi-bhushan-kumar/
+https://www.geeksforgeeks.org/5-tips-to-crack-low-level-system-design-interviews/
+
+
+
+docker cubernate interview questions
+--------------------------------------------
+https://www.simplilearn.com/tutorials/kubernetes-tutorial/kubernetes-interview-questions
+
+https://www.edureka.co/blog/interview-questions/kubernetes-interview-questions/
+
+https://www.guru99.com/kubernetes-interview-questions-answers.html
+
+https://intellipaat.com/blog/interview-question/kubernetes-interview-questions-answers/
+
+ACID
+https://www.ibm.com/docs/en/cics-ts/5.4?topic=processing-acid-properties-transactions
+
+
+auth1 and auth 2 diff
+https://medium.com/identity-beyond-borders/oauth-1-0-vs-oauth-2-0-e36f8924a835#:~:text=OAuth%201.0%20has%20been%20designed,do%20not%20use%20web%20UIs.
+
+
+
+
+System-Design
+=================================================
+https://www.geeksforgeeks.org/designing-upi-system-design/
+
+https://www.geeksforgeeks.org/e-commerce-architecture-system-design-for-e-commerce-website/
+https://medium.com/@ibrahim.zananiri/design-amazon-e-commerce-system-7f2dd57637bb
+
+https://www.geeksforgeeks.org/designing-google-maps-system-design/
+https://medium.com/@jyoti1308/designing-google-maps-d9865c3506ba
+
+https://www.geeksforgeeks.org/system-design-of-youtube-a-complete-architecture/
+https://dilipkumar.medium.com/youtube-system-design-ed69d0b203a6
+
+https://www.geeksforgeeks.org/design-facebook-system-design/
+
+
+https://www.geeksforgeeks.org/design-twitter-a-system-design-interview-question/
+https://medium.com/@karan99/system-design-twitter-793ab06c9355
+
+https://www.geeksforgeeks.org/system-design-of-uber-app-uber-system-architecture/
+https://medium.com/@karan99/system-design-uber-33593137a4fe
+
+https://www.geeksforgeeks.org/designing-whatsapp-messenger-system-design/
+
+
+https://medium.com/@neo678/design-airbnb-hotel-booking-system-25ebf154d8de
+
+
+AWS from udemy
+=========================
+https://www.in28minutes.com/aws-bookshelf
+
+
+
+=========================================================================================
+Design software Analysis
+======================================================================================================================================================================================================================
+	Phases of SDLC
+Here are the typical 7 key phases of SDLC:
+
+1. Planning
+Goal: Define project scope, resources, timeline, and feasibility.
+Activities:
+Requirements gathering
+Cost-benefit analysis
+Resource planning
+Output: Project plan, feasibility report
+
+2. Requirements Analysis
+Goal: Understand what the users need from the software.
+Activities:
+Stakeholder interviews
+Use cases, user stories, or BRD (Business Requirement Document)
+SRS (Software Requirement Specification)
+Output: SRS document
+
+3. Design
+Goal: Architect the software based on the requirements.
+Activities:
+High-level design (HLD) – architecture, components
+Low-level design (LLD) – classes, methods, DB schema
+Output: Design documents, UML diagrams
+
+4. Implementation (Coding)
+Goal: Convert design into executable code.
+Activities:
+Development in chosen tech stack
+Following coding standards, writing unit tests
+Output: Source code, code repositories
+
+5. Testing
+Goal: Ensure software is defect-free and meets requirements.
+Activities:
+Unit testing, integration testing, system testing, UAT
+Automation and manual testing
+Output: Test cases, bug reports
+
+6. Deployment
+Goal: Release the software for use.
+Activities:
+Deploy to staging and then production
+Use CI/CD tools for automation
+Output: Live application in production
+
+7. Maintenance
+Goal: Update, fix, and improve the software after deployment.
+Activities:
+Bug fixes
+Adding new features
+Performance optimization
+Output: Patches, updated software versions
+
+=============================================================================================================
+Spring to Spring boot migration
+=========================================================================================
+1. Understand Your Current Application
+Identify:
+
+Spring version used (e.g., 3.x or 4.x)
+Configuration style (XML vs Java Config)
+Web container (Tomcat, Jetty, etc.)
+Dependencies and third-party integrations
+
+Build tool (Maven or Gradle)
+
+✅ 2. Create a New Spring Boot Project
+Use Spring Initializr to generate a basic Spring Boot project.
+Choose the same Java version and dependencies.
+Add relevant starters like:
+spring-boot-starter-web
+spring-boot-starter-data-jpa
+spring-boot-starter-security (if applicable)
+
+✅ 3. Copy Existing Code and Resources
+Migrate your code package-by-package:
+Controllers, Services, Repositories, etc.
+Place resources (like messages.properties, static, templates, etc.) under:
+
+
+src/main/resources/
+✅ 4. Convert XML Config to Java Config
+Spring Boot prefers Java-based configuration.
+Example: Replace this XML
+<bean id="myService" class="com.example.MyService" />
+with Java:
+
+@Configuration
+public class AppConfig {
+    @Bean
+    public MyService myService() {
+        return new MyService();
+    }
+}
+You can still load legacy XML configs using @ImportResource, but converting is better long-term.
+
+✅ 5. Update Dependency Management
+Remove old Spring dependencies and replace them with Spring Boot starters:
+
+xml
+
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.2.5</version>
+</parent>
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <!-- add other necessary starters -->
+</dependencies>
+✅ 6. Add Spring Boot Application Entry Point
+
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+✅ 7. Migrate Properties / YAML Config
+Convert your existing *.properties or custom config into application.properties or application.yml.
+
+Example:
+
+properties
+
+server.port=8081
+spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+spring.datasource.username=root
+spring.datasource.password=secret
+✅ 8. Embed Servlet Container (Optional)
+Spring Boot apps come with embedded Tomcat by default.
+
+You can exclude it if deploying to external servers, but embedded is simpler for most cases.
+
+✅ 9. Migrate Logging
+Spring Boot uses Logback by default.
+
+Adjust logback.xml or application.properties to manage logging behavior.
+
+✅ 10. Test the Application
+Run Application.main() locally.
+
+Test all endpoints, business logic, and integrations.
+
+Use @SpringBootTest for integration testing.
