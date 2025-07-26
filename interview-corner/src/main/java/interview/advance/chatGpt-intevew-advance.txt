@@ -1,44 +1,22 @@
-when use global session scope of bean in details
-
-if A and B implement I then @Autoware I a Spring automatically understand it use class A implementation not B
-Ans: no
-
-Tow class implement interface how to inject interface in spring so it can understand which class get called
-ANs- use @Qualifier, @Service(named) Map<String,ServiceInterface> map, map.get(name of @service(named))
-
-mango db implementation in spring boot end to end implementation
-
-When we must use mango and when we must use sql db
-CURD operation in mogo db implementation
-how to do Sharding in NoSQL databases
-
-how to open our service for fixed no of services/ip whitelisting/whitelisting upstream ms
-
-how many wasy handle transaction in ms list out
-
-Details about GC java 17 and how internall it works
-
-how https in microservice steps by steps ms java
-
-how https in microservice steps by steps ms java
-
-implements auth2
-
-Difference Between ? super T and ? extends T in Java Generics
-
 
 🔹 1–20: Core Java (Advanced Concepts)
 Deep copy vs shallow copy – implement deep clone of object
+========================================================================================================================
 
 Design your own HashMap
+========================================================================================================================
 
 Implement ThreadPoolExecutor
+========================================================================================================================
 
 Custom class loader – when and how?
+========================================================================================================================
 
 Implement Immutable class and explain final behavior
+========================================================================================================================
 
 Circular dependency resolution in Java
+========================================================================================================================
 
 Serialize and deserialize complex object graph
 

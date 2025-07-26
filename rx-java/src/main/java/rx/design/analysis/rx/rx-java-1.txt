@@ -1,0 +1,109 @@
+
+✅ Beginner Level (Fundamentals - 20 questions)
+1.	Create an Observable from a list of strings.
+2.	Use map() to convert a list of integers to their squares.
+3.	Use filter() to emit only even numbers.
+4.	Use flatMap() to flatten a list of List<String>.
+5.	Convert a Single<List<String>> to Observable<String>.
+6.	Combine two Observable<Integer> using merge().
+7.	Use zip() to pair items from two Observable<String>.
+8.	Use buffer(3) to collect 3 items at a time.
+9.	Use debounce() to ignore rapid emissions.
+10.	Apply delay() to delay emission by 1 second.
+11.	Use take(5) to limit the number of emissions.
+12.	Use skip(3) to ignore the first 3 emissions.
+13.	Use distinct() to eliminate duplicates.
+14.	Use reduce() to sum a stream of numbers.
+15.	Use collect() to gather all items into a List.
+16.	Use firstElement() and lastElement().
+17.	Convert a blocking API to Single.
+18.	Log thread names using subscribeOn() and observeOn().
+19.	Use interval() to emit every second.
+20.	Convert a Future to a Single.
+________________________________________
+🔁 Intermediate (Transformation and Control - 30 questions)
+21.	Group a list of strings by their first character.
+22.	Switch between two streams using switchMap().
+23.	Concatenate multiple Observable<String> in order.
+24.	Use concatMap() vs flatMap() difference.
+25.	Chain network-like calls: login → fetchProfile → fetchPosts.
+26.	Use retry() to retry a failing stream 3 times.
+27.	Use retryWhen() with delay strategy.
+28.	Apply timeout logic using timeout() operator.
+29.	Use onErrorResumeNext() to recover from error.
+30.	Use onErrorReturn() to return fallback value.
+31.	Compare Observable.create() vs just() vs fromCallable().
+32.	Apply backpressure strategy using Flowable.
+33.	Convert Observable to Flowable with strategy.
+34.	Use window(2) and process each window.
+35.	Monitor and print all lifecycle events (doOnNext, doOnComplete).
+36.	Use scan() to show running total of values.
+37.	Use repeat() to repeat a stream N times.
+38.	Use takeUntil() with a second observable.
+39.	Combine emissions with combineLatest().
+40.	Use amb() to emit from the fastest source.
+41.	Test Observable with TestObserver.
+42.	Test timeout and retry logic using TestScheduler.
+43.	Create a cold observable that becomes hot using publish().
+44.	Use share() to multicast stream.
+45.	Cache values with cache().
+46.	Use Single.zip() for dependent API results.
+47.	Use Maybe to return optional result.
+48.	Use Completable to represent task without value.
+49.	Use blockingGet() in test scenarios.
+50.	Chain Observable to Single and back.
+________________________________________
+⚙️ Advanced (Concurrency, Custom Operators, Real-World Scenarios - 30+)
+51.	Implement a rate limiter using throttleFirst().
+52.	Design a typeahead/autocomplete using debounce().
+53.	Perform batch DB insert using buffer() and flatMap().
+54.	Create a retry strategy with exponential backoff.
+55.	Parallel execution with flatMap() and Schedulers.io().
+56.	Switch execution between main and io thread.
+57.	Write a custom ObservableTransformer.
+58.	Implement a simple EventBus using PublishSubject.
+59.	Use BehaviorSubject to always emit the last value.
+60.	Create a cold observable with side-effect logging.
+61.	Use ConnectableObservable with refCount().
+62.	Cache latest result of network call for future subscribers.
+63.	Cancel an in-progress operation with Disposable.
+64.	Use DisposableObserver to manage lifecycle.
+65.	Build a countdown timer with intervalRange().
+66.	Use generate() to emit Fibonacci sequence.
+67.	Integrate with a REST API returning Single<Response<T>>.
+68.	Chain validation logic using flatMapCompletable().
+69.	Combine multiple Completable tasks with mergeArray().
+70.	Collect multi-page API results using recursion and concatMap().
+________________________________________
+🔄 Bonus: Challenges & Patterns (20+)
+71.	Implement mergeSort using reactive recursion.
+72.	Simulate a scheduler-like job queue.
+73.	Retry only on specific exceptions.
+74.	Aggregate order data by user from stream of Order records.
+75.	Monitor service health with timeout and fallback.
+76.	Reactive circuit breaker pattern with timeout + fallback.
+77.	Track active user sessions using BehaviorSubject.
+78.	Log event duration using timestamp() and timeInterval().
+79.	Design a reactive file line processor.
+80.	Simulate a reactive sensor emitting real-time data.
+81.	Use interval() + takeWhile() to stop emission conditionally.
+82.	React to system signals or UI input using Subject.
+83.	Convert nested JSON to flat reactive stream.
+84.	Design a reactive pipeline for ETL (Extract, Transform, Load).
+85.	Use groupBy() to partition stream by category.
+86.	Apply custom sorting in stream.
+87.	Chain paged API fetches until "next" is null.
+88.	Simulate producer-consumer scenario using reactive stream.
+89.	Create a progress bar that updates every second using interval().
+90.	Throttle click events on UI buttons.
+91.	Compare backpressure strategy performance in Flowable.
+92.	Combine Single and Observable streams efficiently.
+93.	Implement logging interceptor for every stream.
+94.	Create a timeout + cache fallback using onErrorResumeNext().
+95.	Use switchMap() to cancel previous API call.
+96.	Profile memory for flatMap() vs concatMap() usage.
+97.	Create and manage dynamic number of subscriptions.
+98.	Inject dependency into stream processing logic.
+99.	Pipe a custom operator that logs input/output for debugging.
+100.	Use RxJava in a multi-threaded microservice use case.
+

@@ -24,6 +24,6 @@ public class IHashAdjListTest {
 			int rVal = r.nextInt((1999999999 - 1000000000) + 1) + 1000000000;
 			hl.addHashNode(h, String.valueOf(rVal));
 		}
-		hl.print(h);
+		//hl.print(h); //to see the result u can uncomment
 	}
 }

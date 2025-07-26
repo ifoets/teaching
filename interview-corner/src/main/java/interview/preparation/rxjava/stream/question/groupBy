@@ -1,0 +1,92 @@
+🔷 1. Basic Grouping
+✅ Group List<String> by their first character.
+
+✅ Group a list of Employee by department.
+
+✅ Group integers by even/odd using groupingBy(num -> num % 2 == 0 ? "Even" : "Odd").
+
+✅ Group words by their lengths.
+
+🔷 2. Grouping with Downstream Collectors
+✅ Group Employee by department and count them:
+groupingBy(Employee::getDept, counting())
+
+✅ Group Person by city, and collect names as Set<String>.
+
+✅ Group Product by category and get average price.
+
+✅ Group Student by class, and find the top scorer in each class.
+
+✅ Group orders by status and get the total price per status.
+
+🔷 3. Grouping with Nested Collections
+✅ Group Employee by location, then by department.
+
+✅ Group books by genre, and within each genre, group by author.
+
+✅ Group Transaction by year, then month, then status.
+
+✅ From List<Employee>, group by managerId, and for each manager get employee names sorted by age.
+
+🔷 4. Grouping with Complex Objects
+✅ Group list of Person(name, city, age) by city and return average age.
+
+✅ Group a list of Employee by department and collect oldest employee per department.
+
+✅ Group books by title length range (short <10, medium <20, long).
+
+✅ Group by custom category using groupingBy(e -> classify(e)).
+
+🔷 5. Grouping with Multiple Keys (Composite)
+✅ Group Order by (userId, month) composite key using toMap or custom class as key.
+
+✅ Group flights by (origin, destination) and count total flights.
+
+✅ Group employees by (department + location) and sum salaries.
+
+✅ Group data into a Map<Pair<String, Integer>, List<Obj>>.
+
+🔷 6. Aggregations After Grouping
+✅ Group and then find max, min, or sum using reducing or collectingAndThen.
+
+✅ Group by region and get top 3 highest-revenue customers per region.
+
+✅ Group sales by region and get the product with max quantity per region.
+
+✅ For each product category, calculate total sales, average price, min price.
+
+🔷 7. Grouping with Custom Collector / Immutable Map
+✅ Group and collect to unmodifiable map:
+Collectors.collectingAndThen(groupingBy(...), Collections::unmodifiableMap)
+
+✅ Group and use a TreeMap to keep keys sorted:
+Collectors.groupingBy(..., TreeMap::new, downstream)
+
+✅ Build your own custom collector to group into a map with reverse insertion order.
+
+🔷 8. Partitioning (a specialized grouping case)
+✅ Partition students by passing/failing grades.
+
+✅ Partition numbers by prime vs non-prime.
+
+✅ Partition strings by palindrome or not.
+
+✅ Partition employees by age > 40, and then count per group.
+
+🔷 9. Real-World Business Scenarios
+✅ Group orders by customer and calculate total order value per customer.
+
+✅ Group flights by airline and find the flight with max distance.
+
+✅ Group bug reports by severity and list distinct assignees.
+
+✅ Group projects by deadline month and calculate % completed.
+
+🔷 10. Grouping into Custom Result Types
+✅ Group by category and return a Summary object with count, min, max, avg.
+
+✅ Group Student by batch and create a ReportCard object for each group.
+
+✅ Group SensorData by type and convert to DTO list with time window aggregation.
+
+✅ Group events by eventType and build a map of eventType -> EventSummaryDTO.

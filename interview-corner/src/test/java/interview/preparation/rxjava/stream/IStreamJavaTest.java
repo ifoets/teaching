@@ -1,15 +1,15 @@
-package interview.preparation.rxjava;
+package interview.preparation.rxjava.stream;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class IRxJavaTest {
-    private IRxJava irx=null;
+public class IStreamJavaTest {
+    private IStreamJava irx=null;
 
     @Before
     public void init()
     {
-        irx = new RxJavaImpl();
+        irx = new StreamJavaImpl();
     }
 
     @Test

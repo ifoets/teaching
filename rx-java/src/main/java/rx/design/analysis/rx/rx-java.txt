@@ -1,0 +1,118 @@
+
+top 100 coding interview question from Rx java for experience folk
+________________________________________
+
+✅ Core Concepts & Architecture (1–20)
+1.	What is RxJava and how does it work?
+2.	Difference between RxJava1, RxJava2, and RxJava3.
+3.	Explain Observable, Observer, and Subscriber.
+4.	What are the different types of Observables?
+5.	What is backpressure and how is it handled in RxJava2?
+6.	Explain the Observer Pattern and how RxJava uses it.
+7.	Hot vs Cold Observables.
+8.	What is a Flowable? When should you use it?
+9.	When would you choose Maybe vs Single vs Completable?
+10.	Difference between Observable and Flowable in RxJava2.
+11.	What is the role of the Disposable interface?
+12.	How does RxJava handle thread management internally?
+13.	What are Schedulers? Explain different types.
+14.	Explain the subscribeOn and observeOn difference.
+15.	Difference between defer and fromCallable.
+16.	How to avoid memory leaks in RxJava?
+17.	Can an Observable emit an error and data both?
+18.	Explain chaining of operators in RxJava.
+19.	What is cold start in RxJava context?
+20.	How do you handle resource cleanup in RxJava?
+________________________________________
+🧪 Operators (21–50)
+21.	Explain map() vs flatMap().
+22.	Difference between flatMap(), concatMap() and switchMap().
+23.	When to use buffer(), window(), or groupBy()?
+24.	Use of distinct() and distinctUntilChanged().
+25.	What does debounce() do?
+26.	How does retry() work? Difference with repeat()?
+27.	Use of filter() and takeUntil().
+28.	What is zip() operator used for?
+29.	Real-time use case for combineLatest().
+30.	How does merge() differ from concat()?
+31.	Explain the use of scan() and reduce().
+32.	Explain delay(), interval() and timer().
+33.	Use case of throttleFirst() vs throttleLast().
+34.	What is onErrorReturn() used for?
+35.	How to timeout an Observable using RxJava?
+36.	Role of doOnNext(), doOnSubscribe(), etc.
+37.	Difference between materialize() and dematerialize().
+38.	How does switchIfEmpty() work?
+39.	What is withLatestFrom() and when to use it?
+40.	Best practices when combining operators.
+________________________________________
+⚙️ Concurrency & Schedulers (51–65)
+41.	How to perform parallel processing in RxJava?
+42.	Use case for Schedulers.io() vs Schedulers.computation().
+43.	What is Schedulers.trampoline()?
+44.	How to switch threads in a reactive chain?
+45.	How does RxJava handle multiple subscribeOn calls?
+46.	Can you create your own Scheduler?
+47.	How to handle blocking I/O in RxJava?
+48.	Use of Schedulers.single() and Schedulers.newThread().
+49.	When is it safe to use Schedulers.from(ExecutorService)?
+50.	Threading considerations for Android RxJava apps.
+51.	What are the rules for thread safety in Observables?
+52.	Can Schedulers lead to memory issues? How to avoid?
+53.	How to test RxJava chain with schedulers?
+54.	Difference between observeOn and subscribeOn order?
+55.	Explain the role of trampoline Scheduler.
+________________________________________
+📦 Error Handling & Testing (66–80)
+56.	How to handle errors globally in RxJava?
+57.	onErrorResumeNext() vs onErrorReturn().
+58.	What is a retry strategy using RxJava?
+59.	How do you simulate error scenarios in unit tests?
+60.	Using TestObserver in RxJava testing.
+61.	How to verify emissions using JUnit?
+62.	How to mock Observables for testing?
+63.	Why and how to use TestScheduler?
+64.	How to test time-based operators?
+65.	Best practices for testing chained operators.
+________________________________________
+🔄 Integration & Real-World Use Cases (81–95)
+66.	RxJava vs Kotlin Coroutines – when to use what?
+67.	How to combine RxJava with Retrofit?
+68.	RxJava in clean architecture layers.
+69.	Use of RxJava in Android vs Backend.
+70.	RxJava in a Spring Boot microservice.
+71.	When not to use RxJava in a project?
+72.	How to convert a legacy callback code to RxJava?
+73.	Best practices for lifecycle management in Android RxJava.
+74.	Integrating RxJava with Room database.
+75.	How to use RxJava with Kafka or Redis?
+76.	How to propagate errors across microservices with RxJava?
+77.	What are the tradeoffs using RxJava for event streaming?
+78.	How do you back off on network retries using RxJava?
+79.	How to implement a rate limiter using RxJava?
+80.	Use case for RxJava in reactive REST APIs.
+________________________________________
+📈 Performance, Design & Best Practices (96–100)
+81.	What are the performance pitfalls in RxJava?
+82.	Memory leak causes in RxJava – how to avoid?
+83.	Best way to cancel a long-running observable?
+84.	How to design a scalable reactive pipeline using RxJava?
+85.	When to use Subject and which type (Publish, Replay, etc.)?
+86.	Why avoid nested subscribe calls?
+87.	Why use RxJava instead of Future/CompletableFuture?
+88.	How to manage large data streams efficiently?
+89.	Use of Observable.interval() in production scenarios.
+90.	Differences between Flowable processors (PublishProcessor, etc.)
+________________________________________
+🧠 Bonus: Tricky or Advanced (91–100)
+91.	What is a cold observable with side-effects? How to fix?
+92.	Difference between Observable.create vs Observable.just.
+93.	When would you use toList() or toFlowable()?
+94.	Can you handle backpressure in an Observable? How?
+95.	How does Subject violate the reactive streams contract?
+96.	How to debug RxJava chains?
+97.	How do you share a single stream between multiple subscribers?
+98.	Can an Observable be both hot and cold? Explain.
+99.	How to apply exponential backoff in retry scenarios?
+100.	How would you design a resilient Rx-based API client?
+
