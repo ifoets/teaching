@@ -1,5 +1,6 @@
 package interview.preparation.company.interviews;
 
+import com.sun.source.tree.LiteralTree;
 import interview.preparation.company.interviews.impl.AltimetrikImpl;
 import interview.preparation.company.interviews.model.Student;
 import interview.preparation.company.interviews.question.IAltimetrik;
@@ -9,16 +10,19 @@ import org.junit.Test;
 
 import java.util.*;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 
 public class IAltimetrikTest {
 
-    public IAltimetrik ial;
-
-    @Before
-    public void init()
-    {
-        ial = new AltimetrikImpl();
-    }
+	public IAltimetrik ial;
+	
+	@Before
+	public void init()
+	{
+		ial = new AltimetrikImpl();
+	}
 
     @Test
     public void minimumCandiesPerHourTest()
@@ -52,22 +56,22 @@ public class IAltimetrikTest {
         System.out.println(ial.minimumCandiesPerHourX(d));
         Assert.assertEquals(10,ial.minimumCandiesPerHourX(d));
     }
-    @Test
-    public void checkDuplicateCountValTest()
-    {
+	@Test
+	public void checkDuplicateCountValTest()
+	{
         int a[] = {4,6, 6,7,7,7,9,9,9,9};
-        Assert.assertTrue(ial.checkDuplicateCountVal(a));
-        int b[] ={1, 2,3,1};
-        Assert.assertTrue(!ial.checkDuplicateCountVal(b));
-    }
+		Assert.assertTrue(ial.checkDuplicateCountVal(a));
+		int b[] ={1, 2,3,1};
+		Assert.assertTrue(!ial.checkDuplicateCountVal(b));
+	}
 
-    @Test
-    public  void get2ndMaxNoTest() {
-        List<List<Integer>> lists = Arrays.asList(Arrays.asList(1, 2, 2, 2, 3),
-            Arrays.asList(4, 4, 4, 5, 5, 6),
-            Arrays.asList(6, 6, 7, 7, 7, 8, 8, 8));
-        Assert.assertTrue(ial.get2ndMaxNo(lists)==7);
-    }
+	@Test
+	public  void get2ndMaxNoTest() {
+		List<List<Integer>> lists = Arrays.asList(Arrays.asList(1, 2, 2, 2, 3),
+				Arrays.asList(4, 4, 4, 5, 5, 6),
+				Arrays.asList(6, 6, 7, 7, 7, 8, 8, 8));
+		Assert.assertTrue(ial.get2ndMaxNo(lists)==7);
+	}
 
     @Test
     public void findVowlesIndexTest(){
@@ -243,9 +247,8 @@ public class IAltimetrikTest {
     {
         String s = "abca";
 
-        // System.out.println(s.chars().distinct().length);
+       // System.out.println(s.chars().distinct().length);
     }
 
 }
-
 
