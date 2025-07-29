@@ -354,6 +354,62 @@ public  class AltimetrikImpl implements IAltimetrik {
             );
     }
 
+    @Override
+    public String maxLenPalindrome(String str){
+        int N= str.length();
+
+        int maxLen =0;
+        String maxLenStr=null;
+
+        for(int i=0;i<N;i++)
+        {
+            for(int j=i+1;j<=N;j++)
+            {
+                String subStr = str.substring(i,j);
+                if(subStr.contentEquals(new StringBuilder(subStr).reverse()))
+                {
+                    if(maxLen<subStr.length())
+                    {
+                        maxLen = subStr.length();
+                        maxLenStr = subStr;
+                    }
+                }
+            }
+        }
+        return maxLenStr;
+    }
+
+    @Override
+    public String maxLenPalindromeX(String str){
+        if (str == null || str.isEmpty()) return "";
+
+        int start = 0, end = 0;
+
+        for(int i=0;i<str.length();i++)
+        {
+            int len1 = expandAroundCenter(str,i,i); //odd length palindrome
+            int len2 = expandAroundCenter(str,i,i+1);//even length palindrome
+
+            int len = Math.max(len1,len2);
+            if(len>(end-start))
+            {
+                start = i -(len-1)/2;
+                end = i+ len/2;
+            }
+        }
+        return str.substring(start,end+1);
+    }
+
+    public int expandAroundCenter(String str, int left, int right)
+    {
+        while (left>=0 && right<str.length()&& str.charAt(left)==str.charAt(right))
+        {
+           left--;
+           right++;
+        }
+        return right-left-1;
+    }
+
 }
 
 

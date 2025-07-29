@@ -1,7 +1,7 @@
 
 ✅ 1. String Enhancements,str.isBlank(); blank check, str.strip()// trims both ends, ("Line1\nLine2".lines().count());  // Stream of lines
 ✅ 2. Local-Variable Syntax for Lambda Parameters, list.forEach((var item) -> System.out.println(item));
-✅ 3. New HttpClient API
+✅ 3. New HttpClient API, Synchronous Support, HTTP/2 Support, Non-blocking I/O, Clean Fluent API
 ✅ 4. Single-File Program Execution, You can run a Java file without compiling it first:
 ✅ 5. Files.readString() and writeString()
 ✅ 6. Z Garbage Collector (ZGC),

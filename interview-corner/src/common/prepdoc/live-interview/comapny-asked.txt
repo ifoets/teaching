@@ -516,11 +516,8 @@ WITH RECURSIVE employee_hierarchy AS (
 SELECT * FROM employee_hierarchy
 ORDER BY level, employee_id;
 
-<<<<<<<< HEAD:interview-corner/src/common/prepdoc/live-interview/comapny-asked.txt
 Wipro
 ========
-Bipro
->>>>>>>> f2b88fb49b9f1ff54ef692b87a95a098382f4542:interview-corner/src/common/prepdoc/interview/comapny-asked.txt
 -------------
 MetaSpace
 -----
@@ -607,6 +604,7 @@ CREATE PROCEDURE GetEmployeeById(IN emp_id INT)
 BEGIN
     SELECT * FROM employees WHERE id = emp_id;
 END
+
 try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
             // Prepare the call
             CallableStatement stmt = conn.prepareCall("{ call GetEmployeeById(?) }");
@@ -662,7 +660,7 @@ proxy design pattern
 how to configure service discovery api gatway in ms
 
 what is service discovery and api gatway
-----------------------
+----------------------------------------
 an API gateway serves as the single entry point for all client requests, acting as a front-end for the microservices. Service discovery, 
 on the other hand, is a mechanism that allows microservices to find and communicate with each other within the application
 
@@ -714,17 +712,38 @@ management.endpoints.web.exposure.include=startup
 Reduce logging on startup:
 logging.level.root=WARN
 logging.level.org.springframework=ERROR
-<<<<<<<< HEAD:interview-corner/src/common/prepdoc/live-interview/comapny-asked.txt
 find no of unique substring
 find sum of age having same name in Student(name, age)
 segrate odd and even no in list using predicate
 write query to find all employee who dont have manager(is on bench)
 select *from employee where mgrid=null;
+
+difference between POST, PATCH AND PUT, how to efficient way use PATCH in lac of record have to update
+what is path variable
+how json to java and java to json get converted in MS request
+how to implement Circuit breaker pattern
+how many types of fallback in ms
+Types of SAGA pattern in transaction management
+
+how HttpMessageConverter play role in MS request/response//In Spring MVC / Spring Boot, an HttpMessageConverter is a strategy interface used to convert HTTP requests/responses to/from Java objects.
+
+Incoming HTTP Request
+      ↓
+[HttpMessageConverter] → Java Object (e.g., Controller param)
+      ↓
+Controller logic
+      ↓
+Java Object → [HttpMessageConverter]
+      ↓
+HTTP Response
+
+Mockito and PowerMockito difference
+
+
 =====================================================================================================
 ========
 
 ============================================
->>>>>>>> f2b88fb49b9f1ff54ef692b87a95a098382f4542:interview-corner/src/common/prepdoc/interview/comapny-asked.txt
 paypal
 -----------------------------
 what r benifit we getting by stream programming
@@ -1037,12 +1056,5 @@ can we use kafka for request/response communication betwwen two ms
 ChatGPT said:
 Yes, Kafka can be used for request/response communication between two microservices, but it’s not the ideal tool for synchronous communication. Kafka is inherently asynchronous, event-driven, and loosely coupled.
 ========
-
-
-
-
-
-
->>>>>>>> f2b88fb49b9f1ff54ef692b87a95a098382f4542:interview-corner/src/common/prepdoc/interview/comapny-asked.txt
 
 

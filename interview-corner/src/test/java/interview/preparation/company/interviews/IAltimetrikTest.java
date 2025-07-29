@@ -242,6 +242,20 @@ public class IAltimetrikTest {
         Assert.assertEquals(5,oddEvenList.get(0).size());
         Assert.assertEquals(6,oddEvenList.get(1).size());
     }
+
+    @Test
+    public void maxLenPalindromeTest()
+    {
+        Assert.assertEquals("bbbb",ial.maxLenPalindrome("ababbbb"));
+        Assert.assertEquals("1212121",ial.maxLenPalindrome("1212121001"));
+    }
+
+    @Test
+    public void maxLenPalindromeXTest()
+    {
+        Assert.assertEquals("bbbb",ial.maxLenPalindromeX("ababbbb"));
+        Assert.assertEquals("1212121",ial.maxLenPalindromeX("1212121001"));
+    }
     @Test
     public void test()
     {

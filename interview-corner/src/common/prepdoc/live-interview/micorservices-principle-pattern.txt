@@ -65,12 +65,9 @@ Challenges of Microservices Architecture
 	4. Fault Tolerance
 	5. Cyclic dependencies/Circular dependencies in microservices occur when two or more services depend on each other, creating a loop where changes in one service can affect the others,
 making development and deployment more complex.
-<<<<<<<< HEAD:interview-corner/src/common/prepdoc/live-interview/micorservices-principle-pattern.txt
 Use Asynchronous Communication (Event-Driven)
 Replace direct API calls with events using Kafka, RabbitMQ, etc., 5. Service Facade Pattern,  4. Use Shared Datastore or Caching Carefully, 6. Circuit Breakers + Timeouts
 
-========
->>>>>>>> f2b88fb49b9f1ff54ef692b87a95a098382f4542:interview-corner/src/common/prepdoc/interview/micorservices-principle-pattern.txt
 	This can lead to increased coupling, reduced maintainability, and difficulty in independent deployment.
 	6. DevOps Culture
 

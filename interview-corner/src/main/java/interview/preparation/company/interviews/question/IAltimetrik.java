@@ -63,5 +63,9 @@ public interface IAltimetrik {
 
     Map<Boolean, List<Integer>> segregateOddEvenPredicateX(List<Integer> list);
 
+    String maxLenPalindrome(String str);
+
+    String maxLenPalindromeX(String str);
+
 
 }
