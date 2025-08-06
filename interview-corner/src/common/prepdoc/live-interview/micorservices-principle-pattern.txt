@@ -117,10 +117,13 @@ In this article, we are going to discuss 10 main design patterns which are menti
 	1. Database per Microservice
 	2. Event Sourcing //The event sourcing design pattern creates events regarding the changes in the application state.
 	3. CQRS //he command part will handle all the requests related to CREATE, UPDATE, DELETE while the query part will take care of the materialized views.
-	4. Saga //a design pattern used in microservices architecture to manage distributed transactions, ensuring consistency across multiple services, t breaks down a global transaction into a series of local transactions, each performed by a different service. If any local transaction fails, compensating transactions are used to revert the changes made by previous transactions, ensuring eventual consistency
-	5. BFF  // Frontend (BFF) patterns involve managing communication between clients and backend services, an API gateway acts as a single entry point for all clients, while a BFF is a client-specific backend tailored to the needs of a particular frontend.
+	4. Saga //a design pattern used in microservices architecture to manage distributed transactions, ensuring consistency across multiple services, t breaks down a global transaction into a series of local transactions, 
+		each performed by a different service. If any local transaction fails, compensating transactions are used to revert the changes made by previous transactions, ensuring eventual consistency
+	5. BFF  // Frontend (BFF) patterns involve managing communication between clients and backend services, an API gateway acts as a single entry point for all clients, while a BFF is a client-specific backend tailored to 
+		the needs of a particular frontend.
 	6. API Gateway
-	7. Strangler //a software design pattern used to gradually refactor monolithic applications into microservices It's a phased approach where existing functionalities are replaced with new microservices, one by one, eventually phasing out the original monolithic application
+	7. Strangler //a software design pattern used to gradually refactor monolithic applications into microservices It's a phased approach where existing functionalities are replaced with new microservices, one by one, 
+		eventually phasing out the original monolithic application
 	8. Circuit Breaker //https://javatechonline.com/how-to-implement-hystrix-circuit-breaker-in-microservices-application/
 	9. Externalized Configuration
 	10. Consumer-Driven Contract Tracing

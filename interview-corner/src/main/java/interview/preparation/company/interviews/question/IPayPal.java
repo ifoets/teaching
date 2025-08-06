@@ -10,4 +10,7 @@ public interface IPayPal {
     List<String> sortedSubsequence(String s);
 
     List<String> sortedSubsequenceX(String s, char[] chars, int index);
+
+    /*Container With Most Water*/
+    int containerMaxWater(int[] c);
 }
