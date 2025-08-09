@@ -1,0 +1,115 @@
+package scenario.design.analysis;
+
+public interface IScenarioAnalysis {
+    /*
+/* *1. Core Java & Collections (20)*/
+    /**1.	Implement a custom HashMap without using Java’s built-in one.**/
+    /**2.	Write a thread-safe LRU cache.
+    3.	Implement your own ConcurrentHashMap.
+    4.	Implement a custom LinkedList with add/remove/reverse.
+    5.	Implement a priority queue without using PriorityQueue.
+    6.	Implement a stack using queues.
+    7.	Implement a queue using stacks.
+    8.	Implement a min-max stack (O(1) min/max lookup).
+    9.	Write a program to detect duplicate words in a paragraph using HashMap.
+    10.	Implement a custom ImmutableList.
+    11.	Implement a data structure that supports O(1) insert, delete, search, and getRandom.
+    12.	Implement a frequency counter (word count problem).
+    13.	Implement a bounded-size blocking queue.
+    14.	Merge two sorted linked lists.
+    15.	Implement deep copy of an object with circular references.
+    16.	Implement a multi-level cache (in-memory + disk).
+    17.	Implement a data structure to support prefix search (Trie).
+    18.	Implement consistent hashing for cache servers.
+    19.	Implement bloom filter for checking word membership.
+    20.	Implement a skip list.
+     ________________________________________
+      2. Concurrency & Multithreading (20)
+     21.	Implement Producer-Consumer using wait/notify.
+     22.	Implement Producer-Consumer using BlockingQueue.
+     23.	Implement Dining Philosophers problem.
+     24.	Implement a thread-safe Singleton.
+     25.	Implement a read-write lock.
+     26.	Implement a thread pool executor.
+     27.	Implement a rate limiter using Token Bucket.
+     28.	Implement a distributed lock using Redis/Zookeeper.
+     29.	Implement a custom semaphore.
+     30.	Implement CountDownLatch using wait/notify.
+     31.	Implement CyclicBarrier.
+     32.	Implement “Print odd and even numbers alternately” with two threads.
+     33.	Implement a system where 3 threads print A, B, C in sequence.
+     34.	Implement a background job scheduler.
+     35.	Implement async callbacks in Java.
+     36.	Write a multi-threaded program to calculate factorials of 1 to N in parallel.
+     37.	Implement an event bus (pub-sub model).
+     38.	Implement a deadlock scenario and fix it.
+     39.	Implement parallel merge sort using threads.
+     40.	Implement retry with exponential backoff for failed operations.
+     ________________________________________
+      3. Java Design Patterns / LLD (20)
+     41.	Implement Factory Pattern for creating Shapes.
+     42.	Implement Builder pattern for constructing an immutable object.
+     43.	Implement Observer pattern for stock price updates.
+     44.	Implement Strategy pattern for payment gateways.
+     45.	Implement Decorator pattern for adding features dynamically.
+     46.	Implement Proxy pattern for lazy initialization.
+     47.	Implement Chain of Responsibility for request handling.
+     48.	Implement State pattern for ATM Machine.
+     49.	Implement Template Method for data processing steps.
+     50.	Implement Circuit Breaker pattern for service calls.
+     51.	Implement a Cache-aside pattern.
+     52.	Implement an API rate limiter (sliding window).
+     53.	Implement Saga pattern for distributed transactions.
+     54.	Implement Leader Election algorithm.
+     55.	Implement a Retry pattern with fallback.
+     56.	Implement a Distributed ID generator (like Snowflake).
+     57.	Implement Event Sourcing for order management.
+     58.	Implement CQRS pattern in Java.
+     59.	Implement a Job Queue (with priorities).
+     60.	Implement an in-memory key-value store.
+     ________________________________________
+     🔹 4. Algorithms / Problem-Solving in Real Scenarios (20)
+     61.	Find the first non-repeating character in a string.
+     62.	Implement KMP algorithm for string matching.
+     63.	Detect a cycle in a linked list.
+     64.	Find kth largest element using heap.
+     65.	Implement top K frequent elements in a stream.
+     66.	Implement sliding window maximum.
+     67.	Implement a spell checker (Levenshtein distance).
+     68.	Implement autocomplete (prefix-based search).
+     69.	Implement URL shortener encoding/decoding.
+     70.	Implement pagination for huge dataset (millions of records).
+     71.	Implement consistent round robin load balancer.
+     72.	Implement cache eviction strategies (LRU, LFU).
+     73.	Find all anagrams of a word from a dictionary.
+     74.	Implement dynamic programming: coin change problem.
+     75.	Implement dynamic programming: longest increasing subsequence.
+     76.	Implement graph traversal (DFS/BFS).
+     77.	Implement Dijkstra shortest path.
+     78.	Implement topological sort.
+     79.	Implement union-find (disjoint sets).
+     80.	Implement Sudoku solver.
+     ________________________________________
+      5. JVM, Performance, and Advanced Java (20)
+     81.	Implement your own class loader.
+     82.	Implement a memory leak scenario and detect it with profiling.
+     83.	Implement caching with weak references.
+     84.	Implement a simple garbage collector simulation.
+     85.	Implement object serialization/deserialization without Java Serializable.
+     86.	Implement reflection-based dependency injection container.
+     87.	Implement a dynamic proxy using InvocationHandler.
+     88.	Implement custom annotation and processor.
+     89.	Implement a REST client using HttpClient.
+     90.	Implement connection pooling for database connections.
+     91.	Implement a reactive stream publisher-subscriber.
+     92.	Implement backpressure handling in streams.
+     93.	Implement thread dump analyzer.
+     94.	Write a program to measure method execution time (AOP style).
+     95.	Implement dynamic configuration reload (without restart).
+     96.	Implement zero-downtime deployment simulation.
+     97.	Implement a metrics collector (requests/sec, avg latency).
+     98.	Implement bulkhead isolation for microservices.
+     99.	Implement distributed tracing (correlation ID propagation).
+     100.	Implement a heartbeat mechanism for service health checks.
+     */
+}
