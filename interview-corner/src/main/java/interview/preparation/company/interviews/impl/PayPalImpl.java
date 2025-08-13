@@ -29,17 +29,15 @@ public class PayPalImpl implements IPayPal {
         return binaryList;
     }
     public List<String> sortedSubsequence(String s){
-        int a[] = new int[s.length()];
+        int []a = new int[s.length()];
         List<String> binaryFlip = generateAllBinary(a,0);
         List<String> rsList = new ArrayList<>();
 
-        for(int i=0;i<binaryFlip.size();i++)
-        {
+        for (String string : binaryFlip) {
             StringBuilder sb = new StringBuilder();
-            String[] str = binaryFlip.get(i).split("");
-            for(int j=0;j<str.length;j++)
-            {
-                if(str[j].equals("1"))
+            String[] str = string.split("");
+            for (int j = 0; j < str.length; j++) {
+                if (str[j].equals("1"))
                     sb.append(s.charAt(j));
             }
             rsList.add(sb.toString());
@@ -70,5 +68,24 @@ public class PayPalImpl implements IPayPal {
         sortedSubsequenceX(str, s,index+1);
         Collections.sort(seqList);
         return seqList;
+    }
+
+    /*Container With Most Water*/
+    @Override
+    public int containerMaxWater(int[] c){
+
+        int max = Integer.MIN_VALUE;
+        int currentMax,i=0,j=c.length-1;
+
+       while (i<j)
+        {
+            currentMax = Math.min(c[i],c[j])*(j-i);
+            if(max<currentMax)
+                max = currentMax;
+            if(c[i]<c[j])
+                i++;
+            else j--;
+        }
+       return max;
     }
 }

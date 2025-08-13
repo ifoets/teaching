@@ -1,3 +1,45 @@
+ configure ms for https
+--------------------------
+1. Generate an SSL Certificate
+For local development, you can use a self-signed certificate with keytool:
+
+keytool -genkeypair -alias my-https-cert \
+  -keyalg RSA -keysize 2048 -storetype PKCS12 \
+  -keystore my-https-cert.p12 -validity 3650
+It will ask for:
+
+Keystore password (remember this)
+Your name, org, location, etc.
+
+This creates my-https-cert.p12 in the current folder.
+
+2. Put the Keystore in Your Project
+Move my-https-cert.p12 to:
+
+src/main/resources/
+3. Configure Spring Boot for HTTPS
+Edit your application.properties or application.yml:
+
+application.properties
+
+properties
+Copy
+Edit
+server.port=8443
+server.ssl.key-store=classpath:my-https-cert.p12
+server.ssl.key-store-password=your_password_here
+server.ssl.key-store-type=PKCS12
+server.ssl.key-alias=my-https-cert
+
+5. For Production (Real HTTPS)
+Get a CA-signed certificate (e.g., Let’s Encrypt).
+
+Replace the .p12 file with your real certificate.
+
+Update application.properties with the new certificate path and password.
+
+Configure reverse proxy (Nginx, Apache) if you need load balancing + HTTPS termination.limiter
+
 impl circut breaker
 -------------------------
  1. Add Dependencies
@@ -1332,9 +1374,6 @@ public class OrderController {
     }
 }
 📌 3. PaymentService (similar to OrderService)
-java
-Copy
-Edit
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
@@ -1367,3 +1406,6 @@ public class PaymentController {
         return ResponseEntity.ok("Rolled back");
     }
 }
+
+implement Rate limiter in ms
+======================================

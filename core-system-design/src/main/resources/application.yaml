@@ -1,0 +1,19 @@
+spring:
+    application:
+        name: core-system-design
+    datasource:
+        url: jdbc:postgresql://localhost:5432/nonexdb
+        username: postgres
+        password: root
+        driver-class-name: org.postgresql.Driver
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+    security:
+        user:
+            name: admin
+            password: admin123

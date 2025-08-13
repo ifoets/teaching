@@ -6,37 +6,20 @@ how call microservice http and https
 how implements https in microservice
 ------------------------------------
 https://dzone.com/articles/how-to-achieve-oauth2-security-in-microservices-di
-@EnableResourceServer
-@Configuration
-extends ResourceServerConfigAdaptor
-String resourceId
-@Override both config method
-config(HttpSecurity)
 
-config(ResourceServerSecurityConfigurer)
-set resourceId
+Role	Responsibility
+Authorization Server	Authenticates clients/users, issues tokens (JWT or opaque).
+Resource Server	Hosts protected APIs, validates tokens from the Authorization Server.
+Client	The service or app calling the protected API using a token.
+
 
 @Configuration
-@EnableWebSecurity
-extends WebSecurityConfigureAdaptor
-cliend_id, client_secrate
-authUrl
-
-@Bean
-ResourceServerTokenService //see all param
-
-@Override
-AuthenticationManager
-setToken BEAN HERE
-
-or
-@Configuration
-@EnableMethodSecurity
 public class SecurityConfig {
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain resourceServerSecurityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/public").permitAll()
                 .anyRequest().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt());
@@ -292,7 +275,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 how to initialize jpa/dab configuration
-put any .sql file in class path spring automatically initialize
+add jpa dependency and properties user/password/url, driver
 
 shoud be any global varible in spring bean if yes how to manage singalton
 it update in synchronized blok for thread safty
@@ -344,10 +327,12 @@ public static void doWithRetry(int maxAttempts, Operation operation) {
 	 @Order
 	 87
 
-SELECT  * FROM table_name ORDER BY colm_name DESC LIMIT n - 1, 1;
+SELECT  * FROM table_name ORDER BY colm_name DESC LIMIT n - 1, 1; //LIMIT <offset>, <row_count>
 or
-SELECT  * FROM table_name ORDER BY colm_name DESC LIMIT 1 offset n-1;
+SELECT  * FROM table_name ORDER BY colm_name DESC LIMIT 1 offset n-1; //LIMIT <row_count> OFFSET <offset>
 This query will return the first row after the n-1 rows that should be the nth highest record.
+offset = how many rows to skip before starting to return results
+row_count = how many rows to return
 
 
 SELECT *
@@ -517,6 +502,7 @@ SELECT * FROM employee_hierarchy
 ORDER BY level, employee_id;
 
 Wipro
+========
 -------------
 MetaSpace
 -----
@@ -603,6 +589,7 @@ CREATE PROCEDURE GetEmployeeById(IN emp_id INT)
 BEGIN
     SELECT * FROM employees WHERE id = emp_id;
 END
+
 try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password)) {
             // Prepare the call
             CallableStatement stmt = conn.prepareCall("{ call GetEmployeeById(?) }");
@@ -658,7 +645,7 @@ proxy design pattern
 how to configure service discovery api gatway in ms
 
 what is service discovery and api gatway
-----------------------
+----------------------------------------
 an API gateway serves as the single entry point for all client requests, acting as a front-end for the microservices. Service discovery, 
 on the other hand, is a mechanism that allows microservices to find and communicate with each other within the application
 
@@ -715,7 +702,42 @@ find sum of age having same name in Student(name, age)
 segrate odd and even no in list using predicate
 write query to find all employee who dont have manager(is on bench)
 select *from employee where mgrid=null;
+
+difference between POST, PATCH AND PUT, how to efficient way use PATCH in lac of record have to update
+what is path variable
+how json to java and java to json get converted in MS request//HTTPMessageConverter/JAKSONConverter
+how to implement Circuit breaker pattern//add regiliance dependecnies, add properties of regiliance add @CircuitBreaker(name, fallbackmehtod)
+
+how many types of fallback in ms
+/1. Static Fallback //Always returns a fixed, pre-defined value when the main call fails.
+2. Dynamic Fallback// Calculates the fallback response based on error type, request parameters, or runtime conditions.
+3. Cache-Based Fallback// Returns the last known good response from a cache (in-memory, Redis, etc.).
+4. Secondary Service Fallback (Failover)//Calls an alternative microservice or backup system when the primary is down.
+
+Types of SAGA pattern in transaction management
+Choreography-based Saga (Event-Driven)// No central coordinator — services communicate by publishing and listening to events.Rollback is done by compensating transactions triggered by failure events.
+Orchestration-based Saga //A central Saga orchestrator (controller) tells each service what to do and in which order. Orchestrator handles the decision-making and compensating actions.
+
+
+how HttpMessageConverter play role in MS request/response//In Spring MVC / Spring Boot, an HttpMessageConverter is a strategy interface used to convert HTTP requests/responses to/from Java objects.
+
+Incoming HTTP Request
+      ↓
+[HttpMessageConverter] → Java Object (e.g., Controller param)
+      ↓
+Controller logic
+      ↓
+Java Object → [HttpMessageConverter]
+      ↓
+HTTP Response
+
+Mockito and PowerMockito difference
+
+
 =====================================================================================================
+========
+
+============================================
 paypal
 -----------------------------
 what r benifit we getting by stream programming
@@ -1026,5 +1048,25 @@ Event-driven	Promotes reactive, decoupled systems.
 can we use kafka for request/response communication betwwen two ms
 ChatGPT said:
 Yes, Kafka can be used for request/response communication between two microservices, but it’s not the ideal tool for synchronous communication. Kafka is inherently asynchronous, event-driven, and loosely coupled.
+========
+
+HCL
+=========================
+mokito and powermokito diff
+Static Method Mocking	❌ Not supported.	✅ Supported. Example: PowerMockito.mockStatic(ClassName.class).
+Final Class/Method Mocking	❌ Not supported (in older Mockito versions).
+(Note: From Mockito 2+, mocking final classes is possible with extra config.)	✅ Fully supported without extra config.
+Private Method Mocking	❌ Not supported.	✅ Supported via PowerMockito.spy() + PowerMockito.when() on private methods.
+Constructor Mocking	❌ Not supported.	✅ Supported via PowerMockito.whenNew().
+
+how to implement RateLimite
+binary search 
+api design
+doublton design 
+volatile keyword 
+
+Typs of SAGA pattern
+Choreography-based Saga (Event-Driven)// No central coordinator — services communicate by publishing and listening to events.Rollback is done by compensating transactions triggered by failure events.
+Orchestration-based Saga //A central Saga orchestrator (controller) tells each service what to do and in which order. Orchestrator handles the decision-making and compensating actions.
 
 
