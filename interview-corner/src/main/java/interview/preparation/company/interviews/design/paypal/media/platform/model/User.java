@@ -41,4 +41,52 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, name);
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Set<User> followers) {
+        this.followers = followers;
+    }
+
+    public Set<User> getFollowees() {
+        return followees;
+    }
+
+    public void setFollowees(Set<User> followees) {
+        this.followees = followees;
+    }
+
+    public Set<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(Set<User> friends) {
+        this.friends = friends;
+    }
+
+    public Set<String> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<String> posts) {
+        this.posts = posts;
+    }
 }
