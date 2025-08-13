@@ -1,0 +1,54 @@
+🔁 Simulation/Design-Based Questions
+#	Problem
+1	Implement Stack using Queue
+2	Implement Queue using Stack
+3	Implement LRU Cache (Least Recently Used)
+4	Implement Min Stack (getMin in O(1))
+5	Implement Max Stack
+6	Design Browser History (Back, Forward)
+7	Design a Circular Queue
+8	Implement a Double-Ended Queue (Deque)
+9	Implement a Trie (Prefix Tree)
+10	Design a HashMap / HashSet without using built-ins
+11	Implement LFU Cache (Least Frequently Used)
+12	Implement Priority Queue using Heap
+13	Design a Scheduler using Priority Queue
+14	Design a Stack with Middle Element Access
+15	Design a Snake Game (using Queue and Set)
+16	Design a Tic Tac Toe Game
+17	Design Hit Counter (last N seconds)
+18	Design Twitter (follow/unfollow/feed)
+19	Design Parking Lot System
+20	Design Rate Limiter (Token Bucket / Leaky Bucket)
+
+📚 Tree & Graph Based Design
+#	Problem
+21	Serialize and Deserialize a Binary Tree
+22	Clone an Undirected Graph
+23	Implement BST Iterator
+24	Check if Tree is BST
+25	Design File System using Trie
+26	Find Lowest Common Ancestor (LCA)
+
+🧠 Linked List Based
+#	Problem
+27	Reverse a Linked List
+28	Detect Loop in Linked List (Floyd’s algo)
+29	Find Intersection Point of Two Lists
+30	Copy List with Random Pointer
+31	LRU Cache using Doubly Linked List + Map
+
+📈 Array & Sliding Window
+#	Problem
+32	Implement a Circular Buffer
+33	Median in Sliding Window
+34	Sliding Window Maximum (Deque)
+35	Stock Span Problem (use stack)
+36	Next Greater Element
+
+📍 Bonus: Real-World Inspired System Design DS Problems
+#	Problem
+37	Design Elevator System (Queues, Scheduling)
+38	Design Messaging Queue (Kafka-like)
+39	Design In-Memory KV Store (like Redis)
+40	Autocomplete System (Trie + Heap)

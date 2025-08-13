@@ -1,0 +1,210 @@
+🔁 Simulation/Design-Based Questions
+#	Problem
+1	Implement Stack using Queue
+2	Implement Queue using Stack
+3	Implement LRU Cache (Least Recently Used)
+4	Implement Min Stack (getMin in O(1))
+5	Implement Max Stack
+6	Design Browser History (Back, Forward)
+7	Design a Circular Queue
+8	Implement a Double-Ended Queue (Deque)
+9	Implement a Trie (Prefix Tree)
+10	Design a HashMap / HashSet without using built-ins
+11	Implement LFU Cache (Least Frequently Used)
+12	Implement Priority Queue using Heap
+13	Design a Scheduler using Priority Queue
+14	Design a Stack with Middle Element Access
+15	Design a Snake Game (using Queue and Set)
+16	Design a Tic Tac Toe Game
+17	Design Hit Counter (last N seconds)
+18	Design Twitter (follow/unfollow/feed)
+19	Design Parking Lot System
+20	Design Rate Limiter (Token Bucket / Leaky Bucket)
+
+📚 Tree & Graph Based Design
+#	Problem
+21	Serialize and Deserialize a Binary Tree
+22	Clone an Undirected Graph
+23	Implement BST Iterator
+24	Check if Tree is BST
+25	Design File System using Trie
+26	Find Lowest Common Ancestor (LCA)
+
+🧠 Linked List Based
+#	Problem
+27	Reverse a Linked List
+28	Detect Loop in Linked List (Floyd’s algo)
+29	Find Intersection Point of Two Lists
+30	Copy List with Random Pointer
+31	LRU Cache using Doubly Linked List + Map
+
+📈 Array & Sliding Window
+#	Problem
+32	Implement a Circular Buffer
+33	Median in Sliding Window
+34	Sliding Window Maximum (Deque)
+35	Stock Span Problem (use stack)
+36	Next Greater Element
+
+📍 Bonus: Real-World Inspired System Design DS Problems
+#	Problem
+37	Design Elevator System (Queues, Scheduling)
+38	Design Messaging Queue (Kafka-like)
+39	Design In-Memory KV Store (like Redis)
+40	Autocomplete System (Trie + Heap)
+
+🛠 Want Ready-to-Code Templates?
+Let me know if you'd like:
+
+Java implementations of these (one by one)
+
+RxJava variants (for queue/stack/stream-like)
+
+JUnit test cases for each
+
+System design notes (for LRU/LFU/FileSystem etc.)
+
+You can also say something like:
+
+"Give me implementation + test for #3 (LRU Cache) in Java"
+and I’ll provide both.
+
+Would you like this list as a PDF or Excel file for tracking practice?
+
+
+
+
+
+
+
+
+You said:
+list of classical algo question
+
+
+ChatGPT said:
+Here’s a curated list of classical algorithm questions that every developer preparing for interviews or system-level coding should practice. These problems are time-tested, widely asked by companies like Google, Amazon, Meta, Microsoft, and are core to algorithmic mastery.
+
+✅ Classical Algorithm Questions
+🔁 Sorting and Searching
+#	Problem
+1	Implement Binary Search
+2	Implement Merge Sort
+3	Implement Quick Sort
+4	Find Kth Largest/Smallest using Heap or QuickSelect
+5	Search in a Rotated Sorted Array
+6	Find Peak Element (Binary Search based)
+7	Count Inversions in Array (Merge Sort mod)
+8	Find First and Last Position of Element in Sorted Array
+
+🎯 Greedy Algorithms
+#	Problem
+9	Activity Selection Problem
+10	Fractional Knapsack
+11	Huffman Encoding
+12	Job Sequencing with Deadlines
+13	Gas Station Circular Tour
+14	Jump Game I & II
+15	Minimum Number of Platforms (Train Problem)
+
+🧠 Dynamic Programming (DP)
+#	Problem
+16	0/1 Knapsack
+17	Longest Common Subsequence (LCS)
+18	Longest Increasing Subsequence (LIS)
+19	Matrix Chain Multiplication
+20	Edit Distance
+21	Subset Sum / Partition Equal Subset
+22	Coin Change (min # of coins)
+23	Word Break
+24	House Robber
+25	Max Sum Subarray (Kadane’s Algorithm)
+26	Palindromic Substrings
+27	Rod Cutting
+28	Unique Paths in a Grid
+29	Wildcard Matching (with ? and *)
+
+🔄 Recursion and Backtracking
+#	Problem
+30	N-Queens Problem
+31	Rat in a Maze
+32	Sudoku Solver
+33	Generate All Subsets (Power Set)
+34	Generate All Permutations
+35	Word Search in Grid
+36	Combination Sum
+37	Palindrome Partitioning
+38	Letter Combinations of a Phone Number
+
+🌐 Graph Algorithms
+#	Problem
+39	BFS and DFS Traversal
+40	Detect Cycle (Directed/Undirected)
+41	Topological Sort (Kahn's Algo / DFS)
+42	Dijkstra's Algorithm (Shortest Path)
+43	Bellman-Ford Algorithm
+44	Floyd-Warshall (All-Pairs Shortest Path)
+45	Kruskal’s Algorithm (MST)
+46	Prim’s Algorithm (MST)
+47	Number of Islands
+48	Clone Graph
+49	Course Schedule (Cycle in DAG)
+50	Graph Coloring
+
+🧵 Sliding Window & Two Pointers
+#	Problem
+51	Longest Substring Without Repeating Characters
+52	Minimum Window Substring
+53	Longest Substring with K Distinct Characters
+54	Maximum Sum Subarray of Size K
+55	Check if Permutation Exists in String
+56	Trapping Rain Water
+57	Container With Most Water
+58	3Sum / 4Sum Problems
+
+📊 Bit Manipulation
+#	Problem
+59	Count Set Bits
+60	Single Number (XOR Trick)
+61	Power of Two
+62	Bitwise AND of Range
+63	Sum of Two Integers (without +)
+
+📐 Math & Number Theory
+#	Problem
+64	Sieve of Eratosthenes (Primes)
+65	GCD using Euclid’s Algorithm
+66	Modular Exponentiation
+67	Count Digits / Reverse Integer
+68	Palindrome Number
+69	Roman to Integer & vice versa
+70	Excel Column Title to Number
+
+⛓️ Union-Find / Disjoint Set
+#	Problem
+71	Union Find with Path Compression
+72	Number of Connected Components
+73	Accounts Merge
+74	Redundant Connection
+
+🧰 Miscellaneous Algorithms
+#	Problem
+75	Implement LRU Cache
+76	Find Missing Number in Array
+77	Find Duplicate Number (Floyd’s Cycle)
+78	Median of Two Sorted Arrays
+79	Merge Intervals
+80	Interval Scheduling
+81	Detect Palindromic Substring
+82	Top K Frequent Elements
+83	K Closest Points to Origin
+84	Skyline Problem
+85	LFU Cache Design
+
+📦 Bonus: System-level Algorithmic Thinking
+#	Problem
+86	Design URL Shortener
+87	Design Web Crawler (BFS)
+88	Design Load Balancer
+89	Design Distributed Cache
+90	Rate Limiter Algorithm (Leaky Bucket / Token Bucket)

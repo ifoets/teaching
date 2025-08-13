@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class IPayPalTest {
@@ -43,5 +42,12 @@ public class IPayPalTest {
         List<String> rsList = payPal.sortedSubsequenceX(str, str.toCharArray(),0);
         Assert.assertEquals(8,rsList.size());
         rsList.forEach(System.out::println);
+    }
+    /*Container With Most Water*/
+    @Test
+    public void containerMaxWaterTest()
+    {
+       int[] height = {1,8,6,2,5,4,8,3,7};
+       Assert.assertEquals(49,payPal.containerMaxWater(height));
     }
 }
