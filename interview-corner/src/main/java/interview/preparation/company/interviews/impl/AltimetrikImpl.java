@@ -149,7 +149,7 @@ public  class AltimetrikImpl implements IAltimetrik {
         String maxLenPalindromStr=null;
         for(int i=0;i<str.length();i++)
         {
-            for(int j=i+1;j<str.length() ;j++)
+            for(int j=i+1;j<=str.length() ;j++)
             {
                     String s = str.substring(i, j);
                     if (isPalindrome(s))
