@@ -501,9 +501,6 @@ WITH RECURSIVE employee_hierarchy AS (
 SELECT * FROM employee_hierarchy
 ORDER BY level, employee_id;
 
-Wipro
-========
--------------
 MetaSpace
 -----
 In Java 8, PermGen method area replaced with MetaSpace. They have moved permGem to the separate memory in the native OS and that is called MetaSpace.
@@ -697,6 +694,7 @@ management.endpoints.web.exposure.include=startup
 Reduce logging on startup:
 logging.level.root=WARN
 logging.level.org.springframework=ERROR
+
 find no of unique substring
 find sum of age having same name in Student(name, age)
 segrate odd and even no in list using predicate
@@ -733,11 +731,6 @@ HTTP Response
 
 Mockito and PowerMockito difference
 
-
-=====================================================================================================
-========
-
-============================================
 paypal
 -----------------------------
 what r benifit we getting by stream programming
