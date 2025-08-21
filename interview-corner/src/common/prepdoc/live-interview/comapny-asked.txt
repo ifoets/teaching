@@ -731,9 +731,6 @@ HTTP Response
 
 Mockito and PowerMockito difference
 
-
-=====================================================================================================
-
 paypal
 -----------------------------
 what r benifit we getting by stream programming
