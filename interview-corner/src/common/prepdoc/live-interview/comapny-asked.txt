@@ -7,11 +7,11 @@ how implements https in microservice
 ------------------------------------
 https://dzone.com/articles/how-to-achieve-oauth2-security-in-microservices-di
 
+
 Role	Responsibility
 Authorization Server	Authenticates clients/users, issues tokens (JWT or opaque).
 Resource Server	Hosts protected APIs, validates tokens from the Authorization Server.
 Client	The service or app calling the protected API using a token.
-
 
 @Configuration
 public class SecurityConfig {
@@ -700,6 +700,38 @@ find sum of age having same name in Student(name, age)
 segrate odd and even no in list using predicate
 write query to find all employee who dont have manager(is on bench)
 select *from employee where mgrid=null;
+
+difference between POST, PATCH AND PUT, how to efficient way use PATCH in lac of record have to update
+what is path variable
+how json to java and java to json get converted in MS request//HTTPMessageConverter/JAKSONConverter
+how to implement Circuit breaker pattern//add regiliance dependecnies, add properties of regiliance add @CircuitBreaker(name, fallbackmehtod)
+
+how many types of fallback in ms
+/1. Static Fallback //Always returns a fixed, pre-defined value when the main call fails.
+2. Dynamic Fallback// Calculates the fallback response based on error type, request parameters, or runtime conditions.
+3. Cache-Based Fallback// Returns the last known good response from a cache (in-memory, Redis, etc.).
+4. Secondary Service Fallback (Failover)//Calls an alternative microservice or backup system when the primary is down.
+
+Types of SAGA pattern in transaction management
+Choreography-based Saga (Event-Driven)// No central coordinator — services communicate by publishing and listening to events.Rollback is done by compensating transactions triggered by failure events.
+Orchestration-based Saga //A central Saga orchestrator (controller) tells each service what to do and in which order. Orchestrator handles the decision-making and compensating actions.
+
+
+how HttpMessageConverter play role in MS request/response//In Spring MVC / Spring Boot, an HttpMessageConverter is a strategy interface used to convert HTTP requests/responses to/from Java objects.
+
+Incoming HTTP Request
+      ↓
+[HttpMessageConverter] → Java Object (e.g., Controller param)
+      ↓
+Controller logic
+      ↓
+Java Object → [HttpMessageConverter]
+      ↓
+HTTP Response
+
+Mockito and PowerMockito difference
+
+=======
 
 difference between POST, PATCH AND PUT, how to efficient way use PATCH in lac of record have to update
 what is path variable
