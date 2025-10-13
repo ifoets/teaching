@@ -349,9 +349,75 @@ public class IWissenIninfotechTest {
         Assert.assertEquals(4,iw.posBeforeAfterSumEqual(new int[]{2, 3, 4, 1, 4, 5}));
         Assert.assertEquals(-1,iw.posBeforeAfterSumEqual(new int[]{1,2,3}));
     }
+
+    /**Round-1 Evaluating round*/
+    /**Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.*/
     @Test
-    public void test()
+    public void firstNonRepeatingCharIndexTest()
     {
-        Assert.assertNotNull(iw);
+        Assert.assertEquals(0,iw.firstNonRepeatingCharIndex("abcdef"));
+        Assert.assertEquals(0,iw.firstNonRepeatingCharIndex("mississippi"));
+        Assert.assertEquals(1,iw.firstNonRepeatingCharIndex("abcadef"));
+    }
+
+    /** Find char count in string stream apis**/
+    @Test
+    public void findCharCountTest()
+    {
+        Map<Character,Long> map = iw.findCharCount("abhimanyu");
+        System.out.println(map);
+    }
+
+    @Test/** group the angram words from list of String*/
+    public void groupAngramTest()
+    {
+        List<String> words = Arrays.asList("eat", "tea", "tan", "ate", "nat", "bat");
+        Map<String,List<String>> map =  iw.groupAngram(words);
+        System.out.println(map);
+    }
+    /**marge the map to sum value*/
+    @Test
+    public void margeTreeMapTest()
+    {
+        TreeMap<Integer, Integer> treeMap1 = new TreeMap<>();
+        treeMap1.put(1, 10);
+        treeMap1.put(2, 20);
+        treeMap1.put(3, 30);
+
+        TreeMap<Integer, Integer> treeMap2 = new TreeMap<>();
+        treeMap2.put(2, 15);
+        treeMap2.put(3, 25);
+        treeMap2.put(4, 40);
+
+        TreeMap<Integer,Integer> map = iw.mergeTreeMap(treeMap1,treeMap2);
+        System.out.println(map);
+    }
+    @Test
+    public void margeListOfTreeMapsTest()
+    {
+        List<Map<Integer, Integer>> listOfMaps = Arrays.asList(
+            Map.of(1, 10, 2, 20),
+            Map.of(2, 30, 3, 40),
+            Map.of(1, 5, 3, 15, 4, 25)
+        );
+        TreeMap<Integer,Integer> map = iw.mergeListOfTreeMaps(listOfMaps);
+        System.out.println(map);
+    }
+    /**sort string char based on frequency and same frequency should have maintained order as it is in string*/
+    @Test
+    public void sortOnFrequencyTest()
+    {
+        Assert.assertEquals("eebbtr",iw.sortOnFrequency("treebb"));
+        Assert.assertEquals("bbbeetr",iw.sortOnFrequency("treebbb"));
+        Assert.assertEquals("tteebbr",iw.sortOnFrequency("ttreebb"));
+    }
+
+    /**sort string char based on frequency and then alphabetical order*/
+    @Test
+    public void sortOnFrequencyThenAlphaTest()
+    {
+        Assert.assertEquals("bbeert",iw.sortOnFrequencyThenAlpha("treebb"));
+        Assert.assertEquals("bbbeert",iw.sortOnFrequencyThenAlpha("treebbb"));
+        Assert.assertEquals("bbeettr",iw.sortOnFrequencyThenAlpha("ttreebb"));
     }
 }

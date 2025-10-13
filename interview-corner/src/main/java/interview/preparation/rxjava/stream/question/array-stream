@@ -1,0 +1,120 @@
+🧠 Category 1: Frequency & Counting (Fundamental Patterns)
+1.	Count frequency of each element in an array
+2.	Find the most frequent element
+3.	Find the least frequent element
+4.	Find top K frequent elements
+5.	Count occurrences of a specific number
+6.	Group elements by frequency (Map<frequency, List<elements>>)
+7.	Check if two arrays have the same frequency distribution
+8.	Check if an array can be rearranged to form a palindrome
+9.	Check if two arrays are permutations of each other
+10.	Find elements appearing more than n/3 times
+________________________________________
+🔁 Category 2: Sorting, Merging & Transformations
+11.	Sort array in ascending/descending order using streams
+12.	Sort array by frequency of elements
+13.	Sort array by number of set bits in binary representation
+14.	Merge two sorted arrays without duplicates
+15.	Merge multiple arrays into one sorted array
+16.	Sort based on absolute values (e.g., distance from 0)
+17.	Sort based on length (for String arrays)
+18.	Sort based on frequency, then value (tie-breaker)
+19.	Rotate an array left/right by K positions
+20.	Zig-zag sort (alternate smaller and larger elements)
+________________________________________
+🧮 Category 3: Numeric Operations & Aggregations
+21.	Find max, min, sum, average of array elements
+22.	Find second largest and second smallest
+23.	Find Kth largest element
+24.	Find missing number in 1…n sequence
+25.	Find duplicate number in 1…n+1 sequence
+26.	Find intersection sum of two arrays
+27.	Check if subarray with sum = target exists
+28.	Find subarray with maximum sum (Kadane’s Algorithm using streams idea)
+29.	Compute prefix sum and suffix sum arrays
+30.	Find equilibrium index (sum of left = sum of right)
+________________________________________
+🧭 Category 4: Searching & Set-Based Problems
+31.	Binary search using streams (custom implementation)
+32.	Linear search using anyMatch / filter
+33.	Find common elements between two arrays
+34.	Find elements present in one but not the other (difference)
+35.	Find elements that are unique to both arrays (symmetric difference)
+36.	Check if array contains duplicates
+37.	Check if all elements are unique
+38.	Find first repeating element
+39.	Find first non-repeating element
+40.	Find indexes of a given element using streams
+________________________________________
+🧩 Category 5: Rearrangement & Partitioning
+41.	Move all zeroes to the end while maintaining order
+42.	Partition array into evens and odds
+43.	Rearrange array to place positive and negative alternately
+44.	Stable partition based on a predicate (e.g., divisible by 3)
+45.	Shuffle array randomly
+46.	Rearrange array in wave form (peak-valley-peak…)
+47.	Segregate 0s, 1s, and 2s (Dutch national flag)
+48.	Rearrange array based on frequency parity (even/odd)
+49.	Group numbers by sign (positive, negative, zero)
+50.	Move prime numbers to front
+________________________________________
+🧠 Category 6: Combinatorial / Pair / Triplet Problems
+51.	Find all pairs with a given sum
+52.	Find all unique triplets with a given sum (3-sum problem)
+53.	Count pairs with sum divisible by K
+54.	Find pair with minimum absolute difference
+55.	Find triplets with product = target
+56.	Count pairs with XOR = target
+57.	Find two elements closest to each other in array
+58.	Find all pairs whose difference is exactly K
+59.	Count pairs (i,j) where arr[i] > arr[j] (inversions)
+60.	Find quadruplets that sum to a target (4-sum)
+________________________________________
+🔢 Category 7: String Arrays / Conversion Problems
+61.	Convert int[] to List<Integer> and vice versa using streams
+62.	Flatten 2D array to 1D using streams
+63.	Find longest string in String[]
+64.	Count frequency of words in a String[]
+65.	Remove duplicates from String[]
+66.	Sort String[] by length / lexicographically using streams
+67.	Group anagrams from String[] using streams
+68.	Find all palindromic strings in array
+69.	Check if all strings are unique (case insensitive)
+70.	Merge two String arrays and remove duplicates
+________________________________________
+🧠 Category 8: Subarrays / Sliding Window / Intervals
+71.	Generate all subarrays using IntStream ranges
+72.	Find subarray with maximum average of size K
+73.	Find longest subarray with all distinct elements
+74.	Find longest subarray with sum = target
+75.	Count number of subarrays with sum divisible by K
+76.	Check if array has increasing triplet subsequence
+77.	Find longest increasing contiguous subarray
+78.	Count number of subarrays with all elements even
+79.	Check if array contains a subarray with 0 sum
+80.	Find smallest subarray with sum >= target
+________________________________________
+🧠 Category 9: Advanced Grouping / Partition Problems
+81.	Group elements by modulo value (e.g., % 3)
+82.	Group numbers by number of digits
+83.	Group by even/odd index positions
+84.	Group array into chunks of fixed size using streams
+85.	Partition array around a pivot value
+86.	Group by frequency buckets (e.g., map<frequency, List>)
+87.	Group by sorted characters (anagram grouping)
+88.	Group by first digit of each number
+89.	Partition array into k equal-sum subsets (NP-hard → interesting to discuss)
+90.	Group integers by bit-count
+________________________________________
+🚀 Category 10: Mixed / Tricky / Pattern Problems
+91.	Find majority element (> n/2) using streams
+92.	Find leader elements (greater than all to the right)
+93.	Find peak elements using IntStream
+94.	Find elements appearing exactly twice
+95.	Check if array can be divided into pairs whose sum is divisible by K
+96.	Check if array elements form an arithmetic progression
+97.	Check if array elements form a geometric progression
+98.	Find minimum jumps to reach the end (greedy + streams support)
+99.	Find length of longest consecutive sequence
+100.	Reconstruct array from pairwise sums
+

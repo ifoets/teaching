@@ -1,7 +1,8 @@
 
 Load balancing
 --------------------------
-https://www.sayonetech.com/blog/load-balancing-microservices-architecture/#:~:text=Two%20types%20of%20load%20balancing,in%20front%20of%20the%20servers.
+
+
 server side load balancers nginx, netscaler etc.
 https://www.vultr.com/docs/how-to-setup-load-balancing-using-nginx?utm_source=performance-max-apac&utm_medium=paidmedia&obility_id=16876059738&utm_adgroup=&utm_campaign=&utm_term=&utm_content=&gclid=EAIaIQobChMIxfqoov6T_AIVTpJmAh2dqgQWEAAYAiAAEgLULfD_BwE
 

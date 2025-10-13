@@ -7,11 +7,17 @@ how implements https in microservice
 ------------------------------------
 https://dzone.com/articles/how-to-achieve-oauth2-security-in-microservices-di
 
-Role	Responsibility
-Authorization Server	Authenticates clients/users, issues tokens (JWT or opaque).
-Resource Server	Hosts protected APIs, validates tokens from the Authorization Server.
+Role	                                            Responsibility
+Authorization Server	                         Authenticates clients/users, issues tokens (JWT or opaque).
+Resource Server	Hosts protected APIs,            validates tokens from the Authorization Server.
 Client	The service or app calling the protected API using a token.
 
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://auth-server.example.com/realms/myrealm/protocol/openid-connect/certs
 
 @Configuration
 public class SecurityConfig {
@@ -33,13 +39,19 @@ https://dzone.com/articles/how-to-achieve-oauth2-security-in-microservices-di
 
 CrossOriginSiteinjection explains
 ---------------------
+CORS comes into play when a frontend (React/Angular/Vue) hosted at http://localhost:3000 calls a backend API at http://localhost:8080.
+
 CORS (Cross-Origin Resource Sharing, applications can only access resources from the same domain they are hosted on)
-If a web page from example.com tries to access resources from api.example.com, the browser will check if CORS is enabled and allowed by the server of api.example.comand
+If a web page from example.com tries to access resources from api.example.com, the browser will check if CORS is enabled and allowed by the server of api.example.com and
 CORS is configured on the server-side using HTTP header
 CORS is a browser-based feature,
  public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Allow all endpoints
                         .allowedOrigins("https://example.com") // Set your allowed origins
+						
+CSRF attack = a malicious site tricks a logged-in user’s browser into making an unwanted request (using the existing session cookie).
+CSRF matters when your app uses sessions + cookies for authentication.
+If you use JWT/OAuth2 Bearer tokens, you usually disable CSRF (since no session cookies are sent automatically).
 
 CSRF (Cross-Site Request Forgery)
 attacker tricks a user's browser into performing unwanted actions on a website they are logged into
@@ -73,6 +85,14 @@ HTTPS for secure communication
 Roles
 Consumer, Service Provider, User
 Client, Authorization Server, Resource Server, Resource Owner
+Summary of Interactions
+Step	Action	Who Talks to Whom
+1	Request Auth Code	Client → Authorization Server
+2	Authenticate User	Authorization Server ↔ Resource Owner
+3	Auth Code returned	Authorization Server → Client
+4	Exchange Code for Token	Client → Authorization Server
+5	Access Protected Resource	Client → Resource Server
+6	Validate Token & Serve Data	Resource Server → Client
 Access Tokens
 Can be long-lived
 Often have expiration times with refresh tokens
@@ -220,7 +240,7 @@ filter/search/pagination/download if huge data
 
 Transactional Levels:
 DEFAULT: Uses the database's default isolation level, often READ_COMMITTED.
-READ_UNCOMMITTED: Allows dirty reads (reading uncommitted changes).
+READ_UNCOMMITTED: Allows dirty reads (reading uncommitted changes).One transaction is allowed to read uncommitted changes made by another transaction.This means it could read data that might later be rolled back, leading to inconsistent or invalid results
 READ_COMMITTED: Prevents dirty reads but might allow non-repeatable reads.
 REPEATABLE_READ: Prevents non-repeatable reads but might allow phantom(occurs when a transaction retrieves a set of rows twice and new rows are inserted into or removed from that set by another transaction that is committed in between) reads.
 SERIALIZABLE: Highest isolation level, preventing all concurrency anomalies, often at the cost of performance.
@@ -273,6 +293,14 @@ spring:
     username: youruser
     password: yourpassword
     driver-class-name: com.mysql.cj.jdbc.Driver
+	
+	Microservice does not validate encrypted password itself.
+
+Instead:
+Password is decrypted at startup by a library (Jasypt, Vault, etc.).
+Decrypted password is passed to DataSource.
+
+Database itself validates the password when establishing connection.
 
 how to initialize jpa/dab configuration
 add jpa dependency and properties user/password/url, driver
@@ -333,6 +361,16 @@ SELECT  * FROM table_name ORDER BY colm_name DESC LIMIT 1 offset n-1; //LIMIT <r
 This query will return the first row after the n-1 rows that should be the nth highest record.
 offset = how many rows to skip before starting to return results
 row_count = how many rows to return
+
+jpined 3 table
+---------------------
+SELECT t1.col1, t2.col2, t3.col3
+FROM (
+    SELECT a.id, a.name, b.order_id, b.amount
+    FROM customers a
+    JOIN orders b ON a.id = b.customer_id
+) t1
+JOIN payments t3 ON t1.order_id = t3.order_id;
 
 
 SELECT *
@@ -418,7 +456,7 @@ write discovery server ms
 create spring boot with
 @SpringBootApplication
 @EnableEurekaServer
-pplication.properties file is given below
+application.properties file is given below
 
 application.properties
 ----------------------------
@@ -432,11 +470,23 @@ create spring booth with
 @SpringBootApplication
 @EnableEurekaClient
 
-application.properties
--------------------------
-eureka.client.serviceUrl.defaultZone  = http://localhost:8761/eureka
-eureka.client.instance.preferIpAddress = true
-spring.application.name = eurekaclient
+# Application name (unique per microservice)
+spring.application.name=order-service
+
+# Port of the service
+server.port=8081
+
+# Eureka client configs
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+✅ Explanation:
+
+register-with-eureka=true → Client registers with Eureka.
+
+fetch-registry=true → Client fetches other service info from Eureka.
+
+defaultZone → URL of Eureka server (or multiple if HA setup).
 
 
 design coposite key in hibernate
@@ -569,9 +619,9 @@ Service discovery and api gatway
 profiling how to do and handle
 find index of vowel char in str
 how to handle distributed transactions
+---------------------------------------
 
 spring to spring boot migration
-
 
 how to migrate spring to microservices/spring boot
 ------------------------------------
@@ -657,7 +707,8 @@ It determines which microservice should handle a particular request and forwards
 Cross-cutting Concerns:
 The gateway handles tasks like authentication, authorization, rate limiting, and security, simplifying the development and maintenance of microservices.
 Load Balancing:
-It can distribute traffic across multiple instances of a microservice to ensure high availability and performance.
+It can distribute traffic across multiple instances of a micr
+oservice to ensure high availability and performance.
 
 Service Discovery:
 Dynamic Location:
@@ -703,8 +754,18 @@ segrate odd and even no in list using predicate
 write query to find all employee who dont have manager(is on bench)
 select *from employee where mgrid=null;
 
-difference between POST, PATCH AND PUT, how to efficient way use PATCH in lac of record have to update
-what is path variable
+difference between POST, PATCH AND PUT, how to efficient way use PATCH in lac of record have to update->Define a custom bulk patch endpoint that accepts an array of updates in one call:
+
+what is path variable and query parma
+--------------------------------------
+@GetMapping("/users/{id}")
+public User getUser(@PathVariable Long id)/GET /users/101
+
+@GetMapping("/users")
+public List<User> searchUsers(@RequestParam(required = false) String role,
+                              @RequestParam(defaultValue = "10") int limit)
+		GET /users?role=ADMIN&limit=5					  
+
 how json to java and java to json get converted in MS request//HTTPMessageConverter/JAKSONConverter
 how to implement Circuit breaker pattern//add regiliance dependecnies, add properties of regiliance add @CircuitBreaker(name, fallbackmehtod)
 
@@ -732,6 +793,15 @@ Java Object → [HttpMessageConverter]
 HTTP Response
 
 Mockito and PowerMockito difference
+Stub methods: when(...).thenReturn(...).
+Verify calls: verify(mock).someMethod().
+Works with @Mock, @InjectMocks, @Spy//@Spy is used in Mockito to create a partial mock.@Mock (which gives a “blank” fake object), a @Spy wraps a real object.By default, a spy calls the real methods of the object, unless explicitly stubbed.
+
+An extension of Mockito + additional capabilities (using bytecode manipulation via ASM).
+Mock static methods.
+Mock private methods.
+Mock constructors (new).
+Mock final classes/methods (before Mockito 2
 
 
 =====================================================================================================
@@ -853,7 +923,45 @@ https://github.com/hendisantika/spring-boot-security-oauth2-example
 8.How to recognise this access api is fake acess, Docc attack //Validate all tokens (signature, expiration, issuer)
 9.Dev ops entire flow
 10.Docker koobernet, CI/CD
+------------------------------------
+CI/CD Tools Commonly Used in MS
+CI/CD Orchestrators: Jenkins, GitHub Actions, GitLab CI/CD, CircleCI, Azure DevOps, ArgoCD.
+Container Registry: Docker Hub, AWS ECR, GCP Artifact Registry.
+Deployment: Kubernetes, Helm, ArgoCD, Spinnaker.
+Monitoring after Deploy: Prometheus, Grafana, ELK, Jaeger.
+
+----
+Example CI/CD Flow for a Microservice
+
+Developer pushes code → GitHub.
+GitHub Actions/Jenkins pipeline triggers.
+Pipeline does:
+Checkout → Build → Unit Test → Code Quality Scan.
+Build Docker Image → Push to Registry.
+Deploy to Kubernetes (dev/stage).
+Run Integration Tests.
+If approved → Deploy to Production (via Helm/ArgoCD).
+Monitoring checks service health.
+
+
+
 11.HOw to acess properties in spring boot/ how to update live properties in production
+/@Value("${app.message}")
+private String message;
+Normally, properties are read only once at startup.
+But in production, we often want dynamic refresh without restart.
+a) Spring Boot + @RefreshScope (with Spring Cloud Config)//Use @ConfigurationProperties instead of @Value for bulk configs.
+@RefreshScope
+@RestController
+public class MessageController {
+    @Value("${app.message}")
+    private String message;
+	POST /actuator/refresh
+b) Dynamic Config from DB or Redis
+d) Hot Reload with Spring Cloud Bus
+If you have multiple instances, you can broadcast refresh via Spring Cloud Bus (RabbitMQ/Kafka).
+Update config in Git → push event → all instances reload properties instantly.	
+
 12. mfa authenticaiton
 https://www.javadevjournal.com/spring-security/two-factor-authentication-with-spring-security/
 
@@ -1015,6 +1123,8 @@ Important for APIs and event processing in distributed systems.
 how pallel stream api work internall /join and fork using no of core cup threads
 what is JWT token and when and where it get used and how to use implementation
 what is Dead Latter Query
+----
+A Dead Letter Queue is a special queue where messages go when they cannot be processed successfully by a consumer.
 ----------------
 Dead Letter Queue (DLQ)
 As described earlier, a DLQ is a messaging concept (used in systems like SQS, RabbitMQ, Kafka, etc.) for handling messages that can't be successfully processed.
@@ -1068,5 +1178,9 @@ volatile keyword
 Typs of SAGA pattern
 Choreography-based Saga (Event-Driven)// No central coordinator — services communicate by publishing and listening to events.Rollback is done by compensating transactions triggered by failure events.
 Orchestration-based Saga //A central Saga orchestrator (controller) tells each service what to do and in which order. Orchestrator handles the decision-making and compensating actions.
+
+
+Randstad Digital
+---------------------------------------------------
 
 

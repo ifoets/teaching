@@ -22,7 +22,7 @@ public class StreamGroupByImpl implements IStreamGroupBy {
         return
         ll.stream().flatMap(Collection::stream).collect(
             Collectors.groupingBy(
-                s-> s.toCharArray()[0],
+                s-> s.charAt(0),
                  Collectors.toList()
             )
         );
@@ -120,7 +120,13 @@ public class StreamGroupByImpl implements IStreamGroupBy {
             list.stream()
                 .collect(
                     Collectors.groupingBy(
-                        i-> i%3==0 && i%5 ==0 ? "FizzBuzz" : i%3==0 ? "Fizz" : i%5==0 ? "Buzz" : "NotFizzBzz",
+                        i-> i%3==0 && i%5 ==0
+                            ? "FizzBuzz"
+                            : i%3==0
+                            ? "Fizz"
+                            : i%5==0
+                            ? "Buzz"
+                            : "NotFizzBzz",
                         Collectors.toList()
                     )
                 );
