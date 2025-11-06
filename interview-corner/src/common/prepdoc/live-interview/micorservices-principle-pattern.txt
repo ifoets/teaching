@@ -60,7 +60,7 @@ Components of Microservices
 
 Challenges of Microservices Architecture
 =========================================
-	1. Bounded Context
+	1. Bounded Context//A Bounded Context defines a logical boundary around a specific domain or subdomain where a particular model applies consistently.
 	2. Dynamic Scale up and Scale Down
 	3. Monitoring
 	4. Fault Tolerance
@@ -128,6 +128,19 @@ In this article, we are going to discuss 10 main design patterns which are menti
 	8. Circuit Breaker //https://javatechonline.com/how-to-implement-hystrix-circuit-breaker-in-microservices-application/
 	9. Externalized Configuration
 	10. Consumer-Driven Contract Tracing
+
+SAGA:
+A Saga is a sequence of local transactions (each within a single microservice) where:
+Each local transaction updates the data in its own service.
+If one transaction fails, compensating transactions are executed to undo the effects of previous successful transactions.
+
+1. Choreography (Event-Based)
+Each service performs its local transaction and publishes an event.
+Other services listen for that event and react accordingly.
+
+2. Orchestration (Centralized Coordinator)
+A Saga Orchestrator controls the flow.
+It tells each service what to do and handles failures explicitly.
 
 Twelve-Factor Methodology in a Spring Boot Microservice
 ---------------------------------------------------------------------

@@ -17,10 +17,10 @@ public class IRandstadDigitalTest {
     }
 
     @Test
-    public void findUubStrTest()
+    public void findSubStrTest()
     {
         String str ="This ERROR is bug, ERROR get here, ERROR on ERROR";
-        Assert.assertEquals(4,ird.findUubStr(str,"ERROR").intValue());
+        Assert.assertEquals(4,ird.findSubStr(str,"ERROR").intValue());
     }
 
     @Test

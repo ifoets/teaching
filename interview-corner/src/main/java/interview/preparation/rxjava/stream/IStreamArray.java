@@ -26,7 +26,7 @@ public interface IStreamArray {
     Map<Integer, List<Integer>> groupByFrequency(int[] a);
 
     /**7.	Check if two arrays have the same frequency distribution*/
-    boolean checkSameFrequency(int a[],int []b);
+    boolean checkSameFrequency(int[] a,int []b);
 
     /**8.	Check if an array can be rearranged to form a palindrome**/
     boolean canArrangeInPalindrome(int []a);
@@ -153,19 +153,165 @@ public interface IStreamArray {
     int[] movePrimeNoToFront(int[]a );
 
     //    Category 6: Combinatorial / Pair / Triplet Problems
-    //51.	Find all pairs with a given sum
-    //52.	Find all unique triplets with a given sum (3-sum problem)
-    //53.	Count pairs with sum divisible by K
-    //54.	Find pair with minimum absolute difference
-    //55.	Find triplets with product = target
-    //56.	Count pairs with XOR = target
-    //57.	Find two elements closest to each other in array
-    //58.	Find all pairs whose difference is exactly K
-    //59.	Count pairs (i,j) where arr[i] > arr[j] (inversions)
-    //        60.	Find quadruplets that sum to a target (4-sum)
+    /**51.	Find all pairs with a given sum**/
+    List<int[]> findAllPairSum(int[]a, int sum);
+
+    /**52.	Find all unique triplets with a given sum (3-sum problem)**/
+    List<List<Integer>> findAllTriplets(int[]a, int sum);
+    List<Integer> closestTriplet(int[]a,int target);
+
+    /**53.	Count pairs with sum divisible by K*/
+    List<int[]> findAllPairDivisible(int[]a, int k);
+
+    /**54.	Find pair with minimum absolute difference**/
+    int[] pairMinAbsDiff(int[]a);
+
+    /**55.	Find triplets with product = target**/
+    List<int[]> findTripletsProductTarget(int[]a, int target);
+
+    /**56.	Count pairs with XOR = target**/
+    List<int[]> findPairsWithXOR(int []a,int target);
+
+    /**57.	Find two elements closest to each other in array**/
+    int[] twoClosestElem(int[]a);
+
+    /**58.	Find all pairs whose difference is exactly K**/
+    List<int[]> allPairsDiffK(int[]a, int k);
+
+    /**59.	all pairs (i,j) where arr[i] > arr[j] (inversions)**/
+    List<int[]> pairGoesDown(int[]a);
+
+    /**59.	Count pairs (i,j) where arr[i] > arr[j] (inversions)**/
+    long pairGoesDownCount(int[]a);
+
+    /** 60.	Find quadruplets that sum to a target (4-sum)**/
+    List<List<Integer>> quadrupletsSumTarget(int[]a, int target);
+
+/* /Category 7: String Arrays / Conversion Problems**/
+    /**61.	Convert int[] to List<Integer> and vice versa using streams**/
+    List<Integer> toList(int[]a);
+    int[] toArray(List<Integer> list);
+
+    /**62.	Flatten 2D array to 1D using streams**/
+    int[] twoDArrayTo1D(int[][]a);
+
+    /**63.	Find longest string in String[] **/
+    String longestStr(String[] strA);
+
+    /**64.	Count frequency of words in a String[]**/
+    Map<String,Long> countFrequency(String[] strA);
+
+    /**65.	Remove duplicates from String[]**/
+    String[] removeDuplicate(String[] strA);
+
+    /**66.	Sort String[] by length / lexicographically using streams**/
+    String[] sortByLength(String[] strA);
+
+    /**67.	Group anagrams from String[] using streams**/
+    Map<String,List<String>> groupAnagrams(String[] strA);
+
+    /**68.	Find all palindromic strings in array**/
+    List<String> allPalindromic(String[] strA);
+
+    /**69.	Check if all strings are unique (case insensitive)**/
+    boolean isAllStringUnique(String[] strA);
+
+    /**70.	Merge two String arrays and remove duplicates**/
+    List<String> mergeAndRemoveDuplicate(String[] strA, String[]strB);
 /**---------------------------------------------------question comes in mind-------------------------------------------------------------------**/
     /** Reverse order of an array**/
     int [] reverseOrderOfArray(int[] a);
 
+/* *    Category 8: Subarrays / Sliding Window / Intervals*/
+    /**71.	Generate all subarrays using IntStream ranges**/
+    List<int[]> generateAllSubArrays(int[]a);
 
+    /**72.	Find subarray with maximum average of size K**/
+    List<int[]> maxAvgSubArrayOfSizeK(int[]a, int k);
+
+    /**73.	Find longest subarray with all distinct elements**/
+    List<int[]> longestSubArrayDistinctElem(int[] a);
+
+    /**74.	Find longest subarray with sum = target**/
+    List<int[]> longestSubArrSumTarget(int[]a, int target);
+
+    /**75.	Count number of subarrays with sum divisible by K**/
+    long noOfSubarraySumDivByK(int[]a, int k);
+
+    /**76.	Check if array has increasing triplet subsequence**/
+    boolean checkIncreasingTriplet(int[]a);
+
+    /**77.	Find longest increasing contiguous subarray**/
+    List<int[]> longestIncreasingContiguousSubArr(int[]a);
+
+    /**78.	Count number of subarrays with all elements even**/
+    long noOfSubArrayAllElemEven(int[] a);
+
+    /**79.	Check if array contains a subarray with 0 sum**/
+    boolean checkSubArraysZeroSum(int[] a);
+
+    /**80.	Find smallest subarray with sum >= target**/
+    List<int[]> smallestSubArraySumGretThanTarget(int[]a, int target);
+
+/* *   Category 9: Advanced Grouping / Partition Problems**/
+    /**81.	Group elements by modulo value (e.g., % 3)**/
+    Map<Integer,List<Integer>> groupByModulo(int[]a, int k);
+
+    /**82.	Group numbers by number of digits**/
+    Map<Integer,List<Integer>> groupByNoOfDigits(int[]a);
+
+    /**83.	Group by even/odd index positions**/
+    Map<Integer,List<Integer>> groupByIndexOddEvenPos(int[] a);
+
+    /**84.	Group array into chunks of fixed size using streams**/
+    Map<Integer,List<Integer>> groupIntoChunkOfFixedSize(int[] a, int k);
+
+    /**85.	Partition array around a pivot value**/
+    Map<Boolean,List<Integer>> partitionAroundPivotVal(int[]a, int pivotVal);
+
+    /**86.	Group by frequency buckets (e.g., map<frequency, List>)**/
+    //@See **6
+
+    /**87.	Group by sorted characters (anagram grouping)**/
+    //@see 67
+
+    /**88.	Group by first digit of each number**/
+    Map<Integer,List<Integer>> groupByFirstChar(int[]a);
+
+    /**89.	Partition array into k equal-sum subsets (NP-hard → interesting to discuss)**/
+    List<List<Integer>> partitionKEqualSum(int []a, int k);
+
+    /**90.	Group integers by bit-count**/
+    Map<Integer,List<Integer>> groupBitCount(int[]a);
+
+/**    Category 10: Mixed / Tricky / Pattern Problems**/
+    /**91.	Find majority element (> n/2) using streams**/
+    int findMajorityElem(int[]a );
+
+    /**92.	Find leader elements (greater than all to the right)**/
+    List<Integer> findLeaderElem(int[]a );
+
+    /**93.	Find peak elements using IntStream**/
+    List<Integer> findPeakElem(int[]a );
+
+    /**94.	Find elements appearing exactly twice**/
+    List<Integer> findIfEleTwice(int[] a);
+
+    /**95.	Check if array can be divided into pairs whose sum is divisible by K**/
+    boolean checkPairsDivisibleByK(int[]a, int k);
+
+    /**96.	Check if array elements form an arithmetic progression**/
+    boolean checkElemFormArithmeticProgression(int[]a);
+
+    /**97.	Check if array elements form a geometric progression**/
+    boolean checkElemFormGeometricProgression(int[]a);
+
+    /**98.	Find minimum jumps to reach the end (greedy + streams support)**/
+    int minJumToReachEnd(int[]a);
+
+    /**99.	Find length of longest consecutive sequence**/
+    int findLongestConsecutiveSequence(int[]a );
+
+    /**100.	Reconstruct array from pairwise sums**/
+    List<Integer> reconstructArrayFromPairwiseSums(int []a);
 }

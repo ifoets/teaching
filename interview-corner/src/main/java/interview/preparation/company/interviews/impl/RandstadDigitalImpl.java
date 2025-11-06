@@ -12,7 +12,7 @@ public class RandstadDigitalImpl implements IRandstadDigital {
 
 
     @Override
-    public Long findUubStr(String str, String subStr){
+    public Long findSubStr(String str, String subStr){
         return
             Arrays.stream(str.split(" "))
                 .filter(s-> s.equals(subStr))

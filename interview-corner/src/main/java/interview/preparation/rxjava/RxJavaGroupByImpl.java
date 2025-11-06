@@ -26,15 +26,6 @@ public class RxJavaGroupByImpl implements IRxJavGroupBy{
                  Collectors.toList()
             )
         );
-         /* or ll.stream().<String>mapMulti( (list, consumer) ->
-                {
-                    for(String str:list)
-                        consumer.accept(str);
-                }
-            ).collect(Collectors.groupingBy(
-               e->e.toCharArray()[0],
-               Collectors.toList()
-            ));*/
     }
     @Override
     public Map<Boolean, List<String>> segregateByFirstCharVowels(List<List<String>> ll){

@@ -8,7 +8,7 @@ public class WayfairImpl implements IWayfair {
 
     /* find the indexes of the values of sum */
     @Override
-    public List<Integer> getIndexesOfValueSum(int a[], int sum){
+    public List<Integer> getIndexesOfValueSum(int[] a, int sum){
          int N = a.length;
         List<Integer> rsList = new ArrayList<>();
         Map<Integer, Integer> map = new HashMap<>();

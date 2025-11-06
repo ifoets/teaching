@@ -1,7 +1,12 @@
 package interview.preparation.rxjava.stream;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 public interface IStreamString {
 
@@ -186,23 +191,96 @@ public interface IStreamString {
 /**    Category 5: Advanced Problems (71 – 90)*/
     /**71.	Longest substring without repeating characters (using stream style)**/
     String longestUniqueSubStr(String str);
-    //72.	Longest substring with K distinct characters
-    //73.	Smallest substring containing all unique characters
-    //74.	All permutations of a string (stream-based recursion)
-    //75.	All combinations of characters of a string
-    //76.	Find common characters between two strings (intersection)
-    //77.	Find characters present in one string but not the other (difference)
-    //78.	Merge two strings alternately
-    //79.	Shuffle characters randomly using streams
-    //80.	Count number of palindromic substrings
-    //81.	Count number of substrings with unique characters
-    //82.	Find all substrings of a string using IntStream
-    //83.	Generate all prefixes of a string
-    //84.	Generate all suffixes of a string
-    //85.	Check if string A is subsequence of string B
-    //86.	Check if two strings have any common substring
-    //87.	Longest common prefix of list of strings
-    //88.	Longest common suffix of list of strings
-    //89.	Check if string has balanced parentheses/brackets
-    //90.	Find unmatched brackets using stack + stream hybrid
+
+    /**72.	Longest substring with K distinct characters**/
+    String longestUniqueSubStrKDistChar(String str, int k);
+
+    /**73.	Smallest substring containing all unique characters**/
+    String uniqueCharSmallestSubStr(String str);
+
+    /**74.	All permutations of a string (stream-based recursion)**/
+    List<String> permutation(String str);
+
+    /**75.	All combinations of characters of a string**/
+    List<String> combination(String str);
+
+    /**76.	Find common characters between two strings (intersection)**/
+    Set<Character> commonChar(String str1, String str2);
+
+    /**77.	Find characters present in one string but not the other (difference)**/
+    Set<Character> difference(String str1, String str2);
+
+    /**78.	Merge two strings alternately**/
+    String mergeStringsAlternately(String str1,String str2);
+
+    /**79.	Shuffle characters randomly using streams**/
+    String shuffleCharsRandomly(String str);
+
+    /**80.	Count number of palindromic substrings*/
+    long countPalindromicSubStr(String str);
+
+    /**81.	Count number of substrings with unique characters**/
+    long uniqueCharSubStrCount(String str);
+
+    /**82.	Find all substrings of a string using IntStream**/
+    List<String> allSubStr(String str);
+
+    /**83.	Generate all prefixes of a string**/
+    List<String> allPrefixes(String str);
+
+    /**84.	Generate all suffixes of a string**/
+    List<String> allSuffixes(String str);
+
+    /**85.	Check if string A is subsequence of string B**/
+    boolean checkSubsequence(String a, String b);
+
+    /**86.	Check if two strings have any common substring**/
+    boolean anyCommonSubStr(String str1, String str2);
+
+    /**87.	Longest common prefix of list of strings**/
+    String longestCommonPrefix(List<String> list);
+    String longestCommonPrefixX(List<String> list);
+
+    String longestCommonSubString(List<String> list);
+
+    /**88.	Longest common suffix of list of strings**/
+    String longestCommonSuffix(List<String> str);
+
+    /**89.	Check if string has balanced parentheses/brackets**/
+    boolean checkBalancedBrackets(String str);
+
+    /**90.	Find unmatched brackets using stack + stream hybrid**/
+    Character findUnmatchedBrackets(String str);
+
+/* *    Category 6: File/Text Stream Processing (91 – 100)**/
+    /**91.	Read lines from file and count total words using streams**/
+    long totalNoOfWords(Path path) throws IOException;
+
+    /**92.	Find most frequent word in file**/
+    String mostFrequentWordInFile(Path path);
+
+    /**93.	Remove stopwords from text using streams**/
+    String removeStopWords(Set<String> stopWords,Path path);
+
+    /**94.	Extract all unique email IDs from text file**/
+    Set<String> extractUniqueEmailsId(Pattern pattern,Path path);
+
+    /**95.	Count number of sentences in a text (split by .?!)**/
+    long countNoOfSentence(Path path);
+
+    /**96.	Tokenize and sort all words alphabetically from text file**/
+    Set<String> tokenizeSortAlpha(Path path);
+
+    /**97.	Find longest line in a file**/
+    String findLongestLine(Path path);
+
+    /**98.	Find all palindromic words in a file**/
+    Set<String> allPalindromicWords(Path path);
+
+    /**99.	Count number of occurrences of each character across multiple lines**/
+    Map<Character,Long> groupCharsInFiles(Path path);
+
+    /**100.	Merge contents of multiple strings/files and remove duplicates**/
+    Set<String> removeDuplicateLinesFromFiles(List<Path> paths);
+    Set<String> removeDuplicateWordsFromListStr(List<String> lists);
 }

@@ -1,0 +1,120 @@
+🧱 1. AWS Architecture & Design Patterns (High-Level)
+    1.	Design a scalable microservice system using AWS managed services.
+    2.	Choose between EC2, ECS, and Lambda for different workloads.
+    3.	Design fault-tolerant architecture across multiple AZs and Regions.
+    4.	Create a cost-optimized system for variable workloads.
+    5.	Migrate a monolith to AWS microservices.
+    6.	Implement blue/green or canary deployment in AWS.
+    7.	Design multi-tenant SaaS on AWS (per-tenant or shared resources).
+    8.	Implement global load balancing and failover using Route 53.
+    9.	Choose the right storage between S3, EFS, and EBS for different workloads.
+    10.	Design hybrid architecture connecting on-premises with AWS (VPN, Direct Connect).
+________________________________________
+⚙️ 2. Compute (EC2, ECS, EKS, Lambda)
+    11.	Auto-scale EC2 instances based on CPU and custom CloudWatch metrics.
+    12.	Containerize microservices and deploy via ECS with Fargate.
+    13.	Implement zero-downtime deployment using ECS + ALB.
+    14.	Manage container logs and metrics effectively in AWS.
+    15.	Compare ECS vs EKS vs Lambda for given use case.
+    16.	Use spot instances effectively in EC2/ECS workloads.
+    17.	Build and deploy serverless REST API using API Gateway + Lambda.
+    18.	Use Step Functions to orchestrate multiple Lambdas.
+    19.	Handle Lambda cold starts and optimize memory/time tradeoffs.
+    20.	Secure Lambda functions with VPC and IAM roles.
+________________________________________
+🧩 3. Networking & Load Balancing
+    21.	Design a secure VPC with public and private subnets.
+    22.	Configure ALB vs NLB vs CLB and choose correct one.
+    23.	Setup VPC peering between two AWS accounts.
+    24.	Use NAT Gateway for private subnet Internet access.
+    25.	Design cross-region VPC connectivity.
+    26.	Implement WAF (Web Application Firewall) to protect APIs.
+    27.	Enable private link for internal AWS service communication.
+    28.	Set up Route 53 for domain routing with health checks.
+    29.	Optimize latency using CloudFront.
+    30.	Secure APIs using AWS Shield and rate limiting.
+________________________________________
+💾 4. Storage & Databases
+    31.	Choose between RDS, Aurora, DynamoDB for workload.
+    32.	Implement DynamoDB partition key strategy for scalability.
+    33.	Set up RDS Multi-AZ replication and read replicas.
+    34.	Handle DynamoDB throttling and backoff.
+    35.	Design caching strategy using ElastiCache (Redis/Memcached).
+    36.	Build data lake using S3 + Glue + Athena.
+    37.	Implement S3 versioning, lifecycle, and cross-region replication.
+    38.	Secure S3 with policies, bucket ACLs, and encryption.
+    39.	Handle transactional workloads with Aurora Serverless.
+    40.	Optimize database cost and performance on AWS.
+________________________________________
+🔐 5. Security, IAM & Compliance
+    41.	Design least-privilege IAM roles and policies.
+    42.	Use STS for temporary credentials and cross-account access.
+    43.	Implement encryption at rest (KMS) and in transit (SSL/TLS).
+    44.	Detect security issues using AWS Config and Inspector.
+    45.	Manage secrets using Secrets Manager or Parameter Store.
+    46.	Rotate credentials automatically for RDS or Lambda.
+    47.	Setup VPC security groups vs NACLs correctly.
+    48.	Use CloudTrail for auditing user activity.
+    49.	Design SSO integration with AWS IAM Identity Center.
+    50.	Implement organization-level SCP (Service Control Policies).
+________________________________________
+🚀 6. CI/CD (DevOps + Developer Productivity)
+    51.	Create CI/CD pipelines using CodePipeline + CodeBuild + CodeDeploy.
+    52.	Integrate GitHub or Bitbucket with AWS CI/CD.
+    53.	Automate infrastructure using CloudFormation or CDK.
+    54.	Implement IaC pipeline validation (lint, test, deploy).
+    55.	Design multi-environment (dev/stage/prod) pipelines.
+    56.	Manage rollbacks and deployment approval workflows.
+    57.	Implement artifact versioning and S3-based deployment.
+    58.	Use Lambda for event-driven CI/CD triggers.
+    59.	Add Canary deployment with CodeDeploy.
+    60.	Integrate Jenkins with AWS services.
+________________________________________
+🪶 7. Serverless Design & Event-Driven Architecture
+    61.	Use EventBridge to connect microservices asynchronously.
+    62.	Design CQRS or pub/sub system using SNS + SQS.
+    63.	Handle retries and DLQs for failed events.
+    64.	Use S3 event notifications for Lambda triggers.
+    65.	Use Step Functions for workflow orchestration.
+    66.	Implement event sourcing using DynamoDB streams + Lambda.
+    67.	Handle idempotency in event-driven design.
+    68.	Integrate serverless API with Cognito for auth.
+    69.	Design real-time notifications using WebSocket API Gateway.
+    70.	Use Kinesis for high-throughput data streaming.
+________________________________________
+🧮 8. Data Engineering & Analytics
+    71.	Design ETL pipelines using Glue or EMR.
+    72.	Use Athena to query data from S3.
+    73.	Implement Redshift for data warehousing.
+    74.	Use Firehose for near real-time analytics ingestion.
+    75.	Build ML pipeline using SageMaker + Lambda triggers.
+    76.	Manage partitioned data in S3 efficiently.
+    77.	Handle schema evolution in Glue catalog.
+    78.	Set up CloudWatch metrics for data pipeline health.
+    79.	Optimize query cost in Athena.
+    80.	Design batch vs streaming ingestion.
+________________________________________
+🕸 9. Monitoring, Logging & Observability
+    81.	Set up centralized logging using CloudWatch + Kinesis + OpenSearch.
+    82.	Implement distributed tracing using X-Ray.
+    83.	Monitor ECS/EKS with Container Insights.
+    84.	Set up custom CloudWatch dashboards and alerts.
+    85.	Detect anomalies in metrics using CloudWatch Anomaly Detection.
+    86.	Build health checks for microservices.
+    87.	Create alarms for error-rate and latency thresholds.
+    88.	Store structured logs using OpenSearch Service.
+    89.	Analyze Lambda metrics for optimization.
+    90.	Monitor billing and set budget alerts.
+________________________________________
+🌍 10. Performance, Cost Optimization & Reliability
+    91.	Use auto-scaling policies for cost efficiency.
+    92.	Choose Graviton or Spot instances for cost savings.
+    93.	Cache responses at CloudFront edge locations.
+    94.	Use S3 lifecycle policies to optimize storage cost.
+    95.	Use DynamoDB DAX for caching.
+    96.	Implement graceful degradation for high-load scenarios.
+    97.	Apply chaos testing for resiliency validation.
+    98.	Optimize Lambda concurrency and cold starts.
+    99.	Analyze cost breakdown using Cost Explorer.
+    100.	Build disaster recovery plan (pilot light, warm standby, multi-region active-active).
+

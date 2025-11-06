@@ -818,14 +818,17 @@ public class WissenInfotechImpl implements IWissenInfotech {
     @Override
     public int firstNonRepeatingCharIndex(String str){
 
-        char ch = (char)str.chars().mapToObj(c->(char)c)
-            .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+        char ch = str.chars().mapToObj(c->(char)c)
+            .collect(Collectors.groupingBy(
+                Function.identity(),
+                LinkedHashMap::new,
+                Collectors.counting()))
             .entrySet()
             .stream()
-            .filter(e->e.getValue()==1l)
+            .filter(e->e.getValue()==1L)
             .map(Entry::getKey)
             .findFirst()
-            .get();
+            .orElseThrow();
 
         return str.indexOf(ch);
     }
@@ -855,13 +858,8 @@ public class WissenInfotechImpl implements IWissenInfotech {
 
         return list.stream()
             .collect(Collectors.groupingBy(
-               words->
-               {
-                   return words.chars().mapToObj(c->(char)c).map(String::valueOf).sorted().collect(Collectors.joining());
-                   /*char[] chars = words.toCharArray();
-                   Arrays.sort(chars);
-                   return new String(chars);*/
-               }
+               words->words.chars().mapToObj(c->(char)c).map(String::valueOf).sorted().collect(Collectors.joining()),
+              Collectors.toList()
             ));
     }
 

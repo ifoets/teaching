@@ -4,14 +4,26 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class IStreamStringTest {
 
     private IStreamString iss;
+    private static final Set<String> STOPWORDS = Set.of(
+        "a", "an", "the", "and", "or", "but", "is", "are", "was", "were",
+        "in", "on", "at", "of", "to", "for", "from", "by", "with", "this",
+        "that", "it", "as", "be", "has", "have", "had", "not"
+    );
+
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+        "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
+    );
 
     @Before
     public void init()
@@ -440,5 +452,306 @@ public class IStreamStringTest {
         Assert.assertTrue(iss.canArrangeToFormPalindrome("Mamad"));
         Assert.assertTrue(iss.canArrangeToFormPalindrome("A man a plan a Panama canal"));
         Assert.assertFalse(iss.canArrangeToFormPalindrome("A man a plan a Panama canal "));
+    }
+    /**    Category 5: Advanced Problems (71 – 90)*/
+    /**71.	Longest substring without repeating characters (using stream style)**/
+    @Test
+    public void longestUniqueSubStrTest()
+    {
+        String str ="abhimanyu";
+        Assert.assertEquals("bhimanyu",iss.longestUniqueSubStr(str));
+    }
+
+    /**72.	Longest substring with K distinct characters**/
+    @Test
+    public void longestUniqueSubStrKDistCharTest(){
+        String str ="aabcbaaca";
+        Assert.assertEquals("aaca",iss.longestUniqueSubStrKDistChar(str,2));
+    }
+
+    /**73.	Smallest substring containing all unique characters**/
+    @Test
+    public void uniqueCharSmallestSubStrTest()
+    {
+      Assert.assertEquals("zxy",iss.uniqueCharSmallestSubStr("zzxyzzxyx"));
+      Assert.assertEquals("dbca",iss.uniqueCharSmallestSubStr("aabcbcdbca"));
+      Assert.assertEquals("ab",iss.uniqueCharSmallestSubStr("aaab"));
+    }
+
+    /**74.	All permutations of a string (stream-based recursion)**/
+    @Test
+    public void permutationTest()
+    {
+        List<String> list = List.of("abc", "acb", "bac", "bca", "cab", "cba");
+        List<String> rList = iss.permutation("abc");
+        Assert.assertEquals(list,rList);
+    }
+
+    /**75.	All combinations of characters of a string**/
+    @Test
+    public void combinationTest()
+    {
+        List<String> list = List.of("a","b","c","ab","bc","abc");
+        List<String> rList = iss.combination("abc");
+        Assert.assertEquals(list,rList);
+    }
+    @Test
+    public void test()
+    {
+        String str ="abc";
+        for(int i=0;i<str.length();i++) {
+            System.out.println(str.substring(0, i));
+            System.out.println(str.substring(i+1));
+        }
+    }
+
+    /**76.	Find common characters between two strings (intersection)**/
+    @Test
+    public void commonCharTest()
+    {
+        String s1 = "apple";
+        String s2 = "grape";
+        Set<Character> set =Set.of('a','p','e');
+        Set<Character> rSet = iss.commonChar(s1,s2);
+        Assert.assertEquals(set,rSet);
+    }
+
+    /**77.	Find characters present in one string but not the other (difference)**/
+    @Test
+    public void differenceTest()
+    {
+        String s1 = "apple";
+        String s2 = "grape";
+        Set<Character> set =Set.of('l','g','r');
+        Set<Character> rSet = iss.difference(s1,s2);
+        Assert.assertEquals(set,rSet);
+    }
+
+    /**78.	Merge two strings alternately**/
+    @Test
+    public void mergeStringsAlternatelyTest()
+    {
+        String s1 = "abc";
+        String s2 = "pqrstu";
+        System.out.println(iss.mergeStringsAlternately(s1,s2));
+        Assert.assertEquals("apbqcrstu",iss.mergeStringsAlternately(s1,s2));
+    }
+    /**79.	Shuffle characters randomly using streams**/
+    @Test
+    public void shuffleCharsRandomlyTest()
+    {
+        String str="abhimanyu";
+        String rStr = iss.shuffleCharsRandomly(str);
+        Assert.assertEquals(str.chars().sorted().mapToObj(c->(char)c).map(String::valueOf).collect(Collectors.joining()),
+            rStr.chars().sorted().mapToObj(c->(char)c).map(String::valueOf).collect(Collectors.joining()));
+    }
+
+    /**80.	Count number of palindromic substrings*/
+    @Test
+    public void countPalindromicSubStrTet()
+    {
+        String str ="abba";
+        Assert.assertEquals(6,iss.countPalindromicSubStr(str));
+    }
+
+    /**81.	Count number of substrings with unique characters**/
+    @Test
+    public void uniqueCharSubStrCountTest()
+    {
+        Assert.assertEquals(5,iss.uniqueCharSubStrCount("aba"));
+        Assert.assertEquals(6,iss.uniqueCharSubStrCount("abc"));
+    }
+
+    /**82.	Find all substrings of a string using IntStream**/
+    @Test
+    public void allSubStrTest()
+    {
+        List<String> list = List.of("a","b","c","ab","bc","abc");
+        List<String> rList = iss.allSubStr("abc");
+        Assert.assertEquals(list,rList);
+    }
+
+    /**83.	Generate all prefixes of a string**/
+    @Test
+    public void allPrefixesTest()
+    {
+        List<String> list = List.of("a", "ab", "abc", "abcd");
+        Assert.assertEquals(list,iss.allPrefixes("abcd"));
+    }
+
+    /**84.	Generate all suffixes of a string**/
+    @Test
+    public void allSuffixesTest()
+    {
+        List<String> list = List.of("abcd", "bcd", "cd", "d","");
+        Assert.assertEquals(list,iss.allSuffixes("abcd"));
+    }
+
+    /**85.	Check if string A is subsequence of string B**/
+    @Test
+    public void checkSubsequenceTest()
+    {
+        Assert.assertTrue(iss.checkSubsequence("abc","aebdc"));
+    }
+
+    /**86.	Check if two strings have any common substring**/
+    @Test
+    public void anyCommonSubStrTest(){
+        String s1 = "hello";
+        String s2 = "world";
+        Assert.assertTrue(iss.anyCommonSubStr(s1,s2));
+    }
+    /**87.	Longest common prefix of list of strings**/
+    @Test
+    public void longestCommonPrefixTest()
+    {
+        List<String> list = Arrays.asList("flower", "flow", "flight");
+        Assert.assertEquals("fl",iss.longestCommonPrefix(list));
+    }
+    @Test
+    public void longestCommonPrefixXTest()
+    {
+        List<String> list = Arrays.asList("flower", "flow", "flight");
+        Assert.assertEquals("fl",iss.longestCommonPrefixX(list));
+    }
+    @Test
+    public void  longestCommonSubStringTest()
+    {
+        List<String> list = Arrays.asList("ababc", "babca", "abcba");
+        Assert.assertEquals("abc",iss.longestCommonSubString(list));
+    }
+
+    /**88.	Longest common suffix of list of strings**/
+    @Test
+    public void longestCommonSuffixTest()
+    {
+        List<String> list = Arrays.asList("walking", "barking", "parking");
+        Assert.assertEquals("king",iss.longestCommonSuffix(list));
+    }
+
+    /**89.	Check if string has balanced parentheses/brackets**/
+    @Test
+    public void checkBalancedBracketsTest()
+    {
+       String str ="{[(])}";
+       Assert.assertFalse(iss.checkBalancedBrackets(str));
+       Assert.assertFalse(iss.checkBalancedBrackets("(()()))"));
+       Assert.assertTrue(iss.checkBalancedBrackets("a+(b*c)-(d/e)"));
+       Assert.assertTrue(iss.checkBalancedBrackets("{[()]}"));
+    }
+
+    /**90.	Find unmatched brackets using stack + stream hybrid**/
+    @Test
+    public void findUnmatchedBracketsTest()
+    {
+        Assert.assertEquals(')',iss.findUnmatchedBrackets("(()()))").charValue());
+        Assert.assertEquals(']',iss.findUnmatchedBrackets("{[(])}").charValue());
+    }
+
+    /* *    Category 6: File/Text Stream Processing (91 – 100)**/
+    /**91.	Read lines from file and count total words using streams**/
+    @Test
+    public void totalNoOfWordsTest() throws IOException{
+        Path path = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/text.txt");
+        long count = iss.totalNoOfWords(path);
+        System.out.println(count);
+        Assert.assertEquals(184,count);
+    }
+
+    /**92.	Find most frequent word in file**/
+    @Test
+    public void mostFrequentWordInFileTest()
+    {
+        Path path = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/text.txt");
+        String str=iss.mostFrequentWordInFile(path);
+        System.out.println(str);
+        Assert.assertEquals("the",iss.mostFrequentWordInFile(path));
+    }
+
+    /**93.	Remove stopwords from text using streams**/
+    @Test
+    public void removeStopWordsTest()
+    {
+        Path path = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/text.txt");
+
+        String str = iss.removeStopWords(STOPWORDS,path);
+        System.out.println(str);
+    }
+    /**94.	Extract all unique email IDs from text file**/
+    @Test
+    public void extractUniqueEmailsIdTest()
+    {
+        Path path = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/emails.txt");
+        Set<String> emails = iss.extractUniqueEmailsId(EMAIL_PATTERN,path);
+        System.out.println(emails);
+        Assert.assertEquals(4,emails.size());
+    }
+
+    /**95.	Count number of sentences in a text (split by .?!)**/
+    @Test
+    public void countNoOfSentenceTest()
+    {
+        Path path = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/text.txt");
+        long sentences = iss.countNoOfSentence(path);
+        System.out.println(sentences);
+        Assert.assertEquals(11,sentences);
+    }
+
+    /**96.	Tokenize and sort all words alphabetically from text file**/
+    @Test
+    public void tokenizeSortAlphaTest()
+    {
+        Path path = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/emails.txt");
+        Set<String> sets = iss.tokenizeSortAlpha(path);
+        System.out.println(sets.toString());
+    }
+
+    /**97.	Find longest line in a file**/
+    @Test
+    public void findLongestLineTest()
+    {
+        Path path = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/text.txt");
+        String longestSen = iss.findLongestLine(path);
+        System.out.println(longestSen);
+    }
+
+    /**98.	Find all palindromic words in a file**/
+    @Test
+    public void allPalindromicWordsTest()
+    {
+        Path path = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/palindrome.txt");
+        Set<String>  sets = iss.allPalindromicWords(path);
+        System.out.println(sets);
+    }
+
+    /**99.	Count number of occurrences of each character across multiple lines**/
+    @Test
+    public void groupCharsInFilesTest()
+    {
+        Path path = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/text.txt");
+        Map<Character,Long> map = iss.groupCharsInFiles(path);
+        System.out.println(map.toString());
+    }
+
+    /**100.	Merge contents of multiple strings/files and remove duplicates**/
+    @Test
+    public void removeDuplicateLinesFromFilesTest()
+    {
+        Path path1 = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/palindrome.txt");
+        Path path2 = Paths.get("src//main/java/interview/preparation/rxjava/stream/files/palindrome1.txt");
+        List<Path> list = List.of(path1,path2);
+        Set<String> lines = iss.removeDuplicateLinesFromFiles(list);
+        System.out.println(lines.toString());
+    }
+    @Test
+    public void removeDuplicateWordsFromListStrTest()
+    {
+        List<String> inputs = List.of(
+            "Java Streams are powerful and elegant",
+            "Elegant solutions come from powerful ideas",
+            "Streams simplify complex code"
+        );
+        Set<String> sets = iss.removeDuplicateWordsFromListStr(inputs);
+        System.out.println(sets);
     }
 }
