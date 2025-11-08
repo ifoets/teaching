@@ -20,7 +20,6 @@
     </dependencies>
     <modules>
         <module>algorithms</module>
-        <module>core-system-design</module>
         <module>data-structures</module>
         <module>design-patterns</module>
         <module>interview-corner</module>
@@ -28,6 +27,7 @@
         <module>scenario-analysis</module>
         <module>thread-concurrency</module>
         <module>system-design</module>
+        <module>leet-code</module>
 
 
     </modules>
