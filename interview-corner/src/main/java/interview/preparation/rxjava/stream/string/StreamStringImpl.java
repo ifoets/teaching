@@ -1,6 +1,5 @@
-package interview.preparation.rxjava.stream;
+package interview.preparation.rxjava.stream.string;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -136,7 +135,8 @@ public class StreamStringImpl implements IStreamString {
                 .collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()))
                 .entrySet()
                 .stream().sorted(
-                    Map.Entry.<Character,Long>comparingByValue().thenComparing(Map.Entry::getKey)
+                    Map.Entry.<Character,Long>comparingByValue()
+                        .thenComparing(Map.Entry::getKey)
                 )
                 .collect(Collectors.toMap(
                     Map.Entry::getKey,
@@ -195,7 +195,7 @@ public class StreamStringImpl implements IStreamString {
                   .stream()
                   .sorted(
                       Map.Entry.<Character,Long>comparingByValue().reversed()
-                          .thenComparing(Map.Entry.comparingByKey())//if matching frequencygo to alfa otherwise get as listed
+                          .thenComparing(Map.Entry.comparingByKey())//if matching frequency go to alfa otherwise get as listed
                   )
                   .map(Map.Entry::getKey)
                   .findFirst().orElseThrow();
@@ -213,7 +213,7 @@ public class StreamStringImpl implements IStreamString {
                 .stream()
                 .sorted(
                     Map.Entry.<Character,Long>comparingByValue()
-                        .thenComparing(Map.Entry.comparingByKey())//if matching requency go to alfa otherwise get as listed
+                        .thenComparing(Map.Entry.comparingByKey())//if matching frequency go to alfa otherwise get as listed
                 )
                 .map(Map.Entry::getKey)
                 .findFirst().orElseThrow();

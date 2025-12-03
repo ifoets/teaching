@@ -7,9 +7,9 @@ public class WallmartImpl implements IWallmart {
     /*remove continuous duplicate character from words in String*/
     @Override
     public String removeContinuousChar(String str){
-        if(str==null || str.length()==0)
+        if(str==null || str.isEmpty())
             return str;
-        char arr[] = str.toCharArray();
+        char[] arr = str.toCharArray();
         StringBuilder sb = new StringBuilder();
         sb.append(arr[0]);
 

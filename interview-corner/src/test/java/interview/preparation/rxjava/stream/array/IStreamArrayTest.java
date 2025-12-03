@@ -1,4 +1,4 @@
-package interview.preparation.rxjava.stream;
+package interview.preparation.rxjava.stream.array;
 
 import interview.preparation.rxjava.stream.model.ArrayStatics;
 import org.junit.Assert;
@@ -1030,6 +1030,7 @@ public class IStreamArrayTest {
     {
         int []a ={5, 7, 8, 9, 10, 12};
         List<Integer> result = isa.reconstructArrayFromPairwiseSums(a);
+        Assert.assertEquals(List.of(2,3,5,7),result);
         System.out.println(result);
     }
 

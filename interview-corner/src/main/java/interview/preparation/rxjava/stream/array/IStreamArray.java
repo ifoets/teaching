@@ -1,4 +1,4 @@
-package interview.preparation.rxjava.stream;
+package interview.preparation.rxjava.stream.array;
 
 import interview.preparation.rxjava.stream.model.ArrayStatics;
 

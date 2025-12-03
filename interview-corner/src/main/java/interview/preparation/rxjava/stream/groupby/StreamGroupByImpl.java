@@ -1,4 +1,4 @@
-package interview.preparation.rxjava.stream;
+package interview.preparation.rxjava.stream.groupby;
 
 import interview.preparation.rxjava.stream.model.Pair;
 import interview.preparation.rxjava.stream.records.*;
@@ -26,15 +26,7 @@ public class StreamGroupByImpl implements IStreamGroupBy {
                  Collectors.toList()
             )
         );
-         /* or ll.stream().<String>mapMulti( (list, consumer) ->
-                {
-                    for(String str:list)
-                        consumer.accept(str);
-                }
-            ).collect(Collectors.groupingBy(
-               e->e.toCharArray()[0],
-               Collectors.toList()
-            ));*/
+
     }
     @Override
     public Map<Boolean, List<String>> segregateByFirstCharVowels(List<List<String>> ll){

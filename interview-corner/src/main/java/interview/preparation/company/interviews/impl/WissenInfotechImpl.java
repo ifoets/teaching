@@ -935,7 +935,9 @@ public class WissenInfotechImpl implements IWissenInfotech {
             .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
             .entrySet()
             .stream()
-            .sorted(Map.Entry.<Character,Long>comparingByValue().reversed().thenComparing(Entry::getKey))
+            .sorted(
+                Map.Entry.<Character,Long>comparingByValue().reversed()
+                    .thenComparing(Entry::getKey))
             .collect(Collectors
                 .toMap(
                     Map.Entry::getKey,

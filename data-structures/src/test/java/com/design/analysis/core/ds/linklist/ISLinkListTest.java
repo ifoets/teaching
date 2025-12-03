@@ -415,18 +415,18 @@ public class ISLinkListTest {
      * 16. Merge two sorted linked lists
      **/
     @Test
-    public void mergeTwoSotedListTest() {
+    public void mergeTwoSortedListTest() {
         SLNode<Integer> result = null;
         Integer a[] = {1, 3, 5, 7, 9, 0};
         SLNode<Integer> h1 = isl.insertArrSorted(null, a);
-        result = isl.mergeTwoSotedList(h1, null);
+        result = isl.mergeTwoSortedList(h1, null);
         Assert.assertTrue(isl.lengthRecursive(result) == 6);
-        result = isl.mergeTwoSotedList(null, h1);
+        result = isl.mergeTwoSortedList(null, h1);
         Assert.assertTrue(isl.lengthRecursive(result) == 6);
 
         Integer b[] = {2, 4, 6, 8, 10};
         SLNode<Integer> h2 = isl.insertArrSorted(null, b);
-        result = isl.mergeTwoSotedList(h1, h2);
+        result = isl.mergeTwoSortedList(h1, h2);
         SLNode<Integer> p = result;
         for (int i = 0; i <= 10; p = p.next, i++) {
             Assert.assertTrue(p.k == i);

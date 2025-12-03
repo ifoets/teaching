@@ -502,7 +502,7 @@ public class SLinkListImpl implements ISLinkList<Integer> {
 
 	/** 16. Merge two sorted linked lists **/
 	@Override
-	public SLNode<Integer> mergeTwoSotedList(SLNode<Integer> k1, SLNode<Integer> k2) {
+	public SLNode<Integer> mergeTwoSortedList(SLNode<Integer> k1, SLNode<Integer> k2) {
 		if (k1 == null)
 			return k2;
 		if (k2 == null)

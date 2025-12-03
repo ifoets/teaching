@@ -290,6 +290,16 @@ public class RxJavaGroupByImpl implements IRxJavGroupBy{
                     ))
                 );
     }
+    @Override
+    public Map<String, Optional<Employee>> collectOldestEmpInEachDeptX(List<Employee> list){
+        return
+            list.stream()
+                .collect(Collectors.groupingBy(
+                    Employee::department,
+                    Collectors.maxBy(Comparator.comparingInt(Employee::age))
+                    )
+                );
+    }
 
     /**Group books by title length range (short <10, medium <20, long).*/
     @Override
@@ -483,7 +493,8 @@ public class RxJavaGroupByImpl implements IRxJavGroupBy{
         .collect(Collectors.groupingBy(
             Student::subject,
             TreeMap::new,
-            Collectors.mapping(Student::name, Collectors.collectingAndThen(
+            Collectors.mapping(Student::name,
+                Collectors.collectingAndThen(
                 Collectors.toList(),
                 ll -> ll.stream().sorted().toList()
                 )

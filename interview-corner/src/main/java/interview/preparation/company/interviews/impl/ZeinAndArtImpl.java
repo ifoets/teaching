@@ -20,7 +20,7 @@ public class ZeinAndArtImpl implements IZeinAndArt {
 				System.out.println("Object xyz called");
 			}
 		}
-		new checkOverloadCall().xyx(null);
+		new checkOverloadCall().xyx(null);//str called
 	}
 
     public void overloadMethodX() {
@@ -35,7 +35,7 @@ public class ZeinAndArtImpl implements IZeinAndArt {
                 System.out.println("short xyz called");
             }
         }
-        new checkOverloadCall().xyx(1);
+        new checkOverloadCall().xyx(1);//int get called
     }
 
     public void overloadMethodY() {
@@ -76,7 +76,7 @@ public class ZeinAndArtImpl implements IZeinAndArt {
                 System.out.println("float xyz called");
             }
         }
-        new checkOverloadCall().xyx(1);
+        new checkOverloadCall().xyx(1);//int get called
     }
 
 	/** find max string count from 10 gb data file */

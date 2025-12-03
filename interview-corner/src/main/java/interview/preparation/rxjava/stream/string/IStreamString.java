@@ -1,6 +1,5 @@
-package interview.preparation.rxjava.stream;
+package interview.preparation.rxjava.stream.string;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;

@@ -1,4 +1,4 @@
-package interview.preparation.rxjava.stream;
+package interview.preparation.rxjava.stream.groupby;
 
 import interview.preparation.rxjava.stream.model.Pair;
 import interview.preparation.rxjava.stream.records.*;
