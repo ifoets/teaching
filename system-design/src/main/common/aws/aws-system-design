@@ -1,0 +1,128 @@
+🧱 A. General AWS System Design (Architecture-Level)
+    1.	Design a scalable URL shortener using AWS.
+    2.	Design an e-commerce backend on AWS.
+    3.	Design Instagram-like image upload and feed system using AWS.
+    4.	Design a video streaming platform like YouTube using AWS.
+    5.	Design a real-time chat application using AWS.
+    6.	Design a ride-hailing service like Uber on AWS.
+    7.	Design a serverless REST API using AWS Lambda and API Gateway.
+    8.	Design a distributed caching layer on AWS.
+    9.	Design a multi-region, highly available web application on AWS.
+    10.	Design a hybrid cloud setup (on-prem + AWS).
+________________________________________
+⚙️ B. Compute, Containers & Scalability
+    11.	Design scalable compute layer for millions of requests per minute.
+    12.	Design an event-driven microservices system using ECS or EKS.
+    13.	Design an auto-scaling backend using EC2 + ALB + ASG.
+    14.	Design containerized app deployment using ECS Fargate.
+    15.	Design Kubernetes-based multi-tenant system using EKS.
+    16.	Design Lambda-based event processing architecture.
+    17.	Design stateless microservices on AWS.
+    18.	Design CI/CD deployment strategy for ECS/EKS microservices.
+    19.	Design Blue/Green deployment pipeline using CodeDeploy + ECS.
+    20.	Design compute layer for cost optimization (Spot, Graviton, Fargate).
+________________________________________
+☁️ C. Networking & Load Balancing
+    21.	Design a VPC for multi-tier web application (public + private subnets).
+    22.	Design secure communication between services across VPCs.
+    23.	Design global load balancing using Route 53.
+    24.	Design a low-latency API for global users using CloudFront + ALB.
+    25.	Design private connectivity between AWS services (PrivateLink).
+    26.	Design failover between two regions using Route 53 health checks.
+    27.	Design network security strategy using SGs, NACLs, and WAF.
+    28.	Design VPN/Direct Connect hybrid connectivity.
+    29.	Design a secure microservices network using Service Mesh (App Mesh).
+    30.	Design traffic routing for multi-environment (dev/stage/prod).
+________________________________________
+💾 D. Storage & Databases
+    31.	Design a scalable file storage system (like Dropbox) using S3.
+    32.	Design relational data system using RDS Multi-AZ and Read Replicas.
+    33.	Design NoSQL-based high-write application using DynamoDB.
+    34.	Design caching strategy with ElastiCache + DynamoDB DAX.
+    35.	Design transactional DB with Aurora Serverless.
+    36.	Design S3-based static website hosting pipeline.
+    37.	Design a data archival and lifecycle policy in S3.
+    38.	Design disaster recovery strategy for database workloads.
+    39.	Design data synchronization between on-prem and AWS.
+    40.	Design multi-region database replication and consistency model.
+________________________________________
+🔐 E. Security & IAM
+    41.	Design least-privilege access model using IAM roles.
+    42.	Design cross-account access control strategy.
+    43.	Design centralized secrets management (Secrets Manager / SSM).
+    44.	Design key management and encryption (KMS).
+    45.	Design application-level encryption for sensitive data.
+    46.	Design organization-wide security governance using AWS Organizations + SCPs.
+    47.	Design audit trail and compliance reporting (CloudTrail, Config).
+    48.	Design MFA, password rotation, and secure credential policies.
+    49.	Design private access to AWS APIs (VPC endpoints).
+    50.	Design secure CI/CD access flow for developers.
+________________________________________
+🚀 F. CI/CD, Infrastructure as Code & Automation
+    51.	Design complete CI/CD using CodeCommit + CodeBuild + CodePipeline.
+    52.	Design multi-account CI/CD promotion pipeline (dev → prod).
+    53.	Design IaC using CloudFormation / CDK for a multi-service environment.
+    54.	Design automated rollback strategy in CI/CD.
+    55.	Design blue/green deployment using CodeDeploy + ALB.
+    56.	Design GitHub Actions workflow integrated with AWS deployment.
+    57.	Design infrastructure drift detection pipeline.
+    58.	Design secrets injection and rotation during deployment.
+    59.	Design canary release strategy for Lambda/API Gateway.
+    60.	Design parallel environment provisioning for QA automation.
+________________________________________
+🪶 G. Serverless & Event-Driven Architectures
+    61.	Design event-driven microservices using EventBridge + Lambda.
+    62.	Design file-processing pipeline using S3 → Lambda → DynamoDB.
+    63.	Design asynchronous communication using SNS + SQS.
+    64.	Design retry and DLQ pattern for serverless events.
+    65.	Design Step Function workflow for a business process.
+    66.	Design idempotent Lambda functions.
+    67.	Design real-time notifications (WebSocket API Gateway + Lambda).
+    68.	Design IoT event ingestion pipeline (IoT Core + Kinesis).
+    69.	Design serverless user registration + email verification flow.
+    70.	Design real-time metrics aggregation using Lambda + DynamoDB streams.
+________________________________________
+🧮 H. Data Engineering & Analytics
+    71.	Design a data lake architecture (S3 + Glue + Athena + Lake Formation).
+    72.	Design real-time analytics pipeline using Kinesis + Lambda + Redshift.
+    73.	Design batch ETL using Glue + EMR.
+    74.	Design CDC (Change Data Capture) pipeline into S3.
+    75.	Design cost-efficient log analytics solution using OpenSearch.
+    76.	Design BI reporting pipeline using QuickSight.
+    77.	Design clickstream analytics for a website.
+    78.	Design S3 partitioning and schema management in Glue Catalog.
+    79.	Design near real-time fraud detection system.
+    80.	Design ML pipeline on AWS using SageMaker + Lambda.
+________________________________________
+🧠 I. Monitoring, Logging & Observability
+    81.	Design centralized logging for multi-account setup (CloudWatch → OpenSearch).
+    82.	Design alerting and dashboarding strategy (CloudWatch Alarms + Grafana).
+    83.	Design distributed tracing (AWS X-Ray).
+    84.	Design application performance monitoring solution.
+    85.	Design automated error-rate alerts from Lambda/ECS.
+    86.	Design synthetic monitoring for APIs.
+    87.	Design metrics aggregation across regions.
+    88.	Design SLO/SLA-based monitoring dashboards.
+    89.	Design log retention and archival policy.
+    90.	Design monitoring system with anomaly detection.
+________________________________________
+💰 J. Cost, Performance & Reliability
+    91.	Design cost-efficient architecture for unpredictable workloads.
+    92.	Design high availability with active-active regions.
+    93.	Design fault-tolerant message processing pipeline.
+    94.	Design autoscaling policy for unpredictable traffic.
+    95.	Design caching strategy to reduce DB load.
+    96.	Design spot instance strategy for compute savings.
+    97.	Design backup and disaster recovery plan for production system.
+    98.	Design load test setup and scaling test plan.
+    99.	Design rate-limiting and throttling strategy for APIs.
+    100.	Design full system cost breakdown and optimization proposal.
+________________________________________
+✅ Tip for interview prep:
+    For each design question, always structure your response as:
+    1.	Requirements → functional + non-functional.
+    2.	High-level Architecture → diagram + service choice (EC2, ECS, Lambda, RDS, etc.).
+    3.	Data flow & scaling → how traffic and load are handled.
+    4.	Security → IAM, encryption, VPC, etc.
+    5.	Monitoring & Cost Optimization → CloudWatch, autoscaling, lifecycle policies.
+

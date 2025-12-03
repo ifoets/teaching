@@ -22,9 +22,6 @@ Edit your application.properties or application.yml:
 
 application.properties
 
-properties
-Copy
-Edit
 server.port=8443
 server.ssl.key-store=classpath:my-https-cert.p12
 server.ssl.key-store-password=your_password_here
@@ -45,9 +42,6 @@ impl circut breaker
  1. Add Dependencies
 If you're using Maven, add this to your pom.xml:
 
-xml
-Copy
-Edit
 <dependency>
     <groupId>io.github.resilience4j</groupId>
     <artifactId>resilience4j-spring-boot2</artifactId>
@@ -1298,9 +1292,7 @@ public class AdminController {
 ===================================================================================================================================
 Step-by-Step Implementation (Simulated 2PC)
 📌 1. TransactionCoordinatorService (acts as 2PC Manager)
-java
-Copy
-Edit
+
 @RestController
 @RequestMapping("/transaction")
 public class TransactionCoordinatorController {
@@ -1336,9 +1328,7 @@ public class TransactionCoordinatorController {
     }
 }
 📌 2. OrderService
-java
-Copy
-Edit
+
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -1409,3 +1399,355 @@ public class PaymentController {
 
 implement Rate limiter in ms
 ======================================
+
+how to handle distributed transactions
+---------------------------------------
+🔹 Solutions / Patterns to Handle Distributed Transactions
+1. Two-Phase Commit (2PC) (Classic)
+Coordinator asks all participants: Can you commit? (prepare phase).
+If all agree, sends commit (commit phase).
+Guarantees ACID.
+
+❌ Cons: Blocking, poor performance, single point of failure, not suitable for high-scale microservices.
+✅ Still used in relational DB clusters (XA, JTA in Java EE).
+
+2. Saga Pattern (Most common in Microservices 🚀)
+Break transaction into a sequence of local transactions.
+Each service does its own DB commit (no global lock).
+If one step fails → execute compensating transactions (undo).
+
+Two types of Saga:
+Choreography (Event-driven)
+Services publish events after success.
+Other services listen and continue.
+Example: Order Service → "Order Created" → Payment Service → "Payment Done" → Inventory Service.
+Simple, but can get messy with many services.
+
+Orchestration
+A central Saga orchestrator tells services what to do next.
+Easier to manage flow.
+Example: Orchestrator → call Payment → if success call Inventory → else rollback Payment.
+
+3. TCC (Try-Confirm/Cancel)
+
+Each service provides 3 operations:
+Try → Reserve resources (but don’t commit fully).
+Confirm → Finalize reservation.
+Cancel → Rollback reservation.
+Example: Booking system → Try (lock seat), Confirm (issue ticket), Cancel (release seat).
+
+✅ Strong consistency.
+
+❌ Hard to implement for every service.
+4. Idempotency + Retries
+Ensure operations can be retried safely without side effects.
+Example: Payment service should not double-charge if the same message is processed twice.
+
+Use unique transaction IDs.
+
+5. Outbox Pattern
+Service writes to its DB + an outbox table (with events).
+A background process (or Debezium/CDC) publishes events reliably.
+Ensures no message loss between DB + Kafka/RabbitMQ.
+
+6. Eventual Consistency
+Accept that data may be temporarily inconsistent, but will converge.
+Users might see a "pending" state until all services finish.
+🔹 Example: Order + Payment + Inventory
+Order Service → create order (status = PENDING).
+Payment Service → deduct money.
+
+If fails → publish rollback event → Order Service marks FAILED.
+Inventory Service → reduce stock.
+If fails → publish rollback → Payment refunds → Order set FAILED.
+If all success → Order status = CONFIRMED.
+
+👉 This is a Saga with compensations.
+
+🔹 Interview Takeaway
+2PC → strict ACID, but slow and rarely used in microservices.
+Saga → industry standard for microservices (Choreography / Orchestration).
+TCC → useful for resource reservation scenarios (travel, banking).
+Outbox + Idempotency → ensure reliable messaging.
+Eventual Consistency → tradeoff in distributed systems.
+
+spring to spring boot migration
+--------------------------------------
+1. Analyze current application
+Check: Spring version, dependencies, build tool (Maven/Gradle), web container (Tomcat/Jetty), configuration style (XML vs JavaConfig).
+2. Upgrade build tool
+3. Remove external container
+4. Migrate configuration
+5. Externalize properties
+6. Leverage Auto-Configuration
+7. Refactor Logging
+8. Actuator & Monitoring
+
+1. Does Spring Boot Manage Sessions Automatically?
+
+Yes, if you use Spring Security (and don’t disable session management), it will:
+Create a session after successful login.
+Store authentication (username, roles, etc.) inside that session.
+Send a JSESSIONID cookie to the client.
+On subsequent requests, lookup the session and authenticate automatically.
+
+
+how to ALC/NLC how to configure
+--------------------------------------
+Controls who can talk to whom at the network level (before requests even reach your app).
+Examples:
+
+Firewalls (on-premise or cloud).
+Security groups (AWS, Azure, GCP).
+Network ACLs (subnet-level rules).
+Service Mesh (Istio, Linkerd) with mTLS and policies.
+
+✅ Configuration Examples:
+AWS Security Group:
+Allow port 8080 only from load balancer subnet.
+Block all external access except HTTPS (443).
+Kubernetes Network Policy (NLC in MS world):
+
+YML changes
+
+2. ALC – Access Level Control
+Examples:
+
+Role-Based Access Control (RBAC) → ADMIN, USER, GUEST.
+Attribute-Based Access Control (ABAC) → e.g., “users can only access their own data”.
+OAuth2 scopes / API permissions.
+Spring Security (RBAC ALC):
+
+http.authorizeRequests()
+    .antMatchers("/admin/**").hasRole("ADMIN")
+    .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+    .anyRequest().authenticated();
+
+Policy in API Gateway:
+routes:
+  - id: orders
+  
+NLC (Network Level Control) = Who can reach the service? Configured via firewall rules, Kubernetes NetworkPolicies, service mesh policies.
+ALC (Access Level Control) = What can the authenticated user/service do? Configured via Spring Security, API Gateway, OAuth2 scopes, RBAC/ABAC.
+
+
+============================
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+ 
+Input: s = "abcdef" 
+Output: 0
+ 
+Input: s = "mississippi" 
+Output: 0
+
+
+You are given N chocolates, and you need to distribute them among some children based on the following conditions:
+ 
+You can choose the number of children .
+Each child must receive at least 2 chocolates.
+No single child can receive all the chocolates.
+All chocolates must be distributed evenly (i.e., no remainders).
+Each child must receive whole chocolates (no fractional distribution).
+Your task is to determine whether it is possible to distribute the chocolates fairly under the given conditions.
+ 
+Input:
+A positive integer N representing the total number of chocolates.
+Output:
+Print "Yes" if it is possible to distribute the chocolates fairly.
+Print "No" if it is not possible to distribute the chocolates fairly.
+Example:
+N = 10
+Output 1:
+Yes
+Explanation:
+We can choose k = 5 (5 children).
+Each child will get exactly 2 chocolates (10 chocolates / 5 children).
+All conditions are satisfied:
+Each child gets at least 2 chocolates.
+No child receives all the chocolates.
+The chocolates are distributed evenly.
+Input 2:
+ini
+Copy code
+N = 2
+Output 2:
+No
+Explanation:
+With 2 chocolates, we can only give them to one child, but the condition states that no one child can receive all the chocolates. Hence, it's not possible to distribute the chocolates according to the given rules
+
+
+===============================
+Future and CompitableFuture diffrence
+------------------
+Future<Integer> future = executor.submit(() -> {
+    Thread.sleep(2000);
+    return 42;
+});
+
+// blocking call
+Integer result = future.get();  
+// check if done
+boolean isDone = future.isDone();
+
+// cancel if needed
+future.cancel(true);
+❌ Limitations of Future
+❌ No way to manually complete a Future.
+❌ No way to chain multiple async tasks (no callbacks).
+❌ get() is blocking — no non-blocking mechanism.
+❌ Can't react to completion without polling isDone() or calling get().
+
+⚡ 2. CompletableFuture (Java 8)
+Package: java.util.concurrent
+Introduced in: Java 8
+
+✅ Purpose
+A more powerful class that:
+
+Implements both Future and CompletionStage
+Supports non-blocking, reactive, and declarative async programming
+Allows manual completion
+Allows chaining, combining, and exception handling
+
+✨ Key Features
+a) Manual completion
+CompletableFuture<String> cf = new CompletableFuture<>();
+// later
+cf.complete("Done!");
+System.out.println(cf.get());  /
+
+
+Kafka, how to handle if producer is slower then cansumer and viceversa
+============================================================
+
+Case 1: Producer is Slower than Consumer
+Problem
+
+Consumer may quickly consume everything and then keep polling and finding nothing new.
+This usually doesn’t cause system failure, but may cause:
+Low consumer throughput
+Empty polls → unnecessary CPU usage
+Rebalances if consumers keep polling with no data
+
+✅ Ways to Handle
+1.
+Use poll() efficiently with proper pollTimeout
+Consumers should not spin too fast when there’s no data.
+Use a reasonable poll timeout (e.g., 100–500 ms) so they wait a bit for new messages.
+ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
+
+2️⃣ Scale down consumers or pause them
+
+If you have too many consumers for a small producer, some may remain idle.
+You can pause partitions for consumers if needed:
+consumer.pause(consumer.assignment());
+// resume later when producer catches up
+consumer.resume(consumer.assignment());
+
+3️⃣ Batch Processing / Time-based buffering
+Consumers can buffer incoming data and process in batches or at intervals to avoid spinning too fast.
+4️⃣ Elastic scaling
+If using Kubernetes or auto-scaling groups, scale consumers down when producer load is low, and scale up when producer load increases.
+
+🧠 Case 2: Producer is Faster than Consumer
+Problem
+
+Lag builds up in the consumer group (check via Kafka offset lag metrics).
+Kafka brokers store data longer → potential disk pressure.
+Consumers may fall far behind, increasing end-to-end latency.
+If consumers are too slow, messages might expire based on retention.ms before they’re consumed.
+
+1️⃣ Scale Out Consumers (Horizontal Scaling)
+Add more consumer instances in the same consumer group to process partitions in parallel.
+👉 This is the most common solution.
+
+⚠️ Number of consumers should not exceed number of partitions per topic (otherwise some consumers remain idle).
+2️⃣ Optimize Consumer Processing
+
+Reduce per-record processing time (e.g., move heavy DB writes to async, batch DB inserts).
+
+Use bulk processing instead of processing messages one by one.
+
+Tune max.poll.records to process larger batches per poll.
+
+max.poll.records=500
+
+3️⃣ Use Backpressure / Flow Control
+If consumer cannot keep up, throttle producer:
+At application level (e.g., producer sleeps or rate limits)
+Or use Kafka’s acks and max.in.flight.requests.per.connection to naturally slow down producer under pressure.
+You can monitor consumer lag metrics and apply dynamic throttling.
+
+4️⃣ Increase Topic Partitions
+
+More partitions → more parallelism (consumers can be scaled horizontally more effectively).
+But requires re-partitioning, so do it carefully.
+
+5️⃣ Use Kafka Broker Retention Settings
+If you expect temporary bursts, you can retain messages longer:
+retention.ms=604800000   # 7 days
+
+
+This gives consumers more time to catch up without data loss.
+6️⃣ Consumer Pause & Resume
+If processing is heavy:
+Pause fetching new messages until the current batch is processed.
+Resume afterward.
+
+consumer.pause(consumer.assignment());
+// process current batch
+consumer.resume(consumer.assignment());
+Prevents the consumer from getting overwhelmed with too many unprocessed messages in memory.
+7️⃣ Use Multiple Consumer Groups (if needed)
+For different processing pipelines (e.g., fast vs. slow consumers), use separate consumer groups to isolate processing.
+
+
+how to optimization do for slow queries
+=========================================
+First step: understand why it's slow before optimizing.
+
+✅ Use EXPLAIN or EXPLAIN ANALYZE
+In MySQL:
+EXPLAIN SELECT * FROM orders WHERE customer_id = 123;
+
+In PostgreSQL:
+EXPLAIN ANALYZE SELECT * FROM orders WHERE customer_id = 123;
+You’ll see details like:
+Which indexes are used
+Whether a full table scan is happening
+Estimated vs actual row counts
+Join algorithms used (nested loop / hash / merge)
+
+🧠 2. Add or Improve Indexes
+✅ Common indexing tips:
+
+Add indexes on columns used in WHERE, JOIN, GROUP BY, ORDER BY.
+Use composite indexes for queries with multiple conditions, but order matters:
+
+🧠 3. Rewrite the Query (Logic Optimization)
+Examples:
+
+Avoid SELECT * → select only required columns
+Replace IN with EXISTS or JOIN if it performs better
+Avoid subqueries in WHERE when you can use JOIN or CTE
+Use proper filtering early to reduce scanned rows
+
+🧠 4. Denormalization / Materialized Views
+🧠 5. Use Proper Pagination
+6. Avoid N+1 Query Problems (App Level)
+7. Tune Database Parameters
+8. Partition Large Tables
+9. Use Caching Layers
+
+AWS S3 gives 403 what can be cuase
+=========================================
+Cause	                                                               Description	                     Check / Fix
+Invalid credentials	Wrong,                                            expired, or missing access keys	Verify keys, test with aws s3 ls
+Missing IAM permissions	                                              User/role lacks required actions	Check IAM policy (GetObject/PutObject)
+Bucket policy denies	                                              Explicit deny overrides allow	    Check bucket policy
+Block public access	Public URL                                        blocked by settings	            heck bucket/public access settings
+Wrong bucket/key	                                                  Typos or non-existent resource	Double-check names (case-sensitive)
+Cross-account issues	                                              Role trust or bucket policy misconfigured	Verify both accounts’ policies
+Pre-signed URL expired/invalid	U                                    RL expired or signature issue	Re-generate URL, check time
+Region mismatch	SDK or                                              URL uses wrong region	Match bucket region
+ACL/Object ownership	                                          Missing read permissions via ACL	Adjust object ACL or bucket owner controls

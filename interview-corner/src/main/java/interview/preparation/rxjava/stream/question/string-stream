@@ -1,0 +1,125 @@
+🧠 Top 100 String Coding Interview Questions (Java 8 Stream Focus)
+🟡 Category 1: Character Frequency & Counting (1 – 15)
+1.	Count frequency of each character in a string
+2.	Count frequency of each word in a sentence
+3.	Find first non-repeating character
+4.	Find first repeating character
+5.	Find all repeating characters
+6.	Find all non-repeating characters
+7.	Sort characters by frequency ascending
+8.	Sort characters by frequency descending
+9.	Find character with max frequency
+10.	Find character with min frequency
+11.	Check if two strings are anagrams
+12.	Check if two strings are isomorphic
+13.	Count vowels and consonants in a string
+14.	Count uppercase, lowercase, digits, special characters
+15.	Find the most frequent word in a sentence
+________________________________________
+🟢 Category 2: String Transformations (16 – 35)
+16.	Reverse entire string
+17.	Reverse each word in a sentence
+18.	Reverse order of words in a sentence
+19.	Capitalize first letter of each word
+20.	Convert camelCase to snake_case
+21.	Convert snake_case to camelCase
+22.	Remove vowels from a string
+23.	Remove all duplicate characters
+24.	Keep only unique characters in original order
+25.	Replace multiple spaces with a single space
+26.	Trim leading and trailing spaces without using trim()
+27.	Remove digits from a string
+28.	Keep only digits from a string
+29.	Remove special characters but keep alphanumerics
+30.	Replace each character with its ASCII code (joined by space)
+31.	Encode characters by shifting ASCII (Caesar cipher simple)
+32.	Convert string to character frequency encoded form (e.g. a2b1c3)
+33.	Expand frequency encoded string (e.g. a2b1c3 → aabccc)
+34.	Mask characters except last 4 (e.g. credit card mask)
+35.	Remove duplicate words in a sentence
+________________________________________
+🔵 Category 3: Pattern Matching & Validation (36 – 50)
+36.	Check if a string is palindrome (case-insensitive)
+37.	Check if a string is pangram
+38.	Check if string contains only digits
+39.	Check if string contains only alphabets
+40.	Check if string is valid email (basic regex)
+41.	Check if string is valid URL (basic regex)
+42.	Check if string is valid IPv4
+43.	Count occurrences of a substring in a string
+44.	Find all indexes of a substring in a string
+45.	Extract all numbers from a string
+46.	Find all uppercase words in a sentence
+47.	Check if string starts with a vowel using streams
+48.	Check if string contains all unique characters
+49.	Check if two strings are rotations of each other
+50.	Check if string can be rearranged to form a palindrome
+________________________________________
+🟠 Category 4: Grouping & Aggregation (51 – 70)
+51.	Group words by their length
+52.	Group words by their starting letter
+53.	Group words by anagram signature
+54.	Group words by palindrome or not
+55.	Group characters into vowels and consonants
+56.	Group strings by first character in a list
+57.	Group strings by last character in a list
+58.	Find longest word in a sentence
+59.	Find shortest word in a sentence
+60.	Find N longest words in a sentence
+61.	Find N shortest words in a sentence
+62.	Sort words by length ascending
+63.	Sort words by length descending
+64.	Sort words alphabetically
+65.	Sort words in reverse alphabetical order
+66.	Get distinct words in sorted order
+67.	Group characters into digits / letters / others
+68.	Get frequency of each word sorted by frequency desc
+69.	Get top K frequent words
+70.	Get top K frequent characters
+________________________________________
+🟤 Category 5: Advanced Problems (71 – 90)
+71.	Longest substring without repeating characters (using stream style)
+72.	Longest substring with K distinct characters
+73.	Smallest substring containing all unique characters
+74.	All permutations of a string (stream-based recursion)
+75.	All combinations of characters of a string
+76.	Find common characters between two strings (intersection)
+77.	Find characters present in one string but not the other (difference)
+78.	Merge two strings alternately
+79.	Shuffle characters randomly using streams
+80.	Count number of palindromic substrings
+81.	Count number of substrings with unique characters
+82.	Find all substrings of a string using IntStream
+83.	Generate all prefixes of a string
+84.	Generate all suffixes of a string
+85.	Check if string A is subsequence of string B
+86.	Check if two strings have any common substring
+87.	Longest common prefix of list of strings
+88.	Longest common suffix of list of strings
+89.	Check if string has balanced parentheses/brackets
+90.	Find unmatched brackets using stack + stream hybrid
+________________________________________
+⚫ Category 6: File/Text Stream Processing (91 – 100)
+91.	Read lines from file and count total words using streams
+92.	Find most frequent word in file
+93.	Remove stopwords from text using streams
+94.	Extract all unique email IDs from text file
+95.	Count number of sentences in a text (split by .?!)
+96.	Tokenize and sort all words alphabetically from text file
+97.	Find longest line in a file
+98.	Find all palindromic words in a file
+99.	Count number of occurrences of each character across multiple lines
+100.	Merge contents of multiple strings/files and remove duplicates
+________________________________________
+✅ Why These Are Perfect for Java 8 Stream Practice
+•	They force use of core Stream APIs: map, filter, flatMap, collect, groupingBy, counting, sorted, distinct, reduce, peek, limit, skip, etc.
+•	Many problems benefit from Collectors.groupingBy + Collectors.counting combo.
+•	Several problems can be solved without loops using IntStream.range + substring logic.
+•	Great for showing functional programming fluency in Java during interviews.
+________________________________________
+📌 Suggested Learning Path
+Instead of solving all 100 at once, do this:
+1.	Pick 10 from each category → total 60 high-value problems
+2.	Solve each with Stream-only first, then compare with imperative loop solution
+3.	Practice explaining your stream pipeline clearly (interviewers love clarity)
+

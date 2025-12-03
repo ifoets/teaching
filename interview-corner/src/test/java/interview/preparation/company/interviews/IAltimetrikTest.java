@@ -3,6 +3,7 @@ package interview.preparation.company.interviews;
 import com.sun.source.tree.LiteralTree;
 import interview.preparation.company.interviews.impl.AltimetrikImpl;
 import interview.preparation.company.interviews.model.Student;
+import interview.preparation.company.interviews.model.TNode;
 import interview.preparation.company.interviews.question.IAltimetrik;
 import org.junit.Assert;
 import org.junit.Before;
@@ -256,12 +257,46 @@ public class IAltimetrikTest {
         Assert.assertEquals("bbbb",ial.maxLenPalindromeX("ababbbb"));
         Assert.assertEquals("1212121",ial.maxLenPalindromeX("1212121001"));
     }
-    @Test
-    public void test()
-    {
-        String s = "abca";
 
-       // System.out.println(s.chars().distinct().length);
+    /*find min sum in matrix pick an element from each row*/
+    @Test
+    public void minSumMatrixTake1ElemFromEachRowTest()
+    {
+     int [][] mat = {
+         {1, 2, 3},
+        {4, 8, 2},
+        {1, 5, 3} };
+     Assert.assertEquals(4,ial.minSumMatrixTake1ElemFromEachRow(mat));
+    }
+
+    /*find min sum in matrix pick an element from each col*/
+    @Test
+    public void minSumMatrixTake1ElemFromEachColTest()
+    {
+        int [][] mat = {
+            {1, 2, 3},
+            {4, 8, 2},
+            {1, 5, 3} };
+        Assert.assertEquals(5,ial.minSumMatrixTake1ElemFromEachCol(mat));
+    }
+
+    @Test
+    public void  topViewDisplayTreeTest()
+    {
+        int []a ={7,3,11,1,5,9,13,0,2,4,8,10,12,14};
+        TNode  tNode = null;
+        for(int i:a)
+            tNode = TNode.create(tNode, i);
+        ial.topViewDisplayTree(tNode);
+    }
+    @Test
+    public void  topViewDisplayTreeXTest()
+    {
+        int []a ={7,3,11,1,5,9,13,0,2,4,8,10,12,14};
+        TNode  tNode = null;
+        for(int i:a)
+            tNode = TNode.create(tNode, i);
+        ial.topViewDisplayTreeX(tNode);
     }
 
 }

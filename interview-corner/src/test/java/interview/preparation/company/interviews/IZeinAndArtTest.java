@@ -15,7 +15,22 @@ public class IZeinAndArtTest {
 	}
 
 	@Test
-	public void oveloadMethodTest() {
-		iza.oveloadMethod();
+	public void overloadMethodTest() {
+		iza.overloadMethod();
 	}
+
+    @Test
+    public void overloadMethodXTest() {
+        iza.overloadMethodX();
+    }
+
+    @Test
+    public void overloadMethodYTest() {
+        iza.overloadMethodY();
+    }
+
+    @Test
+    public void overloadMethodZTest() {
+        iza.overloadMethodZ();
+    }
 }

@@ -1,27 +1,17 @@
 package interview.preparation.company.interviews.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.RecursiveTask;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import com.design.analysis.company.preparation.model.LNode;
 import com.design.analysis.company.preparation.utils.SListUtils;
@@ -821,5 +811,146 @@ public class WissenInfotechImpl implements IWissenInfotech {
             }
         }
         return  sumLeft==sumRight&&i==j ? i+1 : -1;
+    }
+
+    /**Round-1 Evaluating round*/
+    /**Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.*/
+    @Override
+    public int firstNonRepeatingCharIndex(String str){
+
+        char ch = str.chars().mapToObj(c->(char)c)
+            .collect(Collectors.groupingBy(
+                Function.identity(),
+                LinkedHashMap::new,
+                Collectors.counting()))
+            .entrySet()
+            .stream()
+            .filter(e->e.getValue()==1L)
+            .map(Entry::getKey)
+            .findFirst()
+            .orElseThrow();
+
+        return str.indexOf(ch);
+    }
+
+    @Override
+    public String distributeChocolates(int n){
+        int student=0;
+        while (n>=2)
+        {
+            n=n-2;
+            student++;
+        }
+        return n==0&&student!=1?"YES":"NO";
+    }
+
+    /** Find char count in string stream apis**/
+    @Override
+    public Map<Character,Long> findCharCount(String str){
+        return
+            str.chars().mapToObj(c->(char)c)
+                .collect(Collectors.groupingBy(Character::charValue, Collectors.counting()));
+    }
+
+    /* *Round -2**/
+    /** group the angram words from list of String*/
+    public Map<String,List<String>> groupAngram(List<String> list){
+
+        return list.stream()
+            .collect(Collectors.groupingBy(
+               words->words.chars().mapToObj(c->(char)c).map(String::valueOf).sorted().collect(Collectors.joining()),
+              Collectors.toList()
+            ));
+    }
+
+    /**4 man, 1 take 1min, 2nd take 2 min, 3rd take 5 min and 4h take 10 min, they having a light, two can cross together a bridge with slower man speed, find the min time taken to cross all man in light*/
+    /**design a data structure that holt the order(orderId, orderTime), searching will between start time and end time*. Option A: Balanced BST (TreeMap in Java, std::map in C++), Option B: Segment Tree / Interval Tree*/
+    /** design db student, club and event, any student can join many club
+     * q1, find all student with club name/ or no club joined
+     * q2,**/
+    /**distributeChocolates*/
+    /* *Round 2 */
+    /**marge the map to sum value*/
+    @Override
+    public TreeMap<Integer,Integer> mergeTreeMap(TreeMap<Integer,Integer> map1, TreeMap<Integer,Integer> map2){
+        return
+            Stream.concat(map1.entrySet().stream(),map2.entrySet().stream())
+                .collect(Collectors.toMap(
+                   Map.Entry::getKey,
+                   Map.Entry::getValue,
+                   Integer::sum,
+                   TreeMap::new
+                ));
+    }
+
+    @Override
+    public TreeMap<Integer,Integer> mergeListOfTreeMaps(List<Map<Integer,Integer>> listOfMaps){
+        return
+            listOfMaps.stream()
+                .flatMap(m -> m.entrySet().stream())   // flatten all maps into one stream of entries
+                .collect(Collectors.toMap(
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+                    Integer::sum,    // how to handle duplicates
+                    TreeMap::new     // optional: keep sorted keys
+                ));
+    }
+
+    /**sort string char based on frequency and same frequency should have maintained order as it is in string*/
+    @Override
+    public String sortOnFrequency(String str){
+        StringBuilder sb = new StringBuilder();
+        LinkedHashMap<Character,Integer> map = new LinkedHashMap<>();
+        char[] chars = str.toCharArray();
+        for(int i=0;i<str.length();i++)
+        {
+            if(map.containsKey(chars[i]))
+                map.put(chars[i],map.get(chars[i])+1);
+            else map.put(chars[i],1);
+        }
+
+        map = map
+            .entrySet().stream().sorted(Map.Entry.<Character,Integer>comparingByValue().reversed())
+            .collect(Collectors.toMap(
+                Map.Entry::getKey,
+                Map.Entry::getValue,
+                (e1,e2)-> e1,
+                LinkedHashMap::new
+            ));
+        for(Map.Entry<Character,Integer> entry:map.entrySet())
+        {
+            long val = (Integer)entry.getValue();
+            while (val-->0)sb.append((Character) entry.getKey());
+
+        }
+        return sb.toString();
+    }
+
+    /**sort string char based on frequency and then alphabetical order*/
+    @Override
+    public String sortOnFrequencyThenAlpha(String str){
+        StringBuilder sb = new StringBuilder();
+
+        Map<Character, Long> map = str.chars().mapToObj(c->(char)c)
+            .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+            .entrySet()
+            .stream()
+            .sorted(
+                Map.Entry.<Character,Long>comparingByValue().reversed()
+                    .thenComparing(Entry::getKey))
+            .collect(Collectors
+                .toMap(
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+                    (e1,e2)->e1,
+                    LinkedHashMap::new
+                ));
+        for(Map.Entry<Character,Long> entry:map.entrySet())
+        {
+            long val = entry.getValue();
+            while (val-->0)
+                sb.append(entry.getKey());
+        }
+        return sb.toString();
     }
 }

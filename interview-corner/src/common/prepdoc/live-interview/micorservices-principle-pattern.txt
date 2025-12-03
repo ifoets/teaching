@@ -1,7 +1,8 @@
 
 Load balancing
 --------------------------
-https://www.sayonetech.com/blog/load-balancing-microservices-architecture/#:~:text=Two%20types%20of%20load%20balancing,in%20front%20of%20the%20servers.
+
+
 server side load balancers nginx, netscaler etc.
 https://www.vultr.com/docs/how-to-setup-load-balancing-using-nginx?utm_source=performance-max-apac&utm_medium=paidmedia&obility_id=16876059738&utm_adgroup=&utm_campaign=&utm_term=&utm_content=&gclid=EAIaIQobChMIxfqoov6T_AIVTpJmAh2dqgQWEAAYAiAAEgLULfD_BwE
 
@@ -59,7 +60,7 @@ Components of Microservices
 
 Challenges of Microservices Architecture
 =========================================
-	1. Bounded Context
+	1. Bounded Context//A Bounded Context defines a logical boundary around a specific domain or subdomain where a particular model applies consistently.
 	2. Dynamic Scale up and Scale Down
 	3. Monitoring
 	4. Fault Tolerance
@@ -117,6 +118,8 @@ In this article, we are going to discuss 10 main design patterns which are menti
 	1. Database per Microservice
 	2. Event Sourcing //The event sourcing design pattern creates events regarding the changes in the application state.
 	3. CQRS //he command part will handle all the requests related to CREATE, UPDATE, DELETE while the query part will take care of the materialized views.
+		Command Model → handles writes (create, update, delete)
+		Query Model → handles reads (fetching data)
 	4. Saga //a design pattern used in microservices architecture to manage distributed transactions, ensuring consistency across multiple services, t breaks down a global transaction into a series of local transactions, 
 		each performed by a different service. If any local transaction fails, compensating transactions are used to revert the changes made by previous transactions, ensuring eventual consistency
 	5. BFF  // Frontend (BFF) patterns involve managing communication between clients and backend services, an API gateway acts as a single entry point for all clients, while a BFF is a client-specific backend tailored to 
@@ -127,6 +130,19 @@ In this article, we are going to discuss 10 main design patterns which are menti
 	8. Circuit Breaker //https://javatechonline.com/how-to-implement-hystrix-circuit-breaker-in-microservices-application/
 	9. Externalized Configuration
 	10. Consumer-Driven Contract Tracing
+
+SAGA:
+A Saga is a sequence of local transactions (each within a single microservice) where:
+Each local transaction updates the data in its own service.
+If one transaction fails, compensating transactions are executed to undo the effects of previous successful transactions.
+
+1. Choreography (Event-Based)
+Each service performs its local transaction and publishes an event.
+Other services listen for that event and react accordingly.
+
+2. Orchestration (Centralized Coordinator)
+A Saga Orchestrator controls the flow.
+It tells each service what to do and handles failures explicitly.
 
 Twelve-Factor Methodology in a Spring Boot Microservice
 ---------------------------------------------------------------------
