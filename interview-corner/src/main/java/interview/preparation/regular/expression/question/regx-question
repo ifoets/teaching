@@ -1,0 +1,119 @@
+🟢 Level 1 — Basics (Concept Building)
+1.	Match all strings that contain only lowercase letters.
+    [a-z]+
+Example: "hello" ✅ "Hello" ❌
+2.	Match a string that starts with an uppercase letter and ends with a period (.).
+    [A-Z][a-z]+\.
+Example: "Hello." ✅ "hello." ❌
+3.	Match all strings that are valid integers (positive or negative).// for all +/- floating ^-?\d+(\.\d+)?, ? for optional, \. for single dot
+Example: "-42" ✅ "003" ✅ "4.2" ❌
+    (^-)?\d+
+4.	Match a 10-digit number (only digits).
+Example: "9876543210" ✅ "98765abc" ❌
+    \d{10}
+5.	Match a string that has exactly 3 lowercase letters followed by 2 digits.
+Example: "abc12" ✅ "ab12" ❌
+    [a-z]{3}\d{2}
+6.	Match a word that contains the substring "cat" anywhere.
+Example: "educate", "concatenate" ✅ "dog" ❌// .* any 0 or more char
+    .*(cat).*
+7.	Match a string that contains no digits.
+Example: "abc!" ✅ "a1" ❌
+    ^\D*
+
+8.	Match a string that starts and ends with the same letter.
+Example: "level" ✅ "abc" ❌
+    ^([a-zA-Z]).*\1$             //.* or or more char \1 means the same of start ^([a-zA-Z]) and $ any String
+________________________________________
+🟡 Level 2 — Character classes, boundaries, and groups
+9.	Match a word boundary “cat” (whole word only).
+Example: "cat" ✅ "concatenate" ❌
+    (cat)
+10.	Match a string that is a valid hexadecimal color code (like #A1B2C3).
+Example: #FFF, #12ab90 ✅
+    ^#[a-zA-Z0-9]{3,6}
+11.	Match a string containing an email-like pattern (simplified).
+Example: "abc@xyz.com" ✅ "abc.com" ❌
+    ^[a-z]+@[a-z]+\.[a-z]+
+12.	Match a date in dd/mm/yyyy format (basic, no validation).
+Example: "23/09/2025" ✅ "3/9/25" ❌
+    \d{2}/\d{2}/\d{4}
+13.	Match strings that have consecutive repeated letters (e.g. "book", "mississippi").
+Example: "balloon" ✅ "cat" ❌
+    ^[a-z].*[a-z]{2}[a-z].*
+14.	Match a string that has at least one digit and one letter.
+Example: "abc123" ✅ "123" ❌
+    (?=.*[a-z])(?=.*\d).+,    // at least one char (?=.*[a-z]), at least one digit (?=.*\d), .+ repeat string itself may be
+15.	Match a string that is a valid username (start with a letter, 3–15 chars, may contain _).
+Example: "a_user1" ✅ "1user" ❌
+    ^[a-zA-Z]_.*[a-zA-Z0-9]{3,15}
+16.	Match a valid filename ending with .txt or .csv.
+Example: "report.csv" ✅ "file.txt" ✅ "file.doc" ❌
+    ^.*[a-zA-Z]\.(txt|csv)   \\   single \ is ending with
+________________________________________
+🟠 Level 3 — Quantifiers and lookarounds
+17.	Match strings with 3 or more consecutive digits.
+Example: "abc123def" ✅ "12a3" ❌
+    .*\d{3}.*
+18.	Match strings that contain no spaces.
+Example: "NoSpaceHere" ✅ "has space" ❌
+
+19.	Match strings that do not start with a digit (using lookahead or negation).
+Example: "abc1" ✅ "1abc" ❌
+20.	Match a password: at least 8 chars, one uppercase, one lowercase, one digit, one special symbol.
+21.	Match words that have double vowels (like “cool”, “beet”).
+22.	Match all email addresses in a paragraph (global match).
+23.	Match all HTML tags in a string (e.g. <div>, <p>).
+24.	Match duplicate consecutive words (e.g. “is is”, “the the”).
+Example: "This is is fine." → should detect "is is"
+25.	Match valid IPv4 addresses.
+Example: "192.168.0.1" ✅ "256.100.1.1" ❌
+
+=======================================================================================================================================================================
+
+🧠 Level 1 — Complex Pattern Composition
+1.	Match a floating-point number — supports optional sign, optional decimal, and optional exponent (e.g., -12.5, 3., .5, 2e10).
+2.	Match a valid time (24-hour format) → e.g., 00:00 to 23:59.
+3.	Match dates with separators -, /, or ., like 2025-10-10, 10/10/2025, 10.10.2025.
+4.	Match a US/Indian phone number — optional country code (+91, +1), optional spaces or dashes.
+5.	Match a valid IPv4 address — ensure each octet is 0–255 (no 256).
+6.	Match valid IPv6 addresses (e.g., 2001:0db8:85a3::8a2e:0370:7334).
+7.	Match valid MAC address — formats like 00:1A:C2:7B:00:47 or 00-1A-C2-7B-00-47.
+8.	Match valid URL (http, https, ftp) — with optional www., domain, path, query.
+9.	Extract domain name from an email (use capturing groups).
+10.	Validate a credit card number (Visa, MasterCard, AmEx patterns only).
+________________________________________
+⚙️ Level 2 — Lookaheads, Lookbehinds, and Boundaries
+11.	Match words that contain both letters and digits (e.g., abc123, 1stPlace).
+12.	Match strings that contain duplicate words — e.g., “is is”, “the the”.
+13.	Match a password that meets all rules:
+o	At least 8 characters
+o	One lowercase
+o	One uppercase
+o	One digit
+o	One special character
+(use multiple lookaheads)
+14.	Find all numbers that are not preceded by $ (negative lookbehind).
+15.	Match an email only if it’s inside angle brackets — e.g., <abc@xyz.com>.
+16.	Match words not followed by punctuation (negative lookahead).
+17.	Match repeated sequences — e.g., "abcabc" → detect repeated group "abc".
+18.	Match string where same word appears twice anywhere (not necessarily consecutive).
+19.	Match any HTML tag pair with same tag name (use backreference: <(\w+)>.*?</\1> pattern idea).
+20.	Match a string that does not contain the substring “test” (negative lookahead across the whole string).
+________________________________________
+🧩 Level 3 — Capturing, Backreferences & Nested Patterns
+21.	Extract text inside parentheses but not nested ones.
+Example: from "A(B(C)D)E", match "B(C", not "C" or outer "A(B(C)D)E".
+22.	Match palindromic words of even or odd length (using backreference symmetry).
+23.	Validate a string that is a valid JSON number (handle -, decimals, exponent, no leading zeros).
+24.	Extract content between HTML tags ignoring nested tags (use lazy quantifiers).
+25.	Validate balanced parentheses (only possible with recursive patterns in PCRE).
+________________________________________
+⚡ Bonus Challenges (for regex masters)
+26.	Match Java/Python string literals (handle quotes & escapes).
+27.	Match file paths (Windows + Unix variants).
+28.	Match hashtags (#RegexRocks) and mentions (@user) in text.
+29.	Match a word that appears three times in a line (using counting backrefs).
+30.	Match Markdown links like [text](url) and extract both parts.
+
+

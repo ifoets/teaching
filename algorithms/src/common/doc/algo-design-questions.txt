@@ -1,0 +1,118 @@
+🔹 1. Array & Strings
+1.	Two Sum / K-Sum variants
+2.	Maximum Subarray (Kadane’s Algorithm)
+3.	Trapping Rain Water
+4.	Container With Most Water
+5.	Product of Array Except Self
+6.	Merge Intervals
+7.	Insert Interval
+8.	Rotate Image (Matrix rotation)
+9.	Spiral Matrix traversal
+10.	Longest Substring Without Repeating Characters
+11.	Minimum Window Substring
+12.	String Anagrams (Group Anagrams, Find All Anagrams in a String)
+13.	Longest Palindromic Substring
+14.	Regular Expression Matching
+15.	Wildcard Matching
+________________________________________
+🔹 2. Sorting & Searching
+16.	QuickSort, MergeSort, HeapSort (implementations + time complexity)
+17.	Kth Largest/Smallest Element (QuickSelect, Heap-based)
+18.	Search in Rotated Sorted Array
+19.	Median of Two Sorted Arrays
+20.	Find Peak Element
+21.	Binary Search Variants (first occurrence, last occurrence, upper/lower bound)
+22.	Aggressive Cows / Allocate Books (Binary Search on Answer)
+23.	Minimum Number of Platforms (Sorting + Greedy)
+24.	Meeting Rooms I & II
+25.	Job Scheduling with Deadlines
+________________________________________
+🔹 3. Linked Lists
+26.	Reverse a Linked List (iterative & recursive)
+27.	Detect Cycle in Linked List
+28.	Merge Two Sorted Linked Lists
+29.	Add Two Numbers (Linked List representation)
+30.	LRU Cache (LinkedList + HashMap design)
+31.	Clone Linked List with Random Pointer
+32.	Sort a Linked List
+33.	Merge K Sorted Linked Lists
+34.	Intersection of Two Linked Lists
+35.	Remove Nth Node from End
+________________________________________
+🔹 4. Stack & Queue
+36.	Min Stack / Max Stack design
+37.	Implement Queue using Stacks / Stack using Queues
+38.	Largest Rectangle in Histogram
+39.	Sliding Window Maximum
+40.	Daily Temperatures
+41.	Next Greater Element
+42.	Balanced Parentheses (Valid Parentheses)
+43.	Evaluate Reverse Polish Notation
+44.	Design Circular Queue
+45.	Stock Span Problem
+________________________________________
+🔹 5. Trees
+46.	Maximum Depth of Binary Tree
+47.	Lowest Common Ancestor (BST & Binary Tree)
+48.	Serialize and Deserialize Binary Tree
+49.	Validate Binary Search Tree
+50.	Binary Tree Level Order Traversal
+51.	Zigzag Level Order Traversal
+52.	Diameter of Binary Tree
+53.	Invert Binary Tree
+54.	Path Sum (all variants)
+55.	Construct Tree from Inorder & Preorder/Postorder
+________________________________________
+🔹 6. Graphs
+56.	BFS & DFS implementation
+57.	Detect Cycle (Directed & Undirected Graphs)
+58.	Topological Sort (Kahn’s Algorithm, DFS approach)
+59.	Dijkstra’s Algorithm
+60.	Bellman-Ford Algorithm
+61.	Floyd-Warshall Algorithm
+62.	Minimum Spanning Tree (Kruskal’s, Prim’s)
+63.	Word Ladder (Shortest Transformation)
+64.	Clone Graph
+65.	Course Schedule (Graph cycle + Topological sort)
+66.	Number of Islands
+67.	Surrounded Regions
+68.	Pacific Atlantic Water Flow
+69.	Rotten Oranges
+70.	Graph Coloring Problem
+________________________________________
+🔹 7. Dynamic Programming (DP)
+71.	Fibonacci (memoization, tabulation)
+72.	Climbing Stairs (min cost, number of ways)
+73.	Coin Change (min coins, number of ways)
+74.	0/1 Knapsack
+75.	Subset Sum Problem
+76.	Partition Equal Subset Sum
+77.	Longest Increasing Subsequence
+78.	Longest Common Subsequence
+79.	Edit Distance
+80.	Matrix Chain Multiplication
+81.	Minimum Path Sum (Grid DP)
+82.	Unique Paths (with obstacles)
+83.	Palindrome Partitioning (min cuts)
+84.	Burst Balloons
+85.	Word Break Problem
+________________________________________
+🔹 8. Greedy Algorithms
+86.	Activity Selection Problem
+87.	Huffman Coding
+88.	Minimum Spanning Tree (Greedy perspective)
+89.	Fractional Knapsack
+90.	Minimum Number of Arrows to Burst Balloons
+91.	Jump Game I & II
+92.	Gas Station Problem
+93.	Candy Distribution
+94.	Task Scheduler
+95.	Job Sequencing Problem
+________________________________________
+🔹 9. Advanced / Miscellaneous
+96.	Union-Find (Disjoint Set Union – DSU)
+97.	Median in a Data Stream (Heaps)
+98.	Sliding Window Median
+99.	Design Twitter / News Feed (Heap + HashMap)
+100.	Consistent Hashing (System design + algorithmic implementation)
+

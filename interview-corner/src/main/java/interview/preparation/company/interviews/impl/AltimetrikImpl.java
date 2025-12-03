@@ -2,6 +2,7 @@ package interview.preparation.company.interviews.impl;
 
 import interview.preparation.company.interviews.Utils.InterviewUtils;
 import interview.preparation.company.interviews.model.Student;
+import interview.preparation.company.interviews.model.TNode;
 import interview.preparation.company.interviews.question.IAltimetrik;
 import jdk.jshell.spi.ExecutionControl;
 
@@ -409,7 +410,85 @@ public  class AltimetrikImpl implements IAltimetrik {
         }
         return right-left-1;
     }
+    /*find min sum in matrix pick an element from each row*/
+    @Override
+    public int minSumMatrixTake1ElemFromEachRow(int[][] mat){
 
+        int sum=0;
+        for(int[] row:mat)
+        {
+            sum+= Arrays.stream(row).min().getAsInt();
+        }
+        return sum;
+    }
+    /*find min sum in matrix pick an element from each col*/
+    @Override
+    public int minSumMatrixTake1ElemFromEachCol(int[][] mat){
+
+        int sum =0;
+        for(int col=0;col<mat.length;col++)
+        {
+            int minInCol=Integer.MAX_VALUE;
+            for (int row=0;row<mat.length;row++)
+            {
+                if(minInCol>mat[row][col])
+                    minInCol = mat[row][col];
+            }
+            sum+=minInCol;
+        }
+        return sum;
+    }
+
+    @Override
+    public void topViewDisplayTree(TNode node)
+    {
+        Map<Integer,List<Integer>> map = new HashMap<>();
+        lRrTravel(node,map);
+       map = map.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(
+           Collectors.toMap(
+               Map.Entry::getKey,
+               Map.Entry::getValue,
+               (e1,e2)-> e1,
+               LinkedHashMap::new
+           )
+       );
+       for (Map.Entry<Integer,List<Integer>> set:map.entrySet())
+       {
+           System.out.print(set.getValue().stream().findFirst().orElseThrow()+", ");
+       }
+
+    }
+    private void lRrTravel(TNode node,Map<Integer,List<Integer>> map)
+    {
+        if(node!=null)
+        {
+            List<Integer> list = map.getOrDefault(node.ltRtPos,new ArrayList<>());
+            list.add(node.k);
+            map.put(node.ltRtPos,list);
+            lRrTravel(node.lt,map);
+            lRrTravel(node.rt,map);
+        }
+    }
+
+    @Override
+    public void topViewDisplayTreeX(TNode node){
+
+        List<Integer> list = new ArrayList<>();
+        list.add(node.k);
+        TNode l = node.lt;
+        TNode r = node.rt;
+        while (l!=null)
+        {
+            list.add(l.k);
+             l=l.lt;
+        }
+        while (r!=null)
+        {
+            list.add(r.k);
+            r=r.rt;
+        }
+        list.stream().sorted().forEach(System.out::println);
+    }
 }
 
 

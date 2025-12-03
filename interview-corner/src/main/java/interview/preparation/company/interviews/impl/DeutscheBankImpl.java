@@ -20,7 +20,8 @@ public class DeutscheBankImpl implements IDeutscheBank {
     List<String> empName = new ArrayList<>();
     @Override
     public List<String> getEmpListOfManager(List<Employee> list, String mgrName) {
-        return null;
+        return
+            list.stream().map(Employee::getName).filter(name -> name.equals(mgrName)).toList();
     }
 }
 

@@ -75,6 +75,7 @@ public interface IRxJavGroupBy {
 
     /**Group a list of Employee by department and collect oldest employee per department.*/
     Map<String, Integer> collectOldestEmpInEachDept(List<Employee> list);
+    Map<String, Optional<Employee>> collectOldestEmpInEachDeptX(List<Employee> list);
 
     /**Group books by title length range (short <10, medium <20, long).*/
     Map<String, List<String>> groupBookTitleLen(List<Book> list);

@@ -193,7 +193,7 @@ public interface ISLinkList<K> {
 	public SLNode<K> detectAndRemoveLoop(SLNode<K> k);
 
 	/** 16. Merge two sorted linked lists **/
-	public SLNode<K> mergeTwoSotedList(SLNode<K> k1, SLNode<K> k2);
+	public SLNode<K> mergeTwoSortedList(SLNode<K> k1, SLNode<K> k2);
 
 	/** 17. Generic Linked List in java :all ready done on 3. **/
 

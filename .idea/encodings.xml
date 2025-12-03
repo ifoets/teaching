@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$USER_HOME$/src/main/java" charset="UTF-8" />
+    <file url="file://$USER_HOME$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/algorithms/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/algorithms/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core system design/core-system-design/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core system design/core-system-design/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core-system-design/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core-system-design/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data-structures/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data-structures/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/design-patterns/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/design-patterns/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/interview-corner/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/interview-corner/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/leet-code/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/leet-code/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rx-java/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rx-java/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/scenario-analysis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/scenario-analysis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/system-design/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/system-design/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thread-concurrency/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thread-concurrency/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

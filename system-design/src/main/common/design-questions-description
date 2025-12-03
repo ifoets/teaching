@@ -1,0 +1,161 @@
+System Design Questions (50)
+
+Scalability & Distributed Systems
+1.	Design a URL shortener (like TinyURL).
+    https://medium.com/@sandeep4.verma/system-design-scalable-url-shortener-service-like-tinyurl-106f30f23a82
+    https://bytebytego.com/courses/system-design-interview/design-a-url-shortener
+2.	Design an API rate limiter.
+    https://0xkishan.medium.com/designing-and-implementing-an-api-rate-limiter-in-java-af34c17145f2
+3.	Design a distributed cache (like Redis).
+4.	Design a message queue (like Kafka).
+5.	Design a notification system (push/email/SMS).
+6.	Design an online code editor (like LeetCode/IDE).
+7.	Design a distributed file storage (like Dropbox/Google Drive).
+8.	Design a video streaming platform (like YouTube/Netflix).
+9.	Design a chat system (like WhatsApp/Slack).
+10.	Design a real-time collaborative editor (like Google Docs).
+Database & Storage
+11.	Design a key-value store (like Amazon DynamoDB).
+12.	Design a relational DB system (mini MySQL).
+13.	Design an event sourcing system.
+14.	Design a time-series database.
+15.	Design a log storage system (like ELK).
+16.	Design a search engine (like Elasticsearch).
+17.	Design an e-commerce catalog system.
+18.	Design a payment system (like PayPal).
+19.	Design a ledger system (banking).
+20.	Design a booking system (like Airbnb).
+High Traffic Web Apps
+21.	Design a scalable URL crawler.
+22.	Design an ad-serving system (Google Ads).
+23.	Design an online judge (like HackerRank).
+24.	Design a recommendation system (Amazon/Netflix).
+25.	Design a ride-hailing system (Uber).
+26.	Design a food delivery system (Swiggy/Zomato).
+27.	Design a stock trading platform.
+28.	Design an IoT device management system.
+29.	Design a telemetry/metrics system (like Prometheus).
+30.	Design a monitoring system (Datadog, NewRelic).
+Authentication & Security
+31.	Design an OAuth2 authorization server.
+32.	Design a Single Sign-On (SSO) system.
+33.	Design a multi-tenant SaaS application.
+34.	Design an API gateway.
+35.	Design a firewall for microservices.
+Cloud & Microservices
+36.	Design a microservices-based architecture for e-commerce.
+37.	Design service discovery (like Eureka/Consul).
+38.	Design a CI/CD pipeline.
+39.	Design a fault-tolerant system (with leader election).
+40.	Design a configuration service (like Spring Cloud Config).
+Performance & Reliability
+41.	Design a system to handle 1M requests/sec.
+42.	Design a rate-limited job scheduler.
+43.	Design a retry/backoff mechanism.
+44.	Design a dead-letter queue system.
+45.	Design a distributed transaction manager.
+46.	Design an audit logging system.
+47.	Design a cache invalidation strategy.
+48.	Design a throttling mechanism for microservices.
+49.	Design an idempotent API system.
+50.	Design a blue-green deployment architecture.
+________________________________________
+🔹 Java & Coding Questions (50)
+Core Java & Collections
+51.	Implement a custom HashMap.
+52.	Implement a custom ConcurrentHashMap.
+53.	Implement an LRU cache using LinkedHashMap.
+54.	Implement a thread-safe blocking queue.
+55.	Implement a priority queue from scratch.
+56.	Detect a cycle in a linked list.
+57.	Find kth largest element using heap.
+58.	Implement a trie (prefix tree).
+59.	Implement a bloom filter.
+60.	Implement a skip list.
+Concurrency
+61.	Implement a producer-consumer problem using BlockingQueue.
+62.	Implement a thread pool executor.
+63.	Implement a read-write lock.
+64.	Implement a semaphore from scratch.
+65.	Implement CountDownLatch using wait/notify.
+66.	Implement CyclicBarrier.
+67.	Solve Dining Philosophers problem.
+68.	Implement a rate limiter using token bucket.
+69.	Implement a distributed lock (like Redis/Zookeeper).
+70.	Implement async callbacks in Java.
+Algorithms & Data Structures
+71.	Implement quicksort/mergesort.
+72.	Implement binary search tree (insert/search/delete).
+73.	Implement balanced BST (AVL/Red-Black Tree).
+74.	Implement Dijkstra’s shortest path.
+75.	Implement A* search algorithm.
+76.	Implement union-find (DSU).
+77.	Implement topological sort.
+78.	Implement a graph traversal (DFS/BFS).
+79.	Implement a suffix array.
+80.	Implement KMP string matching.
+Design Patterns & LLD
+81.	Implement Singleton (thread-safe).
+82.	Implement Factory and Abstract Factory.
+83.	Implement Builder pattern.
+84.	Implement Observer pattern.
+85.	Implement Proxy pattern.
+86.	Implement Decorator pattern.
+87.	Implement Chain of Responsibility.
+88.	Implement Strategy pattern.
+89.	Implement State machine.
+90.	Implement Circuit Breaker pattern.
+JVM, Performance, Misc
+91.	Explain JVM memory model.
+92.	Write a custom class loader.
+93.	Simulate garbage collection manually.
+94.	Optimize a Java program using profiling.
+95.	Implement caching with weak references.
+96.	Implement a custom annotation processor.
+97.	Implement reflection-based dependency injection.
+98.	Implement serialization & deserialization.
+99.	Implement a REST client using HttpClient.
+100.	Implement a reactive stream with backpressure (RxJava/Project Reactor).
+
+
+========================================================================================================================================
+Top 30 System Design interview questions
+
+Easy System Design interview questions
+------------------------------------------------------
+1.	Design an API rate limiter for sites like Firebase or GitHub
+2.	Design a pub/sub system like Kafka
+3.	Design a URL-shortening service like TinyURL or bit.ly
+4.	Design a scalable content delivery network (CDN)
+5.	Design a web crawler
+6.	Design a distributed cache
+7.	Design an authentication and SSO platform like Auth0
+
+---------------------------------------------------------
+8.	Design a video-first social platform like TikTok
+9.	Design an AI-powered customer support platform
+10.	Design a chat service like Facebook Messenger or WhatsApp
+11.	Design a mass social media service like Facebook or Instagram
+12.	Design a proximity service like Yelp or nearby places/friends
+13.	Design a search engine-related service like Typeahead
+14.	Design a video streaming service like YouTube or Netflix
+15.	Design a ride sharing service like Uber or Lyft
+16.	Design a recommendation service
+17.	Design a file sharing service like Google Drive
+18.	Design a social network and message board like Reddit or Quora
+
+
+Hard System Design interview questions
+-------------------------------------------------
+19.	Design a ChatGPT-style service
+20.	Design a code deployment system
+21.	Design a social media newsfeed service
+22.	Design a collaborative editing service like Google Docs
+23.	Design Google Maps
+24.	Design a payment gateway like Stripe
+25.	Design a food delivery service like Uber Eats or DoorDash
+26.	Design a distributed locking service like Google Chubby locking
+27.	Design a coordination system like ZooKeeper
+28.	Design a scalable distributed storage system like Bigtable
+29.	Design an online multiplayer game system
+30.	Design a Zoom-like video conference service

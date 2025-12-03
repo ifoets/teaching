@@ -1,0 +1,126 @@
+🔹 1. Arrays & Strings (Foundational Design)
+1.	Implement a dynamic array (like ArrayList).
+2.	Design a sparse array (efficient storage of mostly-empty arrays).
+3.	Implement a string pool (interning).
+4.	Design a substring search (KMP, Rabin-Karp).
+5.	Implement a sliding window buffer.
+6.	Circular buffer implementation.
+7.	Rope data structure (efficient string editing).
+8.	Implement compressed string storage (Run-Length Encoding).
+9.	Design immutable strings.
+10.	Design a trie-based dictionary for autocomplete.
+________________________________________
+🔹 2. Linked Lists
+11.	Implement a singly linked list.
+12.	Implement a doubly linked list.
+13.	Skip list design.
+14.	Implement an ordered linked list (sorted insert).
+15.	Memory-efficient XOR linked list.
+16.	Persistent linked list.
+17.	Lock-free linked list (concurrency-safe).
+18.	Implement a circular linked list.
+19.	Design a multilevel linked list (like flattening).
+20.	Implement a linked hash map (LinkedList + HashMap).
+________________________________________
+🔹 3. Stacks & Queues
+21.	Stack using arrays.
+22.	Stack using linked list.
+23.	Min stack / Max stack.
+24.	Two-stack queue.
+25.	Queue using arrays (circular).
+26.	Queue using linked list.
+27.	Priority queue (binary heap).
+28.	Double-ended queue (Deque).
+29.	Blocking queue (thread-safe).
+30.	Lock-free concurrent queue.
+________________________________________
+🔹 4. Hashing & Hash Tables
+31.	Implement a hash map from scratch.
+32.	Handle collisions (chaining vs open addressing).
+33.	Hash set design.
+34.	Resizable hash table.
+35.	Consistent hashing implementation.
+36.	LRU Cache (HashMap + DLL).
+37.	LFU Cache.
+38.	Thread-safe hash map (ConcurrentHashMap design).
+39.	Bloom filter.
+40.	Cuckoo hashing.
+________________________________________
+🔹 5. Trees
+41.	Implement a binary search tree (BST).
+42.	AVL Tree (self-balancing BST).
+43.	Red-Black Tree.
+44.	Splay Tree.
+45.	Treap (Tree + Heap).
+46.	Interval Tree.
+47.	Segment Tree (range queries).
+48.	Fenwick Tree (Binary Indexed Tree).
+49.	Trie (prefix tree).
+50.	Radix Tree.
+________________________________________
+🔹 6. Heaps
+51.	Min heap implementation.
+52.	Max heap implementation.
+53.	Binary heap with decrease-key.
+54.	Fibonacci heap.
+55.	Binomial heap.
+56.	D-ary heap.
+57.	Interval heap.
+58.	Pairing heap.
+59.	Lazy heap (optimized deletion).
+60.	Median heap (two-heaps design).
+________________________________________
+🔹 7. Graph Data Structures
+61.	Adjacency list vs adjacency matrix design.
+62.	Weighted graph representation.
+63.	Directed graph vs undirected graph design.
+64.	Graph with edge list representation.
+65.	Dynamic graph (insert/delete edges).
+66.	Union-Find (Disjoint Set Union).
+67.	Minimum Spanning Tree data structure.
+68.	Graph coloring data structure.
+69.	Topological order structure.
+70.	Multi-graph representation.
+________________________________________
+🔹 8. Specialized Data Structures
+71.	Disjoint Set with path compression.
+72.	Persistent segment tree.
+73.	Sparse table (range queries).
+74.	Suffix array.
+75.	Suffix tree.
+76.	Aho-Corasick automaton (multi-pattern search).
+77.	Patricia trie.
+78.	B-Tree (used in DBs).
+79.	B+ Tree (DB indexes).
+80.	R-Tree (spatial indexes).
+________________________________________
+🔹 9. Concurrency & Parallelism
+81.	Lock-free stack.
+82.	Lock-free queue.
+83.	Thread-safe hash set.
+84.	Thread-safe priority queue.
+85.	Concurrent skip list.
+86.	Read-Write lock for BST.
+87.	Copy-on-write data structure.
+88.	Wait-free circular buffer.
+89.	Concurrent linked list.
+90.	Software transactional memory (STM) data structure.
+________________________________________
+🔹 10. System Design-Oriented Data Structures
+91.	LRU cache design.
+92.	LFU cache design.
+93.	Time-based key-value store.
+94.	Rate limiter (token bucket / leaky bucket).
+95.	Order book (for trading system).
+96.	Inverted index (used in search engines).
+97.	Log-structured merge tree (used in NoSQL DBs).
+98.	Consistent hashing ring.
+99.	Bloom filter for cache validation.
+100.	CRDT (Conflict-free replicated data type).
+________________________________________
+✅ These cover foundational + advanced + system-level data structures.
+As an SSE, you’ll often get asked:
+•	Implement a structure (core operations in O(logN), O(1), etc).
+•	Scale it (thread-safety, persistence, distributed).
+•	Compare trade-offs (space vs time, immutability vs performance, concurrency vs locks).
+

@@ -2,6 +2,7 @@ package interview.preparation.company.interviews.question;
 
 
 import interview.preparation.company.interviews.model.Student;
+import interview.preparation.company.interviews.model.TNode;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -67,5 +68,13 @@ public interface IAltimetrik {
 
     String maxLenPalindromeX(String str);
 
+    /*find min sum in matrix pick an element from each row*/
+    int minSumMatrixTake1ElemFromEachRow(int[][] mat);
 
+    /*find min sum in matrix pick an element from each row*/
+    int minSumMatrixTake1ElemFromEachCol(int[][] mat);
+
+    void topViewDisplayTree(TNode node);
+
+    void topViewDisplayTreeX(TNode node);
 }
