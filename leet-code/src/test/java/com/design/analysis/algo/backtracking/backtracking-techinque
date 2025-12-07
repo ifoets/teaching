@@ -1,0 +1,208 @@
+Backtracking is one of the core algorithmic techniques used in problems involving:
+
+searching
+
+combinatorics
+
+permutations
+
+subsets
+
+combinations
+
+paths
+
+constraint satisfaction
+
+It works by trying out all possibilities but undoing (backtracking) choices when they lead to invalid solutions.
+
+Below is the best, cleanest explanation for interviews.
+
+🔥 1. What is Backtracking?
+Backtracking = DFS + Undo + Pruning
+
+It is a technique in which you:
+
+Choose (make a decision)
+
+Explore (go deeper recursively)
+
+Unchoose (undo the decision → backtrack)
+
+This allows exploring all valid solutions while avoiding useless paths.
+
+🔥 2. General Template (VERY IMPORTANT)
+
+Every backtracking solution follows this pattern:
+
+void backtrack(Path current, Options options) {
+
+    if (goalReached(current)) {
+        addSolution(current);
+        return;
+    }
+
+    for (option in options) {
+
+        if (invalid(option))
+            continue;
+
+        apply(option);      // choose
+        backtrack(current); // explore
+        undo(option);       // unchoose
+    }
+}
+
+
+This template works for permutations, combinations, subsets, N-Queens, graphs, etc.
+
+🔥 3. Real Meaning (Simple Example)
+
+Example: generate all subsets of {1,2,3}.
+
+Decisions:
+
+Include element?
+
+Not include element?
+
+Tree:
+
+                     []
+                 /         \
+             [1]           []
+            /   \         /  \
+        [1,2]  [1]     [2]    []
+
+
+Each path represents a subset.
+
+🔥 4. Why Backtracking Works?
+
+Because at each step we:
+
+Try all possibilities
+
+Reject paths that cannot lead to a solution
+
+Revert changes to explore another branch
+
+Backtracking cuts down massive search spaces.
+
+🔥 5. Classic Problems Using Backtracking
+Problem	Why Backtracking
+Permutations of array	Try each element as next position
+Combinations (n choose k)	Try choosing/not choosing
+Subsets of array	Binary include/exclude tree
+N-Queens	Try each column for each row; prune invalid
+Sudoku	Try 1–9 for each cell; backtrack on conflict
+Rat in a maze	Try each direction; backtrack on wall
+Word search	Try all directions in matrix
+Generate Parentheses	BFS with constraints
+Knight’s Tour	Try all moves and backtrack failed paths
+🔥 6. Example Codes (Simple & Interview-Ready)
+(A) Permutations (Backtracking)
+public List<List<Integer>> permute(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
+    backtrack(nums, new ArrayList<>(), result);
+    return result;
+}
+
+private void backtrack(int[] nums, List<Integer> tempList, List<List<Integer>> result) {
+    if (tempList.size() == nums.length) {
+        result.add(new ArrayList<>(tempList));
+        return;
+    }
+
+    for (int num : nums) {
+        if (tempList.contains(num)) continue; // pruning
+
+        tempList.add(num);       // choose
+        backtrack(nums, tempList, result); // explore
+        tempList.remove(tempList.size() - 1); // unchoose
+    }
+}
+
+(B) Subsets
+public List<List<Integer>> subsets(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
+    backtrack(0, nums, new ArrayList<>(), result);
+    return result;
+}
+
+private void backtrack(int start, int[] nums, List<Integer> temp, List<List<Integer>> result) {
+    result.add(new ArrayList<>(temp));
+
+    for (int i = start; i < nums.length; i++) {
+        temp.add(nums[i]);
+        backtrack(i + 1, nums, temp, result);
+        temp.remove(temp.size() - 1);
+    }
+}
+
+(C) N-Queens
+public List<List<String>> solveNQueens(int n) {
+    List<List<String>> result = new ArrayList<>();
+    char[][] board = new char[n][n];
+    for (char[] row : board) Arrays.fill(row, '.');
+
+    backtrack(0, board, result);
+    return result;
+}
+
+private void backtrack(int row, char[][] board, List<List<String>> result) {
+    if (row == board.length) {
+        result.add(construct(board));
+        return;
+    }
+
+    for (int col = 0; col < board.length; col++) {
+        if (isSafe(board, row, col)) {
+            board[row][col] = 'Q';
+            backtrack(row + 1, board, result);
+            board[row][col] = '.'; // undo
+        }
+    }
+}
+
+🔥 7. Key Points Asked in Interviews
+✔ What is backtracking?
+
+A refined DFS with pruning.
+
+✔ What are 3 steps?
+
+Choose → Explore → Unchoose.
+
+✔ How to prune?
+
+Skip invalid paths early using conditions.
+
+✔ Time complexity?
+
+Often exponential:
+
+Permutations → O(n!)
+
+Subsets → O(2ⁿ)
+
+N-Queens → O(n!)
+
+✔ When to use it?
+
+When the problem requires “explore all possibilities but constraints prune search”.
+
+🔥 8. Visualizing Backtracking (VERY IMPORTANT)
+
+Imagine a tree.
+Each node = a partial solution.
+Edges = choices.
+Backtracking explores all branches, but backs up when no solution ahead.
+
+If you want, I can also explain:
+
+✔ backtracking vs recursion
+✔ backtracking vs DP
+✔ backtracking vs BFS/DFS
+✔ how to detect backtracking pattern in questions
+✔ dry run any backtracking problem you want

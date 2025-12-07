@@ -1,6 +1,8 @@
 package com.design.analysis.algo.array.easy;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicIntegerArray;
+import java.util.stream.IntStream;
 
 public class ArrayEasyImpl implements IArrayEasy{
 
@@ -8,18 +10,16 @@ public class ArrayEasyImpl implements IArrayEasy{
     public int[] twoSum(int[] nums, int target){
 
         Map<Integer, Integer> map = new HashMap<>();  // value → index
-
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
-
             if (map.containsKey(complement)) {
                 return new int[] { map.get(complement), i };
             }
-
             map.put(nums[i], i);  // Store value and index
         }
 
         return new int[] {};  // No solution found
+
     }
 
     @Override
@@ -71,7 +71,24 @@ public class ArrayEasyImpl implements IArrayEasy{
         }
         return rs;
     }
+    /**find all indexes target sum*/
+    @Override
+    public Map<Integer,Integer> sumTargetIndexes(int[]a, int target){
+        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer,Integer> nresultMap = new HashMap<>();
 
+            IntStream.range(0,a.length)
+                .boxed()
+                .forEach(i->
+                {
+                    int component = target-a[i];
+                    if(map.containsKey(component))
+                        nresultMap.put(map.get(component),i);
+                    else
+                        map.put(a[i],i);
+                });
+        return nresultMap;
+    }
     /**26. Remove Duplicates from Sorted Array*/
     @Override
     public int removeDuplicates(int[] nums){
@@ -85,6 +102,13 @@ public class ArrayEasyImpl implements IArrayEasy{
         return j;
     }
 
+    /**remove duplicate elements*/
+    @Override
+    public int[] removeDuplicatesS(int[] a){
+        return
+            Arrays.stream(a).distinct().toArray();
+    }
+
     /**27. Remove Element*/
     @Override
     public int removeElement(int[] nums, int val) {
@@ -96,6 +120,11 @@ public class ArrayEasyImpl implements IArrayEasy{
             }
         }
         return j;
+    }
+    @Override
+    public int[] removeElementS(int[] a, int val){
+        return
+            Arrays.stream(a).filter(i-> i!=val).toArray();
     }
     /**412. Fizz Buzz*/
     @Override
@@ -139,6 +168,28 @@ public class ArrayEasyImpl implements IArrayEasy{
             else
                 r = m-1;
 
+        }
+        return -1;
+    }
+
+    @Override
+    public int searchInsertX(int[] a, int target, int l, int r){
+        if(target<a[0])
+            return 0;
+        if(target>a[a.length-1])
+            return a.length;
+        if(l<r)
+        {
+            int mid = (l+r)/2;
+            if(target==a[mid])
+                return mid;
+             if(mid>0 && a[mid-1]<target && target<a[mid])
+                return mid;
+             if(a[mid] < target && target < a[mid + 1])
+                return mid+1;
+            if(target<a[mid])
+                return searchInsertX(a,target,l,mid-1);
+            return searchInsertX(a,target,mid+1,r);
         }
         return -1;
     }

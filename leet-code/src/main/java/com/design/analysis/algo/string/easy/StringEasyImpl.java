@@ -1,5 +1,12 @@
 package com.design.analysis.algo.string.easy;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class StringEasyImpl implements IStringEasy {
 
     /**
@@ -44,4 +51,36 @@ public class StringEasyImpl implements IStringEasy {
             default -> 0;
         };
     }
+    /**14. Longest Common Prefix*/
+    @Override
+    public String longestCommonPrefix(String[] v){
+        StringBuilder ans = new StringBuilder();
+        Arrays.sort(v);
+        String first = v[0];
+        String last = v[v.length-1];
+        for (int i=0; i<Math.min(first.length(), last.length()); i++) {
+            if (first.charAt(i) != last.charAt(i)) {
+                return ans.toString();
+            }
+            ans.append(first.charAt(i));
+        }
+        return ans.toString();
+
+    }
+    @Override
+    public String longestCommonPrefixS(String[] strs){
+        Arrays.sort(strs);
+        String s1 = strs[0];
+        String s2 = strs[strs.length-1];
+        String minStr = s1.length()<s2.length()?s1:s2;
+        int mismatchIndex =
+            IntStream.range(0, minStr.length())
+                .filter(i -> s1.charAt(i) != s2.charAt(i))
+                .findFirst()
+                .orElse(minStr.length());
+        return minStr.substring(0,mismatchIndex);
+
+    }
+
+
 }
