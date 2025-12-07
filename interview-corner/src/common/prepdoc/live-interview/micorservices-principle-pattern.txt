@@ -309,6 +309,7 @@ orchestration vs choreography in microservices
 orchestration uses a central controller to manage interactions between services, while choreography relies on decentralized, event-driven communication. Orchestration is simpler to implement and debug,
 but can create a single point of failure. Choreography offers loose coupling and flexibility, but can be more complex to debug and manage.
 
+
 ✅ 1. Service Design
 Keep services small, single-responsibility, and independently deployable
 Define clear boundaries using Domain-Driven Design (DDD)
