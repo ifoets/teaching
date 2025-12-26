@@ -109,4 +109,24 @@ public class EPAMImpl implements IEPAM {
         }
         return -1;
     }
+
+    /**is String found in matrix**/
+    public boolean strInMatrix(char[][]matrix, String str){
+        StringBuilder sb = new StringBuilder();
+        char[] chrs = str.toCharArray();
+        int count=0;
+        for(int i=0;i<matrix.length;i++)
+        {
+            for(int j=0;j<matrix.length;j++)
+            {
+                for(char c:chrs)
+                {
+                    if(c==matrix[i][j])count++;
+                    if(count==str.length())
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
 }

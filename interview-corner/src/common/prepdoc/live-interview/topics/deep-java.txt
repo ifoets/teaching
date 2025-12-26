@@ -1,0 +1,537 @@
+1️⃣ Java Memory Model (JMM) – Very Important
+1.	Explain Java Memory Model with happens-before rules.//If A happens-before B, then all effects of A are visible to B and A is ordered before B.
+2.	Difference between heap(new and array, shared to all thread), stack(local theread), metaspace(class meta data), direct memory(outside JVM heap for hiperformance).
+3.	How does volatile work internally? When does it fail?(❌ Does NOT make compound operations atomic)
+    1. CPU Cache Coherency (Visibility)
+    Normally, threads may read variables from CPU cache
+    volatile forces:
+    Write → flush to main memory
+    Read → fetch from main memory
+4.	Can volatile guarantee atomicity? Why/why not?
+    No. volatile does NOT guarantee atomicity.
+    It guarantees visibility and ordering, but not read-modify-write atomicity.(it donesn't lock /bolck other thread)
+        2️⃣ What volatile actually does
+        volatile ensures:
+        Visibility → latest value is read from main memory
+        Ordering → prevents instruction reordering around the variable
+5.	What instruction reordering is allowed in Java? //Java allows instruction reordering as long as it does NOT violate the Java Memory Model (JMM) happens-before rules.
+    Instruction reordering is when the compiler, JIT, or CPU changes the execution order of instructions to improve performance, while still preserving correctness according to the Java Memory Model (JMM).
+6.	What happens if two threads update a non-volatile shared variable?
+    When two threads update a non-volatile shared variable, Java provides NO guarantees about visibility, ordering, or correctness.
+7.	Explain visibility(if volatile) vs atomicity(locking,thread local) vs ordering(as not break JMM) with examples.
+8.	What is false sharing? How to avoid it?
+    False sharing occurs when multiple threads modify independent variables that reside on the same CPU cache line, causing unnecessary cache coherency traffic and performance degradation.
+    Key Points
+    Threads do not share the variable logically, but share the cache line physically.
+    Every write invalidates the cache line in other cores.
+    Leads to high latency, low throughput, and CPU contention.
+    Cache line (64 bytes)
+    | varA | varB | varC | varD |
+
+    Thread 1 → updates varA
+    Thread 2 → updates varB
+
+    ❌ Both threads cause cache invalidation even though they modify different variables
+    2️⃣ How to Avoid False Sharing
+    Use @Contended (Java 8+)
+     @Contended
+        public volatile long counter1;
+
+9.	How does final keyword help with thread safety?
+10.	What memory guarantees do constructors provide?
+    Key Principle
+    A properly constructed object in Java guarantees that:
+    All final fields are visible to other threads after construction.
+    Non-final fields may not be visible unless published safely.
+
+    class User {
+        final String name;
+        final int age;
+
+        User(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+    }
+    Any thread that sees a User object will see name and age correctly initialized.
+    🔹 2. Non-Final Fields
+    Non-final fields are not guaranteed to be visible to other threads unless you use:
+    volatile
+    synchronized
+    Atomic*
+    Safe publication
+________________________________________
+2️⃣ Garbage Collection (Java 17+ Focus)
+1.	How GC works internally (young → old → promotion).@see(java-memeory-model.txt)
+
+2.	Difference between Serial, Parallel, CMS, G1, ZGC, Shenandoah.
+    Side-by-Side Summary Table
+
+    GC	       Threads	    Concurrency	 Pause Time	Throughput	Status
+    Serial	      1	          ❌	Very High	     Low	     Active
+    Parallel	Many	❌	High	Very High	Active
+    CMS	Many	Partial	Medium	Medium	❌ Removed
+    G1	Many	Partial	Medium	Balanced	✅ Default
+    ZGC	Many	Almost full	Very Low	Medium	✅
+    Shenandoah	Many	Almost full	Very Low	Medium+	✅
+
+3.	Why CMS was removed?
+    CMS (Concurrent Mark Sweep) was removed because it could no longer meet modern JVM requirements for predictable latency, large heaps, and operational simplicity.
+4.	Explain G1 regions and pause prediction.
+    1️⃣ Why G1 Introduced Regions
+    Old collectors:
+    •	Young = contiguous
+    •	Old = contiguous
+    •	Fragmentation & unpredictable pauses
+    G1 solution:
+    👉 Break the heap into equal-sized regions.
+    ________________________________________
+    2️⃣ G1 Heap Layout (Region-Based)
+    Heap
+     ├── Region 1  (Young - Eden)
+     ├── Region 2  (Young - Eden)
+     ├── Region 3  (Survivor)
+     ├── Region 4  (Old)
+     ├── Region 5  (Old)
+     ├── Region 6  (Humongous)
+    Region size
+    •	Power of 2
+    •	Typically 1MB–32MB
+    •	Chosen at JVM startup based on heap size
+    📌 ~2000 regions is the target.
+    ________________________________________
+    3️⃣ Region Types (Dynamic!)
+    Region Type	Purpose
+    Eden	New allocations
+    Survivor	Young survivors
+    Old	Long-lived objects
+    Humongous	Large objects (>50% of region)
+    ⚠️ Regions can change roles dynamically.
+    ________________________________________
+    4️⃣ Young GC in G1
+    Trigger
+    •	Eden regions fill up
+    What happens
+    1.	STW pause
+    2.	Copy live objects:
+    o	Eden → Survivor
+    o	Survivor → Survivor / Old
+    3.	Update region roles
+    4.	Free entire Eden regions
+    📌 Still a copying GC, but region-based.
+    ________________________________________
+    5️⃣ Mixed GC (G1’s Big Innovation)
+    Instead of:
+    •	Only Young
+    •	Or Full Old GC
+    G1 does:
+    Young + selected Old regions together
+    Which Old regions?
+    ➡ Regions with most garbage
+    This is why it’s called Garbage First.
+
+5.	What is SATB (Snapshot-At-The-Beginning)?
+    SATB (Snapshot-At-The-Beginning) is a concurrent marking technique used by modern JVM garbage collectors (notably G1, CMS, Shenandoah) to correctly find live objects while the application is still running.
+    Think of it as:
+    “Pretend the heap is frozen at the start of marking, even though the app keeps changing it.”
+    ________________________________________
+    Why SATB Is Needed
+    During concurrent marking, the application threads (mutators) continue to:
+    •	Create new objects
+    •	Update references
+    •	Remove references
+    Without protection, the GC could:
+    ❌ Miss live objects
+    ❌ Accidentally reclaim reachable objects
+
+
+6.	ZGC vs G1 – when would you choose ZGC?
+    Core Difference (One Line)
+    •	G1 → Best-effort pause targets, region-based, balanced
+    •	ZGC → Pause time is the priority, heap size is almost irrelevant
+    ________________________________________
+    When ZGC Is the Right Choice ✅
+    1️⃣ You Have Strict Latency SLAs
+    If your service has:
+    •	p99 / p999 latency budgets
+            p99 / p999 are latency percentiles — they tell you how slow the slowest requests are, not the average.
+            This is extremely important for microservices, GC tuning, and SRE discussions.
+            ________________________________________
+            Simple Definition
+            •	p99 = 99th percentile latency
+            👉 99% of requests are faster than this value
+            👉 1% are slower
+            •	p999 = 99.9th percentile latency
+            👉 99.9% of requests are faster
+            👉 0.1% are slower (1 in 1000 requests)
+
+    •	User-facing APIs
+    •	Real-time or near–real-time requirements
+    Example
+    p99 must be < 50 ms
+    G1 pauses (50–200 ms) → ❌ risky
+    ZGC pauses (~1–5 ms) → ✅ safe
+    ________________________________________
+    2️⃣ Heap Size Is Large (≥ 8–16 GB)
+    G1 pause time grows with live set size.
+    ZGC:
+    •	Pause time is nearly independent of heap size
+    •	Works well with tens or hundreds of GB
+    Signal
+    Increasing heap → G1 pauses get longer
+    ➡ Switch to ZGC
+    ________________________________________
+    3️⃣ High Allocation Rate + Long-Lived Objects
+    •	Reactive / async services
+    •	Object-heavy frameworks
+    •	JSON / serialization heavy paths
+    G1:
+    •	Promotion pressure
+    •	Mixed GC becomes aggressive
+    ZGC:
+    •	Concurrent relocation
+    •	No evacuation pauses tied to region count
+
+
+7.	What causes Full GC even with G1?
+    1️⃣ Promotion Failure (Most Common)
+    What happens
+    •	Objects survive Young / Mixed GC
+    •	JVM tries to promote them to Old regions
+    •	Not enough contiguous free regions
+    ➡ G1 triggers Full GC (STW, single-threaded compaction)
+    Why this happens
+    •	Old Gen almost full
+    •	High allocation rate
+    •	Survivor spaces too small
+    📌 Very common under memory pressure.
+    ________________________________________
+    2️⃣ To-Space Exhaustion (G1-Specific)
+    What it is
+    During evacuation:
+    •	Objects are copied to To-space
+    •	To-space runs out mid-GC
+    ➡ G1 cannot continue evacuation
+    Result
+    •	Immediate Full GC
+    📌 This is unique to G1 and very important.
+    ________________________________________
+    3️⃣ Humongous Object Pressure
+    Reminder
+    •	Object > 50% of region size
+    •	Allocated directly in Old Gen
+    •	Requires contiguous regions
+    Problems
+    •	Fragmentation
+    •	Regions get pinned
+    •	Hard to reclaim incrementally
+    ➡ G1 falls back to Full GC
+    📌 Large byte arrays, buffers, caches are common causes.
+    ________________________________________
+    4️⃣ Metadata / Metaspace Exhaustion
+    If:
+    •	Metaspace becomes full
+    •	Class unloading can’t free enough space
+    ➡ Full GC is triggered
+    6️⃣ Allocation Failure During GC
+    If JVM cannot allocate:
+    •	Eden
+    •	Survivor
+    •	Old regions
+    Even after mixed collections
+    ➡ Full GC is the last resort.
+    ________________________________________
+    7️⃣ JVM Startup / Ergonomics Edge Cases
+    •	Very small heaps
+    •	Bad region sizing
+    •	Extreme fragmentation
+    G1 may decide:
+    “Full GC is cheaper than incremental cleanup”
+
+
+8.	What is GC root?
+    GC Roots are the starting points from which the JVM determines object reachability during garbage collection.
+    In simple terms:
+    If an object is reachable from a GC root, it is considered alive.
+    If it’s not reachable from any GC root, it’s eligible for GC.
+    ________________________________________
+    Why GC Roots Exist (Core Idea)
+    The JVM does not guess which objects are alive.
+    It uses a reachability graph:
+    GC Roots → reachable objects → reachable objects → ...
+
+    Common Types of GC Roots (Very Important)
+    1️⃣ Thread Stack References (Most Common)
+    2️⃣ Static Fields
+    3️⃣ JNI (Native) References
+    4️⃣ Class Metadata (Metaspace)
+    5️⃣ Synchronization Locks
+    6️⃣ Finalizer Queue References
+    Role of GC Roots in Modern GCs
+    •	Used at marking start
+    •	Combined with:
+    o	SATB (G1, CMS)
+    o	Load barriers (ZGC)
+    They define the initial live set.
+
+9.	How to debug memory leaks in production?
+    Golden Rule ⚠️
+    Observe first. Dump later. Restart last.
+    Never start by taking heap dumps blindly.
+    ________________________________________
+    1️⃣ Detect: Is It Really a Memory Leak?
+    Memory leak pattern
+    Used heap ↑↑↑
+    GC runs
+    Used heap does NOT come down
+    Not a leak
+    •	Heap grows, then stabilizes
+    •	GC recovers memory periodically
+    ________________________________________
+    Tools (Safe in prod)
+    •	Prometheus + Grafana
+    •	JVM metrics (jvm_memory_used_bytes)
+    •	GC logs
+    Look for:
+    •	Old Gen steadily growing
+    •	Full GC not reclaiming memory
+    ________________________________________
+    2️⃣ Enable GC Logs (Low Risk)
+    -Xlog:gc*,gc+heap=info,gc+age=trace
+    What to check:
+    •	Old Gen after Full GC
+    •	Promotion failures
+    •	Humongous allocations
+    •	GC frequency increasing
+    📌 If Old Gen after Full GC keeps increasing → leak confirmed.
+
+
+10.	Difference between soft, weak, phantom references.
+    1️⃣ SoftReference
+    What it means
+    •	Object is kept as long as memory is sufficient
+    •	Cleared before OutOfMemoryError
+    GC behavior
+    •	GC collects it only under memory pressure
+    •	May survive many GC cycles
+    Typical use case
+    ✔ Caches
+    ✔ Memory-sensitive data
+    2️⃣ WeakReference
+    What it means
+    •	Object is collected as soon as it’s weakly reachable
+    •	Cleared on next GC cycle
+    GC behavior
+    •	GC does not care about memory pressure
+    •	Survives no GC
+    Typical use case
+    ✔ Metadata caches
+    ✔ Map keys (WeakHashMap)
+    ✔ Listener references
+    3️⃣ PhantomReference
+    What it means
+    •	Object is already unreachable
+    •	get() always returns null
+    GC behavior
+    •	Enqueued after finalization
+    •	Used to track object reclamation
+    Typical use case
+    ✔ Native resource cleanup
+    ✔ Off-heap memory
+    ✔ Cleaner / DirectByteBuffer
+
+
+11.	Metaspace vs PermGen.
+    PermGen was a fixed-size, heap-based area for class metadata,
+     while Metaspace is a native-memory-based, dynamically growing area designed to eliminate class-loading OOMs.
+12.	How String.intern() works in modern JVM.
+    String.intern() returns a canonical string from the String pool (in heap), adding the string if it isn’t already present.
+
+        Where the String Pool Lives (Important)
+        Java Version	String Pool Location
+        Java ≤ 6	PermGen ❌
+        Java 7+	Heap ✅
+________________________________________
+3️⃣ Multithreading & Concurrency (Heavy Weight)
+1.	Difference between synchronized vs ReentrantLock (internals).
+2.	How does synchronized work at JVM level?
+3.	Biased lock → lightweight → heavyweight (lock escalation).
+4.	What is CAS? ABA problem?
+    CAS is an atomic instruction that updates a memory location only if it has an expected value, otherwise it fails.
+    Concept
+    CAS(address, expectedValue, newValue)
+    Steps:
+    1.	Read memory at address
+    2.	Compare it with expectedValue
+    3.	If equal → update to newValue atomically
+    4.	Else → fail (retry usually)
+
+
+5.	Explain Unsafe class use cases.
+6.	How ConcurrentHashMap works internally (Java 8+).
+7.	Why HashMap is unsafe in multithreading?
+8.	Difference between CountDownLatch, CyclicBarrier, Phaser.
+9.	Explain ThreadLocal memory leak.
+10.	What happens if exception occurs inside a thread?
+11.	ForkJoinPool vs ExecutorService.
+12.	How work-stealing works?
+13.	Difference between Runnable vs Callable.
+14.	CompletableFuture vs Future.
+15.	How to design a lock-free algorithm?
+    2️⃣ Key Principles of Lock-Free Design
+    1.	Atomic operations
+    o	Use hardware atomic instructions (via java.util.concurrent.atomic.*)
+    o	E.g., compareAndSet (CAS), getAndAdd, getAndSet
+    2.	Avoid shared mutable state
+    o	Minimize the amount of data multiple threads write
+    3.	Retry loops (spin loops)
+    o	If CAS fails (another thread updated the value), retry until success
+    4.	Immutability when possible
+    o	Makes reasoning easier and avoids partial updates
+    ________________________________________
+    3️⃣ Steps to Design a Lock-Free Algorithm
+    Step 1: Identify the shared resource
+    •	E.g., a counter, stack, queue, linked list
+    Step 2: Define the atomic operation
+    •	Decide what state change needs to be atomic
+    •	Example: increment counter
+    Step 3: Use CAS (Compare-And-Swap)
+    AtomicInteger counter = new AtomicInteger(0);
+
+    int oldValue, newValue;
+    do {
+        oldValue = counter.get();
+        newValue = oldValue + 1;
+    } while (!counter.compareAndSet(oldValue, newValue));
+    •	Ensures no locks
+    •	Thread retries if another thread wins the race
+    ________________________________________
+    Step 4: Handle contention
+    •	Contention causes retries → use backoff strategies
+    •	Example:
+    Thread.sleep(random(1, 10));
+    ________________________________________
+    Step 5: Avoid ABA problem (if needed)
+    •	CAS can fail if a variable changes from A → B → A
+    •	Use:
+    o	AtomicStampedReference (version number)
+    o	AtomicMarkableReference (boolean flag)
+
+
+________________________________________
+4️⃣ Collections – Internal Implementation
+1.	HashMap internal structure (Java 7 vs Java 8).
+2.	Why treeification happens at 8 buckets?
+3.	Why capacity is always power of 2?
+4.	How resizing works internally?
+5.	LinkedHashMap LRU cache design.
+6.	Why ArrayList is faster than LinkedList?
+7.	Fail-fast vs fail-safe iterators.
+8.	Why CopyOnWriteArrayList is expensive?//Memory allocation + copying → expensive for large lists or frequent writes
+9.	Difference between IdentityHashMap and HashMap.
+10.	How EnumMap is implemented?
+________________________________________
+5️⃣ Exception Handling – Advanced
+1.	Checked vs unchecked – real design reasoning.
+2.	Why Error is not meant to be caught?
+3.	How try-with-resources works internally?
+4.	Suppressed exceptions – when do they occur?
+5.	Cost of exception throwing?
+6.	Can finally override return?
+7.	Best practices for custom exceptions.
+________________________________________
+6️⃣ Object-Oriented Design (Real-World Focus)
+1.	Difference between composition vs inheritance.
+2.	Why favor composition?
+3.	Immutable object design rules.
+4.	How String is immutable but still efficient?
+5.	How equals & hashCode contract can break HashMap?
+6.	Can you override private methods?
+7.	Covariant return types.
+8.	Marker interfaces vs annotations.
+________________________________________
+7️⃣ Java 8–21 Language Features
+1.	How lambda expressions work internally?
+    Steps:
+
+    SAM type inference
+    Compiler figures out which functional interface the lambda implements.
+
+    InvokeDynamic bytecode
+    Lambda is implemented using the invokedynamic instruction.
+    This is a dynamic call site linked at runtime.
+
+    LambdaMetafactory
+    The JVM uses LambdaMetafactory to create a callable object that implements the functional interface.
+
+    Generated class (behind the scenes)
+
+    JVM may generate a hidden class or reuse a singleton instance (if stateless).
+2.	Functional interfaces – how compiler enforces it.
+3.	Stream internals – lazy evaluation?
+4.	Why streams should not be reused?
+5.	Parallel streams – when to avoid?
+6.	Difference between map() vs flatMap().
+7.	Optional – why it should not be a field?
+8.	Records – how they differ from POJOs?
+    Key Points
+    1.	Immutable by Design
+        o	Fields are private final
+        o	No setters
+        o	Safe for multi-threaded access
+    2.	Boilerplate-Free
+        o	Compiler generates canonical constructor
+        o	Auto-generates equals(), hashCode(), toString()
+    3.	Value-Based Semantics
+        o	User u1 = new User("A", 25);
+    User u2 = new User("A", 25);
+    → u1.equals(u2) is true (value equality)
+    4.	Cannot Inherit from Other Classes
+        o	Records are final in structure
+        o	Can implement interfaces
+    5.	Custom Logic Allowed
+        o	You can define:
+            	Static methods
+            	Custom constructors
+            	Instance methods
+            	Validation in canonical constructor
+
+
+9.	Sealed classes – real use cases.
+    public sealed class Shape permits Circle, Rectangle, Square { }
+    Subclasses must be:
+    final → cannot be extended further
+    non-sealed → can be extended freely
+    sealed → restrict further like parent
+
+10.	Pattern matching (instanceof, switch).
+11.	Virtual Threads (Project Loom) – how they differ from platform threads.
+________________________________________
+8️⃣ JVM Internals
+1.	Class loading lifecycle (loading → linking → init).
+2.	Parent delegation model – why important?
+3.	Can you break parent delegation?
+4.	Static blocks execution order.
+5.	How reflection impacts performance?
+6.	How bytecode is executed?
+7.	JIT vs Interpreter.
+8.	Escape analysis.
+9.	How HotSpot optimizes code?
+________________________________________
+9️⃣ Performance & Production Issues
+1.	How to identify CPU vs memory issue?
+2.	What tools do you use? (jstack, jmap, GC logs)
+3.	How to tune JVM for high-throughput system?
+4.	What causes thread starvation?
+5.	How to detect deadlocks?
+6.	Handling OutOfMemoryError safely.
+7.	Why excessive object creation hurts performance?
+________________________________________
+🔟 Design-Level Java Questions
+1.	Design a thread-safe LRU cache.
+2.	Design a rate limiter in Java.
+3.	Design a connection pool.
+4.	Design a blocking queue.
+5.	Design immutable money class.
+6.	Implement producer-consumer without using blocking queue.
+

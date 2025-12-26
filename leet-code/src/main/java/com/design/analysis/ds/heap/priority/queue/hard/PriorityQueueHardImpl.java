@@ -2,7 +2,6 @@ package com.design.analysis.ds.heap.priority.queue.hard;
 
 import com.design.analysis.ds.node.ListNode;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 

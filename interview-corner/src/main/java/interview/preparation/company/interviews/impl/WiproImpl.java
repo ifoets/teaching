@@ -38,14 +38,11 @@ public class WiproImpl implements IWipro {
     /**rotate an array by k from right side*/
     @Override
     public void rotateArray(int[] a, int k){
-        int n = a.length;
         for(int i=0;i<k;i++)
         {
             int temp = a[a.length-1];
-            for(int j=a.length-1;j>i;j--)
+            for(int j=a.length-1;j>0;j--)
                 a[j]=a[j-1];
-            for(int m=i;m>0;m--)
-                a[m]=a[m-1];
             a[0]=temp;
         }
     }

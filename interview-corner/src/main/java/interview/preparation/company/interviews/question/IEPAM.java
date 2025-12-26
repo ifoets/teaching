@@ -23,4 +23,7 @@ public interface IEPAM {
      /**find minimum in rotated array*/
      int findMinInRotatedArray(int[] a, int l,int r);
 
+     /**is String found in matrix**/
+     boolean strInMatrix(char[][]matrix, String str);
+
 }

@@ -432,9 +432,7 @@ ________________________________________
                 });
             }
             🚦 Decision Flow
-            text
-            Copy
-            Edit
+
             Does it emit a value?
             ├─ Yes
             │  ├─ Always emits one? → ✅ Use Single<T>

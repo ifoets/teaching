@@ -30,4 +30,7 @@ public interface IArrayEasy {
      int searchInsert(int[] nums, int target);
 
     int searchInsertX(int[] a, int target, int l ,int r);
+
+    /**88. Merge Sorted Array, num1.lengh=m+n, sort all in num1**/
+    void merge(int[] nums1, int m, int[] nums2, int n);
 }

@@ -118,4 +118,17 @@ public class IArrayEasyTest {
         int []a={1,3,5};
         Assert.assertEquals(2, iae.searchInsertX(a, 4,0,2));
     }
+
+    /**88. Merge Sorted Array, num1.lengh=m+n, sort all in num1**/
+    @Test
+    public void mergeTest()
+    {
+        int[]nums1 = {4,0,0,0,0,0};
+        int m = 1;
+        int[] nums2 = {1,2,3,5,6};
+        int n = 5;
+        int[] expResult= {1,2,3,4,5,6};
+        iae.merge(nums1,m,nums2,n);
+        System.out.println(Arrays.toString(nums1));
+    }
 }

@@ -43,6 +43,7 @@ public interface IStreamArray {
 
     /**12.	Sort array by frequency of elements**/
     int[] softByFrequency(int[] a);
+    int[] sortByFrequencyX(int[] a);
 
     /**13.	Sort array by number of set bits in binary representation*/
     int [] sortBySetBits(int []a);

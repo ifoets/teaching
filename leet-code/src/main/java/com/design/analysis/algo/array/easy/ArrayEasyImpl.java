@@ -1,5 +1,7 @@
 package com.design.analysis.algo.array.easy;
 
+import com.design.analysis.algo.AlgoUtils;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.stream.IntStream;
@@ -192,5 +194,14 @@ public class ArrayEasyImpl implements IArrayEasy{
             return searchInsertX(a,target,mid+1,r);
         }
         return -1;
+    }
+
+    /**88. Merge Sorted Array, num1.lengh=m+n, sort all in num1**/
+    @Override
+    public void merge(int[] nums1, int m, int[] nums2, int n){
+        for(int i=0,j=0;i<m+n&&j<n;i++)
+            if(nums1[i]==0)
+                nums1[i]=nums2[j++];
+        Arrays.sort(nums1);
     }
 }

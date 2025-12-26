@@ -89,6 +89,11 @@ Roles
 Consumer, Service Provider, User
 Client, Authorization Server, Resource Server, Resource Owner
 Summary of Interactions
+
+Access Tokens
+Can be long-lived
+Often have expiration times with refresh tokens
+
 Step	Action	Who Talks to Whom
 1	Request Auth Code	Client → Authorization Server
 2	Authenticate User	Authorization Server ↔ Resource Owner
@@ -96,9 +101,6 @@ Step	Action	Who Talks to Whom
 4	Exchange Code for Token	Client → Authorization Server
 5	Access Protected Resource	Client → Resource Server
 6	Validate Token & Serve Data	Resource Server → Client
-Access Tokens
-Can be long-lived
-Often have expiration times with refresh tokens
 
 primary key vs unique key
 -------------------------
@@ -151,6 +153,39 @@ other waise prototye can also work if it not within singalton
 Prototype’s thread safety depends on the scope of the bean which contains the prototype.
 
 How to make any Spring bean thread-safe?
+Stateless beans are automatically thread-safe
+-------------------
+@Service
+public class OrderService {
+    public Order process(Order o) {
+        return o;
+    }
+}
+
+@Service
+class CounterService {
+    private int count;  // shared mutable state
+
+    public int increment() {
+        return ++count;
+    }
+}
+2️⃣ Use Synchronization (When State is Required)
+private final Object lock = new Object();
+
+public void update() {
+    synchronized (lock) {
+        // critical section
+    }
+}
+3️⃣ Use java.util.concurrent Atomic Classes
+Best for simple shared state
+private final AtomicInteger counter = new AtomicInteger();
+
+public int increment() {
+    return counter.incrementAndGet();
+}
+
 The best thing you can do to tackle access synchronization is to avoid it.
 ---------------------------------------------
 If it is a web-application , Scope("request") can achieve thread-safety as for each new request
@@ -243,10 +278,18 @@ filter/search/pagination/download if huge data
 
 Transactional Levels:
 DEFAULT: Uses the database's default isolation level, often READ_COMMITTED.
-READ_UNCOMMITTED: Allows dirty reads (reading uncommitted changes).One transaction is allowed to read uncommitted changes made by another transaction.This means it could read data that might later be rolled back, leading to inconsistent or invalid results
-READ_COMMITTED: Prevents dirty reads but might allow non-repeatable reads.
-REPEATABLE_READ: Prevents non-repeatable reads but might allow phantom(occurs when a transaction retrieves a set of rows twice and new rows are inserted into or removed from that set by another transaction that is committed in between) reads.
-SERIALIZABLE: Highest isolation level, preventing all concurrency anomalies, often at the cost of performance.
+READ_UNCOMMITTED: Tx1 updates a row but doesn’t commit → Tx2 reads the updated value → Tx1 rolls back → Tx2 read invalid
+READ_COMMITTED: 
+Tx1 reads salary = 50k
+Tx2 commits update salary = 60k
+Tx1 reads again → gets 60k (value changed)
+
+REPEATABLE_READ: 
+Tx1 reads employee rows
+Tx2 inserts a new matching row and commits
+Tx1 re-executes same query → sees extra row (phantom)
+
+SERIALIZABLE: Tx2 must wait until Tx1 finishes, even for inserts
 Propagation:
 REQUIRED (default): If a transaction is already active, the method participates in it. If not, a new transaction is started.
 REQUIRES_NEW: Always creates a new transaction, suspending any existing one. The existing transaction is not affected by the new one.
@@ -491,6 +534,20 @@ fetch-registry=true → Client fetches other service info from Eureka.
 
 defaultZone → URL of Eureka server (or multiple if HA setup).
 
+@SpringBootApplication
+   |
+   ├─ @SpringBootConfiguration
+   |     └─ @Configuration
+   |
+   ├─ @ComponentScan
+   |
+   └─ @EnableAutoConfiguration
+         └─ AutoConfigurationImportSelector
+               ├─ Reads classpath
+               ├─ Reads properties
+               ├─ Applies @Conditional rules
+               └─ Imports matching AutoConfig classes
+			   
 
 design coposite key in hibernate
 -----------------------------------------------------
@@ -622,6 +679,21 @@ how to handle distributed transactions
 ---------------------------------------
 
 spring to spring boot migration
+================================
+1.Assess the Existing Spring Application
+2️.Choose the Right Spring Boot Version
+3.Create a Spring Boot Project
+4.Migrate Build Configuration (Maven Example)
+5.Replace XML Configuration
+6.Move Properties to application.yml or application.properties
+7.Migrate Spring MVC Configuration
+8.Security Migration (if used)
+9.JPA / Hibernate Migration
+10.Remove Application Server Dependency
+11.Logging Migration
+12.Test the Application
+
+
 
 how to migrate spring to microservices/spring boot
 ------------------------------------
@@ -681,7 +753,7 @@ Docker and Kubernetes are open-source technologies used for containerization and
  making them portable and easy to deploy. Kubernetes is a container orchestration system that automates the deployment, scaling, and management of these containers across a cluster of servers
 
 
-have you wored on AWS
+have you worked on AWS
 ---------------------
 https://www.geeksforgeeks.org/aws-interview-questions/
 
@@ -740,6 +812,7 @@ Use Spring profiles (@Profile) to load only environment-specific beans:
 public DevOnlyService devOnlyService() {
     return new DevOnlyService();
 }
+@Conditional* annotations DO help Spring Boot startup performance, and this is a very good senior-level question.
 
 Actuator gives detailed startup metrics.
 management.endpoint.startup.enabled=true
@@ -1123,7 +1196,7 @@ No SSL cert generation required
 Easier in containerized/cloud-native environments
 
 how diffrent wasy to handle transaction in ms/2PC and Saga(for less time)
-----
+--------------------------------------------------------------------------
 ✅ 1. Local Transactions
 Use local database transactions within a single microservice.
 ✅ 2. Distributed Transactions (2PC - Two Phase Commit)
@@ -1151,7 +1224,7 @@ Important for APIs and event processing in distributed systems.
 how pallel stream api work internall /join and fork using no of core cup threads
 what is JWT token and when and where it get used and how to use implementation
 what is Dead Latter Query
-----
+--------------------------------------
 A Dead Letter Queue is a special queue where messages go when they cannot be processed successfully by a consumer.
 ----------------
 Dead Letter Queue (DLQ)
@@ -1208,7 +1281,109 @@ Choreography-based Saga (Event-Driven)// No central coordinator — services com
 Orchestration-based Saga //A central Saga orchestrator (controller) tells each service what to do and in which order. Orchestrator handles the decision-making and compensating actions.
 
 
-Randstad Digital
+EPAM
 ---------------------------------------------------
+Record, Selated class, final class
+--------------
+Short Answer (Memorize This)
+
+✅ A record CAN implement interfaces
+❌ A record CANNOT extend any class
+
+Reason: a record implicitly extends java.lang.Record, and Java does not support multiple inheritance of classes.
+
+Why Records Cannot Extend Classes
+public record User(int id, String name) extends Person { } // ❌ compile error
+
+Because internally:
+public abstract class Record { }
+
+Records CAN Implement Interfaces ✅
+Example
+interface Identifiable {
+    int id();
+}
+✔ Multiple interfaces allowed
+✔ Custom methods allowed
+Have methods	✅ Yes
+Have static fields	✅ Yes
+Have instance fields
+❌ No (only components)Be final
+✅ Yes (implicitly)
+
+sealed class
+=================================
+✅ A sealed class CAN extend another class
+✅ A sealed class CAN implement interfaces
+❌ A sealed class must restrict who can extend/implement it
+
+What is a Sealed Interface?
+A sealed interface restricts which classes or interfaces are allowed to implement it.
+✔ Implementing classes must declare one of:
+final
+sealed
+non-sealed
+
+sealed Parent
+   |
+   +-- final ChildA        (STOP inheritance)
+   |
+   +-- sealed ChildB       (RESTRICT further)
+   |
+   +-- non-sealed ChildC   (OPEN inheritance)
+            |
+            +-- Any class can extend ChildC
+			
+
+No one can extend a record class.
+A Java record is implicitly final, so it cannot be extended by any class.
+public record User(int id, String name) implements Identifiable {
+}
+
+Key points:
+Every record already extends java.lang.Record
+Every record is implicitly final
+Java does not allow inheritance from final classes
+
+
+single/parallel(pause app)/concurrent(ZGC minimal pause app) thered in memeroy model
+What is ZGC?
+ZGC = Region-based, concurrent, compacting GC
+Key goals:
+Ultra-low latency
+Predictable pause times
+Scales to very large heaps
+Minimal tuning
+Introduced as experimental in Java 11 → Production-ready in Java 15+, heavily optimized in Java 17+
+
+How we know to write Exception class extends Excepton/RuntimeException or any exception
+Exception hirarchy
+-----------------
+Object
+ └── Throwable
+      ├── Error (Unchecked)
+      │    ├── OutOfMemoryError
+      │    └── StackOverflowError
+      │
+      └── Exception
+           ├── RuntimeException (Unchecked)
+           │    ├── NullPointerException
+           │    ├── IllegalArgumentException
+           │    └── ClassCastException
+           │
+           └── Checked Exceptions
+                ├── IOException
+                ├── SQLException
+                └── ClassNotFoundException
+				
+Design Intervew portal to manage intervew
+Dependency injection and IOC
+how to create more than one bean in spring and how to use it 
+Checked vs Unchecked Exception, why not all r checked exception
+Virtual thread, when and where how to use
+
+What is Clustered Indexing in RDBMS?
+
+
 
 

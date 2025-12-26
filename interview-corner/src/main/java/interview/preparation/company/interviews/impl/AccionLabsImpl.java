@@ -2,10 +2,8 @@ package interview.preparation.company.interviews.impl;
 
 import interview.preparation.company.interviews.question.IAccionLabs;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.IntStream;
+import java.util.*;
+import java.util.stream.*;
 
 public class AccionLabsImpl implements IAccionLabs {
 

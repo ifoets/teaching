@@ -89,4 +89,15 @@ public class IEPAMTest {
         Assert.assertEquals(11, ie.findMinInRotatedArray(nums3,0,nums3.length-1)); // Expected 11
         Assert.assertEquals(1,ie.findMinInRotatedArray(nums4,0,nums4.length-1)); // Expected 1
     }
+
+    /**is String found in matrix**/
+    @Test
+    public void strInMatrixTest()
+    {
+        char[][]matrix ={{'a','b','c','d'},
+            {'x','f','v','r'},
+            {'w','e','s','d'}};
+        Assert.assertTrue(ie.strInMatrix(matrix,"efvc"));
+        Assert.assertFalse(ie.strInMatrix(matrix,"efvz"));
+    }
 }
