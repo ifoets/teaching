@@ -1,0 +1,223 @@
+1️⃣ Spring Core & IOC Container (Very High Focus)
+    1.	What problem does Spring IOC actually solve?
+    2.	Difference between BeanFactory vs ApplicationContext (real-world impact).
+    3.	What happens internally when Spring container starts?
+    4.	Explain BeanDefinition and how Spring uses it.
+    5.	How does Spring resolve dependencies internally?
+    6.	What is Dependency Injection vs Dependency Lookup?
+    7.	Constructor injection vs setter injection – when and why?
+    8.	How does Spring handle circular dependencies?
+    9.	Why circular dependency fails with constructor injection?
+    10.	What is @Lazy internally?
+    11.	How does Spring create and manage bean instances?
+    12.	How many objects does Spring create for a singleton bean?
+    13.	Why Spring singleton is not JVM singleton?
+________________________________________
+2️⃣ Bean Lifecycle (Frequently Asked Deep Question)
+    1.	Complete Spring Bean Lifecycle in correct order.
+    2.	Difference between BeanPostProcessor and BeanFactoryPostProcessor.
+    3.	When exactly is @PostConstruct called?
+    4.	What happens if BeanPostProcessor throws exception?
+    5.	How does @PreDestroy work?
+    6.	How does Spring destroy prototype beans?
+    7.	What is SmartInitializingSingleton?
+    8.	Can we change bean definition at runtime?
+    9.	How InitializingBean differs from @PostConstruct?
+    10.	When would you use DisposableBean?
+________________________________________
+3️⃣ Spring AOP (Most Failed Area)
+    1.	What problem does Spring AOP solve?
+    2.	Difference between JDK proxy vs CGLIB proxy.
+    3.	When does Spring choose JDK vs CGLIB?
+    4.	Why self-invocation breaks AOP?
+    5.	How does Spring create proxy internally?
+    6.	What is a Join Point, Pointcut, Advice?
+    7.	Difference between @Around vs @Before vs @AfterReturning.
+    8.	Can final methods be proxied? Why not?
+    9.	Order of multiple aspects.
+    10.	Transaction + AOP interaction.
+    11.	How @Transactional works internally?
+________________________________________
+4️⃣ Spring Transaction Management (Critical)
+    1.	What happens internally when @Transactional is used?
+    2.	PlatformTransactionManager role.
+    3.	Difference between local vs global transactions.
+    4.	Transaction propagation types with real use cases.
+    5.	Isolation levels mapping to DB.
+    6.	Why rollback doesn’t happen for checked exceptions?
+    7.	Nested transaction – how it actually works?
+    8.	What happens if two transactional methods call each other?
+    9.	Why transaction doesn’t work in same class?
+    10.	How to force rollback for checked exception?
+________________________________________
+5️⃣ Spring Scopes (Tricky)
+    1.	Singleton vs prototype – lifecycle differences.
+    2.	How request/session scopes work internally?
+    3.	Why injecting prototype into singleton is dangerous?
+    4.	How ObjectFactory / Provider solves prototype injection?
+    5.	What is scoped proxy?
+    6.	Thread safety of singleton beans.
+    7.	When to use prototype scope?
+________________________________________
+6️⃣ Spring Configuration & Annotations
+    1.	Difference between @Component, @Service, @Repository.
+    2.	Why @Repository translates exceptions?
+    3.	How @Configuration works internally?
+    4.	Difference between @Bean and @Component.
+    5.	What happens if @Configuration is removed?
+    6.	How Spring processes annotations internally?
+    7.	@Import vs @ComponentScan.
+    8.	Conditional beans – how @Conditional works.
+    9.	Profile-based beans – internal flow.
+    10.	How Spring Boot auto-configuration works (high level).
+________________________________________
+7️⃣ Spring Boot (Senior Expectations)
+    1.	What is Spring Boot opinionated about?
+    2.	Auto-configuration flow internally.
+    3.	How spring.factories / AutoConfiguration.imports works.
+    4.	How embedded server is started?
+    5.	How external configuration is resolved (priority order).
+    6.	How Actuator endpoints work internally?
+    7.	What happens during application startup phases?
+    8.	Custom starter – how to build?
+    9.	Difference between Boot vs Core Spring.
+________________________________________
+8️⃣ Spring MVC / Web Internals
+    1.	Request flow in Spring MVC.
+    2.	Role of DispatcherServlet.
+    3.	HandlerMapping vs HandlerAdapter.
+    4.	Filters vs Interceptors vs Controllers.
+    5.	How @RequestBody works internally?
+    6.	Difference between @Controller and @RestController.
+    7.	Exception handling flow (@ControllerAdvice).
+    8.	Async request processing in Spring MVC.
+    9.	WebClient vs RestTemplate.
+    10.	How validation works (@Valid).
+________________________________________
+9️⃣ Spring Security (Advanced)
+    1.	Spring Security filter chain flow.
+    2.	Authentication vs Authorization.
+    3.	Role of SecurityContextHolder.
+    4.	How JWT authentication works in Spring.
+    5.	Stateless vs stateful security.
+    6.	Method-level security internals.
+    7.	CSRF – why and how it works.
+    8.	Custom authentication provider design.
+    9.	OAuth2 flow in Spring.
+    10.	How security integrates with filters.
+________________________________________
+🔟 Performance, Debugging & Production
+    1.	Startup time optimization strategies.
+    2.	Bean initialization bottlenecks.
+    3.	Memory leaks due to Spring beans.
+    4.	Proxy overhead impact.
+    5.	Debugging circular dependency issues.
+    6.	How to debug NoSuchBeanDefinitionException.
+    7.	Common transactional bugs in production.
+    8.	Thread safety issues with Spring beans.
+    9.	Best practices for high-throughput Spring apps.
+    10.	How to tune Spring apps for scale.
+
+advantage and disadvange of spring
+===========================================================
+✅ Advantages of Spring Framework
+1. Loose Coupling via Dependency Injection (DI)
+•	Objects depend on interfaces, not implementations.
+•	Easy to swap implementations without code change.
+Why it matters:
+•	Better testability
+•	Cleaner architecture
+•	Supports SOLID principles
+________________________________________
+2. Inversion of Control (IoC) Container
+•	Spring manages object creation, lifecycle, and wiring.
+•	Centralized configuration via annotations / Java config / XML.
+Real-world benefit:
+•	Reduces boilerplate factory code
+•	Consistent object lifecycle management
+________________________________________
+3. Aspect-Oriented Programming (AOP)
+•	Clean separation of cross-cutting concerns:
+o	Logging
+o	Transactions
+o	Security
+o	Auditing
+Without Spring AOP:
+•	Code duplication across layers.
+________________________________________
+4. Transaction Management
+•	Declarative transactions using @Transactional
+•	Works across JDBC, JPA, Hibernate, JMS.
+Enterprise advantage:
+•	Consistent transaction handling
+•	Less error-prone than manual transaction code
+________________________________________
+5. Modular Architecture
+•	Use only what you need:
+o	Core
+o	Context
+o	AOP
+o	ORM
+o	MVC
+o	Security
+Benefit:
+•	Flexible and extensible.
+________________________________________
+6. Abstraction Over APIs
+•	Simplifies integration with:
+o	JDBC
+o	JPA / Hibernate
+o	JMS
+o	Cache providers
+Example:
+JdbcTemplate
+•	Eliminates repetitive try-catch & resource handling.
+________________________________________
+7. Strong Ecosystem & Community
+•	Spring MVC, Security, Data, Batch, Integration.
+•	Industry standard for Java enterprise apps.
+________________________________________
+8. Test-Friendly
+•	Supports unit & integration testing.
+•	Easy mocking with DI.
+________________________________________
+❌ Disadvantages of Spring Framework
+1. Steep Learning Curve
+•	Concepts to master:
+o	IoC
+o	DI
+o	Bean lifecycle
+o	Proxies & AOP
+o	Transaction propagation
+Common junior pain point:
+•	“Where is this object coming from?”
+________________________________________
+2. Configuration Complexity (Without Boot)
+•	Requires significant manual configuration.
+•	XML / Java config can become verbose.
+Compared to Spring Boot:
+•	More setup, slower initial development.
+________________________________________
+3. Runtime Overhead
+•	Uses:
+o	Reflection
+o	Proxies
+o	Dynamic bean wiring
+Impact:
+•	Slight performance and memory overhead.
+________________________________________
+4. Debugging Can Be Hard
+•	Issues often occur during startup.
+•	Stack traces can be long and complex.
+________________________________________
+5. Not Ideal for Simple Applications
+•	Overkill for small utilities or scripts.
+•	Lightweight frameworks may be better.
+________________________________________
+6. Magic / Hidden Behavior
+•	Heavy use of annotations and conventions.
+•	Behavior not always obvious from code alone.
+
+
+
+
