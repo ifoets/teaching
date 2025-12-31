@@ -1,23 +1,23 @@
 1️⃣ Spring Boot Fundamentals (Must-Know)
-1.	Why was Spring Boot created? What problems does it solve beyond Core Spring?
-2.	What does “opinionated defaults” really mean in Spring Boot?
-3.	How Spring Boot reduces boilerplate compared to Spring?
-4.	Difference between Spring Boot vs Spring Framework vs Spring Cloud.
-5.	How Boot works without XML in most cases?
-6.	When not to use Spring Boot?
-7.	How Boot enforces conventions but still allows customization?
+    1.	Why was Spring Boot created? What problems does it solve beyond Core Spring?
+    2.	What does “opinionated defaults” really mean in Spring Boot?
+    3.	How Spring Boot reduces boilerplate compared to Spring?
+    4.	Difference between Spring Boot vs Spring Framework vs Spring Cloud.
+    5.	How Boot works without XML in most cases?
+    6.	When not to use Spring Boot?
+    7.	How Boot enforces conventions but still allows customization?
 ________________________________________
 2️⃣ Auto-Configuration (Most Important Section)
-1.	What is auto-configuration?
-2.	How does Spring Boot decide which auto-configuration class to load?
-3.	Role of @EnableAutoConfiguration.
-4.	What is spring.factories(Spring 2) vs (spring 3)AutoConfiguration.imports?
-5.	How @ConditionalOnClass, @ConditionalOnBean work internally?
-6.	How does Boot back off when user defines a bean?
-7.	Order of auto-configuration loading.
-8.	How to exclude an auto-configuration?
-9.	How Boot auto-configures DataSource, JPA, Web, Security?//check dependency and data soruce property, and conditional bean defincations
-10.	Debugging auto-configuration issues (--debug, condition report).
+    1.	What is auto-configuration?
+    2.	How does Spring Boot decide which auto-configuration class to load?
+    3.	Role of @EnableAutoConfiguration.
+    4.	What is spring.factories(Spring 2) vs (spring 3)AutoConfiguration.imports?
+    5.	How @ConditionalOnClass, @ConditionalOnBean work internally?
+    6.	How does Boot back off when user defines a bean?
+    7.	Order of auto-configuration loading.
+    8.	How to exclude an auto-configuration?
+    9.	How Boot auto-configures DataSource, JPA, Web, Security?//check dependency and data soruce property, and conditional bean defincations
+    10.	Debugging auto-configuration issues (--debug, condition report).
 ________________________________________
 3️⃣ Spring Boot Startup Internals
     1.	Complete startup flow of a Spring Boot application.(down in this text fully explained)

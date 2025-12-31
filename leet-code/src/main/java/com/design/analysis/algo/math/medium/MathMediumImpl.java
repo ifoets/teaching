@@ -27,7 +27,7 @@ public class MathMediumImpl implements IMathMedium{
         return result;
     }
 
-    /**29. Divide Two Integers**/
+    /**29. Divide Two Integers, Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.**/
     @Override
     public int divide(int dividend, int divisor){
        return -1;
