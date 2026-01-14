@@ -1,0 +1,39 @@
+GS-GBMC_Bengaluru
+First-round
+========================
+Desing LRU cache
+Desing Core of Notification system
+Cluster index
+
+
+/2 rnd round
+===============================================
+deep dive to current project
+senarios
+how to create nonblocking thread in java
+if order is success and payment is not success/latency high, what will happen
+
+sitecore container/kuernatee purpose
+CompliotableFuture/ how to combine many CF together
+types of indexing,
+WefFlux how diffrent from spring web, scenarios where it should use
+inner and left join Table m rows, Table n rows,
+Idempotnecy, webservices methods types
+@Transaction how it works
+Two Db, one is commited and another is faild
+kafka Two Topic, one is proceed and another is fail, how to retrive form first topic
+writting deployment descriptor for deployment of ms in kubernetes
+what happen if during payment token get expired
+
+fist do order after success, do cancle, explain how it works
+
+how to handle race condigiotn for single product
+spring scopes
+exception how to handle in a method, types of excepitons
+where to keep secrate of apis and how to decrept/encript it
+how many types we can create object
+how ms communicate
+
+if @componentScan not used,then what will happen
+How many ways can inject DI in spring
+What is websoket, where will use it

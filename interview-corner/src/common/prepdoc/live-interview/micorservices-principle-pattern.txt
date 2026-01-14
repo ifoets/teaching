@@ -29,6 +29,28 @@ https://piotrminkowski.com/2017/05/15/part-3-creating-microservices-circuit-brea
 6. Write contract tests, Consumer Driven Contract (CDC) testing , spring-cloud-starter-contract-verifier
 7. Be up-to-date, Spring Cloud releases new versions of projects using release train pattern,
 
+Spring Boot Microservices – Best Practices (LIST)
+Architecture & Design
+1.	Single responsibility per microservice
+2.	API-first design (OpenAPI)
+3.	Database per service
+4.	Stateless services
+5.	Avoid shared libraries for business logic
+________________________________________
+Configuration
+Communication
+Resilience
+Performance
+Security
+Observability
+Error Handling
+Startup & Resource Optimization
+Testing
+Deployment & Operations__
+Anti-Patterns to Avoid
+
+
+
 ms distributed transactions pattern explanations
 -----------------------------------------
 https://www.baeldung.com/cs/saga-pattern-microservices
@@ -61,6 +83,8 @@ Components of Microservices
 Challenges of Microservices Architecture
 =========================================
 	1. Bounded Context//A Bounded Context defines a logical boundary around a specific domain or subdomain where a particular model applies consistently.
+		Inside this boundary, terms, models, and rules have specific meaning.
+		Outside the boundary, other contexts may have different models or interpretations for the same concept.
 	2. Dynamic Scale up and Scale Down
 	3. Monitoring
 	4. Fault Tolerance
@@ -311,62 +335,15 @@ but can create a single point of failure. Choreography offers loose coupling and
 
 
 ✅ 1. Service Design
-Keep services small, single-responsibility, and independently deployable
-Define clear boundaries using Domain-Driven Design (DDD)
-Use Bounded Contexts to separate data and responsibilities
-Avoid cyclic dependencies between services
-
 ✅ 2. Communication
-Prefer asynchronous communication (e.g., Kafka, RabbitMQ) over synchronous REST when possible
-Use well-defined APIs (OpenAPI/Swagger)
-Implement versioning for public APIs
-Avoid direct database access between services
-
 ✅ 3. Data Management
-Follow Database per Service principle
-Use event-driven architecture for eventual consistency
-Handle distributed transactions using SAGA pattern (not 2PC)
-Avoid shared mutable state
-
 ✅ 4. Deployment & Scaling
-Deploy each service independently
-Use containers (Docker) and orchestration tools (Kubernetes)
-Enable horizontal scaling of stateless services
-Automate CI/CD pipelines
-
 ✅ 5. Fault Tolerance & Resilience
-Use circuit breakers, bulkheads, retries, and timeouts (e.g., Resilience4j)
-Implement graceful degradation and fallback mechanisms
-Monitor service health and auto-restart failures
-
 ✅ 6. Security
-Use OAuth2 / JWT for authentication and authorization
-Apply Role-based or Attribute-based access control (RBAC / ABAC)
-Secure communication with HTTPS and mutual TLS
-Validate and sanitize all external inputs
-
 ✅ 7. Observability & Monitoring
-Use centralized logging (e.g., ELK, Loki)
-Use metrics collection (e.g., Prometheus, Grafana)
-Enable distributed tracing (e.g., Jaeger, Zipkin)
-Set up alerting for performance and error thresholds
-
 ✅ 8. Service Discovery & Configuration
-Use service registry (e.g., Eureka, Consul) for dynamic discovery
-Externalize configurations (e.g., Spring Cloud Config, Consul, Vault)
-Support dynamic refresh of config without redeployment
-
 ✅ 9. DevOps and CI/CD
-Build CI/CD pipelines for each microservice
-Automate testing, linting, containerization, and deployment
-Use feature toggles for safe deployment
-Enable blue-green or canary deployments
-
 ✅ 10. Testing
-Perform unit, integration, contract, and end-to-end tests
-Use consumer-driven contract testing (e.g., Pact)
-Mock external services in tests
-Use test containers for isolated testing environments
 
 Redis cache impl
 =======================

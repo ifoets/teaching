@@ -2,8 +2,6 @@ package interview.preparation.company.interviews.impl;
 
 import interview.preparation.company.interviews.question.IGoldmanSach;
 
-import java.util.stream.IntStream;
-
 public class GoldmanSachImpl implements IGoldmanSach {
 
     @Override
@@ -31,8 +29,6 @@ public class GoldmanSachImpl implements IGoldmanSach {
 
             index += word.length() + 1;
         }
-
-        System.out.println(shortest);
 
         if (word1Loc == 0 || word2Loc == 0) {
             return -1;
