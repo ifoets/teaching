@@ -1,0 +1,122 @@
+Top 100 Deep Java Concurrency Questions for Senior Interviews (10+ years)
+________________________________________
+1–10: Java Memory Model (JMM) & Visibility
+1.	Explain happens-before relationships in the JMM.
+2.	How does volatile enforce visibility?
+3.	Difference between volatile vs synchronized.
+4.	Can non-volatile, non-synchronized writes be seen by another thread? Why?
+5.	What is instruction reordering, and how does the JMM prevent unsafe reordering?
+6.	Explain final fields visibility guarantees in Java.
+7.	What are safe publication techniques?
+8.	Explain out-of-thin-air reads/writes in Java concurrency.
+9.	Why double-checked locking fails pre-Java 5 and how volatile fixes it?
+10.	Explain atomicity, visibility, and ordering with examples.
+________________________________________
+11–20: Synchronization & Locks
+11.	Difference between intrinsic locks (synchronized) and explicit locks (ReentrantLock).
+12.	How does ReentrantLock implement fairness?
+13.	Explain ReentrantReadWriteLock and its read/write semantics.
+14.	How to implement tryLock with timeout?
+15.	Difference between lock() vs lockInterruptibly().
+16.	Explain condition variables and await()/signal().
+17.	Difference between ReentrantLock and synchronized in performance.
+18.	What is lock striping, and when is it useful?
+19.	How does StampedLock differ from ReadWriteLock?
+20.	Explain optimistic vs pessimistic locking in Java concurrency.
+________________________________________
+21–30: Atomic Variables & CAS
+21.	Difference between AtomicInteger vs synchronized integer access.
+22.	How does compare-and-swap (CAS) work under the hood?
+23.	Explain ABA problem in CAS and solutions (AtomicStampedReference).
+24.	Difference between lazySet, set, and getAndSet in Atomic classes.
+25.	How does LongAdder work and why it is better under high contention?
+26.	Difference between AtomicReference vs volatile reference.
+27.	Explain AtomicMarkableReference and when to use it.
+28.	How does sun.misc.Unsafe relate to CAS?
+29.	Explain spinlocks and CAS-based locks.
+30.	Explain lock-free and wait-free algorithms.
+________________________________________
+31–40: Thread Basics & Lifecycle
+31.	Difference between Thread vs Runnable vs Callable.
+32.	How does ThreadLocal work, and what are memory leak risks?
+33.	How to implement a graceful thread shutdown?
+34.	Explain interrupt vs stop in threads.
+35.	What are daemon threads, and when to use them?
+36.	Explain join() and its pitfalls.
+37.	Difference between sleep vs wait.
+38.	Explain park() vs wait().
+39.	Difference between Thread.yield() and Thread.sleep(0).
+40.	How are thread priorities handled in modern JVMs?
+________________________________________
+41–50: Executors & Thread Pools
+41.	Difference between FixedThreadPool vs CachedThreadPool vs SingleThreadExecutor.
+42.	How does ForkJoinPool work under the hood?
+43.	Difference between invokeAll() and submit() in ExecutorService.
+44.	What are RejectedExecutionHandler strategies?
+45.	How to implement custom thread factory?
+46.	Explain thread pool sizing strategy (CPU-bound vs IO-bound).
+47.	What is work-stealing in ForkJoinPool?
+48.	How does ScheduledThreadPoolExecutor work?
+49.	Difference between blocking queue types (LinkedBlockingQueue, SynchronousQueue, ArrayBlockingQueue).
+50.	How to prevent thread starvation in a thread pool?
+________________________________________
+51–60: Blocking Queues & Producer-Consumer
+51.	How to implement custom bounded blocking queue?
+52.	Difference between LinkedBlockingQueue vs ArrayBlockingQueue.
+53.	Explain SynchronousQueue and its use case.
+54.	How does PriorityBlockingQueue ordering work?
+55.	Implement fair producer-consumer with multiple producers/consumers.
+56.	How does BlockingQueue handle interrupts?
+57.	Difference between offer/poll vs put/take.
+58.	What is queue backpressure, and how to handle it?
+59.	Explain LinkedTransferQueue and its optimizations.
+60.	How to implement non-blocking queue using CAS?
+________________________________________
+61–70: Locks, Semaphores, and Latches
+61.	Difference between Semaphore and Mutex.
+62.	When to use CountDownLatch vs CyclicBarrier?
+63.	Difference between Phaser and CyclicBarrier.
+64.	How to implement barrier action using CyclicBarrier?
+65.	How does Semaphore fairness work?
+66.	Difference between reentrant vs non-reentrant locks.
+67.	How to implement readers-writers problem using Semaphore?
+68.	Explain lock convoying and performance impact.
+69.	How to avoid deadlocks with multiple locks?
+70.	Explain tryLock with timeout pattern for deadlock avoidance.
+________________________________________
+71–80: Advanced Concurrency Utilities
+71.	How does ConcurrentHashMap work internally?
+72.	Difference between ConcurrentHashMap vs synchronizedMap.
+73.	How does CopyOnWriteArrayList work and when to use it?
+74.	Difference between synchronized collections vs concurrent collections.
+75.	How to implement thread-safe LRU cache?
+76.	Explain ConcurrentSkipListMap / SkipListSet.
+77.	How does StampedLock optimistic read work?
+78.	What is Phaser and dynamic thread registration?
+79.	How to implement atomic counters for high concurrency?
+80.	How to design concurrent data structures with minimal locking?
+________________________________________
+81–90: Asynchronous / Reactive Concurrency
+81.	Difference between CompletableFuture vs Future.
+82.	How does CompletableFuture.thenApplyAsync() work?
+83.	Explain exception handling in CompletableFuture.
+84.	Difference between blocking vs non-blocking reactive streams.
+85.	Explain backpressure in reactive systems.
+86.	How to combine multiple CompletableFutures efficiently?
+87.	How does CompletionStage pipeline execution work?
+88.	Difference between synchronous join() and asynchronous thenCombine().
+89.	How to implement non-blocking retries using CompletableFuture.
+90.	How to integrate RxJava / Project Reactor with thread pools.
+________________________________________
+91–100: Common Pitfalls & Architect-Level Problems
+91.	Detecting and fixing thread starvation.
+92.	Diagnosing deadlocks and livelocks in production.
+93.	Understanding false sharing and cache line contention.
+94.	Memory impact of large ThreadLocals in thread pools.
+95.	GC impact of millions of short-lived tasks.
+96.	Why BlockingQueue + Executors can still deadlock.
+97.	How to design high-throughput non-blocking pipelines.
+98.	Diagnosing lock contention hotspots in multi-core systems.
+99.	Why synchronized blocks can be slower than CAS under low contention.
+100.	How to test and validate concurrent systems deterministically.
+

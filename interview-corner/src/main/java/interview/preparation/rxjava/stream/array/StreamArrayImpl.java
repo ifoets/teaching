@@ -196,7 +196,29 @@ public class StreamArrayImpl implements IStreamArray{
                 .mapToInt(Integer::intValue)
                 .toArray();
     }
-
+    @Override
+    public int[] sortByFrequencyX(int[] a) {
+        return Arrays.stream(a)
+            .boxed()
+            .collect(Collectors.groupingBy(
+                Function.identity(),
+                Collectors.counting()
+            ))
+            .entrySet()
+            .stream()
+            .sorted(
+                /*Comparator
+                    .comparing(Map.Entry<Integer, Long>::getValue)
+                    .thenComparing(Map.Entry::getKey)*/
+                Map.Entry.<Integer,Long>comparingByValue().reversed()
+                    .thenComparing(Map.Entry.comparingByKey())
+            )
+            .flatMapToInt(e ->
+                IntStream.generate(e::getKey)
+                    .limit(e.getValue())
+            )
+            .toArray();
+    }
     /**13.	Sort array by number of set bits in binary representation*/
     @Override
     public int [] sortBySetBits(int []a){

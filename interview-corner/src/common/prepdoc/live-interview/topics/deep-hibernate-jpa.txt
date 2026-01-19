@@ -1,0 +1,120 @@
+1️⃣ JPA & Hibernate Core Architecture (Foundations)
+1.	Difference between JPA, Hibernate ORM, Hibernate Core
+2.	What problems does ORM solve and what problems does it introduce?
+3.	Explain Persistence Context in detail
+4.	Difference between EntityManager vs Session
+5.	What is first-level cache and why can’t it be disabled?
+6.	How does Hibernate manage entity identity?
+7.	What happens internally when persist() is called?
+8.	Difference between persist(), merge(), save(), update()
+9.	What is dirty checking and how does Hibernate implement it?
+10.	Explain flush vs commit
+________________________________________
+2️⃣ Entity Lifecycle & State Transitions (Very Important)
+11.	All entity states with diagram (Transient → Managed → Detached → Removed)
+12.	When exactly does Hibernate flush automatically?
+13.	Can a detached entity become managed again? How?
+14.	Why is merge() dangerous?
+15.	What happens if you modify a managed entity outside transaction?
+16.	How does Hibernate track changes without setters?
+17.	What happens if equals/hashCode uses mutable fields?
+18.	Entity lifecycle callbacks (@PrePersist, @PostLoad) pitfalls
+19.	How Hibernate handles lifecycle in extended persistence context
+20.	Can two persistence contexts manage same entity?
+________________________________________
+3️⃣ Fetching, Loading & Proxies (Most Asked)
+21.	Difference between EAGER vs LAZY
+22.	Why EAGER is considered harmful?
+23.	How Hibernate implements lazy loading
+24.	What is a Hibernate proxy?
+25.	Why LazyInitializationException happens?
+26.	How to solve LazyInitializationException (ALL approaches)
+27.	Difference between JOIN FETCH vs @Fetch(FetchMode.JOIN)
+28.	Why JOIN FETCH breaks pagination?
+29.	What is @BatchSize and how it works internally?
+30.	Difference between FetchType.LAZY and bytecode enhancement
+________________________________________
+4️⃣ Associations & Mapping Deep Dive
+31.	Owning side vs inverse side — how Hibernate decides?
+32.	Why mappedBy is critical?
+33.	Difference between @OneToMany unidirectional vs bidirectional
+34.	Why @OneToMany with join table is inefficient?
+35.	@ManyToMany – real production issues
+36.	Cascade types — what they actually mean internally
+37.	Difference between CascadeType.REMOVE vs orphanRemoval
+38.	Why orphanRemoval is dangerous?
+39.	How Hibernate handles circular relationships
+40.	How to avoid infinite JSON serialization loops
+________________________________________
+5️⃣ Inheritance Strategies (Architect Favorite)
+41.	SINGLE_TABLE vs JOINED vs TABLE_PER_CLASS
+42.	Performance tradeoffs of inheritance strategies
+43.	How polymorphic queries work internally
+44.	Discriminator column – how Hibernate uses it
+45.	Why TABLE_PER_CLASS is usually a bad idea
+46.	Can different inheritance strategies be mixed?
+47.	How inheritance impacts indexes and joins
+48.	When to prefer composition over inheritance
+49.	How Hibernate handles abstract entities
+50.	Real-world inheritance anti-patterns
+________________________________________
+6️⃣ Caching (Critical for Senior Engineers)
+51.	First-level vs Second-level cache
+52.	What is stored in second-level cache?
+53.	Cache concurrency strategies (READ_ONLY, NONSTRICT, READ_WRITE)
+54.	Why second-level cache causes stale data?
+55.	How Hibernate invalidates cache entries
+56.	Difference between Hibernate cache and database cache
+57.	Query cache — why it’s rarely used
+58.	Cache region factories (Ehcache, Infinispan, Hazelcast)
+59.	Cache coherence in clustered environment
+60.	When NOT to use second-level cache
+________________________________________
+7️⃣ Transactions, Locking & Concurrency (Very Deep)
+61.	Hibernate transaction vs JTA transaction
+62.	How Hibernate integrates with Spring @Transactional
+63.	Optimistic vs Pessimistic locking
+64.	How @Version works internally
+65.	Can optimistic locking fail?
+66.	Difference between OPTIMISTIC, OPTIMISTIC_FORCE_INCREMENT
+67.	How Hibernate implements pessimistic locking
+68.	Lock modes vs isolation levels
+69.	How deadlocks happen with Hibernate
+70.	Handling concurrent updates safely
+________________________________________
+8️⃣ Queries: JPQL, Criteria, Native SQL
+71.	JPQL vs SQL — what’s translated and what’s not
+72.	How Hibernate parses JPQL internally
+73.	Criteria API — why it’s verbose but powerful
+74.	Dynamic queries best practices
+75.	N+1 problem — detection and prevention
+76.	Pagination pitfalls with joins
+77.	Native queries — entity mapping risks
+78.	ResultSet mapping strategies
+79.	When to bypass Hibernate and use JDBC
+80.	Stored procedures support in JPA
+________________________________________
+9️⃣ Performance & Tuning (Architect Level)
+81.	How to detect Hibernate performance issues
+82.	Hibernate statistics — what metrics matter?
+83.	Impact of batch inserts/updates
+84.	JDBC batching configuration
+85.	Why Hibernate is slow for bulk updates
+86.	StatelessSession — when and why?
+87.	Memory leaks caused by persistence context
+88.	Connection pool interaction (HikariCP)
+89.	How Hibernate impacts GC
+90.	Profiling Hibernate in production
+________________________________________
+🔟 Advanced & Real-World Scenarios
+91.	Multi-tenancy strategies in Hibernate
+92.	Soft deletes — best practices
+93.	Auditing with Envers — pros/cons
+94.	Schema generation risks in production
+95.	Flyway/Liquibase vs Hibernate DDL
+96.	Hibernate in microservices — what to avoid
+97.	DTO projections vs entities
+98.	Reactive Hibernate — when it makes sense
+99.	Why ORMs fail at scale sometimes
+100.	When NOT to use Hibernate at all
+

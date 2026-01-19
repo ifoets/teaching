@@ -9,27 +9,26 @@ public class GraphMediumImpl implements IGraphMedium<Integer>{
     /**133. Clone Graph**/
     @Override
     public GNode<Integer> cloneGraph(GNode<Integer> node){
-        if(node==null)
-            return null;
+        if (node == null) return null;
 
+        Map<GNode<Integer>, GNode<Integer>> map = new HashMap<>();
         Queue<GNode<Integer>> queue = new LinkedList<>();
-        Map<Integer, GNode<Integer>> map = new HashMap<>();
-        queue.add(node);
 
-        while(!queue.isEmpty()) {
+        queue.offer(node);
+        map.put(node, new GNode<>(node.val, new ArrayList<>()));
+
+        while (!queue.isEmpty()) {
             GNode<Integer> curr = queue.poll();
-            GNode<Integer> clone  = new GNode<>(curr.val);
-            map.put(clone.val,curr);
-            List<GNode<Integer>> neighbours = curr.neighbours;
-            for (GNode<Integer> gnode : neighbours) {
-                map.put(gnode.val,gnode);
-                if(!map.containsKey(gnode.val)) {
-                    queue.add(gnode);
+
+            for (GNode<Integer> nei : curr.neighbours) {
+                if (!map.containsKey(nei)) {
+                    map.put(nei, new GNode<>(nei.val, new ArrayList<>()));
+                    queue.offer(nei);
                 }
-                clone.neighbours.add(map.get(gnode.val));
+                map.get(curr).neighbours.add(map.get(nei));
             }
         }
-        return map.get(node.val);
+        return map.get(node);
     }
 
     @SuppressWarnings("unchecked")

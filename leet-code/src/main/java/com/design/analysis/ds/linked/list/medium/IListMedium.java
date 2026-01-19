@@ -25,4 +25,10 @@ public interface IListMedium {
 
     /**82. Remove Duplicates from Sorted List II**/
     ListNode deleteDuplicates(ListNode head);
+
+    /**147. Insertion Sort List**/
+    ListNode insertionSortList(ListNode head);
+
+    /**148. Sort List, O(nlogn) use merge short**/
+    ListNode sortList(ListNode head);
 }

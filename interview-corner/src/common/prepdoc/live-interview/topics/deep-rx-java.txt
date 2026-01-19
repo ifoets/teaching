@@ -1,0 +1,245 @@
+1️⃣ Reactive Fundamentals (Deep, Not Definitions)
+1.	Why is RxJava push-based and Java Streams pull-based?
+2.	What problem does RxJava solve that CompletableFuture does not?
+3.	Why is RxJava described as functional + async + event-driven?
+4.	What guarantees does RxJava give about ordering?
+5.	Can RxJava be truly non-blocking if the source is blocking?
+6.	Difference between cold vs hot observables (real production example).
+7.	Why is immutability critical in reactive pipelines?
+8.	What is a reactive contract?
+9.	Why is RxJava considered lazy?
+10.	Why are Observables single-subscriber by default?
+________________________________________
+2️⃣ Observable vs Flowable (CRITICAL)
+11.	Why was Flowable introduced separately from Observable?
+12.	What happens if a producer emits faster than consumer in Observable?
+13.	How does Flowable enforce backpressure?
+14.	Explain MissingBackpressureException with a real example.
+15.	When should you NEVER use Observable?
+16.	Can Flowable still cause OOM?
+17.	Difference between BUFFER, DROP, LATEST, ERROR strategies.
+18.	What is request(n) and who calls it?
+19.	Why backpressure is a consumer-driven protocol?
+20.	Compare RxJava backpressure vs Reactive Streams backpressure.
+________________________________________
+3️⃣ Scheduler & Threading (Interview Favorite)
+21.	Difference between subscribeOn() and observeOn() (deep internals).
+22.	Why does multiple subscribeOn() only honor the first?
+23.	Why does multiple observeOn() work?
+24.	Difference between Schedulers.io() and Schedulers.computation().
+25.	Why should blocking IO NEVER run on computation()?
+26.	How many threads does Schedulers.io() create?
+27.	What happens if you block inside observeOn()?
+28.	How does RxJava ensure thread-safety of operators?
+29.	Can a single Observable emit from multiple threads?
+30.	What is trampoline scheduler and real use case?
+________________________________________
+4️⃣ Operators – Advanced & Tricky
+31.	Difference between map() vs flatMap() vs concatMap().
+32.	Why is flatMap() unordered?
+33.	How does concatMap() enforce ordering internally?
+34.	Difference between switchMap() and flatMap() in cancellation.
+35.	What happens to upstream when switchMap() switches?
+36.	Difference between zip() and combineLatest().
+37.	When does zip() block forever?
+38.	How does groupBy() cause memory leaks?
+39.	Why is groupBy() dangerous in unbounded streams?
+40.	Difference between merge() and concat() under load.
+________________________________________
+5️⃣ Error Handling (Very Important)
+41.	Why errors are terminal in RxJava?
+42.	Difference between onErrorReturn() vs onErrorResumeNext().
+43.	Why doOnError() does NOT consume error?
+44.	How does retry() work internally?
+45.	Difference between retry() and repeat().
+46.	Why retryWhen() is dangerous?
+47.	What happens if error occurs in map()?
+48.	How to handle partial failures in a stream?
+49.	How to convert exception into data safely?
+50.	Why suppressing errors is bad in reactive systems?
+________________________________________
+6️⃣ Hot Streams & Subjects (Senior-Level)
+51.	Why are Subjects considered dangerous?
+52.	Difference between PublishSubject, ReplaySubject, BehaviorSubject.
+53.	Why ReplaySubject can cause OOM?
+54.	How BehaviorSubject differs from caching?
+55.	What happens if subscriber subscribes late to PublishSubject?
+56.	Why Subjects break reactive principles?
+57.	Alternative to Subjects in production systems.
+58.	Difference between share() and publish().refCount().
+59.	Why share() can cause subtle bugs?
+60.	What is a ConnectableObservable?
+________________________________________
+7️⃣ Resource Management & Memory
+61.	What is Disposable?
+62.	What happens if you forget to dispose?
+63.	Why memory leaks are common in RxJava?
+64.	How does using() manage resources?
+65.	Difference between doFinally() and doOnDispose().
+66.	How RxJava handles cancellation?
+67.	Can cancellation propagate upstream?
+68.	Why infinite streams are dangerous?
+69.	How to safely handle infinite streams?
+70.	What happens when downstream cancels mid-stream?
+________________________________________
+8️⃣ Performance & Backpressure Internals
+71.	Why RxJava uses lock-free algorithms?
+72.	How does RxJava avoid synchronized blocks?
+73.	Difference between fusion and normal operators.
+74.	What is operator fusion?
+75.	How fusion improves performance?
+76.	When fusion is disabled?
+77.	What is queue-fusion?
+78.	How RxJava handles contention?
+79.	Why backpressure buffers are dangerous?
+80.	How to tune RxJava for high throughput?
+________________________________________
+9️⃣ RxJava vs Other Reactive Systems
+81.	RxJava vs Project Reactor (real differences).
+82.	RxJava vs CompletableFuture (beyond syntax).
+83.	RxJava vs Akka Streams.
+84.	RxJava vs Java Streams (internals).
+85.	Why Spring WebFlux prefers Reactor?
+86.	Why RxJava is not ideal for HTTP servers?
+87.	Can RxJava be used in microservices?
+88.	Why reactive is hard to debug?
+89.	Common production failures in RxJava.
+90.	When NOT to use RxJava?
+________________________________________
+🔟 Design, Testing & Production
+91.	How do you test RxJava streams deterministically?
+92.	What is TestScheduler?
+93.	Difference between blockingGet() and subscribe().
+94.	Why blocking operators are dangerous?
+95.	How to debug RxJava pipelines?
+96.	How to log without breaking reactive flow?
+97.	How to design retry with exponential backoff?
+98.	How to implement timeout + fallback?
+99.	How to migrate legacy code to RxJava?
+100.	Biggest RxJava anti-patterns you’ve seen in production?
+
+=============================================================================================================================================================
+1️⃣ Core Reactive Fundamentals (1–15)
+1.	What problem does RxJava solve that Java Streams and CompletableFuture cannot?
+2.	Explain cold vs hot Observables with real production examples.
+3.	Difference between Observable, Flowable, Single, Maybe, Completable — when exactly would you choose each?
+4.	Why was Flowable introduced separately from Observable?
+5.	Explain Reactive Streams specification and RxJava’s role in it.
+6.	What are the 4 Reactive Streams signals and why are they ordered?
+7.	Why is onError() terminal and irreversible?
+8.	Why can’t an Observable emit after onComplete()?
+9.	What happens if onNext() throws an exception?
+10.	Difference between push vs pull model in RxJava.
+11.	Why RxJava avoids null emissions?
+12.	How does RxJava enforce serialized emissions?
+13.	What is a Subscription lifecycle?
+14.	Difference between subscribe() and blockingSubscribe().
+15.	What happens internally when you don’t subscribe?
+________________________________________
+2️⃣ Backpressure (CRITICAL – 16–30)
+16.	What exactly is backpressure?
+17.	Why backpressure does NOT exist in Observable?
+18.	Explain how Flowable handles backpressure internally.
+19.	Difference between BUFFER, DROP, LATEST, ERROR strategies.
+20.	When is MissingBackpressureException thrown?
+21.	What is request(n) and who calls it?
+22.	How does downstream control upstream speed?
+23.	Why is backpressure a contract, not a feature?
+24.	Explain producer-consumer imbalance with example.
+25.	What happens if upstream ignores backpressure?
+26.	Why backpressure cannot be retrofitted easily?
+27.	Compare RxJava backpressure vs Akka Streams.
+28.	What is fusion and how does it affect backpressure?
+29.	How does observeOn() affect backpressure?
+30.	How do you debug backpressure issues in production?
+________________________________________
+3️⃣ Schedulers & Threading (31–45)
+31.	Difference between subscribeOn() and observeOn().
+32.	Why does subscribeOn() affect upstream?
+33.	Why can multiple observeOn() exist but only one subscribeOn() matters?
+34.	Difference between IO, Computation, NewThread, Single, Trampoline.
+35.	Why must blocking IO never run on computation scheduler?
+36.	How does RxJava prevent scheduler starvation?
+37.	What happens if computation threads are blocked?
+38.	Difference between RxJava schedulers and Java ExecutorService.
+39.	How does RxJava reuse threads?
+40.	Explain Scheduler Worker concept.
+41.	What is trampoline scheduler used for?
+42.	How to create custom scheduler?
+43.	Why RxJava avoids ForkJoinPool?
+44.	Thread-safety guarantees of operators.
+45.	Can two threads call onNext() concurrently?
+________________________________________
+4️⃣ Operators – Deep Understanding (46–65)
+46.	Difference between map, flatMap, concatMap, switchMap.
+47.	Why is flatMap unordered?
+48.	When does switchMap cancel upstream?
+49.	Difference between merge vs zip.
+50.	Why does zip block emissions?
+51.	Difference between debounce and throttleLatest.
+52.	How does groupBy() work internally?
+53.	Why is groupBy() dangerous in production?
+54.	Difference between scan and reduce.
+55.	Why does reduce return Maybe?
+56.	Difference between takeUntil vs takeWhile.
+57.	Difference between retry and repeat.
+58.	How does retryWhen() work?
+59.	Why is doOnNext() dangerous for business logic?
+60.	When does onErrorResumeNext() execute?
+61.	Difference between onErrorReturn and onErrorResumeNext.
+62.	Why is timeout() tricky?
+63.	Difference between delay and delaySubscription.
+64.	What happens if downstream is slow in flatMap?
+65.	Which operators break backpressure?
+________________________________________
+5️⃣ Hot Streams, Multicasting & Subjects (66–75)
+66.	What is a Subject and why is it dangerous?
+67.	Difference between PublishSubject, BehaviorSubject, ReplaySubject, AsyncSubject.
+68.	Why are Subjects considered anti-pattern?
+69.	What replaces Subjects in modern RxJava?
+70.	Difference between share() and publish().refCount().
+71.	How does ConnectableObservable work?
+72.	What happens if subscriber joins late?
+73.	Memory risks with ReplaySubject.
+74.	Hot stream use cases in real systems.
+75.	How to safely multicast with backpressure?
+________________________________________
+6️⃣ Error Handling & Reliability (76–85)
+76.	Why RxJava prefers fail-fast?
+77.	Why errors terminate the stream?
+78.	How to design fault-tolerant reactive pipelines?
+79.	Difference between recovering vs retrying.
+80.	How to avoid retry storms?
+81.	What is idempotency in reactive retries?
+82.	How do you implement circuit breaker with RxJava?
+83.	How does RxJava propagate fatal errors?
+84.	Why are UndeliverableExceptions thrown?
+85.	How do you handle partial failures?
+________________________________________
+7️⃣ Memory, Performance & Debugging (86–95)
+86.	How does RxJava avoid memory leaks?
+87.	When can RxJava cause memory leaks?
+88.	Importance of Disposable and proper disposal.
+89.	What happens if you forget to dispose?
+90.	How does RxJava support cancellation?
+91.	How to debug async RxJava flows?
+92.	What is RxJavaPlugins used for?
+93.	How to add global error handling?
+94.	How do you trace thread hops?
+95.	Performance trade-offs of reactive vs imperative.
+________________________________________
+8️⃣ Design, Architecture & Real-World (96–100)
+96.	When should RxJava NOT be used?
+97.	RxJava vs Project Reactor — architectural differences?
+98.	Why reactive code is harder to debug?
+99.	Why many teams misuse RxJava?
+100.	Explain a real production incident you solved using RxJava.
+________________________________________
+💡 Interview Tip (VERY IMPORTANT)
+For 10+ years, interviewers expect:
+•	Trade-offs ❌ not definitions
+•	Failures ❌ not happy paths
+•	Production stories ❌ not theory
+A strong answer sounds like:
+“We hit backpressure when upstream Kafka spikes exceeded consumer capacity, so we switched from Observable to Flowable with bounded buffering and applied retry with jitter.”
+

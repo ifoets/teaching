@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 public class IStringMediumTest {
 
     private IStringMedium ism;
@@ -20,14 +22,29 @@ public class IStringMediumTest {
         for(int i=0;i<rs.length;i++)
             Assert.assertEquals(rs[i],ism.lengthOfLongestSubstring(str[i]));
     }
-
+    @Test
+    public void uniqueCharMaxSubStrSTest()
+    {
+        String[] rs={"abc","b","wke"," ","ab"};
+        String[] str ={"abcabcbb","bbbbb","pwwkew" ," ","aab"};
+        for(int i=0;i<rs.length;i++)
+            Assert.assertEquals(rs[i],ism.uniqueCharMaxSubStrS(str[i]));
+    }
     /** 5. Longest Palindromic Substring*/
     @Test
     public void longestPalindromeTest(){
         String[] rs={"bab","bb"};
         String[] str ={"babad","cbbd"};
+        for(int i=0;i<rs.length;i++) {
+            Assert.assertEquals(rs[i], ism.longestPalindrome(str[i]));
+        }
+    }
+    @Test
+    public void longestPalindromeSTest(){
+        String[] rs={"bab","bb"};
+        String[] str ={"babad","cbbd"};
         for(int i=0;i<rs.length;i++)
-        Assert.assertEquals(rs[i],ism.longestPalindrome(str[i]));
+            Assert.assertEquals(rs[i],ism.longestPalindromeS(str[i]));
     }
     /** 6. Zigzag Conversion*/
     @Test
@@ -53,5 +70,13 @@ public class IStringMediumTest {
         Assert.assertEquals("MMMDCCXLIX", ism.intToRoman(3749));
         Assert.assertEquals("LVIII", ism.intToRoman(58));
         Assert.assertEquals("MCMXCIV", ism.intToRoman(1994));
+    }
+
+    /**17. Letter Combinations of a Phone Number**/
+    @Test
+    public void letterCombinationsTest()
+    {
+        System.out.println(ism.letterCombinations("2"));
+        System.out.println(ism.letterCombinations("23"));
     }
 }

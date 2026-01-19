@@ -6,4 +6,8 @@ public interface IStringEasy {
      int romanToInt(String s);
 
      int romanToIntX(String s);
+
+     /**14. Longest Common Prefix*/
+     String longestCommonPrefix(String[] strs);
+    String longestCommonPrefixS(String[] strs);
 }

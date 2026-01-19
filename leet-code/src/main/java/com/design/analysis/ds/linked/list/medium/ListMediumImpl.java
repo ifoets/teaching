@@ -5,6 +5,7 @@ import com.design.analysis.ds.node.ListNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 public class ListMediumImpl implements IListMedium{
 
@@ -185,5 +186,78 @@ public class ListMediumImpl implements IListMedium{
             p=p.next;
         }
         return head;
+    }
+
+    /**147. Insertion Sort List**/
+    @Override
+    public ListNode insertionSortList(ListNode head){
+       if(head==null||head.next==null)return head;
+
+       ListNode dummy = new ListNode(0);
+       dummy.next=head;
+       ListNode current=head.next;
+       head.next=null;
+       while (current!=null)
+       {
+           ListNode next = current.next;
+           ListNode prev=dummy;
+           //find the point where we can insert current eleemnt
+           while (prev.next!=null&&prev.next.val<current.val)
+               prev=prev.next;
+           current.next=prev.next;
+           prev.next=current;
+
+           current=next;
+       }
+       return dummy.next;
+    }
+
+    /**148. Sort List, O(nlogn) use merge short**/
+    @Override
+    public ListNode sortList(ListNode head){
+        if(head==null || head.next==null)
+            return head;
+
+        // Step 1: split list
+        ListNode mid  = getMid(head);
+        ListNode right = mid.next;
+        //break list into half
+        mid.next=null;
+
+        ListNode leftSort = sortList(head);
+        ListNode rightSort = sortList(right);
+
+        return merge(leftSort,rightSort);
+    }
+    private ListNode getMid(ListNode head)
+    {
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast!=null&&fast.next!=null)
+        {
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    private ListNode merge(ListNode l1, ListNode l2)
+    {
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        while (l1!=null&&l2!=null)
+        {
+            if(l1.val<=l2.val)
+            {
+                tail.next=l1;
+                l1= l1.next;
+            }else
+            {
+                tail.next=l2;
+                l2=l2.next;
+            }
+            tail=tail.next;
+        }
+        tail.next=(l1!=null)?l1:l2;
+        return dummy.next;
     }
 }

@@ -1751,3 +1751,204 @@ Cross-account issues	                                              Role trust or
 Pre-signed URL expired/invalid	U                                    RL expired or signature issue	Re-generate URL, check time
 Region mismatch	SDK or                                              URL uses wrong region	Match bucket region
 ACL/Object ownership	                                          Missing read permissions via ACL	Adjust object ACL or bucket owner controls
+
+Record, Selated class, final class
+======================================
+🔹 What is a Record?
+A record is a special immutable data carrier class.
+Compiler Generates Automatically:
+private final fields
+Canonical constructor
+equals(), hashCode()
+toString()
+Accessors (id(), name())
+
+🔹 Record Memory Model
+Heap
+ └── User
+      ├── final int id
+      └── final String name
+
+✔ Fields are final → safe publication
+✔ Thread-safe by design
+
+🔹 What Records CANNOT Do
+
+❌ Extend other classes
+❌ Have mutable fields
+❌ Have instance initializers
+❌ Declare non-final fields
+
+✔ Can implement interfaces
+✔ Can have static methods
+✔ Can have compact constructors
+
+🔹 What is a Sealed Class?
+A sealed class controls which classes can extend it.
+🔹 Permitted Subclasses Rules
+
+Permitted classes must be:
+final
+sealed
+non-sealed
+
+🔹 Why Sealed Classes?
+✔ Enforced domain modeling
+✔ Exhaustive switch
+✔ Better maintainability
+✔ Stronger compile-time safety
+
+🔹 Sealed Interfaces
+public sealed interface Payment
+    permits CardPayment, UPIPayment {}
+	
+🔹 What is a Final Class?
+A class marked final cannot be extended.
+
+🔹 Why Use Final Class?
+
+✔ Prevent inheritance
+✔ Security (immutable behavior)
+✔ Easier optimization by JVM
+✔ Thread safety
+
+how to create more than one bean in spring and how to use it 
+=================================================================
+1️⃣ Multiple Beans Using @Component
+@Component
+public class EmailNotificationService implements NotificationService {
+    public void send() { }
+}
+
+@Component
+public class SmsNotificationService implements NotificationService {
+    public void send() { }
+}
+2️⃣ Use @Qualifier (Most Common & Recommended)
+Injection with @Qualifier
+@Autowired
+@Qualifier("emailNotificationService")
+private NotificationService notificationService;
+
+--
+@Service
+public class OrderService {
+
+    private final NotificationService notificationService;
+
+    public OrderService(
+        @Qualifier("smsNotificationService")
+        NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
+}
+
+3️⃣ Multiple Beans Using @Bean in @Configuration
+@Configuration
+public class NotificationConfig {
+
+    @Bean
+    public NotificationService emailService() {
+        return new EmailNotificationService();
+    }
+
+    @Bean
+    public NotificationService smsService() {
+        return new SmsNotificationService();
+    }
+}
+@Autowired
+@Qualifier("emailService")
+private NotificationService notificationService;
+4️⃣ Use @Primary (Default Bean)
+@Component
+@Primary
+public class EmailNotificationService implements NotificationService {
+}
+Now this works without qualifier:
+@Autowired
+private NotificationService notificationService;
+
+5️⃣ Inject All Beans at Once (Strategy Pattern)
+@Autowired
+private List<NotificationService> services;
+
+nject as Map (Bean name → Bean)
+@Autowired
+private Map<String, NotificationService> serviceMap;
+serviceMap.get("smsNotificationService").send();
+7️⃣ Conditional Beans (Profile-Based)
+
+@Component
+@Profile("prod")
+public class EmailNotificationService implements NotificationService {
+}
+
+@Component
+@Profile("test")
+public class MockNotificationService implements NotificationService {
+}
+
+==============================================================================
+Checked vs Unchecked Exception, why not all r checked exception
+===========================
+1️⃣ Checked vs Unchecked Exceptions (Quick Recap)
+✅ Checked Exception
+
+Checked at compile time
+
+Must be handled or declared using try-catch or throws
+Extend Exception (but NOT RuntimeException)
+Ex-
+IOException
+SQLException
+ClassNotFoundException
+
+❌ Unchecked Exception
+
+Not checked at compile time
+Occur due to programming errors
+Extend RuntimeException
+
+Ex-
+NullPointerException
+IllegalArgumentException
+ArrayIndexOutOfBoundsException
+
+2️⃣ Why NOT Make All Exceptions Checked? (Core Question)
+Because checked exceptions reduce flexibility, break abstraction, increase coupling, and harm maintainability, especially in large systems.
+Problem 4: Poor Fit for Modern Frameworks
+Frameworks like:
+
+Spring
+Hibernate
+JPA
+Streams / Lambdas
+Reactive programming
+Problem 6: Distributed Systems Reality
+In microservices:
+
+Network failures
+Timeouts
+Partial failures
+❌ You cannot recover reliably at compile time.
+✔ Runtime handling + retries + circuit breakers is better.
+
+Why Streams can be slower
+============================
+🔹 1. Lambda & Functional Overhead ->Streams rely heavily on:/Lambdas/Functional interfaces/Method references, Extra function calls and Less predictable inlining by JIT
+🔹 2. Object Creation & Boxing ->Intermediate objects->Iterator-like pipeline stages
+🔹 3. Pipeline Setup Cost
+Streams build a processing pipeline:/filter/map/collect
+
+3️⃣ When Streams perform well (or better)
+===================================
+✅ 1. Parallel Streams
+✔ Large datasets
+✔ CPU-heavy operations
+✔ Stateless operations
+✅ 2. IO-bound operations
+DB calls
+Network calls
+File IO
+✅ 3. Primitive Streams

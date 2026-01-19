@@ -334,7 +334,7 @@ public class ArrayMediumImpl implements IArrayMedium{
         if(r-l==1 && nums[l]>nums[r])
             return r;
         int mid = (l+r)/2;
-        while (l<r)
+        if (l<r)
         {
             if(mid-1>=0&& nums[mid-1]>nums[mid])
                 return mid;
@@ -348,7 +348,7 @@ public class ArrayMediumImpl implements IArrayMedium{
     public static int binarySearch(int[] nums, int l, int r, int target){
 
         int mid = (l+r)/2;
-        while (l<=r)
+        if (l<=r)
         {
             if(nums[mid]==target)
                 return mid;

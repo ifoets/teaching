@@ -174,4 +174,36 @@ public class IListMediumTest {
         }
         Assert.assertEquals(duplicates,expList);
     }
+
+    /**147. Insertion Sort List**/
+    @Test
+    public void insertionSortListTest()
+    {
+        int[]a ={4,2,1,3};
+        ListNode head = ListUtils.createList(a);
+        head = ilm.insertionSortList(head);
+        ListNode expHead = ListUtils.createList(new int[]{1,2,3,4});
+        while (head!=null)
+        {
+            Assert.assertEquals(expHead.val,head.val);
+            head=head.next;
+            expHead=expHead.next;
+        }
+    }
+
+    /**148. Sort List, O(nlogn) use merge short**/
+    @Test
+    public void sortListTest()
+    {
+        int[]a ={-1,5,3,4,0};
+        ListNode head = ListUtils.createList(a);
+        head = ilm.sortList(head);
+        ListNode expHead = ListUtils.createList(new int[]{-1,0,3,4,5});
+        while (head!=null)
+        {
+            Assert.assertEquals(expHead.val,head.val);
+            head=head.next;
+            expHead=expHead.next;
+        }
+    }
 }

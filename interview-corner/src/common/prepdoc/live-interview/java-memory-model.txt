@@ -1,0 +1,193 @@
+ZGC is a low-latency, scalable, concurrent garbage collector designed to keep pause times consistently below ~10 ms, even with very large heaps (GBs → TBs).
+What is ZGC?
+
+ZGC = Region-based, concurrent, compacting GC
+Key goals:
+Ultra-low latency
+Predictable pause times
+Scales to very large heaps
+Minimal tuning
+
+java 17 Memory model
+====================================
+1️⃣ JVM Memory Layout (Java 17)
+🔹 1. Heap Memory
+
+        Stores objects & arrays
+
+        Heap
+        ├─ Young Generation
+        │   ├─ Eden
+        │   ├─ Survivor S0
+        │   └─ Survivor S1
+        └─ Old Generation
+
+        ZGC / Shenandoah can blur this separation.
+
+🔹 2. Metaspace (Native Memory)
+
+        Stores:
+
+        Class metadata
+        Method metadata
+        Constant pool
+        Annotations
+
+        📌 Key difference from Java 8:
+        Not in heap
+        Uses native memory
+        Can cause OOM even if heap is free
+
+🔹 3. Thread Stack (Per Thread)
+
+        Stores:
+        Local variables
+        Method frames
+        Return addresses
+        ➡️ Not shared → thread-safe by design
+🔹 4. Code Cache
+
+        Stores:
+        JIT-compiled native code
+
+🔹 5. Native / Off-Heap Memory
+
+        DirectByteBuffer
+        JNI
+        GC metadata
+        ZGC colored pointers
+
+        1️⃣ GC Options Available in Java 17
+        GC	                        Status	                  Use Case
+        G1 GC	                    ✅ Default	        Balanced throughput + latency
+        ZGC	                        ✅ Production	    Ultra-low latency
+        Shenandoah	                ✅ Production	    Low pause times
+        Parallel GC	                ✅	                Batch / throughput
+        Serial GC	                ✅	                Small apps
+
+        🔹 G1 GC (Modern, Default)
+        Heap is split into regions (not contiguous generations).
+        •	Young regions
+        •	Old regions
+        •	Humongous regions
+        G1 Internals:
+        1.	Concurrent marking
+        2.	Finds regions with most garbage
+        3.	Collects them first
+        4.	Tries to meet pause target:
+
+        GC	                            Status (JDK 17+)	      Goal	                                  Key Property
+        G1 GC	                          ✅ Default	     Balanced throughput + predictable latency	Region-based, mostly concurrent
+        ZGC	                              ✅ Production	     Ultra-low latency	                        Concurrent + colored pointers
+        Shenandoah	                      ✅ Production	Low pause times	                                Concurrent compaction
+
+
+=========================================================================================================================
+How GC Works Internally (Young → Old → Promotion)
+We’ll go step by step as the JVM actually does it.
+________________________________________
+1️⃣ Heap Structure (Logical View)
+Heap
+ ├── Young Generation
+ │    ├── Eden
+ │    ├── Survivor S0
+ │    └── Survivor S1
+ └── Old Generation (Tenured)
+Most objects die young → this is the core GC assumption.
+________________________________________
+2️⃣ Object Allocation (Eden)
+What happens when you create an object?
+User u = new User();
+Internally:
+•	JVM allocates memory in Eden
+•	Uses TLAB (Thread Local Allocation Buffer) → very fast (pointer bump)
+Eden: [ obj1 | obj2 | obj3 | ... ]
+📌 No GC yet.
+________________________________________
+3️⃣ Minor GC (Young GC)
+When does Minor GC trigger?
+•	Eden becomes full
+What happens internally?
+1.	Stop-The-World (STW) pause
+2.	GC finds GC Roots
+o	Thread stacks
+o	Static variables
+o	JNI references
+3.	Mark live objects in Eden
+4.	Copy live objects to Survivor space (S0 or S1)
+5.	Age is incremented
+6.	Eden is cleared completely
+Before GC:
+Eden:     [ A B C D ]
+Survivor: [      ]
+
+After GC:
+Eden:     [      ]
+Survivor: [ A C ]   (B, D were garbage)
+This is called Copying / Scavenge GC.
+________________________________________
+4️⃣ Survivor Spaces (Aging)
+Survivor spaces work like ping-pong buffers.
+GC Cycle
+•	Eden + From-Survivor → To-Survivor
+•	After GC:
+o	From becomes empty
+o	To becomes new From
+Object Age
+•	Each object has an age counter
+•	Incremented every Minor GC it survives
+Age 1 → Age 2 → Age 3 → ...
+________________________________________
+5️⃣ Promotion to Old Generation
+When does promotion happen?
+An object is promoted to Old Gen if:
+🔹 Condition 1: Age threshold
+-XX:MaxTenuringThreshold=15 (default)
+If object survives N minor GCs → promoted.
+________________________________________
+🔹 Condition 2: Survivor space overflow
+If Survivor space is too small, objects are promoted early.
+This is called Premature Promotion.
+________________________________________
+🔹 Condition 3: Large objects
+Some collectors allocate large objects directly in Old Gen.
+byte[] big = new byte[20_000_000];
+________________________________________
+6️⃣ Old Generation GC (Major / Full GC)
+Old Gen uses different algorithms.
+Old Gen characteristics:
+•	Objects live longer
+•	GC is less frequent
+•	More expensive
+What triggers it?
+•	Old Gen becomes full
+•	Promotion failure
+•	Explicit System.gc() (bad 😄)
+________________________________________
+7️⃣ Old Gen GC Algorithms (Internals)
+🔹 Mark–Sweep–Compact (Classic)
+1.	Mark live objects
+2.	Sweep dead objects
+3.	Compact memory (remove fragmentation)
+STW pauses are longer.
+________________________________________
+🔹 G1 GC (Modern, Default)
+Heap is split into regions (not contiguous generations).
+•	Young regions
+•	Old regions
+•	Humongous regions
+G1 Internals:
+1.	Concurrent marking
+2.	Finds regions with most garbage
+3.	Collects them first
+4.	Tries to meet pause target:
+-XX:MaxGCPauseMillis=200
+________________________________________
+8️⃣ Promotion Failure (Important Interview Point)
+What is it?
+When JVM wants to promote object → Old Gen has no space.
+Result:
+•	JVM triggers Full GC
+•	If still no space → OutOfMemoryError
+
+

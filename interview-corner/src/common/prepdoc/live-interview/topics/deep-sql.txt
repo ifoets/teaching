@@ -1,0 +1,132 @@
+🔥 TOP 100 DEEP SQL INTERVIEW QUESTIONS (10+ YEARS)
+________________________________________
+🧱 1. SQL Fundamentals (But Deep)
+1.	Difference between DELETE, TRUNCATE, DROP internally
+2.	How does WHERE vs HAVING work in execution plan?
+3.	Difference between CHAR vs VARCHAR vs TEXT
+4.	How NULL behaves in indexes and comparisons
+5.	Why COUNT(*) is faster than COUNT(column)
+6.	How SQL handles boolean expressions internally
+7.	What is predicate pushdown
+8.	What happens internally when you run SELECT *
+9.	Difference between UNION vs UNION ALL (execution cost)
+10.	What is query rewriting
+________________________________________
+🔄 2. Joins – Internals & Performance
+11.	Difference between INNER, LEFT, RIGHT, FULL joins
+12.	How JOIN order affects performance
+13.	What is a CROSS JOIN and real use cases
+14.	Difference between JOIN vs SUBQUERY
+15.	What is semi join and anti join
+16.	How database chooses nested loop vs hash join
+17.	Join on indexed vs non-indexed column
+18.	What is cartesian product
+19.	Join vs EXISTS — which is faster and why?
+20.	How outer joins behave with WHERE conditions
+________________________________________
+🪟 3. Window Functions (VERY IMPORTANT)
+21.	Difference between RANK, DENSE_RANK, ROW_NUMBER
+22.	When to use WINDOW functions vs GROUP BY
+23.	What is OVER(PARTITION BY) internally
+24.	How sliding windows work
+25.	Performance impact of window functions
+26.	Use cases for LAG / LEAD
+27.	Running totals vs cumulative aggregates
+28.	How window functions are executed in query plan
+29.	Can window functions use indexes?
+30.	Difference between analytical vs aggregate functions
+________________________________________
+🔐 4. Transactions & Isolation (HOT TOPIC)
+31.	What is a transaction
+32.	ACID properties explained with real examples
+33.	Difference between READ COMMITTED vs REPEATABLE READ
+34.	Dirty read, non-repeatable read, phantom read
+35.	How databases implement MVCC
+36.	What is snapshot isolation
+37.	How locks are acquired during UPDATE
+38.	What happens during deadlock
+39.	How deadlock detection works
+40.	Autocommit vs manual commit
+________________________________________
+🧩 5. Indexing (VERY DEEP)
+41.	What is an index internally (B+ Tree)
+42.	Difference between clustered vs non-clustered index
+43.	Why only one clustered index
+44.	Composite index – leftmost prefix rule
+45.	When index is NOT used
+46.	Index selectivity and cardinality
+47.	Covering index
+48.	Index scan vs index seek
+49.	Function-based index
+50.	Why indexes slow down writes
+________________________________________
+⚙️ 6. Query Optimization & Execution Plans
+51.	What is EXPLAIN PLAN
+52.	Cost-based vs rule-based optimizer
+53.	How optimizer chooses index
+54.	Why same query performs differently
+55.	How statistics affect query performance
+56.	What is query cache
+57.	Parameter sniffing problem
+58.	When full table scan is better than index scan
+59.	How subqueries are optimized
+60.	Difference between logical and physical query plan
+________________________________________
+📊 7. Aggregation & Grouping
+61.	How GROUP BY works internally
+62.	HAVING vs WHERE performance impact
+63.	GROUP BY with NULL values
+64.	GROUP BY multiple columns performance
+65.	Rollup and Cube
+66.	Distinct vs Group By
+67.	COUNT(DISTINCT) performance
+68.	Aggregation on indexed column
+69.	Partial aggregation
+70.	Streaming aggregation vs hash aggregation
+________________________________________
+🧠 8. Advanced SQL Scenarios
+71.	Find second highest salary (multiple ways)
+72.	Remove duplicate rows without temp table
+73.	Pagination — OFFSET vs keyset pagination
+74.	Find gaps in sequence
+75.	Recursive queries (CTE)
+76.	Hierarchical queries
+77.	JSON columns indexing
+78.	Upsert patterns (MERGE)
+79.	Slowly Changing Dimensions (SCD)
+80.	Handling soft deletes efficiently
+________________________________________
+🏗️ 9. Database Design & Normalization
+81.	Normal forms (1NF → 3NF)
+82.	When to denormalize
+83.	OLTP vs OLAP schema
+84.	Star vs snowflake schema
+85.	Surrogate vs natural keys
+86.	UUID vs auto-increment PK
+87.	Sharding strategies
+88.	Partitioning types
+89.	Horizontal vs vertical partitioning
+90.	Data archival strategies
+________________________________________
+🚀 10. Real-World & System Design SQL
+91.	How to design audit tables
+92.	Handling large tables (billions of rows)
+93.	Online schema migration strategies
+94.	Zero-downtime index creation
+95.	SQL for idempotency
+96.	Optimizing high-write tables
+97.	How read replicas work
+98.	Consistency between replicas
+99.	SQL anti-patterns in microservices
+100.	When NOT to use SQL
+________________________________________
+🎯 Interviewer Expectations (10+ Years)
+They expect you to:
+•	Explain WHY, not just WHAT
+•	Talk about execution plans
+•	Mention trade-offs
+•	Relate answers to real production issues
+________________________________________
+🔥 30-Second Interview Pitch
+“At scale, SQL performance depends less on syntax and more on indexing strategy, transaction isolation, execution plans, and data distribution. Understanding how the optimizer works internally is critical for designing reliable, high-performance systems.”
+
