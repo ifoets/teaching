@@ -28,4 +28,19 @@ public class IStringEasyTest {
         Assert.assertEquals(58, ise.romanToIntX("LVIII"));
         Assert.assertEquals(1994, ise.romanToIntX("MCMXCIV"));
     }
+    /**14. Longest Common Prefix*/
+    @Test
+    public void longestCommonPrefixTest()
+    {
+        String[] strs = {"flower","flow","flight"};
+        Assert.assertEquals("fl",ise.longestCommonPrefix(strs));
+    }
+
+    @Test
+    public void longestCommonPrefixSTest()
+    {
+        String[] strs = {"flower","flow","flight"};
+        Assert.assertEquals("fl",ise.longestCommonPrefixS(strs));
+    }
+
 }

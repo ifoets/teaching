@@ -1,0 +1,83 @@
+UNIT-1//Fundamental of DBMS
+
+Difference between conventional file and sytem and RDBMS
+https://www.tutorialspoint.com/state-the-difference-between-file-systems-and-dbms
+
+Component of RDBMS//component of rdbms //google search
+
+Different data model //different data models in dbms, google search
+Data independence //data independence in dbms /GC
+Various types of constraint//https://www.tutorialspoint.com/constraints-in-dbms
+===================================================================================================================================
+
+
+UNIT-2//Retaional databases design
+
+Structure of relational database// GC
+Retional algebra //https://www.tutorialspoint.com/dbms/relational_algebra.htm
+Views, //https://www.tutorialspoint.com/sql/sql-using-views.htm
+Basics,
+Structure of SQL queries //https://www.geeksforgeeks.org/dbms/structured-query-language/
+DDL statement //https://www.geeksforgeeks.org/sql/sql-ddl-dql-dml-dcl-tcl-commands/
+DCL statement
+Joins in database//https://www.tutorialspoint.com/sql/sql-using-joins.htm
+https://www.programiz.com/sql/join//example
+
+picture views
+------
+https://www.differencebetween.net/technology/software-technology/difference-between-join-and-inner-join/
+===================================================================================================================================
+UNIT-3//Data base design
+
+Design guidelines
+Pitfall in relational database design
+DBA
+Responsibility of DBA
+Need of Normalization
+1,2,3,4,5th normalazation
+Types of Dependencies
+
+===================================================================================================================================
+UNIT-4//Transaction Management
+
+Concept of Transaction
+Describe properties of Transaction(ACID)
+Schedular
+Serializability of schedular
+Recoverbility
+
+===================================================================================================================================
+UNIT-5// Concurrency Control and Recovery 
+
+Lockbase protocols,
+DeadLock Handling
+Multiple granularity
+Failuer with loss of NonVolatile Storage
+Log base recovery
+Shadow paging
+
+
+===================================================================================================================================
+UNIT-6 //Distributed database
+
+Introducation to disritbuted database 
+Cliend/Server database
+Data Fragmentation
+Replication and allocation Technology
+Semi join
+Homogenious and Hetrogenious database
+Distributed Data storage
+Distributed Transaction
+Cloud base database
+===================================================================================================================================
+
+Lab-
+=======================
+Imaplemention of:-
+DDL statement
+DCL and DML statement
+Integrity and constraint
+Null and default constraint
+diffrent types of keys
+Join(Inner, Left, Right,FULL and Self)
+Various In-build function

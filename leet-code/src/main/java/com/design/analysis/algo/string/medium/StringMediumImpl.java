@@ -1,5 +1,7 @@
 package com.design.analysis.algo.string.medium;
 
+import lombok.ToString;
+
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -12,7 +14,7 @@ public class StringMediumImpl implements IStringMedium{
         char[] charA = s.toCharArray();
         int N=charA.length;
         int i=-1;
-        int j=i+1;
+        int j= 0;
         Set<Character> set = new HashSet<>();
         int maxLen=-1;
         while (i<N && j<N)
@@ -32,6 +34,18 @@ public class StringMediumImpl implements IStringMedium{
         return Math.max(maxLen,set.size());
     }
 
+    @Override
+    public String uniqueCharMaxSubStrS(String s){
+        return
+            IntStream.range(0,s.length())
+                .boxed()
+                .flatMap(i-> IntStream.rangeClosed(i+1,s.length())
+                    .filter(j-> s.substring(i,j).length()==s.substring(i,j).chars().distinct().count())
+                    .mapToObj(j->s.substring(i,j))
+                )
+                .max(Comparator.comparingInt(String::length))
+                .orElse("");
+    }
     /** 5. Longest Palindromic Substring O(n)*/
     @Override
     public String longestPalindrome(String s) {
@@ -81,7 +95,18 @@ public class StringMediumImpl implements IStringMedium{
             return s.substring(oddIndex-oddMax/2,oddIndex+oddMax/2+1);
         }
     }
-
+    @Override
+    public String longestPalindromeS(String s){
+        return
+            IntStream.range(0,s.length())
+                .boxed()
+                .flatMap(i-> IntStream.rangeClosed(i+1,s.length())
+                    .filter(j->s.substring(i,j).contentEquals(new StringBuilder(s.substring(i,j)).reverse().toString()))
+                    .mapToObj(j->s.substring(i,j))
+                )
+                .max(Comparator.comparingInt(String::length))
+                .orElse("");
+    }
     /** 6. Zigzag Conversion*/
     @Override
    public String convert(String s, int numRows){
@@ -166,5 +191,31 @@ public class StringMediumImpl implements IStringMedium{
            num=num%values[i];
        }
        return sb.toString();
+    }
+
+    /**17. Letter Combinations of a Phone Number**/
+    private static final String[] digitToLetters = {"",    "",    "abc",  "def", "ghi",
+        "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    @Override
+    public List<String> letterCombinations(String digits){
+
+        if(digits.isEmpty()) return new ArrayList<>();
+       List<String> rsList = new ArrayList<>();
+       dfs(digits,0,new StringBuilder(),rsList);
+       return rsList;
+    }
+    private void dfs(String digits,int i,StringBuilder sb, List<String> rsList)
+    {
+        if(i==digits.length())
+        {
+            rsList.add(sb.toString());
+            return;
+        }
+        for(char c:digitToLetters[digits.charAt(i)-'0'].toCharArray())
+        {
+            sb.append(c);
+            dfs(digits,i+1,sb,rsList);
+            sb.deleteCharAt(sb.length()-1);//back track the added char c,
+        }
     }
 }

@@ -29,6 +29,28 @@ https://piotrminkowski.com/2017/05/15/part-3-creating-microservices-circuit-brea
 6. Write contract tests, Consumer Driven Contract (CDC) testing , spring-cloud-starter-contract-verifier
 7. Be up-to-date, Spring Cloud releases new versions of projects using release train pattern,
 
+Spring Boot Microservices – Best Practices (LIST)
+Architecture & Design
+1.	Single responsibility per microservice
+2.	API-first design (OpenAPI)
+3.	Database per service
+4.	Stateless services
+5.	Avoid shared libraries for business logic
+________________________________________
+Configuration
+Communication
+Resilience
+Performance
+Security
+Observability
+Error Handling
+Startup & Resource Optimization
+Testing
+Deployment & Operations__
+Anti-Patterns to Avoid
+
+
+
 ms distributed transactions pattern explanations
 -----------------------------------------
 https://www.baeldung.com/cs/saga-pattern-microservices
@@ -61,6 +83,8 @@ Components of Microservices
 Challenges of Microservices Architecture
 =========================================
 	1. Bounded Context//A Bounded Context defines a logical boundary around a specific domain or subdomain where a particular model applies consistently.
+		Inside this boundary, terms, models, and rules have specific meaning.
+		Outside the boundary, other contexts may have different models or interpretations for the same concept.
 	2. Dynamic Scale up and Scale Down
 	3. Monitoring
 	4. Fault Tolerance
@@ -311,62 +335,15 @@ but can create a single point of failure. Choreography offers loose coupling and
 
 
 ✅ 1. Service Design
-Keep services small, single-responsibility, and independently deployable
-Define clear boundaries using Domain-Driven Design (DDD)
-Use Bounded Contexts to separate data and responsibilities
-Avoid cyclic dependencies between services
-
 ✅ 2. Communication
-Prefer asynchronous communication (e.g., Kafka, RabbitMQ) over synchronous REST when possible
-Use well-defined APIs (OpenAPI/Swagger)
-Implement versioning for public APIs
-Avoid direct database access between services
-
 ✅ 3. Data Management
-Follow Database per Service principle
-Use event-driven architecture for eventual consistency
-Handle distributed transactions using SAGA pattern (not 2PC)
-Avoid shared mutable state
-
 ✅ 4. Deployment & Scaling
-Deploy each service independently
-Use containers (Docker) and orchestration tools (Kubernetes)
-Enable horizontal scaling of stateless services
-Automate CI/CD pipelines
-
 ✅ 5. Fault Tolerance & Resilience
-Use circuit breakers, bulkheads, retries, and timeouts (e.g., Resilience4j)
-Implement graceful degradation and fallback mechanisms
-Monitor service health and auto-restart failures
-
 ✅ 6. Security
-Use OAuth2 / JWT for authentication and authorization
-Apply Role-based or Attribute-based access control (RBAC / ABAC)
-Secure communication with HTTPS and mutual TLS
-Validate and sanitize all external inputs
-
 ✅ 7. Observability & Monitoring
-Use centralized logging (e.g., ELK, Loki)
-Use metrics collection (e.g., Prometheus, Grafana)
-Enable distributed tracing (e.g., Jaeger, Zipkin)
-Set up alerting for performance and error thresholds
-
 ✅ 8. Service Discovery & Configuration
-Use service registry (e.g., Eureka, Consul) for dynamic discovery
-Externalize configurations (e.g., Spring Cloud Config, Consul, Vault)
-Support dynamic refresh of config without redeployment
-
 ✅ 9. DevOps and CI/CD
-Build CI/CD pipelines for each microservice
-Automate testing, linting, containerization, and deployment
-Use feature toggles for safe deployment
-Enable blue-green or canary deployments
-
 ✅ 10. Testing
-Perform unit, integration, contract, and end-to-end tests
-Use consumer-driven contract testing (e.g., Pact)
-Mock external services in tests
-Use test containers for isolated testing environments
 
 Redis cache impl
 =======================
@@ -439,7 +416,270 @@ public class UserService {
 }
 Now, when getUserById is called, the first time it will fetch the user from the database and store it in Redis. Subsequent calls with the same userId will retrieve the user directly from the cache
 
+OMS
+==================================================================
+1. Order Lifecycle (High-Level State Machine)
+CREATED
+  ↓
+PAYMENT_PENDING
+  ↓
+PAYMENT_SUCCESS / PAYMENT_FAILED
+  ↓
+INVENTORY_RESERVED
+  ↓
+ORDER_CONFIRMED
+  ↓
+SHIPPED
+  ↓
+DELIVERED
+Exceptional terminal states
+•	CANCELLED
+•	PARTIALLY_CANCELLED
+•	REFUNDED
+•	FAILED
+•	EXPIRED
+________________________________________
+2. Core Components Involved
+Component	Responsibility
+Order Service	Order state, transitions
+Payment Service	Authorization, capture, refund
+Inventory Service	Reserve, deduct, release
+Cart Service	Pre-order validation
+Pricing/Promo	Discounts, coupons
+Shipping Service	Shipment creation
+Notification Service	Email/SMS
+Fraud Service	Risk checks
+Saga / Orchestrator	Distributed consistency
+________________________________________
+3. CRITICAL SCENARIOS & SOLUTIONS
+________________________________________
+3.1 Order Creation Failures
+Scenario
+•	Price changed after cart
+•	Coupon expired
+•	Product disabled
+•	Cart tampered
+Solution
+•	Server-side re-calculation
+•	Cart snapshot saved at order creation
+•	Reject order if mismatch
+Validate(cart_snapshot, pricing_rules, coupon_rules)
+________________________________________
+3.2 Payment Scenarios
+3.2.1 Payment Success but Order Fails
+(MOST CRITICAL)
+Example
+•	Payment captured
+•	Inventory reservation fails
+Solution
+•	Saga Compensation
+•	Auto-refund OR delayed capture
+Payment CAPTURE → Inventory FAIL
+→ Trigger Refund
+✅ Best Practice:
+•	Use Payment Authorization first
+•	Capture only after inventory success
+________________________________________
+3.2.2 Payment Failed but Order Created
+Solution
+•	Order in PAYMENT_PENDING
+•	TTL (15–30 mins)
+•	Auto-expire job
+PAYMENT_PENDING → EXPIRED
+________________________________________
+3.2.3 Duplicate Payment (Retry / Double Click)
+Solution
+•	Idempotency key
+•	Payment provider idempotency token
+POST /pay
+Idempotency-Key: orderId
+________________________________________
+3.3 Inventory Scenarios
+________________________________________
+3.3.1 Inventory Oversell
+Scenario
+•	High concurrency
+•	Flash sale
+Solutions
+•	Reserve stock
+•	Atomic DB update
+•	Redis / DB lock
+UPDATE inventory
+SET qty = qty - 1
+WHERE product_id = ? AND qty > 0;
+________________________________________
+3.3.2 Inventory Reserved but Payment Failed
+Solution
+•	Reservation TTL
+•	Auto-release job
+RESERVED → RELEASED
+________________________________________
+3.4 Order Cancellation Scenarios
+________________________________________
+3.4.1 User Cancels Before Shipment
+Step	Action
+Payment captured	Refund
+Inventory reserved	Release
+Shipment not created	Safe
+________________________________________
+3.4.2 Cancel After Shipment Created
+Solution
+•	Call courier cancel API
+•	If failed → Return flow
+•	Refund after pickup confirmation
+________________________________________
+3.4.3 Partial Cancellation (Multi-Item Order)
+Solution
+•	Line-item level state
+•	Partial refund
+•	Inventory release per SKU
+Order
+ ├─ Item A → CANCELLED
+ └─ Item B → CONFIRMED
+________________________________________
+3.5 Distributed Transaction Handling
+❌ What NOT to use
+•	2PC (XA) → slow, fragile
+✅ What to use
+Saga Pattern
+Orchestration Saga
+Create Order
+→ Reserve Inventory
+→ Capture Payment
+→ Confirm Order
+Compensation
+Inventory FAIL → Cancel Payment
+Payment FAIL → Release Inventory
+________________________________________
+3.6 Network & Timeout Failures
+________________________________________
+Scenario
+•	Payment API timeout
+•	Inventory API timeout
+Solutions
+•	Retry with backoff
+•	Idempotent operations
+•	State reconciliation job
+UNKNOWN_PAYMENT → RECONCILE
+________________________________________
+3.7 Message Loss / Event Failure
+Scenario
+•	Kafka event lost
+•	Consumer down
+Solutions
+•	Outbox pattern
+•	At-least-once delivery
+•	Idempotent consumers
+Order DB + Outbox table → Kafka
+________________________________________
+3.8 Refund Failures
+________________________________________
+Scenario
+•	Refund API down
+•	Partial refund success
+Solution
+•	Refund state machine
+•	Retry via scheduler
+•	Manual reconciliation UI
+REFUND_PENDING → REFUND_SUCCESS
+________________________________________
+3.9 Fraud & Risk Rejection
+________________________________________
+Scenario
+•	Payment success
+•	Fraud detected later
+Solution
+•	Hold shipment
+•	Refund immediately
+•	Blacklist user/payment
+________________________________________
+3.10 Price / Tax Mismatch
+________________________________________
+Scenario
+•	Tax recalculated after address change
+Solution
+•	Lock price at order creation
+•	Store tax snapshot
+________________________________________
+3.11 Shipment Failures
+________________________________________
+Scenario
+•	Courier rejects pickup
+•	Lost shipment
+Solution
+•	Re-assign courier
+•	Insurance claim
+•	Refund or re-ship
+________________________________________
+3.12 Order Completion Consistency
+________________________________________
+Problem
+Different services show different states.
+Solution
+•	Order Service as source of truth
+•	Read models eventually consistent
+•	Periodic reconciliation
+________________________________________
+4. Order State Machine (Interview GOLD)
+CREATED
+→ PAYMENT_PENDING
+→ PAYMENT_SUCCESS
+→ INVENTORY_RESERVED
+→ CONFIRMED
+→ SHIPPED
+→ DELIVERED
 
+Failures:
+→ FAILED
+→ CANCELLED
+→ EXPIRED
+→ REFUNDED
+________________________________________
+5. Database Design (Simplified)
+orders (
+  order_id,
+  user_id,
+  status,
+  total_amount,
+  created_at
+)
+
+order_items (
+  order_item_id,
+  order_id,
+  product_id,
+  qty,
+  status
+)
+
+payments (
+  payment_id,
+  order_id,
+  status,
+  txn_id
+)
+
+inventory_reservations (
+  order_id,
+  product_id,
+  qty,
+  expires_at
+)
+________________________________________
+6. Observability & Recovery
+Area	Tool
+Tracing	OrderID correlation
+Logs	Structured logs
+Metrics	Success/failure ratio
+Recovery	Reconciliation jobs
+Alerts	Payment stuck > X mins
+________________________________________
+7. Key Interview One-Liners
+•	“Order completion is a Saga, not a transaction.”
+•	“Payment capture must be after inventory reservation.”
+•	“Idempotency is mandatory for retries.”
+•	“Order service is the single source of truth.”
+•	“Every step must be compensatable.”
 
 
 

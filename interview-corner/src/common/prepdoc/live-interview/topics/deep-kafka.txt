@@ -1,0 +1,514 @@
+🔥 Apache Kafka – Real-Time Deep Interview Questions (10+ Years)
+________________________________________
+1️⃣ Kafka Architecture & Internals
+Q1. Why is Kafka considered a distributed commit log?
+Deep angle expected
+•	Append-only log
+•	Sequential disk writes
+•	Offset as immutable position
+•	Consumer-managed offsets → replayability
+•	Contrast with MQ (RabbitMQ / ActiveMQ)
+________________________________________
+Q2. Explain partition leadership and ISR in detail.
+Expected depth
+•	Leader vs follower
+•	ISR (In-Sync Replicas)
+•	HW (High Watermark)
+•	Effects of min.insync.replicas
+•	What happens when ISR shrinks?
+________________________________________
+Q3. What exactly happens when a broker dies?
+Cover
+•	Controller election
+•	Leader re-election
+•	ISR changes
+•	Under-replicated partitions
+•	Client retries & metadata refresh
+________________________________________
+Q4. How does Kafka guarantee message ordering?
+Expected
+•	Ordering only within a partition
+•	Key-based partitioning
+•	Reordering scenarios (retries, idempotence)
+________________________________________
+2️⃣ Producer Internals (Very Important)
+Q5. Explain Kafka producer send flow end-to-end.
+Expect
+•	Serializer
+•	Partitioner
+•	RecordAccumulator
+•	Batch creation
+•	linger.ms, batch.size
+•	Sender thread
+•	In-flight requests
+________________________________________
+Q6. What is idempotent producer? How does it work internally?
+Deep points
+•	ProducerId (PID)
+•	Sequence numbers
+•	Broker-side deduplication
+•	Works per partition
+•	Limitations
+________________________________________
+Q7. Difference between:
+acks=0 vs acks=1 vs acks=all
+Real-world angle
+•	Latency vs durability
+•	Interaction with ISR
+•	Message loss scenarios
+________________________________________
+Q8. What is the impact of max.in.flight.requests.per.connection?
+Expected
+•	Reordering risk
+•	Idempotent producer requirement
+•	Throughput vs ordering
+________________________________________
+3️⃣ Consumer Internals & Group Management
+Q9. Explain consumer group rebalancing in detail.
+Cover
+•	Group coordinator
+•	JoinGroup / SyncGroup
+•	Stop-the-world issue
+•	Cooperative rebalancing (KIP-429)
+________________________________________
+Q10. What are static membership and why were they introduced?
+Expected
+•	group.instance.id
+•	Avoid unnecessary rebalances
+•	Stateful stream processing
+________________________________________
+Q11. What happens if a consumer is slow?
+Key points
+•	max.poll.interval.ms
+•	session.timeout.ms
+•	Heartbeats
+•	Partition revocation
+________________________________________
+Q12. How does Kafka handle offset commits?
+Expected
+•	__consumer_offsets topic
+•	Auto vs manual commit
+•	Commit failure scenarios
+•	At-least-once vs exactly-once
+________________________________________
+4️⃣ Delivery Semantics (Very Common)
+Q13. Explain at-most-once, at-least-once, exactly-once in Kafka.
+Senior-level answer must include
+•	Producer + consumer + processing + sink
+•	Transactional APIs
+•	Failure scenarios
+________________________________________
+Q14. How does Kafka achieve exactly-once semantics (EOS)?
+Expected
+•	Transactions
+•	Idempotent producer
+•	Transaction coordinator
+•	Read-Process-Write pattern
+•	Isolation level = read_committed
+________________________________________
+Q15. Can Kafka guarantee exactly-once across microservices?
+Trick
+•	Kafka alone ❌
+•	Requires transactional sink or outbox / CDC
+________________________________________
+5️⃣ Kafka Transactions (Advanced)
+Q16. Explain Kafka transactions lifecycle.
+Expected
+1.	initTransactions
+2.	beginTransaction
+3.	send
+4.	sendOffsetsToTransaction
+5.	commitTransaction / abortTransaction
+________________________________________
+Q17. What happens if a producer crashes mid-transaction?
+Expected
+•	Transaction timeout
+•	Abort
+•	Consumer visibility rules
+________________________________________
+6️⃣ Kafka Storage & Performance
+Q18. Why Kafka is fast despite using disk?
+Must mention
+•	Sequential writes
+•	Page cache
+•	Zero-copy (sendfile)
+•	Batching
+•	Compression
+________________________________________
+Q19. Explain log segments, index, and retention.
+Cover
+•	Segment rolling
+•	Time vs size-based retention
+•	Delete vs compact
+________________________________________
+Q20. What is log compaction? Use cases?
+Expected
+•	Key-based deduplication
+•	Latest value per key
+•	CDC, changelog topics
+•	Tombstones
+________________________________________
+7️⃣ Scaling & Capacity Planning
+Q21. How do you decide number of partitions?
+Expected
+•	Throughput
+•	Consumer parallelism
+•	Broker limits
+•	Repartitioning cost
+________________________________________
+Q22. Can you increase partitions later? What are the risks?
+Expected
+•	Yes, but ordering changes
+•	Key hash remapping
+•	Rebalance cost
+________________________________________
+Q23. How do you handle hot partitions?
+Real-world
+•	Better key design
+•	Random suffix
+•	Custom partitioner
+________________________________________
+8️⃣ Failure Scenarios (Must Know)
+Q24. What happens when:
+•	ZooKeeper / KRaft controller goes down?
+•	ISR = 1?
+•	Disk is full?
+•	Network partition?
+________________________________________
+Q25. How do you debug consumer lag?
+Expected
+•	Lag vs throughput
+•	Slow processing
+•	Rebalance churn
+•	Backpressure handling
+________________________________________
+9️⃣ Kafka Streams / Real-Time Processing
+Q26. Kafka Streams vs Spark Streaming vs Flink?
+Senior comparison
+•	Latency
+•	State management
+•	Exactly-once
+•	Operational complexity
+________________________________________
+Q27. How does Kafka Streams handle state?
+Expected
+•	RocksDB
+•	Changelog topics
+•	Standby replicas
+•	Fault recovery
+________________________________________
+Q28. What is event-time vs processing-time?
+Must
+•	Windowing
+•	Late events
+•	Grace period
+________________________________________
+🔟 Security & Governance
+Q29. Explain Kafka security end-to-end.
+Expected
+•	TLS
+•	SASL
+•	ACLs
+•	Multi-tenant isolation
+________________________________________
+Q30. How do you do schema evolution safely?
+Expected
+•	Schema Registry
+•	Backward/forward compatibility
+•	Avro/Protobuf/JSON
+________________________________________
+1️⃣1️⃣ Production Design Questions
+Q31. Design a real-time payment processing pipeline using Kafka.
+Expect
+•	Idempotency
+•	Ordering
+•	EOS
+•	DLQ
+•	Monitoring
+________________________________________
+Q32. Design Kafka for 100K TPS with low latency.
+Must include
+•	Partition count
+•	Compression
+•	Batch tuning
+•	Broker sizing
+________________________________________
+Q33. How do you implement retry, DLQ, and poison message handling?
+Expected
+•	Retry topics
+•	Exponential backoff
+•	Headers
+•	Dead-letter topics
+________________________________________
+1️⃣2️⃣ Tricky / Expert-Level Questions
+Q34. Can Kafka lose messages even with acks=all?
+Answer
+•	Yes (ISR=1 + unclean leader election)
+________________________________________
+Q35. Why is Kafka not a queue but a log?
+Architectural insight expected
+________________________________________
+Q36. What are the downsides of Kafka?
+Expected
+•	Rebalance storms
+•	Operational complexity
+•	Not a DB
+•	Latency under small loads
+
+🔥 Apache Kafka – Real-Time Deep Interview Questions (10+ Years)
+________________________________________
+1️⃣ Kafka Architecture & Internals
+Q1. Why is Kafka considered a distributed commit log?
+Deep angle expected
+•	Append-only log
+•	Sequential disk writes
+•	Offset as immutable position
+•	Consumer-managed offsets → replayability
+•	Contrast with MQ (RabbitMQ / ActiveMQ)
+________________________________________
+Q2. Explain partition leadership and ISR in detail.
+Expected depth
+•	Leader vs follower
+•	ISR (In-Sync Replicas)
+•	HW (High Watermark)
+•	Effects of min.insync.replicas
+•	What happens when ISR shrinks?
+________________________________________
+Q3. What exactly happens when a broker dies?
+Cover
+•	Controller election
+•	Leader re-election
+•	ISR changes
+•	Under-replicated partitions
+•	Client retries & metadata refresh
+________________________________________
+Q4. How does Kafka guarantee message ordering?
+Expected
+•	Ordering only within a partition
+•	Key-based partitioning
+•	Reordering scenarios (retries, idempotence)
+________________________________________
+2️⃣ Producer Internals (Very Important)
+Q5. Explain Kafka producer send flow end-to-end.
+Expect
+•	Serializer
+•	Partitioner
+•	RecordAccumulator
+•	Batch creation
+•	linger.ms, batch.size
+•	Sender thread
+•	In-flight requests
+________________________________________
+Q6. What is idempotent producer? How does it work internally?
+Deep points
+•	ProducerId (PID)
+•	Sequence numbers
+•	Broker-side deduplication
+•	Works per partition
+•	Limitations
+________________________________________
+Q7. Difference between:
+acks=0 vs acks=1 vs acks=all
+Real-world angle
+•	Latency vs durability
+•	Interaction with ISR
+•	Message loss scenarios
+________________________________________
+Q8. What is the impact of max.in.flight.requests.per.connection?
+Expected
+•	Reordering risk
+•	Idempotent producer requirement
+•	Throughput vs ordering
+________________________________________
+3️⃣ Consumer Internals & Group Management
+Q9. Explain consumer group rebalancing in detail.
+Cover
+•	Group coordinator
+•	JoinGroup / SyncGroup
+•	Stop-the-world issue
+•	Cooperative rebalancing (KIP-429)
+________________________________________
+Q10. What are static membership and why were they introduced?
+Expected
+•	group.instance.id
+•	Avoid unnecessary rebalances
+•	Stateful stream processing
+________________________________________
+Q11. What happens if a consumer is slow?
+Key points
+•	max.poll.interval.ms
+•	session.timeout.ms
+•	Heartbeats
+•	Partition revocation
+________________________________________
+Q12. How does Kafka handle offset commits?
+Expected
+•	__consumer_offsets topic
+•	Auto vs manual commit
+•	Commit failure scenarios
+•	At-least-once vs exactly-once
+________________________________________
+4️⃣ Delivery Semantics (Very Common)
+Q13. Explain at-most-once, at-least-once, exactly-once in Kafka.
+Senior-level answer must include
+•	Producer + consumer + processing + sink
+•	Transactional APIs
+•	Failure scenarios
+________________________________________
+Q14. How does Kafka achieve exactly-once semantics (EOS)?
+Expected
+•	Transactions
+•	Idempotent producer
+•	Transaction coordinator
+•	Read-Process-Write pattern
+•	Isolation level = read_committed
+________________________________________
+Q15. Can Kafka guarantee exactly-once across microservices?
+Trick
+•	Kafka alone ❌
+•	Requires transactional sink or outbox / CDC
+________________________________________
+5️⃣ Kafka Transactions (Advanced)
+Q16. Explain Kafka transactions lifecycle.
+Expected
+1.	initTransactions
+2.	beginTransaction
+3.	send
+4.	sendOffsetsToTransaction
+5.	commitTransaction / abortTransaction
+________________________________________
+Q17. What happens if a producer crashes mid-transaction?
+Expected
+•	Transaction timeout
+•	Abort
+•	Consumer visibility rules
+________________________________________
+6️⃣ Kafka Storage & Performance
+Q18. Why Kafka is fast despite using disk?
+Must mention
+•	Sequential writes
+•	Page cache
+•	Zero-copy (sendfile)
+•	Batching
+•	Compression
+________________________________________
+Q19. Explain log segments, index, and retention.
+Cover
+•	Segment rolling
+•	Time vs size-based retention
+•	Delete vs compact
+________________________________________
+Q20. What is log compaction? Use cases?
+Expected
+•	Key-based deduplication
+•	Latest value per key
+•	CDC, changelog topics
+•	Tombstones
+________________________________________
+7️⃣ Scaling & Capacity Planning
+Q21. How do you decide number of partitions?
+Expected
+•	Throughput
+•	Consumer parallelism
+•	Broker limits
+•	Repartitioning cost
+________________________________________
+Q22. Can you increase partitions later? What are the risks?
+Expected
+•	Yes, but ordering changes
+•	Key hash remapping
+•	Rebalance cost
+________________________________________
+Q23. How do you handle hot partitions?
+Real-world
+•	Better key design
+•	Random suffix
+•	Custom partitioner
+________________________________________
+8️⃣ Failure Scenarios (Must Know)
+Q24. What happens when:
+•	ZooKeeper / KRaft controller goes down?
+•	ISR = 1?
+•	Disk is full?
+•	Network partition?
+________________________________________
+Q25. How do you debug consumer lag?
+Expected
+•	Lag vs throughput
+•	Slow processing
+•	Rebalance churn
+•	Backpressure handling
+________________________________________
+9️⃣ Kafka Streams / Real-Time Processing
+Q26. Kafka Streams vs Spark Streaming vs Flink?
+Senior comparison
+•	Latency
+•	State management
+•	Exactly-once
+•	Operational complexity
+________________________________________
+Q27. How does Kafka Streams handle state?
+Expected
+•	RocksDB
+•	Changelog topics
+•	Standby replicas
+•	Fault recovery
+________________________________________
+Q28. What is event-time vs processing-time?
+Must
+•	Windowing
+•	Late events
+•	Grace period
+________________________________________
+🔟 Security & Governance
+Q29. Explain Kafka security end-to-end.
+Expected
+•	TLS
+•	SASL
+•	ACLs
+•	Multi-tenant isolation
+________________________________________
+Q30. How do you do schema evolution safely?
+Expected
+•	Schema Registry
+•	Backward/forward compatibility
+•	Avro/Protobuf/JSON
+________________________________________
+1️⃣1️⃣ Production Design Questions
+Q31. Design a real-time payment processing pipeline using Kafka.
+Expect
+•	Idempotency
+•	Ordering
+•	EOS
+•	DLQ
+•	Monitoring
+________________________________________
+Q32. Design Kafka for 100K TPS with low latency.
+Must include
+•	Partition count
+•	Compression
+•	Batch tuning
+•	Broker sizing
+________________________________________
+Q33. How do you implement retry, DLQ, and poison message handling?
+Expected
+•	Retry topics
+•	Exponential backoff
+•	Headers
+•	Dead-letter topics
+________________________________________
+1️⃣2️⃣ Tricky / Expert-Level Questions
+Q34. Can Kafka lose messages even with acks=all?
+Answer
+•	Yes (ISR=1 + unclean leader election)
+________________________________________
+Q35. Why is Kafka not a queue but a log?
+Architectural insight expected
+________________________________________
+Q36. What are the downsides of Kafka?
+Expected
+•	Rebalance storms
+•	Operational complexity
+•	Not a DB
+•	Latency under small loads
+

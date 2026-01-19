@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class IArrayEasyTest {
 
@@ -43,6 +44,16 @@ public class IArrayEasyTest {
         Assert.assertEquals(1,rs[0]);
         Assert.assertEquals(2,rs[1]);
     }
+    /**find all indexes target sum*/
+    @Test
+    public void sumTargetIndexesTest()
+    {
+       int[] a={0,1,2,3,4,5,6,7,8,9};
+       int target = 10;
+       Map<Integer,Integer> resultMap = iae.sumTargetIndexes(a,target);
+       Map<Integer,Integer> expMap = Map.of(1,9,2,8,3,7,4,6);
+       Assert.assertEquals(expMap,resultMap);
+    }
     /**26. Remove Duplicates from Sorted Array*/
     @Test
     public void removeDuplicatesTest(){
@@ -50,6 +61,14 @@ public class IArrayEasyTest {
         Assert.assertEquals(2, iae.removeDuplicates(nums));
     }
 
+    /**remove duplicate elements*/
+    @Test
+    public void removeDuplicatesS(){
+        int[] a = {0,0,1,1,1,2,2,3,3,4};
+        int[] rs = iae.removeDuplicatesS(a);
+        int[] expRs = {0,1,2,3,4};
+        Assert.assertArrayEquals(rs,expRs);
+    }
 
     /**27. Remove Element*/
     @Test
@@ -58,7 +77,15 @@ public class IArrayEasyTest {
         int[] nums ={0,1,2,2,3,0,4,2};
         Assert.assertEquals(5, iae.removeElement(nums, 2));
     }
-
+    @Test
+    public void removeElementSTest()
+    {
+        int[]a ={0,1,2,2,3,0,4,2};
+        int val =2;
+        int []rs = iae.removeElementS(a,val);
+        int[] expRs = {0,1,4,0,3};
+        Assert.assertArrayEquals(Arrays.stream(rs).sorted().toArray(), Arrays.stream(expRs).sorted().toArray());
+    }
     /**412. Fizz Buzz*/
     @Test
     public void fizzBuzzTest(){
@@ -78,5 +105,30 @@ public class IArrayEasyTest {
         Assert.assertEquals(0, iae.searchInsert(nums, 0));
         int []a={1,3,5};
         Assert.assertEquals(2, iae.searchInsert(a, 4));
+    }
+
+    @Test
+    public void searchInsertSTest(){
+
+        int[] nums = {1,3,5,6};
+        Assert.assertEquals(2, iae.searchInsertX(nums, 5,0,3));
+        Assert.assertEquals(1, iae.searchInsertX(nums, 2,0,3));
+        Assert.assertEquals(4, iae.searchInsertX(nums, 7,0,3));
+        Assert.assertEquals(0, iae.searchInsertX(nums, 0,0,3));
+        int []a={1,3,5};
+        Assert.assertEquals(2, iae.searchInsertX(a, 4,0,2));
+    }
+
+    /**88. Merge Sorted Array, num1.lengh=m+n, sort all in num1**/
+    @Test
+    public void mergeTest()
+    {
+        int[]nums1 = {4,0,0,0,0,0};
+        int m = 1;
+        int[] nums2 = {1,2,3,5,6};
+        int n = 5;
+        int[] expResult= {1,2,3,4,5,6};
+        iae.merge(nums1,m,nums2,n);
+        System.out.println(Arrays.toString(nums1));
     }
 }

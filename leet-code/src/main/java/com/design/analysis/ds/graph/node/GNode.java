@@ -13,4 +13,10 @@ public class GNode<V> {
         this.val = node;
         neighbours = new ArrayList<>();
     }
+
+    public GNode(V node,List<GNode<V>> list)
+    {
+        this.val = node;
+        neighbours = new ArrayList<>();
+    }
 }

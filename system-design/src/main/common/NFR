@@ -1,0 +1,147 @@
+🔹 1. Performance
+
+How fast the system responds.
+Latency (p50 / p95 / p99)
+Throughput (requests/sec, events/sec)
+Response time SLA
+Cold start performance
+Batch vs real-time processing
+
+👉 Example:
+API response time < 200 ms (p95) for 50k RPS
+🔹 2. Scalability
+Ability to handle growth.
+Horizontal scaling
+Vertical scaling
+Auto-scaling
+Elasticity
+Scale up vs scale down
+Handling traffic spikes
+
+👉 Example:
+System should scale from 10k → 1M users
+🔹 3. Availability
+How often the system is up.
+Uptime % (99.9%, 99.99%, 99.999%)
+Single point of failure removal
+Failover strategy
+Redundancy
+Active-Active / Active-Passive
+👉 Example:
+99.99% availability (≈ 52 min downtime/year)
+
+🔹 4. Reliability
+System behaves correctly over time.
+Data durability
+Message delivery guarantees
+At-most-once
+At-least-once
+Exactly-once
+Retry strategy
+Idempotency
+
+👉 Example:
+
+No data loss during node failures
+🔹 5. Consistency
+Data correctness across nodes.
+Strong consistency
+Eventual consistency
+Read-after-write
+CAP trade-offs
+Stale read tolerance
+
+👉 Example:
+Read-after-write consistency for user profile updates
+🔹 6. Security
+Protection against threats.
+Authentication
+Authorization (RBAC / ABAC)
+Encryption at rest
+Encryption in transit (TLS)
+Secrets management
+Rate limiting
+DDoS protection
+Audit logs
+
+👉 Example:
+All PII encrypted using AES-256
+🔹 7. Fault Tolerance
+System continues despite failures.
+Graceful degradation
+Circuit breakers
+Bulkheads
+Timeouts
+Fallbacks
+Chaos testing
+👉 Example:
+If recommendation service fails, show cached data
+🔹 8. Maintainability
+Ease of modifying the system.
+Modular design
+Loose coupling
+High cohesion
+Readable code
+Clear APIs
+Documentation
+👉 Example:
+New feature deployable without impacting existing services
+🔹 9. Extensibility
+Ease of adding new features.
+Plugin architecture
+Open-Closed principle
+Event-driven design
+Schema evolution
+
+👉 Example:
+New notification channel added without code changes
+🔹 10. Observability & Monitoring
+Understanding system behavior.
+Logging
+Metrics
+Distributed tracing
+Alerting
+Health checks
+Dashboards
+
+👉 Example:
+Alerts triggered if error rate > 1%
+🔹 11. Data Management
+Handling data lifecycle.
+Data retention
+Archival strategy
+Backup & restore
+Data partitioning
+
+Sharding
+
+Schema migrations
+🔹 12. Cost Efficiency
+Operational cost control.
+Cost per request
+Storage optimization
+Compute optimization
+Autoscaling thresholds
+Cloud cost monitoring
+👉 Example:
+Optimize infra to stay under ₹X/month
+🔹 13. Compliance & Legal
+Regulatory requirements.
+GDPR
+HIPAA
+SOC2
+PCI-DSS
+Data residency
+🔹 14. Usability (Often Overlooked)
+User experience aspects.
+Accessibility
+Localization
+Error messaging
+API usability
+🔹 15. Deployment & Operations
+Production readiness.
+CI/CD
+Zero-downtime deployments
+Blue-Green / Canary
+Rollback strategy
+Configuration management

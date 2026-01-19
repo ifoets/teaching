@@ -1,0 +1,127 @@
+1️⃣ Reactive Foundations & Architecture (1–15)
+1.	Why was Spring WebFlux introduced when Spring MVC already existed?
+2.	Difference between blocking, non-blocking, async, reactive.
+3.	Explain event-loop architecture in WebFlux.
+4.	WebFlux on Netty vs Servlet container – what changes internally?
+5.	Difference between WebFlux + Netty and WebFlux + Tomcat.
+6.	Why does WebFlux use Project Reactor instead of RxJava?
+7.	How does Reactive Streams influence WebFlux design?
+8.	What problem does backpressure solve in HTTP servers?
+9.	What happens when client is slower than server?
+10.	Why is reactive programming harder to reason about?
+11.	Explain push vs pull in HTTP streaming.
+12.	Why does WebFlux disallow blocking calls?
+13.	How does WebFlux scale better with fewer threads?
+14.	When should WebFlux NOT be used?
+15.	Can WebFlux fully replace Spring MVC?
+________________________________________
+2️⃣ Threading, Event Loop & Schedulers (16–30)
+16.	Explain Netty event loop in detail.
+17.	How many threads does WebFlux use by default?
+18.	Why must blocking calls never run on event-loop threads?
+19.	What happens if you block an event-loop thread?
+20.	How do you detect blocking calls in WebFlux?
+21.	Difference between publishOn vs subscribeOn in WebFlux.
+22.	When to use Schedulers.boundedElastic()?
+23.	Why does boundedElastic exist?
+24.	How does WebFlux integrate with virtual threads (Java 21)?
+25.	Can WebFlux run on virtual threads?
+26.	Difference between WebFlux threading vs MVC thread-per-request.
+27.	How does context switching differ in WebFlux?
+28.	How are CPU-bound tasks handled?
+29.	How do you offload blocking JDBC calls?
+30.	What happens under high concurrency (100k requests)?
+________________________________________
+3️⃣ Controllers, Routing & APIs (31–45)
+31.	Difference between Annotated Controllers vs Functional Routing.
+32.	When should functional endpoints be preferred?
+33.	How does request mapping work internally in WebFlux?
+34.	Difference between Mono<T> and Flux<T> in controllers.
+35.	Can a controller return both blocking and reactive types?
+36.	What happens if controller returns Mono.error()?
+37.	How does streaming JSON work in WebFlux?
+38.	What is Server-Sent Events (SSE) in WebFlux?
+39.	How does WebFlux handle file uploads/downloads?
+40.	How is request body parsed non-blockingly?
+41.	What is ServerWebExchange?
+42.	Difference between WebFilter and HandlerFilterFunction.
+43.	How does exception handling differ from MVC?
+44.	How does validation work in WebFlux?
+45.	Why is @Transactional tricky in WebFlux controllers?
+________________________________________
+4️⃣ WebClient & Reactive HTTP (46–60)
+46.	Why is WebClient preferred over RestTemplate?
+47.	How does WebClient handle backpressure?
+48.	Difference between retrieve() vs exchangeToMono().
+49.	How do you handle HTTP errors reactively?
+50.	How do you implement retries with backoff?
+51.	How do you implement circuit breaker?
+52.	How does connection pooling work in WebClient?
+53.	What happens if downstream service is slow?
+54.	How do you implement timeout correctly?
+55.	How do you propagate headers and context?
+56.	How does WebClient stream large responses?
+57.	How do you cancel an HTTP call?
+58.	How does WebClient handle DNS resolution?
+59.	Difference between blocking block() vs subscribe().
+60.	Why calling block() is dangerous in WebFlux?
+________________________________________
+5️⃣ Backpressure, Flow Control & Streaming (61–70)
+61.	How does WebFlux implement backpressure over HTTP?
+62.	How is backpressure mapped to TCP?
+63.	Why HTTP/1.1 makes backpressure hard?
+64.	How does WebFlux behave with slow consumers?
+65.	How does WebFlux handle streaming responses?
+66.	What happens if client disconnects?
+67.	How do you implement rate limiting?
+68.	Difference between buffering vs streaming responses.
+69.	Memory risks with large Flux responses.
+70.	How to design infinite streams safely?
+________________________________________
+6️⃣ Data Access & Transactions (71–80)
+71.	Why traditional JDBC is unsuitable for WebFlux?
+72.	What is R2DBC and how does it differ from JDBC?
+73.	How do reactive transactions work?
+74.	Why is @Transactional limited in reactive flows?
+75.	Difference between reactive vs imperative transactions.
+76.	Can you use JPA with WebFlux?
+77.	How does reactive MongoDB differ from blocking Mongo?
+78.	How do you ensure consistency without blocking?
+79.	How to integrate legacy blocking systems?
+80.	Why distributed transactions are discouraged in WebFlux?
+________________________________________
+7️⃣ Error Handling, Resilience & Observability (81–90)
+81.	How are errors propagated in reactive pipelines?
+82.	Difference between onErrorResume vs onErrorMap.
+83.	How do you implement global error handling?
+84.	How do retries affect backpressure?
+85.	How to avoid retry storms?
+86.	How do you implement bulkheads?
+87.	How do you implement graceful shutdown?
+88.	How do you trace reactive flows?
+89.	How do you log without blocking?
+90.	How does Micrometer work with WebFlux?
+________________________________________
+8️⃣ Performance, Memory & Production Issues (91–100)
+91.	Why WebFlux apps use less memory under load?
+92.	When does WebFlux perform worse than MVC?
+93.	How do you debug thread-related issues?
+94.	Common production mistakes in WebFlux.
+95.	How do you tune Netty thread pools?
+96.	How do you handle OutOfMemory in Flux?
+97.	How do you profile WebFlux applications?
+98.	How does WebFlux behave during GC pauses?
+99.	What happens during backpressure overflow?
+100.	Explain a real production WebFlux incident you handled.
+________________________________________
+🎯 Interviewer Expectation (10+ Years)
+They expect answers like:
+“We moved from MVC to WebFlux because thread-per-request couldn’t scale with 40k concurrent connections. But for blocking DB access, we offloaded to boundedElastic and avoided R2DBC due to transaction limitations.”
+________________________________________
+🚫 Common Rejection Reasons
+•	Using block() everywhere
+•	Mixing MVC and WebFlux incorrectly
+•	Ignoring backpressure
+•	Blocking event-loop threads
+•	Treating WebFlux as “async MVC”
+

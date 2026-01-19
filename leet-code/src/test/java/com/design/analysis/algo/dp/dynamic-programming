@@ -1,0 +1,351 @@
+Dynamic Programming (DP): Full Explanation
+
+Dynamic Programming is an optimization technique used when:
+
+A problem can be split into overlapping subproblems
+
+Those subproblems have optimal substructure
+
+DP avoids recomputation by storing results and reusing them.
+
+DP = Recursion + Memoization (Top-Down)
+OR
+DP = Tabulation (Bottom-Up)
+
+🚀 1. When to Use DP?
+
+You should think DP when:
+
+✔ The problem can be expressed as:
+f(n) depends on f(smaller values)
+
+✔ Same subproblems repeat
+
+(Overlapping subproblems)
+
+✔ There is a choice
+
+(Max/min/count/etc.)
+
+✔ Greedy won’t work
+
+(Decision depends on future choices)
+
+Classic trigger words in interviews:
+
+"maximum"
+
+"minimum"
+
+"number of ways"
+
+"longest"
+
+"shortest"
+
+"at least"
+
+"optimal"
+
+🚀 2. Two DP Techniques
+A) Top-Down (Memoization)
+
+Write recursive formula.
+
+Store computed results.
+
+Avoid re-computation.
+
+Template:
+
+int dp(int n) {
+    if (base case) return value;
+
+    if (memo[n] != -1) return memo[n];
+
+    return memo[n] = compute_using_dp(n);
+}
+
+B) Bottom-Up (Tabulation)
+
+Build solution iteratively.
+
+Start from base case.
+
+Fill table.
+
+Template:
+
+int[] dp = new int[n+1];
+dp[0] = base;
+for (int i = 1; i <= n; i++) {
+    dp[i] = compute_from_previous(dp);
+}
+return dp[n];
+
+🚀 3. DP Characteristics
+✔ 1. Overlapping Subproblems
+
+Example: Fibonacci
+
+f(5)
+ ├── f(4)
+ │    ├── f(3)
+ │    └── f(2)
+ └── f(3)
+
+
+f(3) repeats → DP optimizes it.
+
+✔ 2. Optimal Substructure
+
+Best solution depends on best solution of subparts.
+
+Example:
+Longest Increasing Subsequence (LIS)
+
+LIS ending at i = 1 + max(LIS ending at j) where j < i and a[j] < a[i]
+
+✔ 3. DP Formulation
+
+Every DP solution consists of:
+
+State definition
+
+Transition/recurrence formula
+
+Base case
+
+Direction (top-down or bottom-up)
+
+Final answer
+
+🚀 4. Examples of DP (Increasing Difficulty)
+⭐ Example 1: Fibonacci
+Recurrence:
+f(n) = f(n-1) + f(n-2)
+
+Top-Down:
+int[] memo = new int[100];
+
+int fib(int n) {
+    if (n <= 1) return n;
+
+    if (memo[n] != 0) return memo[n];
+
+    return memo[n] = fib(n-1) + fib(n-2);
+}
+
+Bottom-Up:
+int fib(int n) {
+    int[] dp = new int[n+1];
+    dp[0] = 0;
+    dp[1] = 1;
+
+    for (int i = 2; i <= n; i++)
+        dp[i] = dp[i-1] + dp[i-2];
+
+    return dp[n];
+}
+
+⭐ Example 2: Climbing Stairs (Ways to Reach nth Step)
+dp[n] = dp[n-1] + dp[n-2]
+
+
+Same as Fibonacci.
+
+⭐ Example 3: Longest Increasing Subsequence (LIS)
+dp[i] = 1 + max(dp[j]) where j < i and nums[j] < nums[i]
+
+⭐ Example 4: 0/1 Knapsack
+State:
+dp[i][w] = max value using first i items with capacity w
+
+Recurrence:
+if weight[i] > w:
+       dp[i][w] = dp[i-1][w]
+else:
+       dp[i][w] = max(
+                dp[i-1][w],
+                value[i] + dp[i-1][w-weight[i]]
+       )
+
+⭐ Example 5: Edit Distance (Levenshtein Distance)
+Recurrence:
+if chars match:
+    dp[i][j] = dp[i-1][j-1]
+else:
+    dp[i][j] = 1 + min(
+        dp[i-1][j],     // delete
+        dp[i][j-1],     // insert
+        dp[i-1][j-1]    // replace
+    )
+
+🚀 5. DP Patterns (Very Important for Interviews)
+💡 Pattern 1: Fibonacci / One-Dimensional DP
+
+Used in:
+
+climbing stairs
+
+decoding ways
+
+house robber
+
+min cost climbing stairs
+
+Identification:
+
+Depends on last few states
+
+Simple recurrence
+
+💡 Pattern 2: 2D DP Table (Matrix)
+
+Used in:
+
+Edit distance
+
+LCS
+
+DP on strings
+
+DP on grids
+
+min path sum
+
+unique paths
+
+Template:
+
+int[][] dp = new int[n+1][m+1];
+
+💡 Pattern 3: DP on Subsets / Bitmask DP
+
+Used in:
+
+traveling salesman
+
+bitmask problems
+
+set-based DP
+
+💡 Pattern 4: Knapsack DP
+
+Used in:
+
+partition equal sum
+
+coin change
+
+subset sum
+
+0/1 knapsack
+
+unbounded knapsack
+
+💡 Pattern 5: DP on Trees
+
+Typical DFS DP:
+
+dp[node] = f(children)
+
+
+Used in:
+
+diameter of tree
+
+node coloring
+
+tree DP problems on LeetCode
+
+💡 Pattern 6: DP + Binary Search
+
+Used in optimized LIS (O(n log n)).
+
+💡 Pattern 7: DP on Intervals
+
+Used in:
+
+Matrix chain multiplication
+
+Burst balloons
+
+Palindrome partitioning
+
+Formula usually:
+
+dp[l][r] = best of some k between l and r
+
+🚀 6. Steps To Solve ANY DP Problem
+1️⃣ Identify state
+
+What are you solving?
+Example: dp[i] = LIS ending at i
+
+2️⃣ Define recurrence
+
+How to compute dp?
+
+3️⃣ Base cases
+
+Usually dp[0] or dp[1]
+
+4️⃣ Choose direction (Top-Down or Bottom-Up)
+5️⃣ Return answer
+
+dp[n], max(dp), dp[last][last], etc.
+
+🚀 7. DP vs Other Techniques
+Technique	When Used
+Recursion	Explore all possibilities
+Backtracking	Search with prune
+Greedy	Locally optimal choices work
+Dynamic Programming	Optimal + overlapping problems
+Divide & Conquer	Independent subproblems
+🚀 8. Common DP Mistakes
+
+❌ Wrong base conditions
+❌ Misinterpreting recurrence
+❌ Using recursion without memo
+❌ Array index out of bounds
+❌ Confusing knapsack vs coin change transitions
+
+🚀 9. DP Questions You MUST Know (Top 10)
+
+Climbing stairs
+
+House robber
+
+Longest common subsequence
+
+Longest increasing subsequence
+
+Edit distance
+
+Partition equal subset sum
+
+Unique paths
+
+Min path sum
+
+Coin change
+
+0/1 knapsack
+
+I can solve ANY of these step-by-step if you want.
+
+🚀 10. If You Want Mastery
+
+I can give:
+
+✔ 50–100 DP questions list
+✔ Each explained in patterns
+✔ Recurrence building practice
+✔ Memory optimized solutions
+✔ Hard DP interview problems (Amazon/Google)
+
+If you want, tell me:
+👉 “Explain DP with code for 10 examples”
+👉 “Teach me DP in patterns”
+👉 “Give me 100 DP questions for interview”

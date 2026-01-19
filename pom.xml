@@ -8,7 +8,12 @@
     <groupId>groupId</groupId>
     <artifactId>teaching</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <properties>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.test.skip>true</maven.test.skip>
+    </properties>
     <dependencies>
     <!-- https://mvnrepository.com/artifact/junit/junit -->
     <dependency>
@@ -31,8 +36,5 @@
 
 
     </modules>
-    <properties>
-        <maven.test.skip>true</maven.test.skip>
-    </properties>
     <packaging>pom</packaging>
 </project>

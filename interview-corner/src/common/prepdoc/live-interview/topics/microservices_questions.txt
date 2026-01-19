@@ -1,0 +1,131 @@
+1️⃣ Microservices Fundamentals (Architect Mindset)
+    1.	Why microservices? What problems do they actually solve?
+    2.	When not to use microservices?
+    3.	Monolith vs modular monolith vs microservices.
+    4.	What defines a “good” microservice boundary?
+    5.	How do you avoid distributed monolith?
+    7.	How Conway’s Law affects microservices?
+    8.	What are the biggest causes of microservice failure?
+    9.	How to migrate monolith → microservices safely?
+    10.	Microservices vs SOA – real differences.
+________________________________________
+2️⃣ Service Decomposition & Domain Modeling
+    1.	How do you identify service boundaries?
+    2.	Role of DDD (Bounded Contexts) in microservices.
+    3.	Anemic vs rich domain model.
+    4.	How to split database in microservices?
+    5.	Shared DB vs DB per service – trade-offs.
+    6.	How to handle cross-service joins?
+    7.	How to handle reference data?
+    8.	API-first vs domain-first design.
+    9.	Versioning strategy for services.
+    10.	How to refactor wrongly split services?
+________________________________________
+3️⃣ Inter-Service Communication
+    1.	Sync vs async communication – trade-offs.
+    2.	REST vs gRPC vs Messaging.
+    3.	When to use event-driven architecture?
+    4.	Request-response vs event streaming.
+    5.	Contract testing – why critical?
+    6.	Handling backward compatibility.
+    7.	How to deal with partial failures?
+    8.	Chatty services problem.
+    9.	Payload design best practices.
+    10.	How to design idempotent APIs?
+________________________________________
+4️⃣ Data Consistency & Transactions (Very Important)
+    1.	Why distributed transactions are hard?
+    2.	Two-Phase Commit – why avoided?
+    3.	Saga pattern – choreography vs orchestration.
+    4.	Eventual consistency – real world meaning.
+    5.	How to design rollback in saga?
+    6.	Handling duplicate events.
+    7.	Outbox pattern – why and how?
+    8.	Exactly-once vs at-least-once semantics.
+    9.	How to maintain read models?
+    10.	CQRS in microservices.
+________________________________________
+5️⃣ Resilience & Fault Tolerance (Must Know)
+    1.	What is resilience in microservices?
+    2.	Circuit breaker – how it works internally?
+    3.	Retry vs timeout – common mistakes.
+    4.	Bulkhead pattern – real use case.
+    5.	Fallbacks – when dangerous?
+    6.	Handling downstream slowness.
+    7.	Cascading failures – examples.
+    8.	Load shedding strategies.
+    9.	Chaos engineering – why important?
+    10.	How Netflix Hystrix worked (and why deprecated)?
+________________________________________
+6️⃣ API Gateway & Edge Services
+    1.	Why API Gateway is needed?
+    2.	Gateway vs Load Balancer.
+    3.	What logic belongs in gateway?
+    4.	Auth at gateway vs service.
+    5.	Rate limiting strategies.
+    6.	Request aggregation at gateway.
+    7.	Gateway as single point of failure?
+    8.	BFF (Backend For Frontend) pattern.
+    9.	Handling API versioning at gateway.
+    10.	Gateway vs Service Mesh.
+________________________________________
+7️⃣ Service Discovery & Configuration
+    1.	Client-side vs server-side discovery.
+    2.	How service discovery works internally.
+    3.	Eureka vs Consul vs Kubernetes DNS.
+    4.	Config server – why needed?
+    5.	Config refresh strategies.
+    6.	Secrets management.
+    7.	Blue-green vs canary deployments.
+    8.	Feature flags – where to manage?
+    9.	Handling config drift.
+    10.	Multi-region service discovery.
+________________________________________
+8️⃣ Observability & Monitoring (Senior Favorite)
+    1.	Why logs are not enough?
+    2.	Metrics vs logs vs traces.
+    3.	Distributed tracing – how it works?
+    4.	Correlation ID propagation.
+    5.	What is RED / USE metrics?
+    6.	SLA vs SLO vs SLI.
+    7.	Alert fatigue – how to avoid?
+    8.	How to debug production issues across services?
+    9.	Handling high cardinality metrics.
+    10.	OpenTelemetry – role in microservices.
+________________________________________
+9️⃣ Security in Microservices
+    1.	Service-to-service authentication.
+    2.	OAuth2 vs JWT in microservices.
+    3.	Zero-trust architecture.
+    4.	mTLS – when and why?
+    5.	Token propagation issues.
+    6.	Fine-grained authorization.
+    7.	Secrets rotation.
+    8.	Preventing replay attacks.
+    9.	API security at scale.
+    10.	Common microservice security pitfalls.
+________________________________________
+🔟 Scaling, Deployment & Operations
+    1.	Horizontal vs vertical scaling.
+    2.	Stateless vs stateful services.
+    3.	Kubernetes role in microservices.
+    4.	Pod autoscaling – based on what?
+    5.	Rolling vs blue-green vs canary.
+    6.	Handling schema migrations.
+    7.	Backward compatibility in deployments.
+    8.	Graceful shutdown.
+    9.	Handling spike traffic.
+    10.	Cost optimization strategies.
+________________________________________
+🔥 Architecture & Real-World Scenarios
+1.	Design a payment system using microservices.
+2.	Design notification system at scale.
+3.	How to handle millions of concurrent users?
+4.	How to break a shared database safely?
+5.	Designing idempotent event consumers.
+6.	Migrating synchronous system to async.
+7.	Handling long-running workflows.
+8.	Multi-region disaster recovery.
+9.	Data sovereignty concerns.
+10.	Handling regulatory requirements.
+
