@@ -1,5 +1,8 @@
 package com.design.analysis.algo.bit.manipulation.easy;
 
+
+import com.design.analysis.algo.bit.manipulation.easy.BitEasyOperationImpl;
+import com.design.analysis.algo.bit.manipulation.easy.IBitEasyOperation;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;

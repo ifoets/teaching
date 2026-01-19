@@ -1,0 +1,70 @@
+✅ Functional Requirements (FRs)
+1.	Multi-Channel Support
+    o	Send notifications via Email, SMS, Push, In-App, and Webhooks.
+2.	Message Templates
+    o	Create, update, and store reusable templates.
+    o	Support placeholders/variables (e.g., {{username}}, {{otp}}).
+3.	Event Handling
+    o	Receive events from producers (apps, services).
+    o	Map events to notification types.
+4.	User Preferences Management
+    o	Allow users to opt-in/out of specific channels.
+    o	Manage Do-Not-Disturb (DND) windows.
+5.	Scheduling & Retry
+    o	Schedule notifications (e.g., reminders).
+    o	Retry failed deliveries (with exponential backoff).
+    o	Fallback channels (if push fails → send SMS).
+6.	Delivery Tracking & Status Updates
+    o	Track states: Queued, Sent, Delivered, Failed, Read.
+    o	Provide APIs for querying notification history.
+7.	APIs & Integrations
+    o	REST/GraphQL APIs to trigger notifications.
+    o	Webhook support for third-party callbacks.
+    o	SDKs for mobile/web integration.
+8.	Multi-Tenancy (SaaS)
+    o	Isolate data between tenants (companies).
+    o	Support custom branding per tenant.
+9.	Admin Dashboard
+    o	Manage templates, channels, campaigns.
+    o	Analytics on delivery, open rate, click rate.
+10.	Security & Compliance
+    •	Handle encryption of sensitive data (e.g., phone/email).
+    •	Consent management (GDPR, HIPAA).
+________________________________________
+✅ Non-Functional Requirements (NFRs)
+1.	Scalability
+    o	Must handle millions of notifications/day.
+    o	Horizontal scaling of workers/queues.
+2.	Performance
+    o	Low latency for critical notifications (e.g., OTP < 3s).
+    o	Bulk notifications should be processed efficiently.
+3.	Reliability
+    o	Ensure at-least-once delivery.
+    o	Guarantee ordering where necessary.
+4.	Availability
+    o	99.9% uptime SLA.
+    o	Fault tolerance across regions/zones.
+5.	Security
+    o	Data encrypted at rest and in transit (TLS, AES-256).
+    o	Role-based access control (RBAC).
+    o	Audit logs.
+6.	Maintainability
+    o	Configurable templates without code changes.
+    o	Clear monitoring & alerting.
+7.	Observability
+    o	Metrics: latency, throughput, error rates.
+    o	Distributed tracing for event flow.
+8.	Compliance
+    o	GDPR (Right to Forget, Consent).
+    o	CAN-SPAM, TCPA for SMS/email marketing.
+9.	Cost Efficiency
+    o	Optimize provider usage (choose cheapest route).
+    o	Support for quota limits per tenant.
+10.	Extensibility
+    •	Easy to add new channels (e.g., WhatsApp, Slack).
+    •	Pluggable provider architecture.
+________________________________________
+⚡In interviews, they usually expect you to call out both:
+•	FRs → what the system must do.
+•	NFRs → how well the system must perform.
+

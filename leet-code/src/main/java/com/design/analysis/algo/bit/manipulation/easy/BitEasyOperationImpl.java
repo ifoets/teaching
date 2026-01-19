@@ -1,3 +1,4 @@
+
 package com.design.analysis.algo.bit.manipulation.easy;
 
 public class BitEasyOperationImpl implements IBitEasyOperation {
