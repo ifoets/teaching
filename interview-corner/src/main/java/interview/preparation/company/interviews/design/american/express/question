@@ -1,0 +1,18 @@
+List<String> inputs = new ArrayList<>();
+        //it has date price vendor category
+        inputs.add("01/01/2023 $100.44 FitnessClub (Exercise)");
+        inputs.add("05/07/2022 $50.25 Xerox (Instrument)");
+        inputs.add("09/01/2021 $70.55 Apple (Food)");
+         inputs.add("09/01/2021 $70.55 Food (Xerx)");
+
+        inputs.add("01/01/2023 $100.44 Zemoto (payment)");
+        /**
+        Given list of transactions in above format. Design and write production ready code to
+        query them for a date range, by vendor name or category. Also we should be able to do combo
+        search like search by vendor and category.
+        */
+
+        Map<String,string> =  new Hashmap<>()
+
+
+
