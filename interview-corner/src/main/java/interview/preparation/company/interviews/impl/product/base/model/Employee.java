@@ -71,4 +71,5 @@ public class Employee {
     public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
+
 }

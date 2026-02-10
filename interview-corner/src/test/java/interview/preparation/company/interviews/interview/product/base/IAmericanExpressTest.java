@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IAmericanExpressTest {
+
     IAmericanExpress ime;
     List<String> inputs;
     @Before

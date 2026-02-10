@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+
 @Data
 @Getter
 @Setter
@@ -20,6 +21,7 @@ public class Transaction {
         this.currency=usd;
         this.status=completed;
     }
+
 
     public int getId() {
         return id;
@@ -53,4 +55,5 @@ public class Transaction {
         this.status = status;
     }
 }
+
 
