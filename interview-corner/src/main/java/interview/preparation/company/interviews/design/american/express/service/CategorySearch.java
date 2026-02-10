@@ -5,10 +5,10 @@ import interview.preparation.company.interviews.design.american.express.record.T
 
 import java.util.List;
 
-public class VendoreSearch implements ISearchService{
+public class CategorySearch implements ISearchService{
     @Override
     public List<String> search(List<Transaction> logList, SearchData data) {
-        return logList.stream().filter(t-> t.vendore().equals(data.getVendore()))
+        return logList.stream().filter(t-> t.category().equals("("+data.getCategory()+")"))
             .map(Transaction::logStr).distinct().toList();
     }
 }

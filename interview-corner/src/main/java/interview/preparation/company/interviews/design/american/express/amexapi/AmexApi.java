@@ -1,9 +1,9 @@
 package interview.preparation.company.interviews.design.american.express.amexapi;
 
+import interview.preparation.company.interviews.design.american.express.model.SearchData;
 import interview.preparation.company.interviews.design.american.express.record.Transaction;
 import interview.preparation.company.interviews.design.american.express.service.*;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class AmexApi {
