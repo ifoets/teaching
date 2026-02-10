@@ -2,6 +2,7 @@ package interview.preparation.company.interviews.impl.product.base;
 
 import interview.preparation.company.interviews.impl.product.base.model.Employee;
 import interview.preparation.company.interviews.impl.product.base.model.Transaction;
+
 import interview.preparation.company.interviews.model.BoardingPass;
 import interview.preparation.company.interviews.question.product.base.IEdwardJones;
 import org.checkerframework.checker.units.qual.Temperature;
@@ -11,7 +12,9 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 import java.util.stream.Stream;
+
 
 public class EdwardJonesImpl implements IEdwardJones {
     /**
