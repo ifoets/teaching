@@ -3,8 +3,8 @@ package interview.preparation.company.interviews.question.product.base;
 import interview.preparation.company.interviews.impl.product.base.model.Employee;
 import interview.preparation.company.interviews.impl.product.base.model.Transaction;
 
-import interview.preparation.company.interviews.model.BoardingPass;
 
+import interview.preparation.company.interviews.model.BoardingPass;
 
 import java.math.BigDecimal;
 import java.util.List;
