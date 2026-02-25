@@ -1,4 +1,4 @@
-package com.design.analysis.advance.cache;
+package com.classic.analysis.cache;
 
 import java.util.*;
 
@@ -69,7 +69,7 @@ public class LFUCache<K, V> {
         minFrequency = 1;
     }
 
-    public void display() {
+    public void print() {
         System.out.println("Cache contents:");
         for (K key : valueMap.keySet()) {
             System.out.println(key + " => " + valueMap.get(key) + " (freq: " + frequencyMap.get(key) + ")");
@@ -89,6 +89,6 @@ public class LFUCache<K, V> {
 
         cache.put(4, "Four"); // Evicts key 3 (least freq)
 
-        cache.display(); // Should show 1, 2, 4
+        cache.print(); // Should show 1, 2, 4
     }
 }

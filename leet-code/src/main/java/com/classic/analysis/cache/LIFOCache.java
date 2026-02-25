@@ -1,4 +1,4 @@
-package com.design.analysis.advance.cache;
+package com.classic.analysis.cache;
 
 import java.util.*;
 

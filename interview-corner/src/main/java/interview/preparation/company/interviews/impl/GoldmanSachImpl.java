@@ -2,6 +2,10 @@ package interview.preparation.company.interviews.impl;
 
 import interview.preparation.company.interviews.question.IGoldmanSach;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.TreeMap;
+
 public class GoldmanSachImpl implements IGoldmanSach {
 
     @Override
@@ -59,5 +63,28 @@ public class GoldmanSachImpl implements IGoldmanSach {
             }
         }
         return jump;
+    }
+
+    /**Given two arrays start[] and finish[], representing the start and finish times of activities. A person can perform only one activity at a time, and an activity can be performed only if its start time is greater than the finish time of the last chosen activity.
+     Find the maximum number of activities that can be performed without overlapping.*/
+    @Override
+    public int maxActivity(int[]start, int[]end){
+       int[][]a = new int[start.length][2];
+       for(int i=0;i<start.length;i++){
+           a[i][0]=start[i];
+           a[i][1]=end[i];
+       }
+       Arrays.sort(a, Comparator.comparing(x->x[1]));
+       int countMax=1;
+       int prev=a[0][1];
+       for(int i=1;i<start.length;i++)
+       {
+           if(a[i][0]>prev)
+           {
+               prev=a[i][1];
+               countMax++;
+           }
+       }
+       return countMax;
     }
 }

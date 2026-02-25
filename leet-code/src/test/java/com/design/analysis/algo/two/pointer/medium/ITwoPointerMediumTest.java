@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ITwoPointerMediumTest {
@@ -45,5 +46,15 @@ public class ITwoPointerMediumTest {
         for (List<Integer> list:rsList)
             System.out.println(list);
         Assert.assertEquals(2,rsList.size());
+    }
+
+    /**80. Remove Duplicates from Sorted Array II, remove some duplicates in-place such that each unique element appears at most twice.
+     * The relative order of the elements should be kept the same.**/
+    @Test
+    public void removeDuplicatesTest()
+    {
+        int[] a ={0,0,1,1,1,1,2,3,3};
+        itpm.removeDuplicates(a);
+        System.out.println(Arrays.toString(a));
     }
 }
