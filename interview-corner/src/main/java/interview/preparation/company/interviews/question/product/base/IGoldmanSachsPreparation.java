@@ -68,5 +68,34 @@ public interface IGoldmanSachsPreparation {
     /**135. Candy**/
     int candy(int[] ratings);
 
+    /*Given a string with consecutive repeating characters, compress it by replacing each group of consecutive identical characters with the character followed by its count.*/
+     String compressConscutiveStr(String str);
 
+     void sidesZeroAtEnd(int[]a);
+    /**Given two arrays start[] and finish[], representing the start and finish times of activities. A person can perform only one activity at a time, and an activity can be performed only if its start time is greater than the finish time of the last chosen activity.
+     Find the maximum number of activities that can be performed without overlapping.
+
+     Examples:
+
+     Input: start[] = [1, 3, 0, 5, 8, 5], finish[] = [2, 4, 6, 7, 9, 9]
+     Output: 4
+     Explanation: A person can perform at most four activities. The maximum set of activities that can be performed is {0, 1, 3, 4} (these are the indexes in the start[] and finish[] arrays).
+     */
+     int maxActivity(int[]start, int[] end);
+
+     /**2. Longest uniform subsequence - Find start index and length of longest repeating substring**/
+     /**Given a string s of size N. The task is to find the largest substring which consists of the same characters**/
+      int[] longestConscutiveRepetativeStr(String str);
+
+      /**"Shuffle an Array Randomly
+       Problem Statement:
+       Write a Java program that takes an array of integers and shuffles its elements randomly. Each time the program runs, the order of elements in the array should be different.
+       Implement the shuffle without using built-in shuffle methods like Collections.shuffle()"*/
+      void suffleArrayRandom(int[] nums);
+
+      /**15. 3Sum**/
+      List<List<Integer>> threeSum(int[] nums);
+
+      /**1283. Find the Smallest Divisor Given a Threshold**/
+      int smallestDivisor(int[] nums, int threshold);
 }
